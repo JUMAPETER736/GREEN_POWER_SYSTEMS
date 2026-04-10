@@ -1,14 +1,42 @@
-
-
 "use client";
 import { useState } from "react";
 
 export default function Contact() {
   const [sent, setSent] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", phone: "", service: "", message: "" });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [form, setForm] = useState({
+    name: "", email: "", phone: "", service: "", message: "",
+  });
 
-  const handle = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
-    setForm(f => ({ ...f, [e.target.name]: e.target.value }));
+  const handle = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
+
+  const handleSubmit = async () => {
+    if (!form.name || !form.email || !form.message) {
+      setError("Please fill in your name, email, and message.");
+      return;
+    }
+    setError("");
+    setLoading(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (res.ok) {
+        setSent(true);
+      } else {
+        setError("Something went wrong. Please try again.");
+      }
+    } catch {
+      setError("Network error. Please check your connection.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const inputStyle: React.CSSProperties = {
     width: "100%", padding: "11px 14px",
@@ -25,7 +53,9 @@ export default function Contact() {
       <div className="gp-page-hero">
         <div className="gp-container">
           <span className="gp-eyebrow">Get in touch</span>
-          <h1 className="gp-section-title" style={{ maxWidth: 500 }}>We'd love to hear from you</h1>
+          <h1 className="gp-section-title" style={{ maxWidth: 500 }}>
+            We'd love to hear from you
+          </h1>
           <p className="gp-section-sub" style={{ marginTop: 14 }}>
             Free consultation, no commitment. Our team usually responds within 2 business hours.
           </p>
@@ -34,41 +64,97 @@ export default function Contact() {
 
       <section style={{ padding: "72px 0" }}>
         <div className="gp-container">
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 48, alignItems: "start" }}>
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gap: 48, alignItems: "start",
+          }}>
 
-            {/* Form */}
+            {/* ── Form ── */}
             <div>
               {sent ? (
                 <div className="gp-card" style={{ padding: 40, textAlign: "center" }}>
-                  <div style={{ width: 56, height: 56, borderRadius: "50%", backgroundColor: "var(--gp-green-light)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 20px" }}>
-                    <svg width={26} height={26} viewBox="0 0 24 24" fill="none" stroke="var(--gp-green)" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
+                  <div style={{
+                    width: 56, height: 56, borderRadius: "50%",
+                    backgroundColor: "var(--gp-green-light)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    margin: "0 auto 20px",
+                  }}>
+                    <svg width={26} height={26} viewBox="0 0 24 24" fill="none"
+                      stroke="var(--gp-green)" strokeWidth={2.5}
+                      strokeLinecap="round" strokeLinejoin="round">
                       <path d="M20 6L9 17l-5-5" />
                     </svg>
                   </div>
-                  <h2 style={{ fontSize: 20, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 8px" }}>Message sent!</h2>
-                  <p style={{ fontSize: 14, color: "var(--gp-text-muted)", margin: 0 }}>We'll get back to you within 2 business hours.</p>
+                  <h2 style={{ fontSize: 20, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 8px" }}>
+                    Message sent!
+                  </h2>
+                  <p style={{ fontSize: 14, color: "var(--gp-text-muted)", margin: 0 }}>
+                    We'll get back to you within 2 business hours.
+                  </p>
                 </div>
               ) : (
                 <div className="gp-card" style={{ padding: 32 }}>
-                  <h2 style={{ fontSize: 18, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 24px" }}>Send us a message</h2>
+                  <h2 style={{ fontSize: 18, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 24px" }}>
+                    Send us a message
+                  </h2>
+
                   <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+
+                    {/* Name + Email row */}
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
                       <div>
-                        <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>Full name *</label>
-                        <input name="name" value={form.name} onChange={handle} placeholder="Your name" style={inputStyle} />
+                        <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
+                          Full name *
+                        </label>
+                        <input
+                          name="name"
+                          value={form.name}
+                          onChange={handle}
+                          placeholder="Your name"
+                          style={inputStyle}
+                        />
                       </div>
                       <div>
-                        <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>Email *</label>
-                        <input name="email" type="email" value={form.email} onChange={handle} placeholder="you@example.com" style={inputStyle} />
+                        <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
+                          Email *
+                        </label>
+                        <input
+                          name="email"
+                          type="email"
+                          value={form.email}
+                          onChange={handle}
+                          placeholder="you@example.com"
+                          style={inputStyle}
+                        />
                       </div>
                     </div>
+
+                    {/* Phone */}
                     <div>
-                      <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>Phone number</label>
-                      <input name="phone" value={form.phone} onChange={handle} placeholder="+265 ..." style={inputStyle} />
+                      <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
+                        Phone number
+                      </label>
+                      <input
+                        name="phone"
+                        value={form.phone}
+                        onChange={handle}
+                        placeholder="+265 ..."
+                        style={inputStyle}
+                      />
                     </div>
+
+                    {/* Service */}
                     <div>
-                      <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>Service interested in</label>
-                      <select name="service" value={form.service} onChange={handle} style={inputStyle}>
+                      <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
+                        Service interested in
+                      </label>
+                      <select
+                        name="service"
+                        value={form.service}
+                        onChange={handle}
+                        style={inputStyle}
+                      >
                         <option value="">Select a service…</option>
                         <option>Solar panel installation</option>
                         <option>System maintenance</option>
@@ -78,50 +164,120 @@ export default function Contact() {
                         <option>General enquiry</option>
                       </select>
                     </div>
+
+                    {/* Message */}
                     <div>
-                      <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>Message *</label>
-                      <textarea name="message" value={form.message} onChange={handle} placeholder="Tell us about your project or question…" rows={5} style={{ ...inputStyle, resize: "vertical" }} />
+                      <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
+                        Message *
+                      </label>
+                      <textarea
+                        name="message"
+                        value={form.message}
+                        onChange={handle}
+                        placeholder="Tell us about your project or question…"
+                        rows={5}
+                        style={{ ...inputStyle, resize: "vertical" }}
+                      />
                     </div>
-                    <button onClick={() => form.name && form.email && form.message && setSent(true)} className="gp-btn-primary" style={{ width: "100%", justifyContent: "center", marginTop: 4 }}>
-                      Send message
+
+                    {/* Error message */}
+                    {error && (
+                      <p style={{
+                        fontSize: 13, color: "#c0392b",
+                        backgroundColor: "#fdf0ef",
+                        border: "1px solid #f5c6c2",
+                        borderRadius: 8, padding: "10px 14px",
+                        margin: 0,
+                      }}>
+                        {error}
+                      </p>
+                    )}
+
+                    {/* Submit button */}
+                    <button
+                      onClick={handleSubmit}
+                      disabled={loading}
+                      className="gp-btn-primary"
+                      style={{
+                        width: "100%", justifyContent: "center", marginTop: 4,
+                        opacity: loading ? 0.7 : 1,
+                        cursor: loading ? "not-allowed" : "pointer",
+                      }}
+                    >
+                      {loading ? "Sending…" : "Send message"}
                     </button>
+
                   </div>
                 </div>
               )}
             </div>
 
-            {/* Info */}
+            {/* ── Contact Info ── */}
             <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
               {[
                 {
                   label: "Visit our office",
                   icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0z",
                   lines: ["QuickTrip Shopping Complex", "Area 25 Sungwi, Lilongwe", "P.O Box 40135, Malawi"],
+                  badge: "NYUMBA YA SOLAR",
                 },
                 {
                   label: "Email us",
                   icon: "M3 8l7.89 5.26a2 2 0 0 0 2.22 0L21 8M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z",
                   lines: ["greenpowersystemsltd@gmail.com"],
+                  badge: null,
                 },
                 {
                   label: "Opening hours",
                   icon: "M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0z",
                   lines: ["Monday – Friday: 8am – 5pm", "Saturday: 9am – 2pm", "Sunday: Closed"],
+                  badge: null,
                 },
-              ].map(({ label, icon, lines }) => (
-                <div key={label} className="gp-card" style={{ padding: "22px 24px", display: "flex", gap: 16, alignItems: "flex-start" }}>
+              ].map(({ label, icon, lines, badge }) => (
+                <div
+                  key={label}
+                  className="gp-card"
+                  style={{ padding: "22px 24px", display: "flex", gap: 16, alignItems: "flex-start" }}
+                >
                   <div className="gp-icon-badge" style={{ marginTop: 2 }}>
-                    <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="var(--gp-green)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+                    <svg width={20} height={20} viewBox="0 0 24 24" fill="none"
+                      stroke="var(--gp-green)" strokeWidth={1.8}
+                      strokeLinecap="round" strokeLinejoin="round">
                       <path d={icon} />
                     </svg>
                   </div>
                   <div>
-                    <p style={{ fontSize: 13, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 6px" }}>{label}</p>
-                    {lines.map(l => <p key={l} style={{ fontSize: 13, color: "var(--gp-text-muted)", margin: "2px 0" }}>{l}</p>)}
+                    <p style={{ fontSize: 13, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 8px" }}>
+                      {label}
+                    </p>
+
+                    {/* NYUMBA YA SOLAR green badge */}
+                    {badge && (
+                      <span style={{
+                        display: "inline-block",
+                        marginBottom: 10,
+                        padding: "4px 12px",
+                        backgroundColor: "var(--gp-green)",
+                        color: "#fff",
+                        fontSize: 11,
+                        fontWeight: 700,
+                        borderRadius: 100,
+                        letterSpacing: "0.08em",
+                      }}>
+                        {badge}
+                      </span>
+                    )}
+
+                    {lines.map(l => (
+                      <p key={l} style={{ fontSize: 13, color: "var(--gp-text-muted)", margin: "2px 0" }}>
+                        {l}
+                      </p>
+                    ))}
                   </div>
                 </div>
               ))}
             </div>
+
           </div>
         </div>
       </section>

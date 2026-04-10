@@ -58,7 +58,7 @@ export default function Navbar() {
                 color: "var(--gp-text-primary)",
                 letterSpacing: "-0.01em",
               }}>
-                Green Power
+                GREEN POWER SYSTEMS LIMITED
               </span>
               <span className="gp-logo-tag" style={{
                 color: "var(--gp-green)",
