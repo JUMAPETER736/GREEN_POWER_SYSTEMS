@@ -3,40 +3,56 @@
 @tailwind utilities;
 
 :root {
-  --gp-green:        #0f5f3f;
-  --gp-green-hover:  #1a8659;
-  --gp-green-light:  #e8f5ee;
-  --gp-accent:       #fbb81c;
-  --gp-border:       #e5e7eb;
-  --gp-border-hover: #d1d5db;
-  --gp-text:         #111827;
-  --gp-muted:        #6b7280;
-  --gp-subtle:       #9ca3af;
-  --gp-surface:      #f9fafb;
+  /* Brand */
+  --gp-green:         #0c5436;
+  --gp-green-mid:     #177a4e;
+  --gp-green-light:   #eaf5ef;
+  --gp-green-border:  #c3e6d2;
+  --gp-accent:        #f5a623;
+  --gp-accent-dark:   #1a1a1a;
+
+  /* Backgrounds — warm off-white system */
+  --gp-bg-page:       #f5f4f0;   /* warm off-white page */
+  --gp-bg-card:       #ffffff;
+  --gp-bg-section:    #faf9f6;   /* slightly warmer white for alt sections */
+  --gp-bg-dark:       #0c3d28;   /* deep forest green for CTAs */
+
+  /* Text */
+  --gp-text-primary:  #181815;
+  --gp-text-muted:    #5c6370;
+  --gp-text-subtle:   #9aa0ab;
+
+  /* Borders */
+  --gp-border:        #e2e0da;
+  --gp-border-hover:  #cccac3;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
 body {
-  background-color: var(--gp-surface);
-  color: var(--gp-text);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--gp-bg-page);
+  color: var(--gp-text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   margin: 0;
 }
 
+/* ── Layout ── */
 .gp-container {
-  max-width: 1120px;
+  max-width: 1160px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
+/* ── Buttons ── */
 .gp-btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 22px;
+  gap: 6px;
+  padding: 11px 24px;
   background-color: var(--gp-green);
   color: #fff;
   font-size: 0.875rem;
@@ -45,10 +61,11 @@ body {
   border-radius: 8px;
   cursor: pointer;
   text-decoration: none;
-  transition: background-color 0.2s, transform 0.15s;
+  transition: background-color 0.18s ease, transform 0.12s ease;
+  white-space: nowrap;
 }
 .gp-btn-primary:hover {
-  background-color: var(--gp-green-hover);
+  background-color: var(--gp-green-mid);
   transform: translateY(-1px);
 }
 
@@ -56,29 +73,143 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 20px;
+  gap: 6px;
+  padding: 10px 22px;
   background-color: transparent;
-  color: var(--gp-text);
+  color: var(--gp-text-primary);
   font-size: 0.875rem;
   font-weight: 500;
-  border: 1px solid var(--gp-border);
+  border: 1.5px solid var(--gp-border);
   border-radius: 8px;
   cursor: pointer;
   text-decoration: none;
-  transition: border-color 0.2s, background-color 0.2s;
+  transition: border-color 0.18s ease, background-color 0.18s ease;
+  white-space: nowrap;
 }
 .gp-btn-secondary:hover {
   border-color: var(--gp-border-hover);
-  background-color: #f3f4f6;
+  background-color: var(--gp-bg-section);
 }
 
+.gp-btn-accent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 28px;
+  background-color: var(--gp-accent);
+  color: var(--gp-accent-dark);
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.18s ease, transform 0.12s ease;
+  white-space: nowrap;
+}
+.gp-btn-accent:hover { opacity: 0.9; transform: translateY(-1px); }
+
+/* ── Cards ── */
 .gp-card {
-  background: #fff;
+  background: var(--gp-bg-card);
   border: 1px solid var(--gp-border);
-  border-radius: 12px;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  border-radius: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .gp-card:hover {
   border-color: var(--gp-border-hover);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  box-shadow: 0 6px 24px rgba(12, 84, 54, 0.07);
+}
+
+.gp-card-featured {
+  background: var(--gp-bg-card);
+  border: 2px solid var(--gp-green);
+  border-radius: 14px;
+}
+
+/* ── Section headings ── */
+.gp-eyebrow {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gp-green);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.gp-section-title {
+  font-size: clamp(1.6rem, 3.5vw, 2.25rem);
+  font-weight: 700;
+  color: var(--gp-text-primary);
+  line-height: 1.15;
+  margin: 0 0 12px 0;
+}
+
+.gp-section-sub {
+  font-size: 1rem;
+  color: var(--gp-text-muted);
+  line-height: 1.7;
+  margin: 0;
+  max-width: 520px;
+}
+
+/* ── Page hero (inner pages) ── */
+.gp-page-hero {
+  background-color: var(--gp-bg-card);
+  border-bottom: 1px solid var(--gp-border);
+  padding: 64px 0 56px;
+}
+
+/* ── Dividers ── */
+.gp-divider {
+  border: none;
+  border-top: 1px solid var(--gp-border);
+  margin: 0;
+}
+
+/* ── Icon badge ── */
+.gp-icon-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background-color: var(--gp-green-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ── Responsive nav helpers ── */
+.gp-nav-links   { display: none; }
+.gp-nav-cta     { display: none; }
+.gp-burger      { display: flex; }
+
+@media (min-width: 900px) {
+  .gp-nav-links { display: flex; }
+  .gp-nav-cta   { display: inline-flex; }
+  .gp-burger    { display: none; }
+}
+
+/* ── Logo responsive sizes ── */
+.gp-logo-img {
+  object-fit: contain;
+  border-radius: 10px;
+}
+/* mobile */
+.gp-logo-wrap  { width: 40px; height: 40px; }
+.gp-logo-name  { font-size: 15px; }
+.gp-logo-tag   { font-size: 10px; }
+
+@media (min-width: 640px) {
+  .gp-logo-wrap { width: 46px; height: 46px; }
+  .gp-logo-name { font-size: 16px; }
+  .gp-logo-tag  { font-size: 11px; }
+}
+
+@media (min-width: 900px) {
+  .gp-logo-wrap { width: 52px; height: 52px; }
+  .gp-logo-name { font-size: 17px; }
+  .gp-logo-tag  { font-size: 11px; }
 }
