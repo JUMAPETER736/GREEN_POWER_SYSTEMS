@@ -1,297 +1,165 @@
 "use client";
-
 import Link from "next/link";
 
 export default function Home() {
-  const features = [
-    {
-      title: "Expert installation",
-      desc: "Certified technicians, guaranteed workmanship, clean finish on every project.",
-      path: "M13 2L3 14h9l-1 8 10-12h-9l1-8z",
-    },
-    {
-      title: "Ongoing maintenance",
-      desc: "Round-the-clock support to keep your system producing at peak efficiency.",
-      path: "M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z",
-    },
-    {
-      title: "Flexible pricing",
-      desc: "Competitive rates and financing options designed around your budget.",
-      path: "M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6",
-    },
-    {
-      title: "Eco-friendly",
-      desc: "Reduce your carbon footprint and your electricity bill at the same time.",
-      path: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z",
-    },
-  ];
-
-  const services = [
-    {
-      num: "01",
-      title: "Solar panel installation",
-      desc: "End-to-end system design and professional installation for homes and commercial properties.",
-      featured: true,
-    },
-    {
-      num: "02",
-      title: "System maintenance",
-      desc: "Scheduled servicing to maximise output and extend the lifespan of your installation.",
-      featured: false,
-    },
-    {
-      num: "03",
-      title: "Repairs & upgrades",
-      desc: "Fast fault diagnosis and system upgrades to keep your energy flowing without interruption.",
-      featured: false,
-    },
-  ];
-
-  const stats = [
-    { num: "50+", label: "Installations" },
-    { num: "100%", label: "Satisfaction" },
-    { num: "24/7", label: "Support" },
-  ];
-
   return (
-    <div style={{ minHeight: "100vh", backgroundColor: "#f9fafb" }}>
+    <div style={{ backgroundColor: "var(--gp-bg-page)" }}>
 
-      {/* ── Hero ── */}
-      <section style={{ backgroundColor: "#fff", borderBottom: "1px solid #e5e7eb" }}>
-        <div className="gp-container" style={{ padding: "80px 1.5rem" }}>
+      {/* Hero */}
+      <section style={{ backgroundColor: "var(--gp-bg-card)", borderBottom: "1px solid var(--gp-border)" }}>
+        <div className="gp-container" style={{ padding: "88px 1.5rem 80px" }}>
           <div style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-            gap: 64,
-            alignItems: "center",
+            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 340px), 1fr))",
+            gap: "4rem", alignItems: "center",
           }}>
-
-            {/* Left copy */}
             <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
               <span style={{
                 display: "inline-flex", alignItems: "center", gap: 8,
-                padding: "4px 12px", borderRadius: 100,
-                backgroundColor: "#e8f5ee",
-                color: "#0f5f3f",
-                fontSize: 12, fontWeight: 500,
+                padding: "5px 14px", borderRadius: 100,
+                backgroundColor: "var(--gp-green-light)",
+                border: "1px solid var(--gp-green-border)",
+                color: "var(--gp-green)", fontSize: 12, fontWeight: 600,
                 width: "fit-content",
               }}>
-                <span style={{ width: 6, height: 6, borderRadius: "50%", backgroundColor: "#0f5f3f" }} />
-                Solar energy solutions · Lilongwe, Malawi
+                <span style={{ width: 7, height: 7, borderRadius: "50%", backgroundColor: "var(--gp-green)", flexShrink: 0 }} />
+                Malawi's trusted solar partner
               </span>
 
               <h1 style={{
-                fontSize: "clamp(2rem, 4vw, 3rem)",
-                fontWeight: 700,
-                color: "#111827",
-                lineHeight: 1.15,
-                margin: 0,
+                fontSize: "clamp(2.1rem, 5vw, 3.2rem)",
+                fontWeight: 800, color: "var(--gp-text-primary)",
+                lineHeight: 1.1, margin: 0, letterSpacing: "-0.02em",
               }}>
                 Power your future with{" "}
-                <span style={{ color: "#0f5f3f" }}>clean solar energy</span>
+                <span style={{ color: "var(--gp-green)" }}>clean solar energy</span>
               </h1>
 
-              <p style={{
-                fontSize: 17, color: "#6b7280",
-                lineHeight: 1.65, margin: 0, maxWidth: 480,
-              }}>
-                Professional installation, sales, and maintenance for homes and businesses. Sustainable energy that pays for itself.
+              <p style={{ fontSize: 17, color: "var(--gp-text-muted)", lineHeight: 1.7, margin: 0, maxWidth: 480 }}>
+                Professional installation, sales, and maintenance for homes and businesses across Malawi. Sustainable energy that pays for itself.
               </p>
 
               <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
-                <Link href="/contact" className="gp-btn-primary">Free consultation</Link>
-                <Link href="/services" className="gp-btn-secondary">Explore services</Link>
+                <Link href="/contact" className="gp-btn-primary">Get Free Consultation</Link>
+                <Link href="/services" className="gp-btn-secondary">View Our Services</Link>
               </div>
 
               <div style={{
-                display: "flex", gap: 32,
-                paddingTop: 20,
-                borderTop: "1px solid #f3f4f6",
+                display: "flex", gap: 36, paddingTop: 24,
+                borderTop: "1px solid var(--gp-border)", marginTop: 4,
               }}>
-                {stats.map(({ num, label }) => (
-                  <div key={label}>
-                    <p style={{ fontSize: 24, fontWeight: 700, color: "#0f5f3f", margin: 0 }}>{num}</p>
-                    <p style={{ fontSize: 13, color: "#9ca3af", marginTop: 4 }}>{label}</p>
+                {[["50+","Installations"],["100%","Satisfaction"],["24/7","Support"]].map(([n,l]) => (
+                  <div key={l}>
+                    <p style={{ fontSize: 26, fontWeight: 800, color: "var(--gp-green)", margin: 0, lineHeight: 1 }}>{n}</p>
+                    <p style={{ fontSize: 12, color: "var(--gp-text-subtle)", marginTop: 5, fontWeight: 500 }}>{l}</p>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Right illustration */}
+            {/* Illustration */}
             <div style={{
+              backgroundColor: "var(--gp-green-light)",
+              border: "1px solid var(--gp-green-border)",
+              borderRadius: 20, padding: "2.5rem",
               display: "flex", alignItems: "center", justifyContent: "center",
+              minHeight: 300,
             }}>
-              <div style={{
-                backgroundColor: "#f9fafb",
-                border: "1px solid #e5e7eb",
-                borderRadius: 20,
-                padding: 40,
-                width: "100%", maxWidth: 380,
-                aspectRatio: "1",
-                display: "flex", alignItems: "center", justifyContent: "center",
-              }}>
-                <svg viewBox="0 0 280 280" style={{ width: "100%" }} xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="70" cy="56" r="32" fill="#fbb81c" opacity="0.15" />
-                  <circle cx="70" cy="56" r="20" fill="#fbb81c" />
-                  {[0,45,90,135,180,225,270,315].map((angle) => {
-                    const r = Math.PI * angle / 180;
-                    return (
-                      <line key={angle}
-                        x1={70 + Math.sin(r)*27} y1={56 - Math.cos(r)*27}
-                        x2={70 + Math.sin(r)*37} y2={56 - Math.cos(r)*37}
-                        stroke="#fbb81c" strokeWidth="2.5" strokeLinecap="round" />
-                    );
-                  })}
-                  <rect x="20" y="140" width="100" height="76" rx="5" fill="#0052a3" />
-                  <rect x="26" y="148" width="23" height="17" rx="3" fill="#4dd9ff" opacity="0.85" />
-                  <rect x="55" y="148" width="23" height="17" rx="3" fill="#4dd9ff" opacity="0.85" />
-                  <rect x="84" y="148" width="23" height="17" rx="3" fill="#4dd9ff" opacity="0.85" />
-                  <rect x="26" y="170" width="23" height="17" rx="3" fill="#4dd9ff" opacity="0.85" />
-                  <rect x="55" y="170" width="23" height="17" rx="3" fill="#4dd9ff" opacity="0.85" />
-                  <rect x="84" y="170" width="23" height="17" rx="3" fill="#4dd9ff" opacity="0.85" />
-                  <rect x="26" y="192" width="23" height="17" rx="3" fill="#4dd9ff" opacity="0.85" />
-                  <rect x="55" y="192" width="23" height="17" rx="3" fill="#4dd9ff" opacity="0.85" />
-                  <rect x="84" y="192" width="23" height="17" rx="3" fill="#4dd9ff" opacity="0.85" />
-                  <rect x="138" y="126" width="118" height="90" rx="5" fill="#0066cc" />
-                  <rect x="145" y="134" width="28" height="21" rx="3" fill="#66d4ff" opacity="0.85" />
-                  <rect x="179" y="134" width="28" height="21" rx="3" fill="#66d4ff" opacity="0.85" />
-                  <rect x="213" y="134" width="28" height="21" rx="3" fill="#66d4ff" opacity="0.85" />
-                  <rect x="145" y="160" width="28" height="21" rx="3" fill="#66d4ff" opacity="0.85" />
-                  <rect x="179" y="160" width="28" height="21" rx="3" fill="#66d4ff" opacity="0.85" />
-                  <rect x="213" y="160" width="28" height="21" rx="3" fill="#66d4ff" opacity="0.85" />
-                  <rect x="145" y="186" width="28" height="21" rx="3" fill="#66d4ff" opacity="0.85" />
-                  <rect x="179" y="186" width="28" height="21" rx="3" fill="#66d4ff" opacity="0.85" />
-                  <rect x="213" y="186" width="28" height="21" rx="3" fill="#66d4ff" opacity="0.85" />
-                  <path d="M196 230 C196 230 205 216 208 204 C204 210 196 222 196 222Z" fill="#0f5f3f" />
-                  <path d="M196 230 C196 230 187 216 184 204 C188 210 196 222 196 222Z" fill="#1a8659" />
-                  <line x1="196" y1="203" x2="196" y2="234" stroke="#0f5f3f" strokeWidth="2" />
-                  <path d="M156 68 L144 86h11L142 108 L164 80h-12Z" fill="#fbb81c" opacity="0.9" />
-                </svg>
-              </div>
+              <svg viewBox="0 0 300 260" style={{ width: "100%", maxWidth: 320 }} xmlns="http://www.w3.org/2000/svg">
+                {/* Sun */}
+                <circle cx="75" cy="60" r="36" fill="#fbb81c" opacity="0.18" />
+                <circle cx="75" cy="60" r="22" fill="#fbb81c" />
+                {[0,45,90,135,180,225,270,315].map(a => {
+                  const r = (Math.PI * a) / 180;
+                  return <line key={a} x1={75+Math.sin(r)*29} y1={60-Math.cos(r)*29} x2={75+Math.sin(r)*40} y2={60-Math.cos(r)*40} stroke="#fbb81c" strokeWidth="3" strokeLinecap="round" />;
+                })}
+                {/* Panels */}
+                <rect x="18" y="148" width="110" height="82" rx="6" fill="#0052a3" />
+                {[0,1,2].map(row => [0,1,2].map(col => (
+                  <rect key={`${row}${col}`} x={25+col*34} y={156+row*24} width="26" height="18" rx="3" fill="#4dd9ff" opacity="0.85" />
+                )))}
+                <rect x="148" y="134" width="130" height="96" rx="6" fill="#0066cc" />
+                {[0,1,2].map(row => [0,1,2].map(col => (
+                  <rect key={`r${row}${col}`} x={156+col*40} y={142+row*28} width="32" height="22" rx="3" fill="#66d4ff" opacity="0.85" />
+                )))}
+                {/* Leaf */}
+                <path d="M210 240 C210 240 221 224 225 210 C220 218 210 230 210 230Z" fill="#0c5436" />
+                <path d="M210 240 C210 240 199 224 195 210 C200 218 210 230 210 230Z" fill="#177a4e" />
+                <line x1="210" y1="209" x2="210" y2="244" stroke="#0c5436" strokeWidth="2.5" />
+                {/* Bolt */}
+                <path d="M170 72 L157 93h13L152 116 L176 87h-14Z" fill="#fbb81c" opacity="0.95" />
+              </svg>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── Features ── */}
-      <section style={{ padding: "80px 0" }}>
+      {/* Why us */}
+      <section style={{ padding: "80px 0", backgroundColor: "var(--gp-bg-page)" }}>
         <div className="gp-container">
           <div style={{ marginBottom: 48 }}>
-            <p style={{
-              fontSize: 11, fontWeight: 600, color: "#0f5f3f",
-              letterSpacing: "0.07em", textTransform: "uppercase", marginBottom: 8,
-            }}>Why choose us</p>
-            <h2 style={{ fontSize: "clamp(1.5rem,3vw,2rem)", fontWeight: 700, color: "#111827", margin: 0 }}>
-              Built on expertise, driven by results
-            </h2>
+            <span className="gp-eyebrow">Why choose us</span>
+            <h2 className="gp-section-title">Expertise you can trust</h2>
+            <p className="gp-section-sub">From first consultation to years of support, we're with you every step.</p>
           </div>
-
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-            gap: 16,
-          }}>
-            {features.map(({ title, desc, path }) => (
-              <div key={title} className="gp-card" style={{ padding: 24 }}>
-                <div style={{
-                  width: 40, height: 40, borderRadius: 10,
-                  backgroundColor: "#e8f5ee",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  marginBottom: 16, flexShrink: 0,
-                }}>
-                  <svg width={20} height={20} viewBox="0 0 24 24" fill="none"
-                    stroke="#0f5f3f" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
-                    <path d={path} />
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(230px, 1fr))", gap: 16 }}>
+            {[
+              { title: "Certified technicians", desc: "Every installer is trained, vetted, and covered by our quality guarantee.", icon: "M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 0 0 1.946-.806 3.42 3.42 0 0 1 4.438 0 3.42 3.42 0 0 0 1.946.806 3.42 3.42 0 0 1 3.138 3.138 3.42 3.42 0 0 0 .806 1.946 3.42 3.42 0 0 1 0 4.438 3.42 3.42 0 0 0-.806 1.946 3.42 3.42 0 0 1-3.138 3.138 3.42 3.42 0 0 0-1.946.806 3.42 3.42 0 0 1-4.438 0 3.42 3.42 0 0 0-1.946-.806 3.42 3.42 0 0 1-3.138-3.138 3.42 3.42 0 0 0-.806-1.946 3.42 3.42 0 0 1 0-4.438 3.42 3.42 0 0 0 .806-1.946 3.42 3.42 0 0 1 3.138-3.138z" },
+              { title: "24/7 support", desc: "Our team is always reachable for emergencies, queries, and routine checks.", icon: "M3 5a2 2 0 0 1 2-2h3.28a1 1 0 0 1 .948.684l1.498 4.493a1 1 0 0 1-.502 1.21l-2.257 1.13a11.042 11.042 0 0 0 5.516 5.516l1.13-2.257a1 1 0 0 1 1.21-.502l4.493 1.498a1 1 0 0 1 .684.949V19a2 2 0 0 1-2 2h-1C9.716 21 3 14.284 3 6V5z" },
+              { title: "Transparent pricing", desc: "No hidden fees. Detailed quotes and flexible payment plans for every budget.", icon: "M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 11h.01M12 11h.01M15 11h.01M4 19V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z" },
+              { title: "Locally rooted", desc: "Based in Lilongwe — we understand Malawi's energy landscape inside and out.", icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" },
+            ].map(({ title, desc, icon }) => (
+              <div key={title} className="gp-card" style={{ padding: "28px 24px" }}>
+                <div className="gp-icon-badge" style={{ marginBottom: 18 }}>
+                  <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="var(--gp-green)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+                    <path d={icon} />
                   </svg>
                 </div>
-                <h3 style={{ fontSize: 14, fontWeight: 600, color: "#111827", marginBottom: 8 }}>{title}</h3>
-                <p style={{ fontSize: 13, color: "#6b7280", lineHeight: 1.6, margin: 0 }}>{desc}</p>
+                <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 8px" }}>{title}</h3>
+                <p style={{ fontSize: 13.5, color: "var(--gp-text-muted)", lineHeight: 1.65, margin: 0 }}>{desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── Services ── */}
-      <section style={{
-        padding: "80px 0",
-        backgroundColor: "#fff",
-        borderTop: "1px solid #e5e7eb",
-        borderBottom: "1px solid #e5e7eb",
-      }}>
+      {/* Services preview */}
+      <section style={{ padding: "80px 0", backgroundColor: "var(--gp-bg-section)", borderTop: "1px solid var(--gp-border)", borderBottom: "1px solid var(--gp-border)" }}>
         <div className="gp-container">
           <div style={{ marginBottom: 48 }}>
-            <p style={{
-              fontSize: 11, fontWeight: 600, color: "#0f5f3f",
-              letterSpacing: "0.07em", textTransform: "uppercase", marginBottom: 8,
-            }}>Our services</p>
-            <h2 style={{ fontSize: "clamp(1.5rem,3vw,2rem)", fontWeight: 700, color: "#111827", margin: 0 }}>
-              Everything solar, end to end
-            </h2>
-            <p style={{ fontSize: 16, color: "#6b7280", lineHeight: 1.65, marginTop: 12, maxWidth: 520 }}>
-              Complete solutions from design and installation through to long-term support.
-            </p>
+            <span className="gp-eyebrow">Core services</span>
+            <h2 className="gp-section-title">Everything solar, end to end</h2>
           </div>
-
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-            gap: 16, marginBottom: 32,
-          }}>
-            {services.map(({ num, title, desc, featured }) => (
-              <div key={num} style={{
-                padding: 28,
-                backgroundColor: "#fff",
-                border: `${featured ? "2px solid #0f5f3f" : "1px solid #e5e7eb"}`,
-                borderRadius: 12,
-                transition: "box-shadow 0.2s",
-                display: "flex", flexDirection: "column", gap: 10,
-              }}>
-                <p style={{ fontSize: 11, fontWeight: 500, color: "#9ca3af", margin: 0 }}>{num}</p>
-                <h3 style={{ fontSize: 15, fontWeight: 600, color: "#111827", margin: 0 }}>{title}</h3>
-                <p style={{ fontSize: 13, color: "#6b7280", lineHeight: 1.6, margin: 0, flexGrow: 1 }}>{desc}</p>
-                <Link href="/services" style={{
-                  fontSize: 13, fontWeight: 600,
-                  color: "#0f5f3f", textDecoration: "none",
-                  marginTop: 4,
-                }}>
-                  Learn more →
-                </Link>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 16, marginBottom: 32 }}>
+            {[
+              { n:"01", t:"Installation", d:"Full system design and professional installation for homes and businesses.", featured: true },
+              { n:"02", t:"Maintenance", d:"Scheduled servicing to maximise output and protect your investment.", featured: false },
+              { n:"03", t:"Repairs & upgrades", d:"Fast fault diagnosis and upgrades to keep energy flowing.", featured: false },
+            ].map(({ n, t, d, featured }) => (
+              <div key={n} className={featured ? "gp-card-featured" : "gp-card"} style={{ padding: 28 }}>
+                <p style={{ fontSize: 11, color: "var(--gp-text-subtle)", fontWeight: 600, margin: "0 0 12px", letterSpacing: "0.05em" }}>{n}</p>
+                <h3 style={{ fontSize: 16, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 10px" }}>{t}</h3>
+                <p style={{ fontSize: 13.5, color: "var(--gp-text-muted)", lineHeight: 1.65, margin: "0 0 18px", flexGrow: 1 }}>{d}</p>
+                <Link href="/services" style={{ fontSize: 13, fontWeight: 700, color: "var(--gp-green)", textDecoration: "none" }}>Learn more →</Link>
               </div>
             ))}
           </div>
-
           <Link href="/services" className="gp-btn-secondary">View all services</Link>
         </div>
       </section>
 
-      {/* ── CTA ── */}
-      <section style={{ padding: "80px 0", backgroundColor: "#0a4a30" }}>
-        <div className="gp-container" style={{
-          display: "flex", flexWrap: "wrap",
-          alignItems: "center", justifyContent: "space-between",
-          gap: 32,
-        }}>
+      {/* CTA */}
+      <section style={{ padding: "80px 0", backgroundColor: "var(--gp-bg-dark)" }}>
+        <div className="gp-container" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 32 }}>
           <div>
-            <h2 style={{ fontSize: "clamp(1.5rem,3vw,2rem)", fontWeight: 700, color: "#fff", margin: 0 }}>
+            <h2 style={{ fontSize: "clamp(1.6rem,3.5vw,2.2rem)", fontWeight: 800, color: "#fff", margin: "0 0 10px", letterSpacing: "-0.02em" }}>
               Ready to go solar?
             </h2>
-            <p style={{ fontSize: 16, color: "rgba(255,255,255,0.6)", marginTop: 8, maxWidth: 440, lineHeight: 1.6 }}>
-              Get a free consultation from our experts. No commitment, no pressure — just honest advice.
+            <p style={{ fontSize: 16, color: "rgba(255,255,255,0.62)", margin: 0, lineHeight: 1.7, maxWidth: 440 }}>
+              Talk to our experts — free consultation, no pressure, just honest solar advice for your home or business.
             </p>
           </div>
-          <Link href="/contact" style={{
-            display: "inline-flex", alignItems: "center",
-            padding: "12px 28px",
-            backgroundColor: "#fbb81c",
-            color: "#1a1a1a",
-            fontWeight: 700, fontSize: 14,
-            borderRadius: 8, textDecoration: "none",
-            flexShrink: 0,
-            transition: "opacity 0.2s",
-          }}>
-            Schedule consultation
-          </Link>
+          <Link href="/contact" className="gp-btn-accent">Schedule Free Consultation</Link>
         </div>
       </section>
     </div>
