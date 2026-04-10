@@ -53,7 +53,13 @@ export default function Footer() {
                 width: 36, height: 36, borderRadius: 8,
                 overflow: "hidden", backgroundColor: "#0f5f3f", flexShrink: 0,
               }}>
-                <Image src="/logo.jpeg" alt="Green Power" width={36} height={36} style={{ objectFit: "contain" }} />
+                <Image
+                  src="/logo.jpeg"
+                  alt="Green Power"
+                  width={36}
+                  height={36}
+                  style={{ objectFit: "contain" }}
+                />
               </div>
               <div>
                 <p style={{ fontSize: 14, fontWeight: 600, color: "#111827", margin: 0 }}>Green Power</p>
@@ -89,17 +95,37 @@ export default function Footer() {
           <div>
             <p style={headingStyle}>Contact</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+
+              {/* Email */}
               <div>
                 <p style={{ fontSize: 11, color: "#9ca3af", marginBottom: 4, marginTop: 0 }}>Email</p>
-                <a href="mailto:greenpowersystemsltd@gmail.com" style={{
-                  fontSize: 13, color: "#0f5f3f", textDecoration: "none",
-                  wordBreak: "break-all",
-                }}>
+                <a
+                  href="mailto:greenpowersystemsltd@gmail.com"
+                  style={{ fontSize: 13, color: "#0f5f3f", textDecoration: "none", wordBreak: "break-all" }}
+                >
                   greenpowersystemsltd@gmail.com
                 </a>
               </div>
+
+              {/* Address with NYUMBA YA SOLAR badge */}
               <div>
-                <p style={{ fontSize: 11, color: "#9ca3af", marginBottom: 4, marginTop: 0 }}>Address</p>
+                <p style={{ fontSize: 11, color: "#9ca3af", marginBottom: 8, marginTop: 0 }}>Address</p>
+
+                {/* NYUMBA YA SOLAR badge */}
+                <span style={{
+                  display: "inline-block",
+                  marginBottom: 10,
+                  padding: "4px 12px",
+                  backgroundColor: "#0c5436",
+                  color: "#ffffff",
+                  fontSize: 10,
+                  fontWeight: 700,
+                  borderRadius: 100,
+                  letterSpacing: "0.09em",
+                }}>
+                  NYUMBA YA SOLAR
+                </span>
+
                 <address style={{
                   fontSize: 13, color: "#6b7280",
                   fontStyle: "normal", lineHeight: 1.7,
@@ -109,8 +135,10 @@ export default function Footer() {
                   P.O Box 40135, Malawi
                 </address>
               </div>
+
             </div>
           </div>
+
         </div>
       </div>
 
@@ -127,6 +155,7 @@ export default function Footer() {
           <p style={{ fontSize: 12, color: "#9ca3af", margin: 0 }}>Lilongwe, Malawi</p>
         </div>
       </div>
+
     </footer>
   );
 }
