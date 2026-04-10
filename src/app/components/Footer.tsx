@@ -101,36 +101,24 @@ export default function Footer() {
                 <p style={{ fontSize: 11, color: "#9ca3af", marginBottom: 4, marginTop: 0 }}>Email</p>
                 <a
                   href="mailto:greenpowersystemsltd@gmail.com"
-                  style={{ fontSize: 13, color: "#0f5f3f", textDecoration: "none", wordBreak: "break-all" }}
+                  style={{
+                    fontSize: 13, color: "#0f5f3f",
+                    textDecoration: "none", wordBreak: "break-all",
+                  }}
                 >
                   greenpowersystemsltd@gmail.com
                 </a>
               </div>
 
-              {/* Address with NYUMBA YA SOLAR badge */}
+              {/* Address */}
               <div>
-                <p style={{ fontSize: 11, color: "#9ca3af", marginBottom: 8, marginTop: 0 }}>Address</p>
-
-                {/* NYUMBA YA SOLAR badge */}
-                <span style={{
-                  display: "inline-block",
-                  marginBottom: 10,
-                  padding: "4px 12px",
-                  backgroundColor: "#0c5436",
-                  color: "#ffffff",
-                  fontSize: 10,
-                  fontWeight: 700,
-                  borderRadius: 100,
-                  letterSpacing: "0.09em",
-                }}>
-                  NYUMBA YA SOLAR
-                </span>
-
+                <p style={{ fontSize: 11, color: "#9ca3af", marginBottom: 4, marginTop: 0 }}>Address</p>
                 <address style={{
                   fontSize: 13, color: "#6b7280",
                   fontStyle: "normal", lineHeight: 1.7,
                 }}>
                   QuickTrip Shopping Complex<br />
+                  NYUMBA YA SOLAR<br />
                   Area 25 Sungwi, Lilongwe<br />
                   P.O Box 40135, Malawi
                 </address>
