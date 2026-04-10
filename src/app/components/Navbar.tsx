@@ -3,8 +3,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
-const links = [
+const navLinks = [
   { href: "/",             label: "Home" },
   { href: "/about",        label: "About" },
   { href: "/services",     label: "Services" },
@@ -15,123 +16,170 @@ const links = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <header style={{
       position: "sticky", top: 0, zIndex: 50,
       backgroundColor: "#fff",
-      borderBottom: "1px solid #e5e7eb",
+      borderBottom: "1px solid var(--gp-border)",
+      boxShadow: "0 1px 0 0 rgba(0,0,0,0.04)",
     }}>
       <div className="gp-container">
         <div style={{
           display: "flex", alignItems: "center",
           justifyContent: "space-between",
-          height: 64, gap: 32,
+          height: 68,
         }}>
 
-          {/* Logo */}
+          {/* ── Logo ── */}
           <Link href="/" style={{
             display: "flex", alignItems: "center",
-            gap: 10, textDecoration: "none", flexShrink: 0,
+            gap: 12, textDecoration: "none", flexShrink: 0,
           }}>
-            <div style={{
-              width: 36, height: 36, borderRadius: 8,
-              overflow: "hidden", backgroundColor: "#0f5f3f",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              flexShrink: 0,
-            }}>
-              <Image src="/logo.jpeg" alt="Green Power" width={36} height={36} style={{ objectFit: "contain" }} />
+            <div
+              className="gp-logo-wrap"
+              style={{
+                borderRadius: 10, overflow: "hidden",
+                border: "1.5px solid var(--gp-green-border)",
+                flexShrink: 0, position: "relative",
+              }}
+            >
+              <Image
+                src="/logo.jpeg"
+                alt="Green Power Systems logo"
+                fill
+                className="gp-logo-img"
+              />
             </div>
             <div style={{ display: "flex", flexDirection: "column", lineHeight: 1 }}>
-              <span style={{ fontSize: 14, fontWeight: 600, color: "#111827" }}>Green Power</span>
-              <span style={{ fontSize: 11, color: "#9ca3af", marginTop: 2 }}>Solar Solutions</span>
+              <span className="gp-logo-name" style={{
+                fontWeight: 700,
+                color: "var(--gp-text-primary)",
+                letterSpacing: "-0.01em",
+              }}>
+                Green Power
+              </span>
+              <span className="gp-logo-tag" style={{
+                color: "var(--gp-green)",
+                marginTop: 3,
+                fontWeight: 500,
+                letterSpacing: "0.03em",
+              }}>
+                Solar Systems · Malawi
+              </span>
             </div>
           </Link>
 
-          {/* Desktop links */}
-          <nav style={{
-            display: "flex", alignItems: "center", gap: 4,
-            // hide on mobile via media query — handled in the mobile block below
-          }} className="gp-nav-desktop">
-            {links.map(({ href, label }) => (
-              <Link key={href} href={href} style={{
-                padding: "6px 12px",
-                fontSize: 14,
-                color: "#4b5563",
-                textDecoration: "none",
-                borderRadius: 6,
-                transition: "background 0.15s, color 0.15s",
-              }}
-              onMouseEnter={e => {
-                (e.target as HTMLElement).style.backgroundColor = "#f3f4f6";
-                (e.target as HTMLElement).style.color = "#111827";
-              }}
-              onMouseLeave={e => {
-                (e.target as HTMLElement).style.backgroundColor = "transparent";
-                (e.target as HTMLElement).style.color = "#4b5563";
-              }}>
-                {label}
-              </Link>
-            ))}
+          {/* ── Desktop nav ── */}
+          <nav
+            className="gp-nav-links"
+            style={{ alignItems: "center", gap: 2 }}
+          >
+            {navLinks.map(({ href, label }) => {
+              const active = pathname === href;
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  style={{
+                    padding: "7px 14px",
+                    fontSize: 14,
+                    fontWeight: active ? 600 : 400,
+                    color: active ? "var(--gp-green)" : "var(--gp-text-muted)",
+                    textDecoration: "none",
+                    borderRadius: 7,
+                    backgroundColor: active ? "var(--gp-green-light)" : "transparent",
+                    transition: "background 0.15s, color 0.15s",
+                  }}
+                  onMouseEnter={e => {
+                    if (!active) {
+                      (e.currentTarget as HTMLElement).style.backgroundColor = "var(--gp-bg-section)";
+                      (e.currentTarget as HTMLElement).style.color = "var(--gp-text-primary)";
+                    }
+                  }}
+                  onMouseLeave={e => {
+                    if (!active) {
+                      (e.currentTarget as HTMLElement).style.backgroundColor = "transparent";
+                      (e.currentTarget as HTMLElement).style.color = "var(--gp-text-muted)";
+                    }
+                  }}
+                >
+                  {label}
+                </Link>
+              );
+            })}
           </nav>
 
-          {/* CTA + burger */}
-          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-            <Link href="/contact" className="gp-btn-primary" style={{ display: "none" }}
-              id="nav-cta">
-              Get Quote
-            </Link>
-            <button
-              onClick={() => setOpen(!open)}
-              aria-label="Toggle menu"
-              style={{
-                background: "none", border: "none", cursor: "pointer",
-                padding: 8, borderRadius: 6, color: "#6b7280",
-              }}>
-              <svg width={20} height={20} fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                {open
-                  ? <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                  : <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />}
-              </svg>
-            </button>
-          </div>
+          {/* ── Desktop CTA ── */}
+          <Link
+            href="/contact"
+            className="gp-nav-cta gp-btn-primary"
+            style={{ fontSize: 13, padding: "9px 20px" }}
+          >
+            Get Free Quote
+          </Link>
+
+          {/* ── Burger ── */}
+          <button
+            className="gp-burger"
+            onClick={() => setOpen(!open)}
+            aria-label="Toggle menu"
+            style={{
+              background: "none", border: "none", cursor: "pointer",
+              padding: 8, borderRadius: 8, color: "var(--gp-text-muted)",
+              alignItems: "center", justifyContent: "center",
+            }}
+          >
+            <svg width={22} height={22} fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              {open
+                ? <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                : <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />}
+            </svg>
+          </button>
         </div>
 
-        {/* Mobile menu */}
+        {/* ── Mobile menu ── */}
         {open && (
           <div style={{
-            borderTop: "1px solid #f3f4f6",
-            paddingBottom: 12,
+            borderTop: "1px solid var(--gp-border)",
+            paddingTop: 8, paddingBottom: 16,
           }}>
-            {links.map(({ href, label }) => (
-              <Link key={href} href={href}
+            {navLinks.map(({ href, label }) => {
+              const active = pathname === href;
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  onClick={() => setOpen(false)}
+                  style={{
+                    display: "block", padding: "11px 12px",
+                    fontSize: 15,
+                    fontWeight: active ? 600 : 400,
+                    color: active ? "var(--gp-green)" : "var(--gp-text-primary)",
+                    backgroundColor: active ? "var(--gp-green-light)" : "transparent",
+                    textDecoration: "none",
+                    borderRadius: 8,
+                    marginBottom: 2,
+                  }}
+                >
+                  {label}
+                </Link>
+              );
+            })}
+            <div style={{ marginTop: 10, paddingTop: 10, borderTop: "1px solid var(--gp-border)" }}>
+              <Link
+                href="/contact"
+                className="gp-btn-primary"
+                style={{ width: "100%", justifyContent: "center" }}
                 onClick={() => setOpen(false)}
-                style={{
-                  display: "block", padding: "10px 12px",
-                  fontSize: 14, color: "#374151",
-                  textDecoration: "none", borderRadius: 6,
-                }}>
-                {label}
-              </Link>
-            ))}
-            <div style={{ padding: "8px 12px 4px" }}>
-              <Link href="/contact" className="gp-btn-primary" style={{ width: "100%" }}>
-                Get Quote
+              >
+                Get Free Quote
               </Link>
             </div>
           </div>
         )}
       </div>
-
-      <style>{`
-        @media (min-width: 768px) {
-          .gp-nav-desktop { display: flex !important; }
-          #nav-cta { display: inline-flex !important; }
-        }
-        @media (max-width: 767px) {
-          .gp-nav-desktop { display: none !important; }
-        }
-      `}</style>
     </header>
   );
 }
