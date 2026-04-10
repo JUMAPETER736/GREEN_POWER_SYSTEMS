@@ -1,0 +1,130 @@
+
+
+"use client";
+import { useState } from "react";
+
+export default function Contact() {
+  const [sent, setSent] = useState(false);
+  const [form, setForm] = useState({ name: "", email: "", phone: "", service: "", message: "" });
+
+  const handle = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
+    setForm(f => ({ ...f, [e.target.name]: e.target.value }));
+
+  const inputStyle: React.CSSProperties = {
+    width: "100%", padding: "11px 14px",
+    fontSize: 14, color: "var(--gp-text-primary)",
+    backgroundColor: "var(--gp-bg-card)",
+    border: "1.5px solid var(--gp-border)",
+    borderRadius: 8, outline: "none",
+    transition: "border-color 0.15s",
+    fontFamily: "inherit",
+  };
+
+  return (
+    <div style={{ backgroundColor: "var(--gp-bg-page)" }}>
+      <div className="gp-page-hero">
+        <div className="gp-container">
+          <span className="gp-eyebrow">Get in touch</span>
+          <h1 className="gp-section-title" style={{ maxWidth: 500 }}>We'd love to hear from you</h1>
+          <p className="gp-section-sub" style={{ marginTop: 14 }}>
+            Free consultation, no commitment. Our team usually responds within 2 business hours.
+          </p>
+        </div>
+      </div>
+
+      <section style={{ padding: "72px 0" }}>
+        <div className="gp-container">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 48, alignItems: "start" }}>
+
+            {/* Form */}
+            <div>
+              {sent ? (
+                <div className="gp-card" style={{ padding: 40, textAlign: "center" }}>
+                  <div style={{ width: 56, height: 56, borderRadius: "50%", backgroundColor: "var(--gp-green-light)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 20px" }}>
+                    <svg width={26} height={26} viewBox="0 0 24 24" fill="none" stroke="var(--gp-green)" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                  </div>
+                  <h2 style={{ fontSize: 20, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 8px" }}>Message sent!</h2>
+                  <p style={{ fontSize: 14, color: "var(--gp-text-muted)", margin: 0 }}>We'll get back to you within 2 business hours.</p>
+                </div>
+              ) : (
+                <div className="gp-card" style={{ padding: 32 }}>
+                  <h2 style={{ fontSize: 18, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 24px" }}>Send us a message</h2>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+                      <div>
+                        <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>Full name *</label>
+                        <input name="name" value={form.name} onChange={handle} placeholder="Your name" style={inputStyle} />
+                      </div>
+                      <div>
+                        <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>Email *</label>
+                        <input name="email" type="email" value={form.email} onChange={handle} placeholder="you@example.com" style={inputStyle} />
+                      </div>
+                    </div>
+                    <div>
+                      <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>Phone number</label>
+                      <input name="phone" value={form.phone} onChange={handle} placeholder="+265 ..." style={inputStyle} />
+                    </div>
+                    <div>
+                      <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>Service interested in</label>
+                      <select name="service" value={form.service} onChange={handle} style={inputStyle}>
+                        <option value="">Select a service…</option>
+                        <option>Solar panel installation</option>
+                        <option>System maintenance</option>
+                        <option>Repairs & diagnostics</option>
+                        <option>Battery storage</option>
+                        <option>Commercial / industrial</option>
+                        <option>General enquiry</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>Message *</label>
+                      <textarea name="message" value={form.message} onChange={handle} placeholder="Tell us about your project or question…" rows={5} style={{ ...inputStyle, resize: "vertical" }} />
+                    </div>
+                    <button onClick={() => form.name && form.email && form.message && setSent(true)} className="gp-btn-primary" style={{ width: "100%", justifyContent: "center", marginTop: 4 }}>
+                      Send message
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Info */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+              {[
+                {
+                  label: "Visit our office",
+                  icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0z",
+                  lines: ["QuickTrip Shopping Complex", "Area 25 Sungwi, Lilongwe", "P.O Box 40135, Malawi"],
+                },
+                {
+                  label: "Email us",
+                  icon: "M3 8l7.89 5.26a2 2 0 0 0 2.22 0L21 8M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z",
+                  lines: ["greenpowersystemsltd@gmail.com"],
+                },
+                {
+                  label: "Opening hours",
+                  icon: "M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0z",
+                  lines: ["Monday – Friday: 8am – 5pm", "Saturday: 9am – 2pm", "Sunday: Closed"],
+                },
+              ].map(({ label, icon, lines }) => (
+                <div key={label} className="gp-card" style={{ padding: "22px 24px", display: "flex", gap: 16, alignItems: "flex-start" }}>
+                  <div className="gp-icon-badge" style={{ marginTop: 2 }}>
+                    <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="var(--gp-green)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+                      <path d={icon} />
+                    </svg>
+                  </div>
+                  <div>
+                    <p style={{ fontSize: 13, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 6px" }}>{label}</p>
+                    {lines.map(l => <p key={l} style={{ fontSize: 13, color: "var(--gp-text-muted)", margin: "2px 0" }}>{l}</p>)}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
