@@ -1,283 +1,223 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+
+const features = [
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="w-5 h-5">
+        <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+      </svg>
+    ),
+    title: "Expert installation",
+    desc: "Certified technicians, guaranteed workmanship, clean finish on every project.",
+  },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="w-5 h-5">
+        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+      </svg>
+    ),
+    title: "Ongoing maintenance",
+    desc: "Round-the-clock support to keep your system producing at peak efficiency.",
+  },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="w-5 h-5">
+        <line x1="12" y1="1" x2="12" y2="23" /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+      </svg>
+    ),
+    title: "Flexible pricing",
+    desc: "Competitive rates and financing options designed around your budget.",
+  },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="w-5 h-5">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      </svg>
+    ),
+    title: "Eco-friendly",
+    desc: "Reduce your carbon footprint and your electricity bill at the same time.",
+  },
+];
+
+const services = [
+  {
+    num: "01",
+    title: "Solar panel installation",
+    desc: "End-to-end system design and professional installation for homes and commercial properties.",
+    featured: true,
+  },
+  {
+    num: "02",
+    title: "System maintenance",
+    desc: "Scheduled servicing to maximise output and extend the lifespan of your installation.",
+    featured: false,
+  },
+  {
+    num: "03",
+    title: "Repairs & upgrades",
+    desc: "Fast fault diagnosis and system upgrades to keep your energy flowing without interruption.",
+    featured: false,
+  },
+];
 
 export default function Home() {
-  // State for animations
-  const [scrolled, setScrolled] = useState(false);
-
-  // Handle scroll effect for navbar
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
-    <div className="min-h-screen bg-white">
-      {/* ===== HERO SECTION ===== */}
-      {/* Modern gradient hero with animated text */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white pt-32 pb-20 md:pt-40 md:pb-32">
-        {/* Animated background elements */}
-        <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-        <div className="absolute top-0 right-0 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-8 left-20 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+    <div className="min-h-screen bg-gray-50">
 
-        <div className="section-container relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            {/* Left side - Text content */}
-            <div className="space-y-8 animate-fadeInUp">
-              {/* Badge */}
-              <div className="inline-block">
-                <span className="px-4 py-2 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 text-white text-sm font-semibold">
-                  ⚡ Solar Energy Revolution
-                </span>
-              </div>
+      {/* ── Hero ── */}
+      <section className="bg-white border-b border-gray-200">
+        <div className="section-container py-20 md:py-28 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
 
-              {/* Main heading */}
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
-                Power Your Future with Solar Energy
-              </h1>
+          {/* Left */}
+          <div className="space-y-6">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--green-light)] text-[var(--green-primary)] text-xs font-medium">
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--green-primary)]" />
+              Solar energy solutions · Lilongwe, Malawi
+            </span>
 
-              {/* Subheading */}
-              <p className="text-xl md:text-2xl text-gray-300 leading-relaxed max-w-2xl">
-                Professional solar panel installation, sales, and maintenance services. Transform your energy consumption with sustainable, cost-effective solutions for your home or business.
-              </p>
+            <h1 className="text-4xl md:text-5xl font-semibold text-gray-900 leading-tight tracking-tight">
+              Power your future with{" "}
+              <span className="text-[var(--green-primary)]">clean solar energy</span>
+            </h1>
 
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Link
-                  href="/contact"
-                  className="group relative px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold rounded-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/50"
-                >
-                  <span className="relative z-10">Get Free Consultation</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </Link>
+            <p className="text-lg text-gray-500 leading-relaxed max-w-lg">
+              Professional installation, sales, and maintenance for homes and businesses. Sustainable energy that pays for itself.
+            </p>
 
-                <Link
-                  href="/services"
-                  className="px-8 py-4 border-2 border-white text-white font-bold rounded-lg hover:bg-white hover:text-purple-900 transition-all duration-300"
-                >
-                  Explore Services
-                </Link>
-              </div>
-
-              {/* Trust indicators */}
-              <div className="flex gap-8 pt-8 border-t border-gray-700">
-                <div>
-                  <p className="text-3xl font-bold text-blue-400">50+</p>
-                  <p className="text-gray-400">Installations</p>
-                </div>
-                <div>
-                  <p className="text-3xl font-bold text-purple-400">100%</p>
-                  <p className="text-gray-400">Satisfaction</p>
-                </div>
-                <div>
-                  <p className="text-3xl font-bold text-pink-400">24/7</p>
-                  <p className="text-gray-400">Support</p>
-                </div>
-              </div>
+            <div className="flex flex-wrap gap-3 pt-2">
+              <Link href="/contact" className="btn-primary">
+                Free consultation
+              </Link>
+              <Link href="/services" className="btn-secondary">
+                Explore services
+              </Link>
             </div>
 
-            {/* Right side - Animated illustration */}
-            <div className="relative h-96 md:h-full animate-slideInRight">
-              {/* Glowing background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-3xl blur-2xl"></div>
+            <div className="flex gap-8 pt-4 border-t border-gray-100">
+              {[["50+", "Installations"], ["100%", "Satisfaction"], ["24/7", "Support"]].map(([num, label]) => (
+                <div key={label}>
+                  <p className="text-2xl font-semibold text-[var(--green-primary)]">{num}</p>
+                  <p className="text-sm text-gray-400 mt-0.5">{label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
 
-              {/* SVG Solar illustration */}
-              <svg
-                viewBox="0 0 400 400"
-                className="w-full h-full relative z-10 filter drop-shadow-2xl"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                {/* Sun with glow */}
-                <defs>
-                  <radialGradient id="sunGradient" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stopColor="#FFD700" />
-                    <stop offset="100%" stopColor="#FFA500" />
-                  </radialGradient>
-                  <filter id="glow">
-                    <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                    <feMerge>
-                      <feMergeNode in="coloredBlur" />
-                      <feMergeNode in="SourceGraphic" />
-                    </feMerge>
-                  </filter>
-                </defs>
-
-                {/* Animated sun */}
-                <circle cx="100" cy="80" r="45" fill="url(#sunGradient)" filter="url(#glow)" className="animate-pulse" />
-
-                {/* Sun rays */}
-                <g stroke="#FFD700" strokeWidth="3" fill="none">
-                  <line x1="100" y1="20" x2="100" y2="0" />
-                  <line x1="145" y1="35" x2="160" y2="20" />
-                  <line x1="160" y1="80" x2="180" y2="80" />
-                  <line x1="145" y1="125" x2="160" y2="140" />
-                </g>
-
-                {/* Solar panel array */}
-                <g className="animate-slideInUp">
-                  {/* Panel 1 */}
-                  <rect x="60" y="200" width="45" height="80" fill="#0066CC" rx="4" />
-                  <rect x="65" y="210" width="10" height="12" fill="#4DD9FF" />
-                  <rect x="80" y="210" width="10" height="12" fill="#4DD9FF" />
-                  <rect x="65" y="230" width="10" height="12" fill="#4DD9FF" />
-                  <rect x="80" y="230" width="10" height="12" fill="#4DD9FF" />
-                  <rect x="65" y="250" width="10" height="12" fill="#4DD9FF" />
-                  <rect x="80" y="250" width="10" height="12" fill="#4DD9FF" />
-
-                  {/* Panel 2 */}
-                  <rect x="140" y="190" width="50" height="90" fill="#0066CC" rx="4" />
-                  <rect x="146" y="200" width="10" height="12" fill="#4DD9FF" />
-                  <rect x="162" y="200" width="10" height="12" fill="#4DD9FF" />
-                  <rect x="146" y="225" width="10" height="12" fill="#4DD9FF" />
-                  <rect x="162" y="225" width="10" height="12" fill="#4DD9FF" />
-                  <rect x="146" y="250" width="10" height="12" fill="#4DD9FF" />
-                  <rect x="162" y="250" width="10" height="12" fill="#4DD9FF" />
-                </g>
-
-                {/* Leaf symbol */}
-                <g fill="#10B981">
-                  <path d="M 220 320 Q 240 300 250 270 Q 240 280 220 300 Z" />
-                  <path d="M 220 320 Q 200 300 190 270 Q 200 280 220 300 Z" />
-                </g>
+          {/* Right — clean SVG illustration */}
+          <div className="flex items-center justify-center">
+            <div className="w-full max-w-sm bg-gray-50 rounded-2xl border border-gray-100 p-8 aspect-square flex items-center justify-center">
+              <svg viewBox="0 0 280 280" className="w-full" xmlns="http://www.w3.org/2000/svg">
+                {/* Sun */}
+                <circle cx="70" cy="56" r="32" fill="#fbb81c" opacity="0.15" />
+                <circle cx="70" cy="56" r="20" fill="#fbb81c" />
+                {["0,-30", "21,-21", "30,0", "21,21", "0,30", "-21,21", "-30,0", "-21,-21"].map((d, i) => {
+                  const [dx, dy] = d.split(",").map(Number);
+                  return (
+                    <line key={i}
+                      x1={70 + dx * 0.72} y1={56 + dy * 0.72}
+                      x2={70 + dx} y2={56 + dy}
+                      stroke="#fbb81c" strokeWidth="2.5" strokeLinecap="round" />
+                  );
+                })}
+                {/* Panel left */}
+                <rect x="24" y="140" width="96" height="76" rx="5" fill="#0052a3" />
+                {[0,1,2].map(row => [0,1,2].map(col => (
+                  <rect key={`${row}-${col}`}
+                    x={30 + col * 30} y={148 + row * 22}
+                    width="22" height="16" rx="3"
+                    fill="#4dd9ff" opacity="0.8" />
+                )))}
+                {/* Panel right */}
+                <rect x="136" y="128" width="108" height="88" rx="5" fill="#0066cc" />
+                {[0,1,2].map(row => [0,1,2].map(col => (
+                  <rect key={`r${row}-c${col}`}
+                    x={142 + col * 34} y={136 + row * 26}
+                    width="26" height="20" rx="3"
+                    fill="#66d4ff" opacity="0.8" />
+                )))}
+                {/* Leaf */}
+                <path d="M196 224 C196 224 206 210 210 198 C206 204 196 214 196 214 Z" fill="#0f5f3f" />
+                <path d="M196 224 C196 224 186 210 182 198 C186 204 196 214 196 214 Z" fill="#1a8659" />
+                <line x1="196" y1="197" x2="196" y2="228" stroke="#0f5f3f" strokeWidth="2" />
+                {/* Energy bolt */}
+                <path d="M155 64 L144 82 h10 L142 102 L162 78 h-11 Z" fill="#fbb81c" opacity="0.9" />
               </svg>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ===== FEATURES SECTION ===== */}
-      {/* Modern cards with hover effects */}
-      <section className="py-20 md:py-32 bg-gray-50">
+      {/* ── Features ── */}
+      <section className="py-20 md:py-28">
         <div className="section-container">
-          {/* Section heading */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-purple-900">
-              Why Choose Green Power Systems?
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Comprehensive solar energy solutions tailored to your needs with professional expertise
-            </p>
+          <div className="mb-12">
+            <p className="section-eyebrow">Why choose us</p>
+            <h2 className="section-title">Built on expertise,<br />driven by results</h2>
           </div>
 
-          {/* Features grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Feature 1 */}
-            <div className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-              <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">⚡</div>
-              <h3 className="text-xl font-bold mb-3 text-slate-900">Professional Installation</h3>
-              <p className="text-gray-600">Expert solar panel installation with certified technicians and guaranteed quality</p>
-            </div>
-
-            {/* Feature 2 */}
-            <div className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-              <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🔧</div>
-              <h3 className="text-xl font-bold mb-3 text-slate-900">Maintenance & Support</h3>
-              <p className="text-gray-600">Ongoing maintenance to keep your system running at peak efficiency 24/7</p>
-            </div>
-
-            {/* Feature 3 */}
-            <div className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-              <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">💰</div>
-              <h3 className="text-xl font-bold mb-3 text-slate-900">Affordable Pricing</h3>
-              <p className="text-gray-600">Competitive rates with flexible payment options and financing available</p>
-            </div>
-
-            {/* Feature 4 */}
-            <div className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-              <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🌱</div>
-              <h3 className="text-xl font-bold mb-3 text-slate-900">Eco-Friendly Solutions</h3>
-              <p className="text-gray-600">Sustainable energy solutions that help the environment and your wallet</p>
-            </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {features.map(({ icon, title, desc }) => (
+              <div key={title} className="card p-6 space-y-3">
+                <div className="w-9 h-9 rounded-lg bg-[var(--green-light)] flex items-center justify-center text-[var(--green-primary)]">
+                  {icon}
+                </div>
+                <h3 className="text-sm font-semibold text-gray-900">{title}</h3>
+                <p className="text-sm text-gray-500 leading-relaxed">{desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ===== SERVICES PREVIEW ===== */}
-      {/* Showcase main services with modern cards */}
-      <section className="py-20 md:py-32 bg-white">
+      {/* ── Services ── */}
+      <section className="py-20 md:py-28 bg-white border-y border-gray-200">
         <div className="section-container">
-          {/* Section heading */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-purple-900">
-              Our Core Services
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Complete solar energy solutions from design to installation and ongoing support
+          <div className="mb-12">
+            <p className="section-eyebrow">Our services</p>
+            <h2 className="section-title">Everything solar,<br />end to end</h2>
+            <p className="section-subtitle mt-3">
+              Complete solutions from design and installation through to long-term support.
             </p>
           </div>
 
-          {/* Services grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            {/* Service 1 */}
-            <div className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-2xl border-2 border-transparent hover:border-blue-500 transition-all duration-300 group">
-              <div className="text-5xl mb-4 group-hover:scale-125 transition-transform duration-300">📦</div>
-              <h3 className="text-2xl font-bold mb-3 text-slate-900">Solar Panel Installation</h3>
-              <p className="text-gray-600 mb-6">Complete solar system design and professional installation for residential and commercial properties</p>
-              <Link href="/services" className="text-blue-600 font-semibold hover:text-purple-600 transition-colors duration-300">
-                Learn More →
-              </Link>
-            </div>
-
-            {/* Service 2 */}
-            <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-2xl border-2 border-transparent hover:border-purple-500 transition-all duration-300 group">
-              <div className="text-5xl mb-4 group-hover:scale-125 transition-transform duration-300">🔍</div>
-              <h3 className="text-2xl font-bold mb-3 text-slate-900">System Maintenance</h3>
-              <p className="text-gray-600 mb-6">Regular maintenance services to ensure optimal performance and longevity of your system</p>
-              <Link href="/services" className="text-blue-600 font-semibold hover:text-purple-600 transition-colors duration-300">
-                Learn More →
-              </Link>
-            </div>
-
-            {/* Service 3 */}
-            <div className="bg-gradient-to-br from-green-50 to-blue-50 p-8 rounded-2xl border-2 border-transparent hover:border-green-500 transition-all duration-300 group">
-              <div className="text-5xl mb-4 group-hover:scale-125 transition-transform duration-300">🛠️</div>
-              <h3 className="text-2xl font-bold mb-3 text-slate-900">Repairs & Upgrades</h3>
-              <p className="text-gray-600 mb-6">Professional repair and system upgrade services to enhance your installation</p>
-              <Link href="/services" className="text-blue-600 font-semibold hover:text-purple-600 transition-colors duration-300">
-                Learn More →
-              </Link>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+            {services.map(({ num, title, desc, featured }) => (
+              <div
+                key={num}
+                className={`card p-7 space-y-3 ${featured ? "border-[var(--green-primary)] border" : ""}`}
+              >
+                <p className="text-xs font-medium text-gray-400">{num}</p>
+                <h3 className="text-base font-semibold text-gray-900">{title}</h3>
+                <p className="text-sm text-gray-500 leading-relaxed">{desc}</p>
+                <Link href="/services" className="inline-block text-sm font-medium text-[var(--green-primary)] hover:underline pt-1">
+                  Learn more →
+                </Link>
+              </div>
+            ))}
           </div>
 
-          {/* View all button */}
-          <div className="text-center">
-            <Link
-              href="/services"
-              className="inline-block px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold rounded-lg hover:shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 hover:-translate-y-1"
-            >
-              View All Services
-            </Link>
-          </div>
+          <Link href="/services" className="btn-secondary">
+            View all services
+          </Link>
         </div>
       </section>
 
-      {/* ===== CTA SECTION ===== */}
-      {/* Final call-to-action with modern design */}
-      <section className="relative py-20 md:py-32 bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 text-white overflow-hidden">
-        {/* Animated background */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
-        </div>
-
-        <div className="section-container relative z-10 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Ready to Go Solar?
-          </h2>
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Get a free consultation from our solar energy experts. We'll help you find the perfect solution for your home or business.
-          </p>
+      {/* ── CTA ── */}
+      <section className="py-20 md:py-24 bg-[#0a4a30]">
+        <div className="section-container flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+          <div>
+            <h2 className="text-3xl font-semibold text-white">Ready to go solar?</h2>
+            <p className="text-[rgba(255,255,255,0.6)] mt-2 max-w-md text-base">
+              Get a free consultation from our experts. No commitment, no pressure — just honest advice.
+            </p>
+          </div>
           <Link
             href="/contact"
-            className="inline-block px-8 py-4 bg-gradient-to-r from-blue-400 to-pink-400 text-white font-bold rounded-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+            className="shrink-0 inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent)] text-[var(--accent-dark)] font-semibold text-sm rounded-lg hover:opacity-90 transition-opacity"
           >
-            Schedule Your Free Consultation
+            Schedule consultation
           </Link>
         </div>
       </section>
