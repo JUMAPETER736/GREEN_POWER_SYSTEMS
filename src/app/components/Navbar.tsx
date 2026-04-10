@@ -1,17 +1,16 @@
-﻿"use client";
-
+﻿
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 
 const navLinks = [
-  { href: "/",             label: "Home" },
-  { href: "/about",        label: "About" },
-  { href: "/services",     label: "Services" },
-  { href: "/products",     label: "Products" },
-  { href: "/testimonials", label: "Testimonials" },
-  { href: "/contact",      label: "Contact" },
+  { href: "/",                        label: "Home" },
+  { href: "/about_our_company",       label: "About" },
+  { href: "/our_services",            label: "Services" },
+  { href: "/our_products",            label: "Products" },
+  { href: "/customers_feed_back",     label: "Testimonials" },
+  { href: "/company_contact_details", label: "Contact" },
 ];
 
 export default function Navbar() {
@@ -32,7 +31,7 @@ export default function Navbar() {
           height: 68,
         }}>
 
-          {/* ── Logo ── */}
+          {/* Logo */}
           <Link href="/" style={{
             display: "flex", alignItems: "center",
             gap: 12, textDecoration: "none", flexShrink: 0,
@@ -49,6 +48,7 @@ export default function Navbar() {
                 src="/logo.jpeg"
                 alt="Green Power Systems logo"
                 fill
+                sizes="48px"
                 className="gp-logo-img"
               />
             </div>
@@ -71,11 +71,8 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* ── Desktop nav ── */}
-          <nav
-            className="gp-nav-links"
-            style={{ alignItems: "center", gap: 2 }}
-          >
+          {/* Desktop nav */}
+          <nav className="gp-nav-links" style={{ alignItems: "center", gap: 2 }}>
             {navLinks.map(({ href, label }) => {
               const active = pathname === href;
               return (
@@ -111,16 +108,16 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* ── Desktop CTA ── */}
+          {/* Desktop CTA */}
           <Link
-            href="/contact"
+            href="/company_contact_details"
             className="gp-nav-cta gp-btn-primary"
             style={{ fontSize: 13, padding: "9px 20px" }}
           >
             Get Free Quote
           </Link>
 
-          {/* ── Burger ── */}
+          {/* Burger */}
           <button
             className="gp-burger"
             onClick={() => setOpen(!open)}
@@ -139,7 +136,7 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* ── Mobile menu ── */}
+        {/* Mobile menu */}
         {open && (
           <div style={{
             borderTop: "1px solid var(--gp-border)",
@@ -169,7 +166,7 @@ export default function Navbar() {
             })}
             <div style={{ marginTop: 10, paddingTop: 10, borderTop: "1px solid var(--gp-border)" }}>
               <Link
-                href="/contact"
+                href="/company_contact_details"
                 className="gp-btn-primary"
                 style={{ width: "100%", justifyContent: "center" }}
                 onClick={() => setOpen(false)}
