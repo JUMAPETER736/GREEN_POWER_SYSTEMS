@@ -144,6 +144,32 @@ export default function Home() {
         </div>
       </section>
 
+       {/* ── Gallery Teaser ── */}
+      <section style={{
+        padding: "80px 0",
+        backgroundColor: "var(--gp-bg-page)",
+        borderBottom: "1px solid var(--gp-border)",
+      }}>
+        <div className="gp-container">
+
+          {/* Header row */}
+          <div style={{
+            display: "flex", alignItems: "flex-end",
+            justifyContent: "space-between", flexWrap: "wrap",
+            gap: 16, marginBottom: 40,
+          }}>
+            <div>
+              <span className="gp-eyebrow">Our work</span>
+              <h2 className="gp-section-title" style={{ marginBottom: 0 }}>
+                Real installations, real results
+              </h2>
+            </div>
+            <Link href="/gallery" className="gp-btn-secondary" style={{ flexShrink: 0 }}>
+              View full gallery →
+            </Link>
+          </div>
+          
+
       {/* CTA */}
       <section style={{ padding: "80px 0", backgroundColor: "var(--gp-bg-dark)" }}>
         <div className="gp-container" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 32 }}>
