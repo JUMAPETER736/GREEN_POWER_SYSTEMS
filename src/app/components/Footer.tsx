@@ -35,7 +35,6 @@ export default function Footer() {
   return (
     <footer style={{ backgroundColor: "#fff", borderTop: "1px solid #e5e7eb" }}>
 
-      {/* Main grid */}
       <div className="gp-container" style={{ padding: "56px 1.5rem 40px" }}>
         <div style={{
           display: "grid",
@@ -96,27 +95,19 @@ export default function Footer() {
             <p style={headingStyle}>Contact</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
 
-              {/* Email */}
               <div>
                 <p style={{ fontSize: 11, color: "#9ca3af", marginBottom: 4, marginTop: 0 }}>Email</p>
                 
                   href="mailto:greenpowersystemsltd@gmail.com"
-                  style={{
-                    fontSize: 13, color: "#0f5f3f",
-                    textDecoration: "none", wordBreak: "break-all",
-                  }}
+                  style={{ fontSize: 13, color: "#0f5f3f", textDecoration: "none", wordBreak: "break-all" }}
                 >
                   greenpowersystemsltd@gmail.com
                 </a>
               </div>
 
-              {/* Address */}
               <div>
                 <p style={{ fontSize: 11, color: "#9ca3af", marginBottom: 4, marginTop: 0 }}>Address</p>
-                <address style={{
-                  fontSize: 13, color: "#6b7280",
-                  fontStyle: "normal", lineHeight: 1.7,
-                }}>
+                <address style={{ fontSize: 13, color: "#6b7280", fontStyle: "normal", lineHeight: 1.7 }}>
                   QuickTrip Shopping Complex<br />
                   NYUMBA YA SOLAR<br />
                   Area 25 Sungwi, Lilongwe<br />
@@ -130,7 +121,6 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom bar */}
       <div style={{ borderTop: "1px solid #f3f4f6" }}>
         <div className="gp-container" style={{
           padding: "16px 1.5rem",
