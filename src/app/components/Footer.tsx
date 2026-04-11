@@ -97,12 +97,12 @@ export default function Footer() {
 
               <div>
                 <p style={{ fontSize: 11, color: "#9ca3af", marginBottom: 4, marginTop: 0 }}>Email</p>
-                
+                <Link
                   href="mailto:greenpowersystemsltd@gmail.com"
                   style={{ fontSize: 13, color: "#0f5f3f", textDecoration: "none", wordBreak: "break-all" }}
                 >
                   greenpowersystemsltd@gmail.com
-                </a>
+                </Link>
               </div>
 
               <div>
