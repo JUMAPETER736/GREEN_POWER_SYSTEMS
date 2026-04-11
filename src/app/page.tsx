@@ -232,6 +232,48 @@ export default function Home() {
               
               ></Link>
 
+               {/* Icon centred */}
+                <div style={{
+                  flex: 1, display: "flex",
+                  alignItems: "center", justifyContent: "center",
+                  fontSize: i === 0 ? 52 : 38,
+                }} aria-hidden>
+                  {p.icon}
+                </div>
+
+                {/* Bottom info strip */}
+                <div style={{
+                  padding: "16px 20px",
+                  background: "rgba(0,0,0,0.32)",
+                  backdropFilter: "blur(6px)",
+                }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
+                    <span style={{
+                      fontSize: 10, fontWeight: 700, letterSpacing: "0.12em",
+                      textTransform: "uppercase", color: "rgba(255,255,255,0.7)",
+                    }}>
+                      {p.tag}
+                    </span>
+                    <span style={{
+                      fontSize: 12, fontWeight: 800,
+                      color: "#fff",
+                      background: "rgba(255,255,255,0.15)",
+                      padding: "2px 8px", borderRadius: 50,
+                    }}>
+                      {p.kw}
+                    </span>
+                  </div>
+                  <p style={{ fontSize: 14, fontWeight: 700, color: "#fff", margin: 0 }}>{p.title}</p>
+                  <p style={{ fontSize: 12, color: "rgba(255,255,255,0.65)", margin: "2px 0 0" }}>
+                    📍 {p.location}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          
+
               
 
       {/* CTA */}
