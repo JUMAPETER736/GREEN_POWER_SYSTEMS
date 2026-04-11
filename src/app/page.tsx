@@ -272,7 +272,45 @@ export default function Home() {
             ))}
           </div>
 
-          
+          {/* Social proof strip */}
+          <div style={{
+            marginTop: 32,
+            padding: "20px 28px",
+            borderRadius: 14,
+            background: "var(--gp-green-light)",
+            border: "1px solid var(--gp-green-border)",
+            display: "flex", flexWrap: "wrap",
+            alignItems: "center", justifyContent: "space-between",
+            gap: 16,
+          }}>
+            <div style={{ display: "flex", gap: 32, flexWrap: "wrap" }}>
+              {[
+                { value: "50+", label: "Projects completed" },
+                { value: "800+ kW", label: "Total capacity installed" },
+                { value: "6", label: "Regions covered" },
+              ].map(s => (
+                <div key={s.label}>
+                  <p style={{ fontSize: 20, fontWeight: 800, color: "var(--gp-green)", margin: 0 }}>{s.value}</p>
+                  <p style={{ fontSize: 12, color: "var(--gp-text-muted)", margin: "2px 0 0" }}>{s.label}</p>
+                </div>
+              ))}
+            </div>
+            <Link href="/gallery" style={{
+              fontSize: 13, fontWeight: 700,
+              color: "var(--gp-green)", textDecoration: "none",
+              display: "flex", alignItems: "center", gap: 6,
+            }}>
+              Browse all projects
+              <svg width={14} height={14} viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </div>
+
+        </div>
+      </section>
+
 
               
 
