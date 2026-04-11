@@ -257,3 +257,27 @@ export default function Contact() {
     </div>
   );
 }
+
+
+{/* Google Maps */}
+<section style={{ padding: "0 0 72px" }}>
+  <div className="gp-container">
+    <div className="gp-card" style={{ overflow: "hidden", borderRadius: 14 }}>
+      <div style={{ padding: "20px 24px", borderBottom: "1px solid var(--gp-border)" }}>
+        <p style={{ fontSize: 14, fontWeight: 700, color: "var(--gp-text-primary)", margin: 0 }}>
+          📍 Find us — QuickTrip Shopping Complex, Area 25 Sungwi, Lilongwe
+        </p>
+      </div>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3862.5!2d33.7741!3d-13.9626!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDU3JzQ1LjQiUyAzM8KwNDYnMjYuOCJF!5e0!3m2!1sen!2smw!4v1234567890"
+        width="100%"
+        height="380"
+        style={{ border: 0, display: "block" }}
+        allowFullScreen
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        title="Green Power Systems location"
+      />
+    </div>
+  </div>
+</section>
