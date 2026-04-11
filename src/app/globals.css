@@ -213,3 +213,25 @@ body {
   .gp-logo-name { font-size: 17px; }
   .gp-logo-tag  { font-size: 11px; }
 }
+
+
+/* Navbar link hover */
+.gp-nav-link {
+  padding: 7px 14px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--gp-text-muted);
+  text-decoration: none;
+  border-radius: 7px;
+  background-color: transparent;
+  transition: background 0.15s, color 0.15s;
+}
+.gp-nav-link:hover {
+  background-color: var(--gp-bg-section);
+  color: var(--gp-text-primary);
+}
+.gp-nav-link.active {
+  font-weight: 600;
+  color: var(--gp-green);
+  background-color: var(--gp-green-light);
+}

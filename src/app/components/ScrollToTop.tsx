@@ -1,5 +1,3 @@
-
-
 "use client";
 import { useEffect, useState } from "react";
 
@@ -33,7 +31,7 @@ export default function ScrollToTop() {
         alignItems: "center",
         justifyContent: "center",
         boxShadow: "0 4px 16px rgba(0,0,0,0.18)",
-        transition: "opacity 0.2s, transform 0.2s",
+        transition: "transform 0.2s",
       }}
       onMouseEnter={e => (e.currentTarget.style.transform = "translateY(-3px)")}
       onMouseLeave={e => (e.currentTarget.style.transform = "translateY(0)")}
