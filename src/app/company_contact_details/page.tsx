@@ -70,7 +70,7 @@ export default function Contact() {
             gap: 48, alignItems: "start",
           }}>
 
-            {/* ── Form ── */}
+            {/* Form */}
             <div>
               {sent ? (
                 <div className="gp-card" style={{ padding: 40, textAlign: "center" }}>
@@ -101,7 +101,6 @@ export default function Contact() {
 
                   <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
 
-                    {/* Name + Email row */}
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
                       <div>
                         <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
@@ -130,7 +129,6 @@ export default function Contact() {
                       </div>
                     </div>
 
-                    {/* Phone */}
                     <div>
                       <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
                         Phone number
@@ -144,7 +142,6 @@ export default function Contact() {
                       />
                     </div>
 
-                    {/* Service */}
                     <div>
                       <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
                         Service interested in
@@ -165,7 +162,6 @@ export default function Contact() {
                       </select>
                     </div>
 
-                    {/* Message */}
                     <div>
                       <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
                         Message *
@@ -180,7 +176,6 @@ export default function Contact() {
                       />
                     </div>
 
-                    {/* Error message */}
                     {error && (
                       <p style={{
                         fontSize: 13, color: "#c0392b",
@@ -193,7 +188,6 @@ export default function Contact() {
                       </p>
                     )}
 
-                    {/* Submit button */}
                     <button
                       onClick={handleSubmit}
                       disabled={loading}
@@ -212,28 +206,25 @@ export default function Contact() {
               )}
             </div>
 
-            {/* ── Contact Info ── */}
+            {/* Contact Info */}
             <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
               {[
                 {
                   label: "Visit our office",
                   icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0z",
-                  lines: ["QuickTrip Shopping Complex", "Area 25 Sungwi, Lilongwe", "P.O Box 40135, Malawi"],
-                  badge: "NYUMBA YA SOLAR",
+                  lines: ["QuickTrip Shopping Complex", "NYUMBA YA SOLAR", "Area 25 Sungwi, Lilongwe", "P.O Box 40135, Malawi"],
                 },
                 {
                   label: "Email us",
                   icon: "M3 8l7.89 5.26a2 2 0 0 0 2.22 0L21 8M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z",
                   lines: ["greenpowersystemsltd@gmail.com"],
-                  badge: null,
                 },
                 {
                   label: "Opening hours",
                   icon: "M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0z",
                   lines: ["Monday – Friday: 8am – 5pm", "Saturday: 9am – 2pm", "Sunday: Closed"],
-                  badge: null,
                 },
-              ].map(({ label, icon, lines, badge }) => (
+              ].map(({ label, icon, lines }) => (
                 <div
                   key={label}
                   className="gp-card"
@@ -250,24 +241,6 @@ export default function Contact() {
                     <p style={{ fontSize: 13, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 8px" }}>
                       {label}
                     </p>
-
-                    {/* NYUMBA YA SOLAR green badge */}
-                    {badge && (
-                      <span style={{
-                        display: "inline-block",
-                        marginBottom: 10,
-                        padding: "4px 12px",
-                        backgroundColor: "var(--gp-green)",
-                        color: "#fff",
-                        fontSize: 11,
-                        fontWeight: 700,
-                        borderRadius: 100,
-                        letterSpacing: "0.08em",
-                      }}>
-                        {badge}
-                      </span>
-                    )}
-
                     {lines.map(l => (
                       <p key={l} style={{ fontSize: 13, color: "var(--gp-text-muted)", margin: "2px 0" }}>
                         {l}
