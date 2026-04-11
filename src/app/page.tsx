@@ -40,8 +40,8 @@ export default function Home() {
               </p>
 
               <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
-                <Link href="/contact" className="gp-btn-primary">Get Free Consultation</Link>
-                <Link href="/services" className="gp-btn-secondary">View Our Services</Link>
+                <Link href="/company_contact_details" className="gp-btn-primary">Get Free Consultation</Link>
+                <Link href="/our_services" className="gp-btn-secondary">View Our Services</Link>
               </div>
 
               <div style={{
@@ -66,14 +66,12 @@ export default function Home() {
               minHeight: 300,
             }}>
               <svg viewBox="0 0 300 260" style={{ width: "100%", maxWidth: 320 }} xmlns="http://www.w3.org/2000/svg">
-                {/* Sun */}
                 <circle cx="75" cy="60" r="36" fill="#fbb81c" opacity="0.18" />
                 <circle cx="75" cy="60" r="22" fill="#fbb81c" />
                 {[0,45,90,135,180,225,270,315].map(a => {
                   const r = (Math.PI * a) / 180;
                   return <line key={a} x1={75+Math.sin(r)*29} y1={60-Math.cos(r)*29} x2={75+Math.sin(r)*40} y2={60-Math.cos(r)*40} stroke="#fbb81c" strokeWidth="3" strokeLinecap="round" />;
                 })}
-                {/* Panels */}
                 <rect x="18" y="148" width="110" height="82" rx="6" fill="#0052a3" />
                 {[0,1,2].map(row => [0,1,2].map(col => (
                   <rect key={`${row}${col}`} x={25+col*34} y={156+row*24} width="26" height="18" rx="3" fill="#4dd9ff" opacity="0.85" />
@@ -82,11 +80,9 @@ export default function Home() {
                 {[0,1,2].map(row => [0,1,2].map(col => (
                   <rect key={`r${row}${col}`} x={156+col*40} y={142+row*28} width="32" height="22" rx="3" fill="#66d4ff" opacity="0.85" />
                 )))}
-                {/* Leaf */}
                 <path d="M210 240 C210 240 221 224 225 210 C220 218 210 230 210 230Z" fill="#0c5436" />
                 <path d="M210 240 C210 240 199 224 195 210 C200 218 210 230 210 230Z" fill="#177a4e" />
                 <line x1="210" y1="209" x2="210" y2="244" stroke="#0c5436" strokeWidth="2.5" />
-                {/* Bolt */}
                 <path d="M170 72 L157 93h13L152 116 L176 87h-14Z" fill="#fbb81c" opacity="0.95" />
               </svg>
             </div>
@@ -140,11 +136,11 @@ export default function Home() {
                 <p style={{ fontSize: 11, color: "var(--gp-text-subtle)", fontWeight: 600, margin: "0 0 12px", letterSpacing: "0.05em" }}>{n}</p>
                 <h3 style={{ fontSize: 16, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 10px" }}>{t}</h3>
                 <p style={{ fontSize: 13.5, color: "var(--gp-text-muted)", lineHeight: 1.65, margin: "0 0 18px", flexGrow: 1 }}>{d}</p>
-                <Link href="/services" style={{ fontSize: 13, fontWeight: 700, color: "var(--gp-green)", textDecoration: "none" }}>Learn more →</Link>
+                <Link href="/our_services" style={{ fontSize: 13, fontWeight: 700, color: "var(--gp-green)", textDecoration: "none" }}>Learn more →</Link>
               </div>
             ))}
           </div>
-          <Link href="/services" className="gp-btn-secondary">View all services</Link>
+          <Link href="/our_services" className="gp-btn-secondary">View all services</Link>
         </div>
       </section>
 
@@ -159,9 +155,10 @@ export default function Home() {
               Talk to our experts — free consultation, no pressure, just honest solar advice for your home or business.
             </p>
           </div>
-          <Link href="/contact" className="gp-btn-accent">Schedule Free Consultation</Link>
+          <Link href="/company_contact_details" className="gp-btn-accent">Schedule Free Consultation</Link>
         </div>
       </section>
+
     </div>
   );
 }

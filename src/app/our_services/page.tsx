@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 
 export default function Services() {
@@ -94,7 +95,7 @@ export default function Services() {
             <h2 style={{ fontSize: "clamp(1.4rem,3vw,2rem)", fontWeight: 800, color: "#fff", margin: "0 0 8px" }}>Need a custom solution?</h2>
             <p style={{ fontSize: 15, color: "rgba(255,255,255,0.62)", margin: 0 }}>Tell us about your project and we'll design the perfect system.</p>
           </div>
-          <Link href="/contact" className="gp-btn-accent">Request a Quote</Link>
+          <Link href="/company_contact_details" className="gp-btn-accent">Request a Quote</Link>
         </div>
       </section>
     </div>

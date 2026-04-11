@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 
 export default function Products() {
@@ -69,7 +70,7 @@ export default function Products() {
                       )}
                     </div>
                     <p style={{ fontSize: 13, color: "var(--gp-text-muted)", lineHeight: 1.6, margin: 0 }}>{desc}</p>
-                    <Link href="/contact" style={{ fontSize: 12, fontWeight: 700, color: "var(--gp-green)", textDecoration: "none", marginTop: 4 }}>
+                    <Link href="/company_contact_details" style={{ fontSize: 12, fontWeight: 700, color: "var(--gp-green)", textDecoration: "none", marginTop: 4 }}>
                       Enquire →
                     </Link>
                   </div>
@@ -84,7 +85,7 @@ export default function Products() {
         <div className="gp-container" style={{ textAlign: "center" }}>
           <h2 style={{ fontSize: "clamp(1.4rem,3vw,2rem)", fontWeight: 800, color: "#fff", margin: "0 0 12px" }}>Looking for a specific product?</h2>
           <p style={{ fontSize: 15, color: "rgba(255,255,255,0.62)", margin: "0 0 28px" }}>We can source and supply products not listed here. Contact us with your specs.</p>
-          <Link href="/contact" className="gp-btn-accent">Contact our team</Link>
+          <Link href="/company_contact_details" className="gp-btn-accent">Contact our team</Link>
         </div>
       </section>
     </div>
