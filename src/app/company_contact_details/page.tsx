@@ -262,30 +262,34 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Google Maps */}
+      {/* Google Maps — pinned to Area 25 Sungwi, Lilongwe */}
       <section style={{ padding: "0 0 72px" }}>
         <div className="gp-container">
           <div className="gp-card" style={{ overflow: "hidden", borderRadius: 14 }}>
-            <div style={{ padding: "20px 24px", borderBottom: "1px solid var(--gp-border)" }}>
+            <div style={{ padding: "20px 24px", borderBottom: "1px solid var(--gp-border)", display: "flex", alignItems: "center", gap: 10 }}>
+              <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="var(--gp-green)" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
+                <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z" />
+                <path d="M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+              </svg>
               <p style={{ fontSize: 14, fontWeight: 700, color: "var(--gp-text-primary)", margin: 0 }}>
-                Find us - QuickTrip Shopping Complex, Area 25 Sungwi, Lilongwe
+                QuickTrip Shopping Complex, Area 25 Sungwi, Lilongwe
               </p>
             </div>
             <a
-              href="https://www.google.com/maps/search/QuickTrip+Shopping+Complex+Area+25+Sungwi+Lilongwe+Malawi/@-13.8875769,33.7547329,15z"
+              href="https://www.google.com/maps/search/QuickTrip+Shopping+Complex+Area+25+Sungwi+Lilongwe+Malawi/@-13.9032,33.7595,15z"
               target="_blank"
               rel="noopener noreferrer"
               style={{ display: "block", position: "relative", textDecoration: "none" }}
             >
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15450!2d33.7547329!3d-13.8875769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zLTEzwrA1MyczMS41IlMgMznCsDQ1JzE3LjAiRQ!5e0!3m2!1sen!2smw!4v1"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7725.4!2d33.7545!3d-13.9032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1921d500431ff5a5%3A0xba44ac1f1f86553!2sArea+25%2C+Lilongwe%2C+Malawi!5e0!3m2!1sen!2smw!4v1"
                 width="100%"
-                height="380"
+                height="420"
                 style={{ border: 0, display: "block", pointerEvents: "none" }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Green Power Systems location"
+                title="Green Power Systems — Area 25 Sungwi, Lilongwe"
               />
               <div style={{
                 position: "absolute",
@@ -296,19 +300,19 @@ export default function Contact() {
                 color: "#fff",
                 fontSize: 13,
                 fontWeight: 600,
-                padding: "10px 20px",
+                padding: "10px 22px",
                 borderRadius: 100,
                 display: "flex",
                 alignItems: "center",
                 gap: 8,
-                boxShadow: "0 4px 16px rgba(0,0,0,0.18)",
+                boxShadow: "0 4px 16px rgba(0,0,0,0.22)",
                 whiteSpace: "nowrap",
               }}>
-                <svg width={15} height={15} viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
+                <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
                   <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z" />
                   <path d="M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                 </svg>
-                Open in Google Maps
+                Tap to open in Google Maps
               </div>
             </a>
           </div>
