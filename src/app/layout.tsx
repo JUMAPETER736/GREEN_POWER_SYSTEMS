@@ -2,7 +2,7 @@
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-
+import ScrollToTop from "./components/ScrollToTop";
 
 export const metadata: Metadata = {
   title: "Green Power Systems | Solar Energy Solutions in Lilongwe",
@@ -23,7 +23,7 @@ export default function RootLayout({
         <Navbar />
         <main>{children}</main>
         <Footer />
-      
+        <ScrollToTop />
       </body>
     </html>
   );
