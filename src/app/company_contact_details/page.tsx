@@ -68,13 +68,14 @@ export default function Contact() {
           <div style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: 48, alignItems: "start",
+            gap: 48,
+            alignItems: "stretch",
           }}>
 
             {/* Form */}
-            <div>
+            <div style={{ display: "flex", flexDirection: "column" }}>
               {sent ? (
-                <div className="gp-card" style={{ padding: 40, textAlign: "center" }}>
+                <div className="gp-card" style={{ padding: 40, textAlign: "center", height: "100%", boxSizing: "border-box" }}>
                   <div style={{
                     width: 56, height: 56, borderRadius: "50%",
                     backgroundColor: "var(--gp-green-light)",
@@ -95,12 +96,18 @@ export default function Contact() {
                   </p>
                 </div>
               ) : (
-                <div className="gp-card" style={{ padding: 32 }}>
+                <div className="gp-card" style={{
+                  padding: 32,
+                  height: "100%",
+                  boxSizing: "border-box",
+                  display: "flex",
+                  flexDirection: "column",
+                }}>
                   <h2 style={{ fontSize: 18, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 24px" }}>
                     Send us a message
                   </h2>
 
-                  <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 16, flexGrow: 1 }}>
 
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
                       <div>
@@ -153,17 +160,17 @@ export default function Contact() {
                         onChange={handle}
                         style={inputStyle}
                       >
-                        <option value="">Select a service…</option>
+                        <option value="">Select a service...</option>
                         <option>Solar panel installation</option>
                         <option>System maintenance</option>
-                        <option>Repairs & diagnostics</option>
+                        <option>Repairs and diagnostics</option>
                         <option>Battery storage</option>
                         <option>Commercial / industrial</option>
                         <option>General enquiry</option>
                       </select>
                     </div>
 
-                    <div>
+                    <div style={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
                       <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
                         Message *
                       </label>
@@ -171,9 +178,8 @@ export default function Contact() {
                         name="message"
                         value={form.message}
                         onChange={handle}
-                        placeholder="Tell us about your project or question…"
-                        rows={5}
-                        style={{ ...inputStyle, resize: "vertical" }}
+                        placeholder="Tell us about your project or question..."
+                        style={{ ...inputStyle, resize: "none", flexGrow: 1, minHeight: 100 }}
                       />
                     </div>
 
@@ -199,7 +205,7 @@ export default function Contact() {
                         cursor: loading ? "not-allowed" : "pointer",
                       }}
                     >
-                      {loading ? "Sending…" : "Send message"}
+                      {loading ? "Sending..." : "Send message"}
                     </button>
 
                   </div>
@@ -223,7 +229,7 @@ export default function Contact() {
                 {
                   label: "Opening hours",
                   icon: "M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0z",
-                  lines: ["Monday – Friday: 8am – 5pm", "Saturday: 9am – 2pm", "Sunday: Closed"],
+                  lines: ["Monday - Friday: 8am - 5pm", "Saturday: 9am - 2pm", "Sunday: Closed"],
                 },
               ].map(({ label, icon, lines }) => (
                 <div
@@ -262,7 +268,7 @@ export default function Contact() {
           <div className="gp-card" style={{ overflow: "hidden", borderRadius: 14 }}>
             <div style={{ padding: "20px 24px", borderBottom: "1px solid var(--gp-border)" }}>
               <p style={{ fontSize: 14, fontWeight: 700, color: "var(--gp-text-primary)", margin: 0 }}>
-                📍 Find us — QuickTrip Shopping Complex, Area 25 Sungwi, Lilongwe
+                Find us - QuickTrip Shopping Complex, Area 25 Sungwi, Lilongwe
               </p>
             </div>
             <a
