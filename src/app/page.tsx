@@ -144,7 +144,7 @@ export default function Home() {
         </div>
       </section>
 
-       {/* ── Gallery Teaser ── */}
+      {/* ── Gallery Teaser ── */}
       <section style={{
         padding: "80px 0",
         backgroundColor: "var(--gp-bg-page)",
@@ -169,8 +169,7 @@ export default function Home() {
             </Link>
           </div>
 
-
-            {/* 3-card masonry-style grid */}
+          {/* 3-card masonry-style grid */}
           <div style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
@@ -229,10 +228,8 @@ export default function Home() {
                   (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
                   (e.currentTarget as HTMLElement).style.boxShadow = "0 2px 12px rgba(0,0,0,0.10)";
                 }}
-              
-              ></Link>
-
-               {/* Icon centred */}
+              >
+                {/* Icon centred */}
                 <div style={{
                   flex: 1, display: "flex",
                   alignItems: "center", justifyContent: "center",
@@ -310,9 +307,6 @@ export default function Home() {
 
         </div>
       </section>
-
-
-              
 
       {/* CTA */}
       <section style={{ padding: "80px 0", backgroundColor: "var(--gp-bg-dark)" }}>
