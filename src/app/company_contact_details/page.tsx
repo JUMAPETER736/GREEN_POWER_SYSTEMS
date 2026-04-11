@@ -213,108 +213,89 @@ export default function Contact() {
               )}
             </div>
 
-            {/* Contact Info */}
-            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-              {[
-                {
-                  label: "Visit our office",
-                  icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0z",
-                  lines: ["QuickTrip Shopping Complex", "NYUMBA YA SOLAR", "Area 25 Sungwi, Lilongwe", "P.O Box 40135, Malawi"],
-                },
-                {
-                  label: "Email us",
-                  icon: "M3 8l7.89 5.26a2 2 0 0 0 2.22 0L21 8M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z",
-                  lines: ["greenpowersystemsltd@gmail.com"],
-                },
-                {
-                  label: "Opening hours",
-                  icon: "M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0z",
-                  lines: ["Monday - Friday: 8am - 5pm", "Saturday: 9am - 2pm", "Sunday: Closed"],
-                },
-              ].map(({ label, icon, lines }) => (
-                <div
-                  key={label}
-                  className="gp-card"
-                  style={{ padding: "22px 24px", display: "flex", gap: 16, alignItems: "flex-start" }}
-                >
-                  <div className="gp-icon-badge" style={{ marginTop: 2 }}>
-                    <svg width={20} height={20} viewBox="0 0 24 24" fill="none"
-                      stroke="var(--gp-green)" strokeWidth={1.8}
-                      strokeLinecap="round" strokeLinejoin="round">
-                      <path d={icon} />
-                    </svg>
-                  </div>
-                  <div>
-                    <p style={{ fontSize: 13, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 8px" }}>
-                      {label}
-                    </p>
-                    {lines.map(l => (
-                      <p key={l} style={{ fontSize: 13, color: "var(--gp-text-muted)", margin: "2px 0" }}>
-                        {l}
-                      </p>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* Google Maps — pinned to Area 25 Sungwi, Lilongwe */}
-      <section style={{ padding: "0 0 72px" }}>
-        <div className="gp-container">
-          <div className="gp-card" style={{ overflow: "hidden", borderRadius: 14 }}>
-            <div style={{ padding: "20px 24px", borderBottom: "1px solid var(--gp-border)", display: "flex", alignItems: "center", gap: 10 }}>
-              <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="var(--gp-green)" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
-                <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z" />
-                <path d="M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-              </svg>
-              <p style={{ fontSize: 14, fontWeight: 700, color: "var(--gp-text-primary)", margin: 0 }}>
-                QuickTrip Shopping Complex, Area 25 Sungwi, Lilongwe
-              </p>
-            </div>
-            <a
-              href="https://www.google.com/maps/search/QuickTrip+Shopping+Complex+Area+25+Sungwi+Lilongwe+Malawi/@-13.9032,33.7595,15z"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ display: "block", position: "relative", textDecoration: "none" }}
-            >
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7725.4!2d33.7545!3d-13.9032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1921d500431ff5a5%3A0xba44ac1f1f86553!2sArea+25%2C+Lilongwe%2C+Malawi!5e0!3m2!1sen!2smw!4v1"
-                width="100%"
-                height="420"
-                style={{ border: 0, display: "block", pointerEvents: "none" }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Green Power Systems — Area 25 Sungwi, Lilongwe"
-              />
-              <div style={{
-                position: "absolute",
-                bottom: 16,
-                left: "50%",
-                transform: "translateX(-50%)",
-                backgroundColor: "var(--gp-green)",
-                color: "#fff",
-                fontSize: 13,
-                fontWeight: 600,
-                padding: "10px 22px",
-                borderRadius: 100,
+            {/* Map — right column, stretches to match form height */}
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <div className="gp-card" style={{
+                overflow: "hidden",
+                borderRadius: 14,
+                flexGrow: 1,
                 display: "flex",
-                alignItems: "center",
-                gap: 8,
-                boxShadow: "0 4px 16px rgba(0,0,0,0.22)",
-                whiteSpace: "nowrap",
+                flexDirection: "column",
               }}>
-                <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z" />
-                  <path d="M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                </svg>
-                Tap to open in Google Maps
+                <div style={{
+                  padding: "16px 20px",
+                  borderBottom: "1px solid var(--gp-border)",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 10,
+                }}>
+                  <svg width={16} height={16} viewBox="0 0 24 24" fill="none"
+                    stroke="var(--gp-green)" strokeWidth={2.2}
+                    strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z" />
+                    <path d="M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                  </svg>
+                  <p style={{ fontSize: 14, fontWeight: 700, color: "var(--gp-text-primary)", margin: 0 }}>
+                    QuickTrip Shopping Complex, Area 25 Sungwi, Lilongwe
+                  </p>
+                </div>
+                <a
+                  href="https://www.google.com/maps/search/QuickTrip+Shopping+Complex+Area+25+Sungwi+Lilongwe+Malawi/@-13.9032,33.7595,15z"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    flexGrow: 1,
+                    position: "relative",
+                    textDecoration: "none",
+                  }}
+                >
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7725.4!2d33.7545!3d-13.9032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1921d500431ff5a5%3A0xba44ac1f1f86553!2sArea+25%2C+Lilongwe%2C+Malawi!5e0!3m2!1sen!2smw!4v1"
+                    width="100%"
+                    height="100%"
+                    style={{
+                      border: 0,
+                      display: "block",
+                      flexGrow: 1,
+                      minHeight: 320,
+                      pointerEvents: "none",
+                    }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Green Power Systems — Area 25 Sungwi, Lilongwe"
+                  />
+                  <div style={{
+                    position: "absolute",
+                    bottom: 16,
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    backgroundColor: "var(--gp-green)",
+                    color: "#fff",
+                    fontSize: 13,
+                    fontWeight: 600,
+                    padding: "10px 22px",
+                    borderRadius: 100,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 8,
+                    boxShadow: "0 4px 16px rgba(0,0,0,0.22)",
+                    whiteSpace: "nowrap",
+                  }}>
+                    <svg width={14} height={14} viewBox="0 0 24 24" fill="none"
+                      stroke="white" strokeWidth={2.5}
+                      strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z" />
+                      <path d="M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                    </svg>
+                    Tap to open in Google Maps
+                  </div>
+                </a>
               </div>
-            </a>
+            </div>
+
           </div>
         </div>
       </section>
