@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div style={{ backgroundColor: "var(--gp-bg-page)" }}>
 
-      {/* Hero */}
+      {/* Hero section */}
       <section style={{ backgroundColor: "var(--gp-bg-card)", borderBottom: "1px solid var(--gp-border)" }}>
         <div className="gp-container" style={{ padding: "88px 1.5rem 80px" }}>
           <div style={{
@@ -13,7 +13,11 @@ export default function Home() {
             gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 340px), 1fr))",
             gap: "4rem", alignItems: "center",
           }}>
+
+            {/* Left column: text content */}
             <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+
+              {/* Green badge pill */}
               <span style={{
                 display: "inline-flex", alignItems: "center", gap: 8,
                 padding: "5px 14px", borderRadius: 100,
@@ -26,6 +30,7 @@ export default function Home() {
                 Malawi's trusted solar partner
               </span>
 
+              {/* Main headline */}
               <h1 style={{
                 fontSize: "clamp(2.1rem, 5vw, 3.2rem)",
                 fontWeight: 800, color: "var(--gp-text-primary)",
@@ -35,15 +40,18 @@ export default function Home() {
                 <span style={{ color: "var(--gp-green)" }}>clean solar energy</span>
               </h1>
 
+              {/* Subheadline */}
               <p style={{ fontSize: 17, color: "var(--gp-text-muted)", lineHeight: 1.7, margin: 0, maxWidth: 480 }}>
                 Professional installation, sales, and maintenance for homes and businesses across Malawi. Sustainable energy that pays for itself.
               </p>
 
+              {/* CTA buttons */}
               <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
                 <Link href="/company_contact_details" className="gp-btn-primary">Get Free Consultation</Link>
                 <Link href="/our_services" className="gp-btn-secondary">View Our Services</Link>
               </div>
 
+              {/* Stats row: installations, satisfaction, support */}
               <div style={{
                 display: "flex", gap: 36, paddingTop: 24,
                 borderTop: "1px solid var(--gp-border)", marginTop: 4,
@@ -57,7 +65,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Illustration */}
+            {/* Right column: SVG illustration of solar setup */}
             <div style={{
               backgroundColor: "var(--gp-green-light)",
               border: "1px solid var(--gp-green-border)",
@@ -66,23 +74,28 @@ export default function Home() {
               minHeight: 300,
             }}>
               <svg viewBox="0 0 300 260" style={{ width: "100%", maxWidth: 320 }} xmlns="http://www.w3.org/2000/svg">
+                {/* Sun with glow and rays */}
                 <circle cx="75" cy="60" r="36" fill="#fbb81c" opacity="0.18" />
                 <circle cx="75" cy="60" r="22" fill="#fbb81c" />
                 {[0,45,90,135,180,225,270,315].map(a => {
                   const r = (Math.PI * a) / 180;
                   return <line key={a} x1={75+Math.sin(r)*29} y1={60-Math.cos(r)*29} x2={75+Math.sin(r)*40} y2={60-Math.cos(r)*40} stroke="#fbb81c" strokeWidth="3" strokeLinecap="round" />;
                 })}
+                {/* Small solar panel (house) */}
                 <rect x="18" y="148" width="110" height="82" rx="6" fill="#0052a3" />
                 {[0,1,2].map(row => [0,1,2].map(col => (
                   <rect key={`${row}${col}`} x={25+col*34} y={156+row*24} width="26" height="18" rx="3" fill="#4dd9ff" opacity="0.85" />
                 )))}
+                {/* Large solar panel (commercial) */}
                 <rect x="148" y="134" width="130" height="96" rx="6" fill="#0066cc" />
                 {[0,1,2].map(row => [0,1,2].map(col => (
                   <rect key={`r${row}${col}`} x={156+col*40} y={142+row*28} width="32" height="22" rx="3" fill="#66d4ff" opacity="0.85" />
                 )))}
+                {/* Small tree / plant */}
                 <path d="M210 240 C210 240 221 224 225 210 C220 218 210 230 210 230Z" fill="#0c5436" />
                 <path d="M210 240 C210 240 199 224 195 210 C200 218 210 230 210 230Z" fill="#177a4e" />
                 <line x1="210" y1="209" x2="210" y2="244" stroke="#0c5436" strokeWidth="2.5" />
+                {/* Lightning bolt (energy symbol) */}
                 <path d="M170 72 L157 93h13L152 116 L176 87h-14Z" fill="#fbb81c" opacity="0.95" />
               </svg>
             </div>
@@ -90,7 +103,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why us */}
+      {/* Why choose us section */}
       <section style={{ padding: "80px 0", backgroundColor: "var(--gp-bg-page)" }}>
         <div className="gp-container">
           <div style={{ marginBottom: 48 }}>
@@ -98,6 +111,8 @@ export default function Home() {
             <h2 className="gp-section-title">Expertise you can trust</h2>
             <p className="gp-section-sub">From first consultation to years of support, we're with you every step.</p>
           </div>
+
+          {/* Four feature cards */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(230px, 1fr))", gap: 16 }}>
             {[
               { title: "Certified technicians", desc: "Every installer is trained, vetted, and covered by our quality guarantee.", icon: "M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 0 0 1.946-.806 3.42 3.42 0 0 1 4.438 0 3.42 3.42 0 0 0 1.946.806 3.42 3.42 0 0 1 3.138 3.138 3.42 3.42 0 0 0 .806 1.946 3.42 3.42 0 0 1 0 4.438 3.42 3.42 0 0 0-.806 1.946 3.42 3.42 0 0 1-3.138 3.138 3.42 3.42 0 0 0-1.946.806 3.42 3.42 0 0 1-4.438 0 3.42 3.42 0 0 0-1.946-.806 3.42 3.42 0 0 1-3.138-3.138 3.42 3.42 0 0 0-.806-1.946 3.42 3.42 0 0 1 0-4.438 3.42 3.42 0 0 0 .806-1.946 3.42 3.42 0 0 1 3.138-3.138z" },
@@ -106,6 +121,7 @@ export default function Home() {
               { title: "Locally rooted", desc: "Based in Lilongwe — we understand Malawi's energy landscape inside and out.", icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" },
             ].map(({ title, desc, icon }) => (
               <div key={title} className="gp-card" style={{ padding: "28px 24px" }}>
+                {/* Icon badge */}
                 <div className="gp-icon-badge" style={{ marginBottom: 18 }}>
                   <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="var(--gp-green)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
                     <path d={icon} />
@@ -119,13 +135,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services preview */}
+      {/* Services preview section */}
       <section style={{ padding: "80px 0", backgroundColor: "var(--gp-bg-section)", borderTop: "1px solid var(--gp-border)", borderBottom: "1px solid var(--gp-border)" }}>
         <div className="gp-container">
           <div style={{ marginBottom: 48 }}>
             <span className="gp-eyebrow">Core services</span>
             <h2 className="gp-section-title">Everything solar, end to end</h2>
           </div>
+
+          {/* Service cards: installation, maintenance, repairs */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 16, marginBottom: 32 }}>
             {[
               { n:"01", t:"Installation", d:"Full system design and professional installation for homes and businesses.", featured: true },
@@ -144,7 +162,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Gallery Teaser ── */}
+      {/* Gallery teaser section */}
       <section style={{
         padding: "80px 0",
         backgroundColor: "var(--gp-bg-page)",
@@ -152,7 +170,7 @@ export default function Home() {
       }}>
         <div className="gp-container">
 
-          {/* Header row */}
+          {/* Section header with link to full gallery */}
           <div style={{
             display: "flex", alignItems: "flex-end",
             justifyContent: "space-between", flexWrap: "wrap",
@@ -169,7 +187,7 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* 3-card masonry-style grid */}
+          {/* Three project preview cards (residential, commercial, industrial) */}
           <div style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
@@ -214,11 +232,11 @@ export default function Home() {
                   display: "flex",
                   flexDirection: "column",
                   background: p.gradient,
-                  minHeight: i === 0 ? 340 : 220,
+                  minHeight: i === 0 ? 340 : 220, // first card is taller
                   position: "relative",
                   boxShadow: "0 2px 12px rgba(0,0,0,0.10)",
                   transition: "transform 0.22s, box-shadow 0.22s",
-                  gridRow: i === 0 ? "span 2" : "span 1",
+                  gridRow: i === 0 ? "span 2" : "span 1", // first card spans two rows
                 }}
                 onMouseEnter={e => {
                   (e.currentTarget as HTMLElement).style.transform = "translateY(-5px)";
@@ -229,7 +247,7 @@ export default function Home() {
                   (e.currentTarget as HTMLElement).style.boxShadow = "0 2px 12px rgba(0,0,0,0.10)";
                 }}
               >
-                {/* Icon centred */}
+                {/* Project type icon centred in card */}
                 <div style={{
                   flex: 1, display: "flex",
                   alignItems: "center", justifyContent: "center",
@@ -238,7 +256,7 @@ export default function Home() {
                   {p.icon}
                 </div>
 
-                {/* Bottom info strip */}
+                {/* Project info strip at the bottom of each card */}
                 <div style={{
                   padding: "16px 20px",
                   background: "rgba(0,0,0,0.32)",
@@ -251,6 +269,7 @@ export default function Home() {
                     }}>
                       {p.tag}
                     </span>
+                    {/* System capacity badge */}
                     <span style={{
                       fontSize: 12, fontWeight: 800,
                       color: "#fff",
@@ -269,7 +288,7 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Social proof strip */}
+          {/* Social proof stats strip below the gallery grid */}
           <div style={{
             marginTop: 32,
             padding: "20px 28px",
@@ -308,7 +327,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* Bottom CTA section */}
       <section style={{ padding: "80px 0", backgroundColor: "var(--gp-bg-dark)" }}>
         <div className="gp-container" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 32 }}>
           <div>
@@ -319,6 +338,7 @@ export default function Home() {
               Talk to our experts — free consultation, no pressure, just honest solar advice for your home or business.
             </p>
           </div>
+          {/* Primary call-to-action button */}
           <Link href="/company_contact_details" className="gp-btn-accent">Schedule Free Consultation</Link>
         </div>
       </section>
