@@ -1,17 +1,81 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
+
+function Toast({ message, onClose }: { message: string; onClose: () => void }) {
+  useEffect(() => {
+    const t = setTimeout(onClose, 4000);
+    return () => clearTimeout(t);
+  }, [onClose]);
+
+  return (
+    <div style={{
+      position: "fixed",
+      top: 24,
+      right: 24,
+      zIndex: 200,
+      backgroundColor: "#fff",
+      border: "1px solid var(--gp-green-border)",
+      borderLeft: "4px solid var(--gp-green)",
+      borderRadius: 10,
+      padding: "14px 18px",
+      display: "flex",
+      alignItems: "center",
+      gap: 12,
+      boxShadow: "0 8px 32px rgba(0,0,0,0.12)",
+      minWidth: 280,
+      maxWidth: 360,
+      animation: "gp-toast-in 0.3s ease",
+    }}>
+      <div style={{
+        width: 32, height: 32, borderRadius: "50%",
+        backgroundColor: "var(--gp-green-light)",
+        display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
+      }}>
+        <svg width={16} height={16} viewBox="0 0 24 24" fill="none"
+          stroke="var(--gp-green)" strokeWidth={2.5}
+          strokeLinecap="round" strokeLinejoin="round">
+          <path d="M20 6L9 17l-5-5" />
+        </svg>
+      </div>
+      <div style={{ flexGrow: 1 }}>
+        <p style={{ fontSize: 13, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 2px" }}>
+          Message sent!
+        </p>
+        <p style={{ fontSize: 12, color: "var(--gp-text-muted)", margin: 0 }}>
+          {message}
+        </p>
+      </div>
+      <button
+        onClick={onClose}
+        style={{
+          background: "none", border: "none", cursor: "pointer",
+          color: "var(--gp-text-subtle)", padding: 4, flexShrink: 0,
+          display: "flex", alignItems: "center",
+        }}
+      >
+        <svg width={14} height={14} viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" strokeWidth={2.5}
+          strokeLinecap="round" strokeLinejoin="round">
+          <path d="M18 6L6 18M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  );
+}
+
+const EMPTY_FORM = { name: "", email: "", phone: "", service: "", message: "" };
 
 export default function Contact() {
-  const [sent, setSent] = useState(false);
+  const [toast, setToast]     = useState(false);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [form, setForm] = useState({
-    name: "", email: "", phone: "", service: "", message: "",
-  });
+  const [error, setError]     = useState("");
+  const [form, setForm]       = useState(EMPTY_FORM);
 
   const handle = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
+
+  const closeToast = useCallback(() => setToast(false), []);
 
   const handleSubmit = async () => {
     if (!form.name || !form.email || !form.message) {
@@ -27,7 +91,8 @@ export default function Contact() {
         body: JSON.stringify(form),
       });
       if (res.ok) {
-        setSent(true);
+        setForm(EMPTY_FORM);
+        setToast(true);
       } else {
         setError("Something went wrong. Please try again.");
       }
@@ -50,6 +115,13 @@ export default function Contact() {
 
   return (
     <div style={{ backgroundColor: "var(--gp-bg-page)" }}>
+
+      {toast && (
+        <Toast
+          message="We'll get back to you within 2 business hours."
+          onClose={closeToast}
+        />
+      )}
 
       <div className="gp-page-hero">
         <div className="gp-container">
@@ -74,146 +146,123 @@ export default function Contact() {
 
             {/* Form */}
             <div style={{ display: "flex", flexDirection: "column" }}>
-              {sent ? (
-                <div className="gp-card" style={{ padding: 40, textAlign: "center", height: "100%", boxSizing: "border-box" }}>
-                  <div style={{
-                    width: 56, height: 56, borderRadius: "50%",
-                    backgroundColor: "var(--gp-green-light)",
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    margin: "0 auto 20px",
-                  }}>
-                    <svg width={26} height={26} viewBox="0 0 24 24" fill="none"
-                      stroke="var(--gp-green)" strokeWidth={2.5}
-                      strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M20 6L9 17l-5-5" />
-                    </svg>
-                  </div>
-                  <h2 style={{ fontSize: 20, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 8px" }}>
-                    Message sent!
-                  </h2>
-                  <p style={{ fontSize: 14, color: "var(--gp-text-muted)", margin: 0 }}>
-                    We'll get back to you within 2 business hours.
-                  </p>
-                </div>
-              ) : (
-                <div className="gp-card" style={{
-                  padding: 32,
-                  height: "100%",
-                  boxSizing: "border-box",
-                  display: "flex",
-                  flexDirection: "column",
-                }}>
-                  <h2 style={{ fontSize: 18, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 24px" }}>
-                    Send us a message
-                  </h2>
+              <div className="gp-card" style={{
+                padding: 32,
+                height: "100%",
+                boxSizing: "border-box",
+                display: "flex",
+                flexDirection: "column",
+              }}>
+                <h2 style={{ fontSize: 18, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 24px" }}>
+                  Send us a message
+                </h2>
 
-                  <div style={{ display: "flex", flexDirection: "column", gap: 16, flexGrow: 1 }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: 16, flexGrow: 1 }}>
 
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
-                      <div>
-                        <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
-                          Full name *
-                        </label>
-                        <input
-                          name="name"
-                          value={form.name}
-                          onChange={handle}
-                          placeholder="Your name"
-                          style={inputStyle}
-                        />
-                      </div>
-                      <div>
-                        <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
-                          Email *
-                        </label>
-                        <input
-                          name="email"
-                          type="email"
-                          value={form.email}
-                          onChange={handle}
-                          placeholder="you@example.com"
-                          style={inputStyle}
-                        />
-                      </div>
-                    </div>
-
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
                     <div>
                       <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
-                        Phone number
+                        Full name *
                       </label>
                       <input
-                        name="phone"
-                        value={form.phone}
+                        name="name"
+                        value={form.name}
                         onChange={handle}
-                        placeholder="+265 ..."
+                        placeholder="Your name"
                         style={inputStyle}
                       />
                     </div>
-
                     <div>
                       <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
-                        Service interested in
+                        Email *
                       </label>
-                      <select
-                        name="service"
-                        value={form.service}
+                      <input
+                        name="email"
+                        type="email"
+                        value={form.email}
                         onChange={handle}
+                        placeholder="you@example.com"
                         style={inputStyle}
-                      >
-                        <option value="">Select a service...</option>
-                        <option>Solar panel installation</option>
-                        <option>System maintenance</option>
-                        <option>Repairs and diagnostics</option>
-                        <option>Battery storage</option>
-                        <option>Commercial / industrial</option>
-                        <option>General enquiry</option>
-                      </select>
-                    </div>
-
-                    <div style={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
-                      <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
-                        Message *
-                      </label>
-                      <textarea
-                        name="message"
-                        value={form.message}
-                        onChange={handle}
-                        placeholder="Tell us about your project or question..."
-                        style={{ ...inputStyle, resize: "none", flexGrow: 1, minHeight: 100 }}
                       />
                     </div>
-
-                    {error && (
-                      <p style={{
-                        fontSize: 13, color: "#c0392b",
-                        backgroundColor: "#fdf0ef",
-                        border: "1px solid #f5c6c2",
-                        borderRadius: 8, padding: "10px 14px",
-                        margin: 0,
-                      }}>
-                        {error}
-                      </p>
-                    )}
-
-                    <button
-                      onClick={handleSubmit}
-                      disabled={loading}
-                      className="gp-btn-primary"
-                      style={{
-                        width: "100%", justifyContent: "center", marginTop: 4,
-                        opacity: loading ? 0.7 : 1,
-                        cursor: loading ? "not-allowed" : "pointer",
-                      }}
-                    >
-                      {loading ? "Sending..." : "Send message"}
-                    </button>
-
                   </div>
+
+                  <div>
+                    <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
+                      Phone number
+                    </label>
+                    <input
+                      name="phone"
+                      value={form.phone}
+                      onChange={handle}
+                      placeholder="+265 ..."
+                      style={inputStyle}
+                    />
+                  </div>
+
+                  <div>
+                    <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
+                      Service interested in
+                    </label>
+                    <select
+                      name="service"
+                      value={form.service}
+                      onChange={handle}
+                      style={inputStyle}
+                    >
+                      <option value="">Select a service...</option>
+                      <option>Solar panel installation</option>
+                      <option>System maintenance</option>
+                      <option>Repairs and diagnostics</option>
+                      <option>Battery storage</option>
+                      <option>Commercial / industrial</option>
+                      <option>General enquiry</option>
+                    </select>
+                  </div>
+
+                  <div style={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
+                    <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
+                      Message *
+                    </label>
+                    <textarea
+                      name="message"
+                      value={form.message}
+                      onChange={handle}
+                      placeholder="Tell us about your project or question..."
+                      style={{ ...inputStyle, resize: "none", flexGrow: 1, minHeight: 100 }}
+                    />
+                  </div>
+
+                  {error && (
+                    <p style={{
+                      fontSize: 13, color: "#c0392b",
+                      backgroundColor: "#fdf0ef",
+                      border: "1px solid #f5c6c2",
+                      borderRadius: 8, padding: "10px 14px",
+                      margin: 0,
+                    }}>
+                      {error}
+                    </p>
+                  )}
+
+                  <button
+                    onClick={handleSubmit}
+                    disabled={loading}
+                    className="gp-btn-primary"
+                    style={{
+                      width: "100%", justifyContent: "center", marginTop: 4,
+                      opacity: loading ? 0.7 : 1,
+                      cursor: loading ? "not-allowed" : "pointer",
+                    }}
+                  >
+                    {loading ? "Sending..." : "Send message"}
+                  </button>
+
                 </div>
-              )}
+              </div>
             </div>
 
-            {/* Map — right column, stretches to match form height */}
+            {/* Map — right column */}
             <div style={{ display: "flex", flexDirection: "column" }}>
               <div className="gp-card" style={{
                 overflow: "hidden",

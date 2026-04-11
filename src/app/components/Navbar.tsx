@@ -1,5 +1,4 @@
-﻿
-"use client";
+﻿"use client";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
@@ -72,7 +71,7 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* Desktop nav */}
+          {/* Desktop nav — CSS classes replace inline mouse handlers */}
           <nav className="gp-nav-links" style={{ alignItems: "center", gap: 2 }}>
             {navLinks.map(({ href, label }) => {
               const active = pathname === href;
@@ -80,28 +79,7 @@ export default function Navbar() {
                 <Link
                   key={href}
                   href={href}
-                  style={{
-                    padding: "7px 14px",
-                    fontSize: 14,
-                    fontWeight: active ? 600 : 400,
-                    color: active ? "var(--gp-green)" : "var(--gp-text-muted)",
-                    textDecoration: "none",
-                    borderRadius: 7,
-                    backgroundColor: active ? "var(--gp-green-light)" : "transparent",
-                    transition: "background 0.15s, color 0.15s",
-                  }}
-                  onMouseEnter={e => {
-                    if (!active) {
-                      (e.currentTarget as HTMLElement).style.backgroundColor = "var(--gp-bg-section)";
-                      (e.currentTarget as HTMLElement).style.color = "var(--gp-text-primary)";
-                    }
-                  }}
-                  onMouseLeave={e => {
-                    if (!active) {
-                      (e.currentTarget as HTMLElement).style.backgroundColor = "transparent";
-                      (e.currentTarget as HTMLElement).style.color = "var(--gp-text-muted)";
-                    }
-                  }}
+                  className={`gp-nav-link${active ? " active" : ""}`}
                 >
                   {label}
                 </Link>
