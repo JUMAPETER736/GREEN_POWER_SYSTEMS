@@ -265,7 +265,7 @@ export default function Contact() {
                 📍 Find us — QuickTrip Shopping Complex, Area 25 Sungwi, Lilongwe
               </p>
             </div>
-            
+            <a
               href="https://www.google.com/maps/search/QuickTrip+Shopping+Complex+Area+25+Sungwi+Lilongwe+Malawi/@-13.8875769,33.7547329,15z"
               target="_blank"
               rel="noopener noreferrer"
