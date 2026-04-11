@@ -5,18 +5,18 @@ import Image from "next/image";
 
 export default function Footer() {
   const quickLinks = [
-    { href: "/",             label: "Home" },
-    { href: "/about",        label: "About" },
-    { href: "/services",     label: "Services" },
-    { href: "/products",     label: "Products" },
-    { href: "/contact",      label: "Contact" },
+    { href: "/",                        label: "Home" },
+    { href: "/about_our_company",       label: "About" },
+    { href: "/our_services",            label: "Services" },
+    { href: "/our_products",            label: "Products" },
+    { href: "/company_contact_details", label: "Contact" },
   ];
 
   const serviceLinks = [
-    { href: "/services#installation",  label: "Installation" },
-    { href: "/services#maintenance",   label: "Maintenance" },
-    { href: "/services#consultation",  label: "Consultation" },
-    { href: "/services#repairs",       label: "Repairs" },
+    { href: "/our_services#installation",  label: "Installation" },
+    { href: "/our_services#maintenance",   label: "Maintenance" },
+    { href: "/our_services#consultation",  label: "Consultation" },
+    { href: "/our_services#repairs",       label: "Repairs" },
   ];
 
   const linkStyle: React.CSSProperties = {
@@ -99,7 +99,7 @@ export default function Footer() {
               {/* Email */}
               <div>
                 <p style={{ fontSize: 11, color: "#9ca3af", marginBottom: 4, marginTop: 0 }}>Email</p>
-                <a
+                
                   href="mailto:greenpowersystemsltd@gmail.com"
                   style={{
                     fontSize: 13, color: "#0f5f3f",
