@@ -168,7 +168,71 @@ export default function Home() {
               View full gallery →
             </Link>
           </div>
-          
+
+
+            {/* 3-card masonry-style grid */}
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
+            gap: 16,
+          }}>
+            {[
+              {
+                title: "Area 43 Family Home",
+                tag: "Residential",
+                kw: "3.5 kW",
+                location: "Lilongwe",
+                gradient: "linear-gradient(135deg,#2d6a4f 0%,#52b788 100%)",
+                icon: "🏡",
+                tall: true,
+              },
+              {
+                title: "Shoprite Plaza Offices",
+                tag: "Commercial",
+                kw: "22 kW",
+                location: "City Centre",
+                gradient: "linear-gradient(135deg,#1b4332 0%,#40916c 100%)",
+                icon: "🏢",
+                tall: false,
+              },
+              {
+                title: "Kanengo Warehouse",
+                tag: "Industrial",
+                kw: "48 kW",
+                location: "Kanengo",
+                gradient: "linear-gradient(135deg,#1a3a2a 0%,#52b788 100%)",
+                icon: "🏭",
+                tall: false,
+              },
+            ].map((p, i) => (
+              <Link
+                key={p.title}
+                href="/gallery"
+                style={{
+                  textDecoration: "none",
+                  borderRadius: 16,
+                  overflow: "hidden",
+                  display: "flex",
+                  flexDirection: "column",
+                  background: p.gradient,
+                  minHeight: i === 0 ? 340 : 220,
+                  position: "relative",
+                  boxShadow: "0 2px 12px rgba(0,0,0,0.10)",
+                  transition: "transform 0.22s, box-shadow 0.22s",
+                  gridRow: i === 0 ? "span 2" : "span 1",
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLElement).style.transform = "translateY(-5px)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "0 16px 36px rgba(0,0,0,0.18)";
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "0 2px 12px rgba(0,0,0,0.10)";
+                }}
+              
+              ></Link>
+
+              
 
       {/* CTA */}
       <section style={{ padding: "80px 0", backgroundColor: "var(--gp-bg-dark)" }}>
