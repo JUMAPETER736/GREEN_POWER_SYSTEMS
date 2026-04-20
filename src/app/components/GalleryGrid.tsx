@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 
 type Category = "residential" | "commercial" | "industrial" | "community";
@@ -14,7 +13,7 @@ type Project = {
   panels: number;
   year: number;
   description: string;
-  images: string[]; // array of image paths — first is the main card image
+  images: string[];
 };
 
 const PROJECTS: Project[] = [
@@ -91,9 +90,7 @@ const PROJECTS: Project[] = [
     year: 2024,
     description:
       "Green Power Systems team conducting community outreach — distributing supplies and engaging with local families as part of our corporate social responsibility programme.",
-    images: [
-      "/images/gallery/image14.jpeg",
-    ],
+    images: ["/images/gallery/image14.jpeg"],
   },
   {
     id: 6,
@@ -176,6 +173,15 @@ const CATEGORY_COLOR: Record<Category, string> = {
 const FILTERS = ["all", "residential", "commercial", "industrial", "community"] as const;
 type Filter = (typeof FILTERS)[number];
 
+const IMG: React.CSSProperties = {
+  position: "absolute",
+  inset: 0,
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
+  display: "block",
+};
+
 export default function GalleryGrid() {
   const [filter, setFilter] = useState<Filter>("all");
   const [activeId, setActiveId] = useState<number | null>(null);
@@ -244,14 +250,7 @@ export default function GalleryGrid() {
             >
               {/* Main photo */}
               <div style={{ height: 210, position: "relative" }}>
-                <Image
-                  src={project.images[0]}
-                  alt={project.title}
-                  fill
-                  style={{ objectFit: "cover" }}
-                  sizes="(max-width: 768px) 100vw, 350px"
-                />
-                {/* Category badge */}
+                <img src={project.images[0]} alt={project.title} style={IMG} />
                 <span style={{
                   position: "absolute", top: 12, left: 12,
                   backgroundColor: CATEGORY_COLOR[project.category],
@@ -261,7 +260,6 @@ export default function GalleryGrid() {
                 }}>
                   {CATEGORY_LABEL[project.category]}
                 </span>
-                {/* Photo count badge */}
                 {project.images.length > 1 && (
                   <span style={{
                     position: "absolute", bottom: 12, right: 12,
@@ -327,15 +325,12 @@ export default function GalleryGrid() {
           >
             {/* Photo viewer */}
             <div style={{ height: 300, position: "relative", backgroundColor: "#000" }}>
-              <Image
+              <img
                 src={active.images[lightboxImg]}
                 alt={`${active.title} — photo ${lightboxImg + 1}`}
-                fill
-                style={{ objectFit: "cover" }}
-                sizes="680px"
+                style={IMG}
               />
 
-              {/* Prev / Next arrows — only if multiple images */}
               {active.images.length > 1 && (
                 <>
                   <button
@@ -361,7 +356,6 @@ export default function GalleryGrid() {
                     }}
                   >›</button>
 
-                  {/* Dot indicators */}
                   <div style={{
                     position: "absolute", bottom: 14, left: "50%", transform: "translateX(-50%)",
                     display: "flex", gap: 6,
@@ -384,7 +378,6 @@ export default function GalleryGrid() {
                 </>
               )}
 
-              {/* Close button */}
               <button
                 onClick={() => setActiveId(null)}
                 style={{
@@ -397,7 +390,6 @@ export default function GalleryGrid() {
                 }}
               >×</button>
 
-              {/* Category badge */}
               <span style={{
                 position: "absolute", top: 12, left: 12,
                 backgroundColor: CATEGORY_COLOR[active.category],
@@ -428,7 +420,7 @@ export default function GalleryGrid() {
                       padding: 0, cursor: "pointer", position: "relative",
                     }}
                   >
-                    <Image src={src} alt={`Thumbnail ${i + 1}`} fill style={{ objectFit: "cover" }} sizes="64px" />
+                    <img src={src} alt={`Thumbnail ${i + 1}`} style={IMG} />
                   </button>
                 ))}
               </div>
