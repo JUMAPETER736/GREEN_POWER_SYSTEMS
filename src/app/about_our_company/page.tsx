@@ -2,9 +2,34 @@ import Link from "next/link";
 
 export default function About() {
   const team = [
-    { name: "Peter Juma", role: "Founder & CEO", initials: "PJ" },
-    { name: "Grace Banda", role: "Lead Engineer", initials: "GB" },
-    { name: "Samuel Phiri", role: "Sales Manager", initials: "SP" },
+    {
+      name: "Chikumbutso Bisani",
+      role: "Founder & CEO",
+      initials: "CB",
+      edu: "MSc Construction Technology (UNZA) · BSc Renewable Energy (Mzuzu University)",
+      note: "10+ years in energy, irrigation & construction",
+    },
+    {
+      name: "Chisomo Chinkhande",
+      role: "Project Manager",
+      initials: "CC",
+      edu: "BSc Renewable Energy Technologies (Mzuzu University)",
+      note: "Team & client coordination · Business development",
+    },
+    {
+      name: "Andrew Henry",
+      role: "Marketing Officer",
+      initials: "AH",
+      edu: "Professional Certificate in Marketing (Lilongwe Technical College)",
+      note: "1+ year in renewable energy · Brand & marketing strategy",
+    },
+    {
+      name: "Felix Chinkhande",
+      role: "Finance & Administration Officer",
+      initials: "FC",
+      edu: "Management Certificate (Lilongwe Technical College)",
+      note: "Finance, admin & organisational operations",
+    },
   ];
 
   return (
@@ -72,8 +97,8 @@ export default function About() {
             <span className="gp-eyebrow">Our team</span>
             <h2 className="gp-section-title" style={{ fontSize: "clamp(1.4rem,3vw,1.9rem)" }}>The people behind Green Power</h2>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 20 }}>
-            {team.map(({ name, role, initials }) => (
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 20 }}>
+            {team.map(({ name, role, initials, edu, note }) => (
               <div key={name} className="gp-card" style={{ padding: 28, textAlign: "center" }}>
                 <div style={{
                   width: 64, height: 64, borderRadius: "50%",
@@ -84,7 +109,9 @@ export default function About() {
                   fontSize: 18, fontWeight: 700, color: "var(--gp-green)",
                 }}>{initials}</div>
                 <p style={{ fontSize: 15, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 4px" }}>{name}</p>
-                <p style={{ fontSize: 13, color: "var(--gp-text-muted)", margin: 0 }}>{role}</p>
+                <p style={{ fontSize: 13, color: "var(--gp-green)", fontWeight: 600, margin: "0 0 10px" }}>{role}</p>
+                <p style={{ fontSize: 12, color: "var(--gp-text-muted)", lineHeight: 1.6, margin: "0 0 6px" }}>{edu}</p>
+                <p style={{ fontSize: 12, color: "var(--gp-text-subtle)", lineHeight: 1.5, margin: 0, fontStyle: "italic" }}>{note}</p>
               </div>
             ))}
           </div>
