@@ -52,26 +52,16 @@ export default function Navbar() {
                 className="gp-logo-img"
               />
             </div>
-            <div style={{ display: "flex", flexDirection: "column", lineHeight: 1 }}>
-              <span className="gp-logo-name" style={{
-                fontWeight: 700,
-                color: "var(--gp-text-primary)",
-                letterSpacing: "-0.01em",
-              }}>
-                GREEN POWER SYSTEMS LIMITED
-              </span>
-              <span className="gp-logo-tag" style={{
-                color: "var(--gp-green)",
-                marginTop: 3,
-                fontWeight: 500,
-                letterSpacing: "0.03em",
-              }}>
-                Solar Systems · Malawi
-              </span>
-            </div>
+            <span className="gp-logo-name" style={{
+              fontWeight: 700,
+              color: "var(--gp-text-primary)",
+              letterSpacing: "-0.01em",
+            }}>
+              GREEN POWER SYSTEMS LIMITED
+            </span>
           </Link>
 
-          {/* Desktop nav — CSS classes replace inline mouse handlers */}
+          {/* Desktop nav */}
           <nav className="gp-nav-links" style={{ alignItems: "center", gap: 2 }}>
             {navLinks.map(({ href, label }) => {
               const active = pathname === href;
