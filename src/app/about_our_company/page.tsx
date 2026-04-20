@@ -4,7 +4,7 @@ export default function About() {
   const team = [
     {
       name: "Chikumbutso Bisani",
-      role: "Founder & CEO",
+      role: "CEO",
       initials: "CB",
       edu: "MSc Construction Technology (UNZA) · BSc Renewable Energy (Mzuzu University)",
       note: "10+ years in energy, irrigation & construction",
