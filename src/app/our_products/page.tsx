@@ -4,7 +4,15 @@ import Link from "next/link";
 export default function Products() {
   const categories = [
     {
-      title: "Solar panels",
+      title: "Solar Panels",
+      icon: (
+        <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+          <rect x="2" y="7" width="20" height="14" rx="2" />
+          <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+          <line x1="12" y1="12" x2="12" y2="16" />
+          <line x1="10" y1="14" x2="14" y2="14" />
+        </svg>
+      ),
       items: [
         { name: "Monocrystalline 400W", desc: "High-efficiency panels ideal for limited roof space.", badge: "Best seller" },
         { name: "Polycrystalline 330W", desc: "Cost-effective option for larger installations.", badge: "" },
@@ -13,81 +21,351 @@ export default function Products() {
     },
     {
       title: "Inverters",
+      icon: (
+        <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+        </svg>
+      ),
       items: [
-        { name: "Hybrid 5kW inverter", desc: "Grid-tie with battery backup — ideal for homes.", badge: "Popular" },
-        { name: "Off-grid 3kW inverter", desc: "Perfect for rural properties away from the grid.", badge: "" },
-        { name: "3-phase 10kW inverter", desc: "Commercial-grade, three-phase power management.", badge: "Commercial" },
+        { name: "Hybrid 5kW Inverter", desc: "Grid-tie with battery backup — ideal for homes.", badge: "Popular" },
+        { name: "Off-grid 3kW Inverter", desc: "Perfect for rural properties away from the grid.", badge: "" },
+        { name: "3-phase 10kW Inverter", desc: "Commercial-grade, three-phase power management.", badge: "Commercial" },
       ],
     },
     {
-      title: "Battery storage",
+      title: "Battery Storage",
+      icon: (
+        <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+          <rect x="2" y="7" width="16" height="10" rx="2" />
+          <path d="M22 11v2" />
+          <line x1="6" y1="11" x2="6" y2="13" />
+          <line x1="10" y1="11" x2="10" y2="13" />
+        </svg>
+      ),
       items: [
-        { name: "Lithium 5kWh battery", desc: "Compact lithium storage for overnight power.", badge: "" },
-        { name: "Lithium 10kWh battery", desc: "Extended storage for larger homes or businesses.", badge: "Best value" },
+        { name: "Lithium 5kWh Battery", desc: "Compact lithium storage for overnight power.", badge: "" },
+        { name: "Lithium 10kWh Battery", desc: "Extended storage for larger homes or businesses.", badge: "Best value" },
         { name: "Lead-acid 200Ah", desc: "Reliable and affordable deep-cycle battery bank.", badge: "" },
       ],
     },
     {
-      title: "Accessories & mounting",
+      title: "Accessories & Mounting",
+      icon: (
+        <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="3" />
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14" />
+        </svg>
+      ),
       items: [
-        { name: "Roof mounting kits", desc: "Aluminium rail systems for tiled or metal roofs.", badge: "" },
-        { name: "Solar charge controllers", desc: "MPPT controllers for off-grid systems.", badge: "" },
-        { name: "Monitoring systems", desc: "Real-time performance dashboards via app or web.", badge: "New" },
+        { name: "Roof Mounting Kits", desc: "Aluminium rail systems for tiled or metal roofs.", badge: "" },
+        { name: "Solar Charge Controllers", desc: "MPPT controllers for off-grid systems.", badge: "" },
+        { name: "Monitoring Systems", desc: "Real-time performance dashboards via app or web.", badge: "New" },
       ],
     },
   ];
 
+  const BADGE_STYLES: Record<string, { bg: string; color: string; border: string }> = {
+    "Best seller": { bg: "var(--gp-green-light)", color: "var(--gp-green)", border: "var(--gp-green-border)" },
+    "Premium":     { bg: "#fef3c7", color: "#92400e", border: "#fde68a" },
+    "Popular":     { bg: "var(--gp-green-light)", color: "var(--gp-green)", border: "var(--gp-green-border)" },
+    "Commercial":  { bg: "#dbeafe", color: "#1d4ed8", border: "#bfdbfe" },
+    "Best value":  { bg: "#f3e8ff", color: "#7c3aed", border: "#e9d5ff" },
+    "New":         { bg: "#fce7f3", color: "#be185d", border: "#fbcfe8" },
+  };
+
   return (
     <div style={{ backgroundColor: "var(--gp-bg-page)" }}>
+
+      {/* ── Page Hero ── */}
       <div className="gp-page-hero">
         <div className="gp-container">
           <span className="gp-eyebrow">Our products</span>
-          <h1 className="gp-section-title" style={{ maxWidth: 560 }}>Quality solar equipment, competitively priced</h1>
+          <h1 className="gp-section-title" style={{ maxWidth: 560 }}>
+            Quality solar equipment, competitively priced
+          </h1>
           <p className="gp-section-sub" style={{ marginTop: 14 }}>
             We stock and supply leading solar brands. All products come with manufacturer warranties and our full installation support.
           </p>
         </div>
       </div>
 
-      <section style={{ padding: "72px 0" }}>
-        <div className="gp-container" style={{ display: "flex", flexDirection: "column", gap: 56 }}>
-          {categories.map(({ title, items }) => (
-            <div key={title}>
-              <h2 style={{ fontSize: 18, fontWeight: 700, color: "var(--gp-text-primary)", marginBottom: 20, paddingBottom: 14, borderBottom: "1px solid var(--gp-border)" }}>{title}</h2>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: 16 }}>
-                {items.map(({ name, desc, badge }) => (
-                  <div key={name} className="gp-card" style={{ padding: 24, display: "flex", flexDirection: "column", gap: 10 }}>
-                    <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 8 }}>
-                      <h3 style={{ fontSize: 14, fontWeight: 700, color: "var(--gp-text-primary)", margin: 0 }}>{name}</h3>
-                      {badge && (
-                        <span style={{
-                          fontSize: 10, fontWeight: 700, padding: "3px 8px",
-                          backgroundColor: "var(--gp-green-light)",
-                          color: "var(--gp-green)",
-                          borderRadius: 100, whiteSpace: "nowrap",
-                          border: "1px solid var(--gp-green-border)",
-                        }}>{badge}</span>
-                      )}
-                    </div>
-                    <p style={{ fontSize: 13, color: "var(--gp-text-muted)", lineHeight: 1.6, margin: 0 }}>{desc}</p>
-                    <Link href="/company_contact_details" style={{ fontSize: 12, fontWeight: 700, color: "var(--gp-green)", textDecoration: "none", marginTop: 4 }}>
-                      Enquire →
-                    </Link>
-                  </div>
-                ))}
+      {/* ── Quick-jump nav (tablet/desktop only) ── */}
+      <nav className="gp-products-jumpnav">
+        <div className="gp-container">
+          <div className="gp-jumpnav-inner">
+            {categories.map(({ title }) => (
+              <a
+                key={title}
+                href={`#cat-${title.toLowerCase().replace(/\s+&?\s*/g, "-")}`}
+                className="gp-jumpnav-link"
+              >
+                {title}
+              </a>
+            ))}
+          </div>
+        </div>
+      </nav>
+
+      {/* ── Product categories ── */}
+      <section style={{ padding: "56px 0 80px" }}>
+        <div className="gp-container gp-categories-col">
+
+          {categories.map(({ title, icon, items }) => {
+            const anchorId = `cat-${title.toLowerCase().replace(/\s+&?\s*/g, "-")}`;
+            return (
+              <div key={title} id={anchorId} className="gp-category-block">
+
+                {/* Category heading */}
+                <div className="gp-cat-heading">
+                  <span className="gp-cat-icon">{icon}</span>
+                  <h2 className="gp-cat-title">{title}</h2>
+                </div>
+
+                {/* Cards grid */}
+                <div className="gp-products-grid">
+                  {items.map(({ name, desc, badge }) => {
+                    const bs = badge ? BADGE_STYLES[badge] : null;
+                    return (
+                      <div key={name} className="gp-card gp-product-card">
+                        <div className="gp-product-card-top">
+                          <h3 className="gp-product-name">{name}</h3>
+                          {bs && (
+                            <span
+                              className="gp-product-badge"
+                              style={{
+                                backgroundColor: bs.bg,
+                                color: bs.color,
+                                border: `1px solid ${bs.border}`,
+                              }}
+                            >
+                              {badge}
+                            </span>
+                          )}
+                        </div>
+                        <p className="gp-product-desc">{desc}</p>
+                        <Link
+                          href="/company_contact_details"
+                          className="gp-product-enquire"
+                        >
+                          Enquire →
+                        </Link>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
+      {/* ── Bottom CTA ── */}
       <section style={{ padding: "64px 0", backgroundColor: "var(--gp-bg-dark)" }}>
-        <div className="gp-container" style={{ textAlign: "center" }}>
-          <h2 style={{ fontSize: "clamp(1.4rem,3vw,2rem)", fontWeight: 800, color: "#fff", margin: "0 0 12px" }}>Looking for a specific product?</h2>
-          <p style={{ fontSize: 15, color: "rgba(255,255,255,0.62)", margin: "0 0 28px" }}>We can source and supply products not listed here. Contact us with your specs.</p>
-          <Link href="/company_contact_details" className="gp-btn-accent">Contact our team</Link>
+        <div className="gp-container gp-cta-inner">
+          <div>
+            <h2 className="gp-cta-heading">Looking for a specific product?</h2>
+            <p className="gp-cta-sub">
+              We can source and supply products not listed here. Contact us with your specs.
+            </p>
+          </div>
+          <Link href="/company_contact_details" className="gp-btn-accent gp-cta-btn">
+            Contact our team
+          </Link>
         </div>
       </section>
+
+      {/* ── Responsive styles ── */}
+      <style>{`
+
+        /* ── Jump nav ── */
+        .gp-products-jumpnav {
+          background: var(--gp-bg-card);
+          border-bottom: 1px solid var(--gp-border);
+          padding: 0;
+          position: sticky;
+          top: 0;
+          z-index: 50;
+        }
+        .gp-jumpnav-inner {
+          display: flex;
+          gap: 0;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+        }
+        .gp-jumpnav-inner::-webkit-scrollbar { display: none; }
+        .gp-jumpnav-link {
+          flex-shrink: 0;
+          padding: 14px 20px;
+          font-size: 13px;
+          font-weight: 600;
+          color: var(--gp-text-muted);
+          text-decoration: none;
+          border-bottom: 2px solid transparent;
+          transition: color 0.18s, border-color 0.18s;
+          white-space: nowrap;
+        }
+        .gp-jumpnav-link:hover {
+          color: var(--gp-green);
+          border-bottom-color: var(--gp-green);
+        }
+
+        /* ── Layout ── */
+        .gp-categories-col {
+          display: flex;
+          flex-direction: column;
+          gap: 52px;
+        }
+
+        /* ── Category block ── */
+        .gp-category-block {
+          scroll-margin-top: 56px;
+        }
+        .gp-cat-heading {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding-bottom: 16px;
+          border-bottom: 1px solid var(--gp-border);
+          margin-bottom: 20px;
+        }
+        .gp-cat-icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+          border-radius: 10px;
+          background: var(--gp-green-light);
+          color: var(--gp-green);
+          flex-shrink: 0;
+        }
+        .gp-cat-title {
+          font-size: clamp(16px, 2.5vw, 19px);
+          font-weight: 700;
+          color: var(--gp-text-primary);
+          margin: 0;
+        }
+
+        /* ── Products grid ── */
+        .gp-products-grid {
+          display: grid;
+          gap: 14px;
+          grid-template-columns: 1fr;          /* mobile: 1 col */
+        }
+
+        /* tablet: 2 cols */
+        @media (min-width: 560px) {
+          .gp-products-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        /* desktop: 3 cols */
+        @media (min-width: 960px) {
+          .gp-products-grid {
+            grid-template-columns: repeat(3, 1fr);
+          }
+        }
+
+        /* ── Product card ── */
+        .gp-product-card {
+          padding: 20px 20px 22px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .gp-product-card:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 10px 28px rgba(0,0,0,0.10);
+        }
+        .gp-product-card-top {
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          gap: 10px;
+        }
+        .gp-product-name {
+          font-size: 14px;
+          font-weight: 700;
+          color: var(--gp-text-primary);
+          margin: 0;
+          line-height: 1.35;
+          flex: 1;
+        }
+        .gp-product-badge {
+          font-size: 10px;
+          font-weight: 700;
+          padding: 3px 9px;
+          border-radius: 100px;
+          white-space: nowrap;
+          flex-shrink: 0;
+        }
+        .gp-product-desc {
+          font-size: 13px;
+          color: var(--gp-text-muted);
+          line-height: 1.65;
+          margin: 0;
+          flex: 1;
+        }
+        .gp-product-enquire {
+          font-size: 12.5px;
+          font-weight: 700;
+          color: var(--gp-green);
+          text-decoration: none;
+          margin-top: 6px;
+          display: inline-flex;
+          align-items: center;
+          gap: 4px;
+          transition: gap 0.18s;
+        }
+        .gp-product-enquire:hover {
+          gap: 8px;
+        }
+
+        /* ── Bottom CTA ── */
+        .gp-cta-inner {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 24px;
+          text-align: left;
+        }
+        .gp-cta-heading {
+          font-size: clamp(1.3rem, 3.5vw, 2rem);
+          font-weight: 800;
+          color: #fff;
+          margin: 0 0 10px;
+          letter-spacing: -0.02em;
+        }
+        .gp-cta-sub {
+          font-size: clamp(13px, 2vw, 15px);
+          color: rgba(255,255,255,0.62);
+          margin: 0;
+          line-height: 1.7;
+        }
+        .gp-cta-btn {
+          flex-shrink: 0;
+          width: 100%;
+          justify-content: center;
+          display: flex;
+        }
+
+        /* tablet: side-by-side CTA */
+        @media (min-width: 640px) {
+          .gp-cta-inner {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            text-align: left;
+          }
+          .gp-cta-btn {
+            width: auto;
+          }
+        }
+
+      `}</style>
     </div>
   );
 }
