@@ -1,332 +1,496 @@
 "use client";
+import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 
-export default function Home() {
+type Category = "residential" | "commercial" | "industrial" | "community";
+
+type Project = {
+  id: number;
+  title: string;
+  location: string;
+  category: Category;
+  kw: number;
+  panels: number;
+  year: number;
+  description: string;
+  images: string[];
+};
+
+const PROJECTS: Project[] = [
+  {
+    id: 1,
+    title: "Large Commercial Rooftop",
+    location: "Lilongwe",
+    category: "commercial",
+    kw: 22,
+    panels: 55,
+    year: 2024,
+    description:
+      "Large-scale commercial rooftop installation by our certified team. Panels mounted across the full roof surface, cutting electricity bills by 70% and providing uninterrupted daytime power.",
+    images: [
+      "/images/gallery/image1.jpeg",
+      "/images/gallery/image0.jpeg",
+      "/images/gallery/image9.jpeg",
+    ],
+  },
+  {
+    id: 2,
+    title: "Rural Rooftop Array",
+    location: "Dedza District",
+    category: "residential",
+    kw: 8,
+    panels: 20,
+    year: 2024,
+    description:
+      "Completed rooftop solar array on a rural home, providing reliable off-grid energy with stunning views of the Malawian landscape.",
+    images: [
+      "/images/gallery/image3.jpeg",
+      "/images/gallery/image15.jpeg",
+      "/images/gallery/image12.jpeg",
+    ],
+  },
+  {
+    id: 3,
+    title: "Inverter & Battery System",
+    location: "Lilongwe",
+    category: "residential",
+    kw: 5,
+    panels: 14,
+    year: 2024,
+    description:
+      "Indoor SRNE inverter and Dyness lithium battery storage system installation, delivering reliable backup power and smart energy management.",
+    images: [
+      "/images/gallery/image4.jpeg",
+      "/images/gallery/image7.jpeg",
+    ],
+  },
+  {
+    id: 4,
+    title: "Rooftop Panel Installation",
+    location: "Lilongwe",
+    category: "commercial",
+    kw: 15,
+    panels: 38,
+    year: 2024,
+    description:
+      "Professional team fitting and aligning panels on a commercial rooftop at golden hour. Precision mounting for maximum sun exposure throughout the day.",
+    images: [
+      "/images/gallery/image8.jpeg",
+      "/images/gallery/image11.jpeg",
+      "/images/gallery/image10.jpeg",
+    ],
+  },
+  {
+    id: 5,
+    title: "Community Outreach & CSR",
+    location: "Lilongwe",
+    category: "community",
+    kw: 0,
+    panels: 0,
+    year: 2024,
+    description:
+      "Green Power Systems team conducting community outreach — distributing supplies and engaging with local families as part of our corporate social responsibility programme.",
+    images: [
+      "/images/gallery/image14.jpeg",
+    ],
+  },
+  {
+    id: 6,
+    title: "Indoor Inverter Setup",
+    location: "Lilongwe",
+    category: "residential",
+    kw: 3.5,
+    panels: 10,
+    year: 2023,
+    description:
+      "Inverter and distribution board installation inside a residential property. Clean, organised wiring with a Puresolar inverter and breaker panel.",
+    images: [
+      "/images/gallery/image13.jpeg",
+      "/images/gallery/image19.jpeg",
+    ],
+  },
+  {
+    id: 7,
+    title: "Industrial Warehouse Array",
+    location: "Kanengo Industrial Area",
+    category: "industrial",
+    kw: 48,
+    panels: 120,
+    year: 2023,
+    description:
+      "Massive industrial solar array powering cold-storage and warehouse operations. Reducing diesel generator dependency by 85% with high-capacity panels across the entire roof.",
+    images: [
+      "/images/gallery/image22.jpeg",
+      "/images/gallery/image23.jpeg",
+      "/images/gallery/image24.jpeg",
+    ],
+  },
+  {
+    id: 8,
+    title: "Residential System Install",
+    location: "Lilongwe, Area 43",
+    category: "residential",
+    kw: 4,
+    panels: 12,
+    year: 2023,
+    description:
+      "Full residential solar system including rooftop panels and indoor inverter cabinet. The team installed and commissioned the complete system in a single day.",
+    images: [
+      "/images/gallery/image25.jpeg",
+      "/images/gallery/image32.jpeg",
+    ],
+  },
+  {
+    id: 9,
+    title: "Commercial Panel Fitting",
+    location: "Lilongwe",
+    category: "commercial",
+    kw: 12,
+    panels: 30,
+    year: 2023,
+    description:
+      "Team securing and aligning solar panels on a commercial building rooftop. Each panel carefully positioned and clamped for long-term structural integrity.",
+    images: [
+      "/images/gallery/image33.jpeg",
+      "/images/gallery/image35.jpeg",
+      "/images/gallery/image36.jpeg",
+    ],
+  },
+];
+
+const CATEGORY_LABEL: Record<Category, string> = {
+  residential: "Residential",
+  commercial: "Commercial",
+  industrial: "Industrial",
+  community: "Community",
+};
+
+const CATEGORY_COLOR: Record<Category, string> = {
+  residential: "var(--gp-green)",
+  commercial: "#0066cc",
+  industrial: "#6d4c41",
+  community: "#7b1fa2",
+};
+
+const FILTERS = ["all", "residential", "commercial", "industrial", "community"] as const;
+type Filter = (typeof FILTERS)[number];
+
+// Reusable cover-image style
+const coverImg: React.CSSProperties = {
+  position: "absolute",
+  inset: 0,
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
+  display: "block",
+};
+
+export default function GalleryGrid() {
+  const [filter, setFilter] = useState<Filter>("all");
+  const [activeId, setActiveId] = useState<number | null>(null);
+  const [lightboxImg, setLightboxImg] = useState(0);
+
+  const filtered =
+    filter === "all"
+      ? PROJECTS
+      : PROJECTS.filter((p) => p.category === filter);
+
+  const active = PROJECTS.find((p) => p.id === activeId) ?? null;
+
+  function openProject(id: number) {
+    setActiveId(id);
+    setLightboxImg(0);
+  }
+
   return (
-    <div style={{ backgroundColor: "var(--gp-bg-page)" }}>
-
-      {/* Hero section */}
-      <section style={{ backgroundColor: "var(--gp-bg-card)", borderBottom: "1px solid var(--gp-border)" }}>
-        <div className="gp-container" style={{ padding: "88px 1.5rem 80px" }}>
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 340px), 1fr))",
-            gap: "4rem", alignItems: "center",
-          }}>
-
-            {/* Left column */}
-            <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-              <span style={{
-                display: "inline-flex", alignItems: "center", gap: 8,
-                padding: "5px 14px", borderRadius: 100,
-                backgroundColor: "var(--gp-green-light)",
-                border: "1px solid var(--gp-green-border)",
-                color: "var(--gp-green)", fontSize: 12, fontWeight: 600,
-                width: "fit-content",
-              }}>
-                <span style={{ width: 7, height: 7, borderRadius: "50%", backgroundColor: "var(--gp-green)", flexShrink: 0 }} />
-                Malawi's trusted solar partner
-              </span>
-
-              <h1 style={{
-                fontSize: "clamp(2.1rem, 5vw, 3.2rem)",
-                fontWeight: 800, color: "var(--gp-text-primary)",
-                lineHeight: 1.1, margin: 0, letterSpacing: "-0.02em",
-              }}>
-                Power your future with{" "}
-                <span style={{ color: "var(--gp-green)" }}>clean solar energy</span>
-              </h1>
-
-              <p style={{ fontSize: 17, color: "var(--gp-text-muted)", lineHeight: 1.7, margin: 0, maxWidth: 480 }}>
-                Professional installation, sales, and maintenance for homes and businesses across Malawi. Sustainable energy that pays for itself.
-              </p>
-
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
-                <Link href="/company_contact_details" className="gp-btn-primary">Get Free Consultation</Link>
-                <Link href="/our_services" className="gp-btn-secondary">View Our Services</Link>
-              </div>
-
-              <div style={{
-                display: "flex", gap: 36, paddingTop: 24,
-                borderTop: "1px solid var(--gp-border)", marginTop: 4,
-              }}>
-                {[["50+","Installations"],["100%","Satisfaction"],["24/7","Support"]].map(([n,l]) => (
-                  <div key={l}>
-                    <p style={{ fontSize: 26, fontWeight: 800, color: "var(--gp-green)", margin: 0, lineHeight: 1 }}>{n}</p>
-                    <p style={{ fontSize: 12, color: "var(--gp-text-subtle)", marginTop: 5, fontWeight: 500 }}>{l}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Right column: SVG illustration */}
-            <div style={{
-              backgroundColor: "var(--gp-green-light)",
-              border: "1px solid var(--gp-green-border)",
-              borderRadius: 20, padding: "2.5rem",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              minHeight: 300,
-            }}>
-              <svg viewBox="0 0 300 260" style={{ width: "100%", maxWidth: 320 }} xmlns="http://www.w3.org/2000/svg">
-                <circle cx="75" cy="60" r="36" fill="#fbb81c" opacity="0.18" />
-                <circle cx="75" cy="60" r="22" fill="#fbb81c" />
-                {[0,45,90,135,180,225,270,315].map(a => {
-                  const r = (Math.PI * a) / 180;
-                  return <line key={a} x1={75+Math.sin(r)*29} y1={60-Math.cos(r)*29} x2={75+Math.sin(r)*40} y2={60-Math.cos(r)*40} stroke="#fbb81c" strokeWidth="3" strokeLinecap="round" />;
-                })}
-                <rect x="18" y="148" width="110" height="82" rx="6" fill="#0052a3" />
-                {[0,1,2].map(row => [0,1,2].map(col => (
-                  <rect key={`${row}${col}`} x={25+col*34} y={156+row*24} width="26" height="18" rx="3" fill="#4dd9ff" opacity="0.85" />
-                )))}
-                <rect x="148" y="134" width="130" height="96" rx="6" fill="#0066cc" />
-                {[0,1,2].map(row => [0,1,2].map(col => (
-                  <rect key={`r${row}${col}`} x={156+col*40} y={142+row*28} width="32" height="22" rx="3" fill="#66d4ff" opacity="0.85" />
-                )))}
-                <path d="M210 240 C210 240 221 224 225 210 C220 218 210 230 210 230Z" fill="#0c5436" />
-                <path d="M210 240 C210 240 199 224 195 210 C200 218 210 230 210 230Z" fill="#177a4e" />
-                <line x1="210" y1="209" x2="210" y2="244" stroke="#0c5436" strokeWidth="2.5" />
-                <path d="M170 72 L157 93h13L152 116 L176 87h-14Z" fill="#fbb81c" opacity="0.95" />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Why choose us */}
-      <section style={{ padding: "80px 0", backgroundColor: "var(--gp-bg-page)" }}>
-        <div className="gp-container">
-          <div style={{ marginBottom: 48 }}>
-            <span className="gp-eyebrow">Why choose us</span>
-            <h2 className="gp-section-title">Expertise you can trust</h2>
-            <p className="gp-section-sub">From first consultation to years of support, we're with you every step.</p>
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(230px, 1fr))", gap: 16 }}>
-            {[
-              { title: "Certified technicians", desc: "Every installer is trained, vetted, and covered by our quality guarantee.", icon: "M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 0 0 1.946-.806 3.42 3.42 0 0 1 4.438 0 3.42 3.42 0 0 0 1.946.806 3.42 3.42 0 0 1 3.138 3.138 3.42 3.42 0 0 0 .806 1.946 3.42 3.42 0 0 1 0 4.438 3.42 3.42 0 0 0-.806 1.946 3.42 3.42 0 0 1-3.138 3.138 3.42 3.42 0 0 0-1.946.806 3.42 3.42 0 0 1-4.438 0 3.42 3.42 0 0 0-1.946-.806 3.42 3.42 0 0 1-3.138-3.138 3.42 3.42 0 0 0-.806-1.946 3.42 3.42 0 0 1 0-4.438 3.42 3.42 0 0 0 .806-1.946 3.42 3.42 0 0 1 3.138-3.138z" },
-              { title: "24/7 support", desc: "Our team is always reachable for emergencies, queries, and routine checks.", icon: "M3 5a2 2 0 0 1 2-2h3.28a1 1 0 0 1 .948.684l1.498 4.493a1 1 0 0 1-.502 1.21l-2.257 1.13a11.042 11.042 0 0 0 5.516 5.516l1.13-2.257a1 1 0 0 1 1.21-.502l4.493 1.498a1 1 0 0 1 .684.949V19a2 2 0 0 1-2 2h-1C9.716 21 3 14.284 3 6V5z" },
-              { title: "Transparent pricing", desc: "No hidden fees. Detailed quotes and flexible payment plans for every budget.", icon: "M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 11h.01M12 11h.01M15 11h.01M4 19V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z" },
-              { title: "Locally rooted", desc: "Based in Lilongwe — we understand Malawi's energy landscape inside and out.", icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" },
-            ].map(({ title, desc, icon }) => (
-              <div key={title} className="gp-card" style={{ padding: "28px 24px" }}>
-                <div className="gp-icon-badge" style={{ marginBottom: 18 }}>
-                  <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="var(--gp-green)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
-                    <path d={icon} />
-                  </svg>
-                </div>
-                <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 8px" }}>{title}</h3>
-                <p style={{ fontSize: 13.5, color: "var(--gp-text-muted)", lineHeight: 1.65, margin: 0 }}>{desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Services preview */}
-      <section style={{ padding: "80px 0", backgroundColor: "var(--gp-bg-section)", borderTop: "1px solid var(--gp-border)", borderBottom: "1px solid var(--gp-border)" }}>
-        <div className="gp-container">
-          <div style={{ marginBottom: 48 }}>
-            <span className="gp-eyebrow">Core services</span>
-            <h2 className="gp-section-title">Everything solar, end to end</h2>
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 16, marginBottom: 32 }}>
-            {[
-              { n:"01", t:"Installation", d:"Full system design and professional installation for homes and businesses.", featured: true },
-              { n:"02", t:"Maintenance", d:"Scheduled servicing to maximise output and protect your investment.", featured: false },
-              { n:"03", t:"Repairs & upgrades", d:"Fast fault diagnosis and upgrades to keep energy flowing.", featured: false },
-            ].map(({ n, t, d, featured }) => (
-              <div key={n} className={featured ? "gp-card-featured" : "gp-card"} style={{ padding: 28 }}>
-                <p style={{ fontSize: 11, color: "var(--gp-text-subtle)", fontWeight: 600, margin: "0 0 12px", letterSpacing: "0.05em" }}>{n}</p>
-                <h3 style={{ fontSize: 16, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 10px" }}>{t}</h3>
-                <p style={{ fontSize: 13.5, color: "var(--gp-text-muted)", lineHeight: 1.65, margin: "0 0 18px", flexGrow: 1 }}>{d}</p>
-                <Link href="/our_services" style={{ fontSize: 13, fontWeight: 700, color: "var(--gp-green)", textDecoration: "none" }}>Learn more →</Link>
-              </div>
-            ))}
-          </div>
-          <Link href="/our_services" className="gp-btn-secondary">View all services</Link>
-        </div>
-      </section>
-
-      {/* ── Gallery teaser — REAL PHOTOS ── */}
-      <section style={{ padding: "80px 0", backgroundColor: "var(--gp-bg-page)", borderBottom: "1px solid var(--gp-border)" }}>
-        <div className="gp-container">
-
-          {/* Header */}
-          <div style={{
-            display: "flex", alignItems: "flex-end",
-            justifyContent: "space-between", flexWrap: "wrap",
-            gap: 16, marginBottom: 40,
-          }}>
-            <div>
-              <span className="gp-eyebrow">Our work</span>
-              <h2 className="gp-section-title" style={{ marginBottom: 0 }}>
-                Real installations, real results
-              </h2>
-            </div>
-            <Link href="/gallery" className="gp-btn-secondary" style={{ flexShrink: 0 }}>
-              View full gallery →
-            </Link>
-          </div>
-
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gridTemplateRows: "260px 260px",
-            gap: 16,
-          }}>
-            {[
-              {
-                src: "/images/gallery/image1.jpeg",
-                alt: "Green Power Systems team fitting solar panels on a commercial rooftop",
-                tag: "Commercial", tagColor: "#0066cc",
-                kw: "22 kW", title: "Large Commercial Rooftop", location: "Lilongwe",
-                gridRow: "1 / 3",
-              },
-              {
-                src: "/images/gallery/image3.jpeg",
-                alt: "Completed solar array on a rural residential rooftop",
-                tag: "Residential", tagColor: "var(--gp-green)",
-                kw: "8 kW", title: "Rural Rooftop Array", location: "Dedza District",
-                gridRow: "auto",
-              },
-              {
-                src: "/images/gallery/image4.jpeg",
-                alt: "SRNE inverter and Dyness battery storage system installed indoors",
-                tag: "Energy Storage", tagColor: "#6d4c41",
-                kw: "5 kW", title: "Inverter & Battery System", location: "Lilongwe",
-                gridRow: "auto",
-              },
-              {
-                src: "/images/gallery/image8.jpeg",
-                alt: "Technician crouching on rooftop aligning solar panels at golden hour",
-                tag: "Residential", tagColor: "var(--gp-green)",
-                kw: "5 kW", title: "Precision Panel Alignment", location: "Lilongwe",
-                gridRow: "auto",
-              },
-              {
-                src: "/images/gallery/image22.jpeg",
-                alt: "Massive industrial solar panel array on a warehouse rooftop",
-                tag: "Industrial", tagColor: "#b45309",
-                kw: "48 kW", title: "Industrial Warehouse Array", location: "Kanengo",
-                gridRow: "auto",
-              },
-            ].map((p) => (
-              <Link
-                key={p.title}
-                href="/gallery"
+    <>
+      {/* Filter Bar */}
+      <section style={{ padding: "40px 0 0", backgroundColor: "var(--gp-bg-page)" }}>
+        <div className="gp-container" style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+          {FILTERS.map((cat) => {
+            const isActive = filter === cat;
+            return (
+              <button
+                key={cat}
+                onClick={() => setFilter(cat)}
                 style={{
-                  textDecoration: "none",
-                  borderRadius: 16,
-                  overflow: "hidden",
-                  display: "block",
-                  position: "relative",
-                  gridRow: p.gridRow,
-                  boxShadow: "0 2px 12px rgba(0,0,0,0.10)",
-                  transition: "transform 0.22s, box-shadow 0.22s",
-                }}
-                onMouseEnter={e => {
-                  (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
-                  (e.currentTarget as HTMLElement).style.boxShadow = "0 16px 36px rgba(0,0,0,0.18)";
-                }}
-                onMouseLeave={e => {
-                  (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-                  (e.currentTarget as HTMLElement).style.boxShadow = "0 2px 12px rgba(0,0,0,0.10)";
+                  padding: "8px 18px",
+                  borderRadius: 8,
+                  border: "1.5px solid",
+                  borderColor: isActive ? "var(--gp-green)" : "var(--gp-border)",
+                  background: isActive ? "var(--gp-green)" : "var(--gp-bg-card)",
+                  color: isActive ? "#fff" : "var(--gp-text-muted)",
+                  fontWeight: isActive ? 600 : 500,
+                  fontSize: 13.5,
+                  cursor: "pointer",
+                  transition: "all 0.18s ease",
+                  textTransform: "capitalize",
                 }}
               >
-                {/* ✅ Plain <img> — bypasses Next.js image pipeline */}
+                {cat === "all" ? "All Projects" : CATEGORY_LABEL[cat as Category]}
+              </button>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* Grid */}
+      <section style={{ padding: "32px 0 80px", backgroundColor: "var(--gp-bg-page)" }}>
+        <div
+          className="gp-container"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+            gap: 20,
+          }}
+        >
+          {filtered.map((project) => (
+            <article
+              key={project.id}
+              className="gp-card"
+              onClick={() => openProject(project.id)}
+              style={{ cursor: "pointer", overflow: "hidden" }}
+            >
+              {/* Main photo */}
+              <div style={{ height: 210, position: "relative" }}>
+                {/* ✅ plain <img> */}
                 <img
-                  src={p.src}
-                  alt={p.alt}
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    display: "block",
-                  }}
+                  src={project.images[0]}
+                  alt={project.title}
+                  style={coverImg}
                 />
-
-                {/* Dark gradient overlay */}
-                <div style={{
-                  position: "absolute", inset: 0,
-                  background: "linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 55%)",
-                }} />
-
-                {/* Top row: category badge + kW chip */}
-                <div style={{
-                  position: "absolute", top: 12, left: 12, right: 12,
-                  display: "flex", justifyContent: "space-between", alignItems: "center",
+                {/* Category badge */}
+                <span style={{
+                  position: "absolute", top: 12, left: 12,
+                  backgroundColor: CATEGORY_COLOR[project.category],
+                  color: "#fff", fontSize: 10, fontWeight: 700,
+                  letterSpacing: "0.08em", textTransform: "uppercase",
+                  padding: "3px 10px", borderRadius: 100,
                 }}>
+                  {CATEGORY_LABEL[project.category]}
+                </span>
+                {/* Photo count badge */}
+                {project.images.length > 1 && (
                   <span style={{
-                    backgroundColor: p.tagColor, color: "#fff",
-                    fontSize: 10, fontWeight: 700, letterSpacing: "0.1em",
-                    textTransform: "uppercase", padding: "3px 10px", borderRadius: 100,
-                  }}>{p.tag}</span>
-                  <span style={{
-                    backgroundColor: "rgba(0,0,0,0.45)", color: "#fff",
-                    fontSize: 12, fontWeight: 800,
-                    padding: "3px 10px", borderRadius: 100, backdropFilter: "blur(4px)",
-                  }}>{p.kw}</span>
-                </div>
+                    position: "absolute", bottom: 12, right: 12,
+                    backgroundColor: "rgba(0,0,0,0.5)",
+                    color: "#fff", fontSize: 11, fontWeight: 600,
+                    padding: "3px 10px", borderRadius: 100,
+                    backdropFilter: "blur(4px)",
+                  }}>
+                    {project.images.length} photos →
+                  </span>
+                )}
+              </div>
 
-                {/* Bottom: title + location */}
-                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "16px 18px" }}>
-                  <p style={{ fontSize: 14, fontWeight: 700, color: "#fff", margin: "0 0 3px" }}>{p.title}</p>
-                  <p style={{ fontSize: 12, color: "rgba(255,255,255,0.7)", margin: 0 }}>📍 {p.location}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
+              {/* Card body */}
+              <div style={{ padding: "20px 20px 22px" }}>
+                <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 4px" }}>
+                  {project.title}
+                </h3>
+                <p style={{ fontSize: 13, color: "var(--gp-text-subtle)", margin: "0 0 16px", display: "flex", alignItems: "center", gap: 4 }}>
+                  <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                    <circle cx={12} cy={10} r={3} />
+                  </svg>
+                  {project.location}
+                </p>
+                {project.kw > 0 && (
+                  <div style={{ display: "flex", gap: 20, paddingTop: 14, borderTop: "1px solid var(--gp-border)" }}>
+                    {[
+                      { value: `${project.kw} kW`, label: "System Size" },
+                      { value: project.panels, label: "Panels" },
+                      { value: project.year, label: "Year" },
+                    ].map((s) => (
+                      <div key={s.label}>
+                        <p style={{ fontSize: 15, fontWeight: 800, color: "var(--gp-green)", margin: 0, lineHeight: 1 }}>{s.value}</p>
+                        <p style={{ fontSize: 11, color: "var(--gp-text-subtle)", marginTop: 4 }}>{s.label}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
 
-          {/* Stats strip */}
-          <div style={{
-            marginTop: 32, padding: "20px 28px", borderRadius: 14,
-            background: "var(--gp-green-light)", border: "1px solid var(--gp-green-border)",
-            display: "flex", flexWrap: "wrap",
-            alignItems: "center", justifyContent: "space-between", gap: 16,
-          }}>
-            <div style={{ display: "flex", gap: 32, flexWrap: "wrap" }}>
-              {[
-                { value: "50+", label: "Projects completed" },
-                { value: "800+ kW", label: "Total capacity installed" },
-                { value: "6", label: "Regions covered" },
-              ].map(s => (
-                <div key={s.label}>
-                  <p style={{ fontSize: 20, fontWeight: 800, color: "var(--gp-green)", margin: 0 }}>{s.value}</p>
-                  <p style={{ fontSize: 12, color: "var(--gp-text-muted)", margin: "2px 0 0" }}>{s.label}</p>
-                </div>
-              ))}
+      {/* Lightbox */}
+      {active && (
+        <div
+          onClick={() => setActiveId(null)}
+          style={{
+            position: "fixed", inset: 0,
+            background: "rgba(0,0,0,0.7)",
+            zIndex: 200,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            padding: 24,
+            backdropFilter: "blur(6px)",
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="gp-card"
+            style={{ maxWidth: 680, width: "100%", overflow: "hidden", border: "none", boxShadow: "0 24px 64px rgba(0,0,0,0.4)" }}
+          >
+            {/* Photo viewer */}
+            <div style={{ height: 300, position: "relative", backgroundColor: "#000" }}>
+              {/* ✅ plain <img> */}
+              <img
+                src={active.images[lightboxImg]}
+                alt={`${active.title} — photo ${lightboxImg + 1}`}
+                style={coverImg}
+              />
+
+              {active.images.length > 1 && (
+                <>
+                  <button
+                    onClick={() => setLightboxImg((i) => (i - 1 + active.images.length) % active.images.length)}
+                    style={{
+                      position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)",
+                      width: 36, height: 36, borderRadius: "50%",
+                      background: "rgba(0,0,0,0.5)", border: "none",
+                      color: "#fff", fontSize: 18, cursor: "pointer",
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      backdropFilter: "blur(4px)",
+                    }}
+                  >‹</button>
+                  <button
+                    onClick={() => setLightboxImg((i) => (i + 1) % active.images.length)}
+                    style={{
+                      position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)",
+                      width: 36, height: 36, borderRadius: "50%",
+                      background: "rgba(0,0,0,0.5)", border: "none",
+                      color: "#fff", fontSize: 18, cursor: "pointer",
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      backdropFilter: "blur(4px)",
+                    }}
+                  >›</button>
+
+                  <div style={{
+                    position: "absolute", bottom: 14, left: "50%", transform: "translateX(-50%)",
+                    display: "flex", gap: 6,
+                  }}>
+                    {active.images.map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => setLightboxImg(i)}
+                        style={{
+                          width: i === lightboxImg ? 20 : 8,
+                          height: 8, borderRadius: 4,
+                          background: i === lightboxImg ? "#fff" : "rgba(255,255,255,0.45)",
+                          border: "none", cursor: "pointer",
+                          transition: "all 0.2s",
+                          padding: 0,
+                        }}
+                      />
+                    ))}
+                  </div>
+                </>
+              )}
+
+              <button
+                onClick={() => setActiveId(null)}
+                style={{
+                  position: "absolute", top: 12, right: 12,
+                  width: 32, height: 32, borderRadius: "50%",
+                  background: "rgba(0,0,0,0.5)", border: "none",
+                  color: "#fff", fontSize: 20, cursor: "pointer",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  backdropFilter: "blur(4px)", lineHeight: 1,
+                }}
+              >×</button>
+
+              <span style={{
+                position: "absolute", top: 12, left: 12,
+                backgroundColor: CATEGORY_COLOR[active.category],
+                color: "#fff", fontSize: 10, fontWeight: 700,
+                letterSpacing: "0.08em", textTransform: "uppercase",
+                padding: "3px 10px", borderRadius: 100,
+              }}>
+                {CATEGORY_LABEL[active.category]}
+              </span>
             </div>
-            <Link href="/gallery" style={{
-              fontSize: 13, fontWeight: 700, color: "var(--gp-green)",
-              textDecoration: "none", display: "flex", alignItems: "center", gap: 6,
-            }}>
-              Browse all projects
-              <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </Link>
+
+            {/* Thumbnail strip */}
+            {active.images.length > 1 && (
+              <div style={{
+                display: "flex", gap: 6, padding: "10px 14px",
+                backgroundColor: "var(--gp-bg-section)",
+                borderBottom: "1px solid var(--gp-border)",
+                overflowX: "auto",
+              }}>
+                {active.images.map((src, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setLightboxImg(i)}
+                    style={{
+                      width: 64, height: 48, flexShrink: 0,
+                      borderRadius: 6, overflow: "hidden",
+                      border: i === lightboxImg ? "2px solid var(--gp-green)" : "2px solid transparent",
+                      padding: 0, cursor: "pointer", position: "relative",
+                    }}
+                  >
+                    {/* ✅ plain <img> */}
+                    <img
+                      src={src}
+                      alt={`Thumbnail ${i + 1}`}
+                      style={coverImg}
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* Details */}
+            <div style={{ padding: "22px 24px 24px" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: 8, marginBottom: 10 }}>
+                <div>
+                  <h2 style={{ fontSize: "1.1rem", fontWeight: 800, color: "var(--gp-text-primary)", margin: 0 }}>
+                    {active.title}
+                  </h2>
+                  <p style={{ fontSize: 13, color: "var(--gp-text-subtle)", marginTop: 3 }}>
+                    📍 {active.location} · {active.year}
+                  </p>
+                </div>
+              </div>
+
+              <p style={{ fontSize: 13.5, color: "var(--gp-text-muted)", lineHeight: 1.65, margin: "0 0 18px" }}>
+                {active.description}
+              </p>
+
+              {active.kw > 0 && (
+                <div style={{
+                  display: "flex", gap: 24,
+                  padding: "14px 0",
+                  borderTop: "1px solid var(--gp-border)",
+                  borderBottom: "1px solid var(--gp-border)",
+                  marginBottom: 18, flexWrap: "wrap",
+                }}>
+                  {[
+                    { label: "System Size", value: `${active.kw} kW` },
+                    { label: "Panels Installed", value: active.panels },
+                    { label: "Year Completed", value: active.year },
+                  ].map((s) => (
+                    <div key={s.label}>
+                      <p style={{ fontSize: 17, fontWeight: 800, color: "var(--gp-green)", margin: 0, lineHeight: 1 }}>{s.value}</p>
+                      <p style={{ fontSize: 11, color: "var(--gp-text-subtle)", marginTop: 4 }}>{s.label}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <Link
+                href="/company_contact_details"
+                className="gp-btn-primary"
+                style={{ width: "100%", justifyContent: "center", display: "flex" }}
+              >
+                Get a Similar System →
+              </Link>
+            </div>
           </div>
-
         </div>
-      </section>
-
-      {/* Bottom CTA */}
-      <section style={{ padding: "80px 0", backgroundColor: "var(--gp-bg-dark)" }}>
-        <div className="gp-container" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 32 }}>
-          <div>
-            <h2 style={{ fontSize: "clamp(1.6rem,3.5vw,2.2rem)", fontWeight: 800, color: "#fff", margin: "0 0 10px", letterSpacing: "-0.02em" }}>
-              Ready to go solar?
-            </h2>
-            <p style={{ fontSize: 16, color: "rgba(255,255,255,0.62)", margin: 0, lineHeight: 1.7, maxWidth: 440 }}>
-              Talk to our experts — free consultation, no pressure, just honest solar advice for your home or business.
-            </p>
-          </div>
-          <Link href="/company_contact_details" className="gp-btn-accent">Schedule Free Consultation</Link>
-        </div>
-      </section>
-
-    </div>
+      )}
+    </>
   );
 }
