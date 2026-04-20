@@ -168,14 +168,6 @@ export default function Home() {
             </Link>
           </div>
 
-          {/*
-            Grid layout:
-              Col 1 (tall): team fitting panels — commercial install  [spans 2 rows]
-              Col 2 top:    completed rural rooftop array             [row 1]
-              Col 2 bottom: inverter & battery storage setup          [row 2]
-              Col 3 top:    technician aligning panels at sunset      [row 1]
-              Col 3 bottom: large industrial array                    [row 2]
-          */}
           <div style={{
             display: "grid",
             gridTemplateColumns: "repeat(3, 1fr)",
@@ -188,7 +180,7 @@ export default function Home() {
                 alt: "Green Power Systems team fitting solar panels on a commercial rooftop",
                 tag: "Commercial", tagColor: "#0066cc",
                 kw: "22 kW", title: "Large Commercial Rooftop", location: "Lilongwe",
-                gridRow: "1 / 3",   // tall card
+                gridRow: "1 / 3",
               },
               {
                 src: "/images/gallery/image3.jpeg",
@@ -241,18 +233,26 @@ export default function Home() {
                   (e.currentTarget as HTMLElement).style.boxShadow = "0 2px 12px rgba(0,0,0,0.10)";
                 }}
               >
-                <Image
+                {/* ✅ Plain <img> — bypasses Next.js image pipeline */}
+                <img
                   src={p.src}
                   alt={p.alt}
-                  fill
-                  style={{ objectFit: "cover" }}
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    display: "block",
+                  }}
                 />
+
                 {/* Dark gradient overlay */}
                 <div style={{
                   position: "absolute", inset: 0,
                   background: "linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 55%)",
                 }} />
+
                 {/* Top row: category badge + kW chip */}
                 <div style={{
                   position: "absolute", top: 12, left: 12, right: 12,
@@ -269,6 +269,7 @@ export default function Home() {
                     padding: "3px 10px", borderRadius: 100, backdropFilter: "blur(4px)",
                   }}>{p.kw}</span>
                 </div>
+
                 {/* Bottom: title + location */}
                 <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "16px 18px" }}>
                   <p style={{ fontSize: 14, fontWeight: 700, color: "#fff", margin: "0 0 3px" }}>{p.title}</p>
