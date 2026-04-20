@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Testimonials() {
   const reviews = [
     { name: "Chimwemwe Banda", location: "Lilongwe", initials: "CB", stars: 5, quote: "Green Power installed a 3kW system on our home. The team was professional and the panels have been running flawlessly for over a year. Our electricity bills dropped by 80%." },
@@ -8,30 +10,104 @@ export default function Testimonials() {
     { name: "Mercy Phiri", location: "Zomba", initials: "MP", stars: 5, quote: "The consultation was free and genuinely helpful — no pressure at all. We ended up choosing a system that fits our budget perfectly." },
   ];
 
+  const avgRating = (reviews.reduce((s, r) => s + r.stars, 0) / reviews.length).toFixed(1);
+  const fiveStarCount = reviews.filter(r => r.stars === 5).length;
+
   return (
     <div style={{ backgroundColor: "var(--gp-bg-page)" }}>
+
+      {/* ── Hero ── */}
       <div className="gp-page-hero">
         <div className="gp-container">
           <span className="gp-eyebrow">What clients say</span>
-          <h1 className="gp-section-title" style={{ maxWidth: 560 }}>Trusted by homes and businesses across Malawi</h1>
+          <h1 className="gp-section-title" style={{ maxWidth: 560 }}>
+            Trusted by homes and businesses across Malawi
+          </h1>
           <p className="gp-section-sub" style={{ marginTop: 14 }}>
             Real experiences from our clients — their words, not ours.
           </p>
         </div>
       </div>
 
-      <section style={{ padding: "72px 0" }}>
+      {/* ── Rating summary bar ── */}
+      <section style={{
+        backgroundColor: "var(--gp-bg-card)",
+        borderBottom: "1px solid var(--gp-border)",
+        padding: "clamp(20px, 4vw, 28px) 0",
+      }}>
         <div className="gp-container">
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 20 }}>
-            {reviews.map(({ name, location, initials, stars, quote }) => (
-              <div key={name} className="gp-card" style={{ padding: 28, display: "flex", flexDirection: "column", gap: 16 }}>
-                <div style={{ display: "flex", gap: 4 }}>
-                  {Array.from({ length: stars }).map((_, i) => (
-                    <svg key={i} width={16} height={16} viewBox="0 0 24 24" fill="#f5a623"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <div className="gp-rating-bar">
+            {/* Average score */}
+            <div className="gp-rating-score">
+              <p style={{
+                fontSize: "clamp(36px, 8vw, 52px)",
+                fontWeight: 800, color: "var(--gp-green)",
+                margin: 0, lineHeight: 1,
+              }}>{avgRating}</p>
+              <div>
+                <div style={{ display: "flex", gap: 3, marginBottom: 4 }}>
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <svg key={i} width={18} height={18} viewBox="0 0 24 24" fill="#f5a623">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
                   ))}
                 </div>
-                <p style={{ fontSize: 14, color: "var(--gp-text-muted)", lineHeight: 1.75, margin: 0, flexGrow: 1 }}>"{quote}"</p>
-                <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                <p style={{ fontSize: 13, color: "var(--gp-text-muted)", margin: 0 }}>
+                  Based on {reviews.length} reviews
+                </p>
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="gp-rating-divider" />
+
+            {/* Stats */}
+            <div className="gp-rating-stats">
+              {[
+                { value: `${fiveStarCount}/${reviews.length}`, label: "5-star reviews" },
+                { value: "100%", label: "Would recommend" },
+                { value: "2 hrs", label: "Avg. response time" },
+              ].map(s => (
+                <div key={s.label} style={{ textAlign: "center" }}>
+                  <p style={{ fontSize: "clamp(18px, 4vw, 24px)", fontWeight: 800, color: "var(--gp-green)", margin: 0, lineHeight: 1 }}>{s.value}</p>
+                  <p style={{ fontSize: "clamp(11px, 1.5vw, 12px)", color: "var(--gp-text-muted)", margin: "4px 0 0" }}>{s.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Reviews grid ── */}
+      <section style={{ padding: "clamp(40px, 7vw, 72px) 0" }}>
+        <div className="gp-container">
+          <div className="gp-reviews-grid">
+            {reviews.map(({ name, location, initials, stars, quote }) => (
+              <div key={name} className="gp-card" style={{
+                padding: "clamp(20px, 4vw, 28px)",
+                display: "flex", flexDirection: "column", gap: 14,
+              }}>
+                {/* Stars */}
+                <div style={{ display: "flex", gap: 3 }}>
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <svg key={i} width={15} height={15} viewBox="0 0 24 24"
+                      fill={i < stars ? "#f5a623" : "#e0e0e0"}>
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                  ))}
+                </div>
+
+                {/* Quote */}
+                <p style={{
+                  fontSize: "clamp(13px, 2vw, 14px)",
+                  color: "var(--gp-text-muted)",
+                  lineHeight: 1.75, margin: 0, flexGrow: 1,
+                }}>
+                  &ldquo;{quote}&rdquo;
+                </p>
+
+                {/* Reviewer */}
+                <div style={{ display: "flex", alignItems: "center", gap: 12, paddingTop: 12, borderTop: "1px solid var(--gp-border)" }}>
                   <div style={{
                     width: 40, height: 40, borderRadius: "50%",
                     backgroundColor: "var(--gp-green-light)",
@@ -41,7 +117,7 @@ export default function Testimonials() {
                   }}>{initials}</div>
                   <div>
                     <p style={{ fontSize: 13, fontWeight: 700, color: "var(--gp-text-primary)", margin: 0 }}>{name}</p>
-                    <p style={{ fontSize: 12, color: "var(--gp-text-subtle)", margin: 0 }}>{location}</p>
+                    <p style={{ fontSize: 12, color: "var(--gp-text-subtle)", margin: 0 }}>📍 {location}</p>
                   </div>
                 </div>
               </div>
@@ -50,17 +126,91 @@ export default function Testimonials() {
         </div>
       </section>
 
-      <section style={{ padding: "64px 0", backgroundColor: "var(--gp-bg-section)", borderTop: "1px solid var(--gp-border)" }}>
-        <div className="gp-container" style={{ textAlign: "center" }}>
-          <h2 className="gp-section-title" style={{ marginBottom: 12 }}>Join hundreds of satisfied clients</h2>
-          <p className="gp-section-sub" style={{ margin: "0 auto 28px" }}>
+      {/* ── CTA ── */}
+      <section style={{
+        padding: "clamp(48px, 7vw, 72px) 0",
+        backgroundColor: "var(--gp-bg-section)",
+        borderTop: "1px solid var(--gp-border)",
+      }}>
+        <div className="gp-container" style={{ textAlign: "center", padding: "0 1.5rem" }}>
+          <h2 style={{
+            fontSize: "clamp(1.4rem, 3.5vw, 2rem)",
+            fontWeight: 800, color: "var(--gp-text-primary)",
+            margin: "0 0 12px", letterSpacing: "-0.01em",
+          }}>
+            Join hundreds of satisfied clients
+          </h2>
+          <p style={{
+            fontSize: "clamp(14px, 2vw, 15px)",
+            color: "var(--gp-text-muted)",
+            margin: "0 auto 28px", lineHeight: 1.7, maxWidth: 460,
+          }}>
             Ready to experience the Green Power difference?
           </p>
-          <Link href="/contact" className="gp-btn-primary">Get your free quote</Link>
+          <Link href="/company_contact_details" className="gp-btn-primary">
+            Get your free quote
+          </Link>
         </div>
       </section>
+
+      {/* ── Responsive styles ── */}
+      <style>{`
+        /* Rating bar */
+        .gp-rating-bar {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 24px;
+        }
+        .gp-rating-score {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+        }
+        .gp-rating-divider {
+          width: 1px;
+          height: 48px;
+          background: var(--gp-border);
+          flex-shrink: 0;
+        }
+        .gp-rating-stats {
+          display: flex;
+          gap: clamp(20px, 4vw, 40px);
+          flex-wrap: wrap;
+        }
+
+        /* Reviews grid */
+        .gp-reviews-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+
+        /* Tablet: 2 columns */
+        @media (min-width: 600px) {
+          .gp-reviews-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        /* Desktop: 3 columns */
+        @media (min-width: 960px) {
+          .gp-reviews-grid {
+            grid-template-columns: repeat(3, 1fr);
+          }
+        }
+
+        /* Mobile: hide divider, stack rating bar */
+        @media (max-width: 480px) {
+          .gp-rating-divider {
+            display: none;
+          }
+          .gp-rating-bar {
+            gap: 16px;
+          }
+        }
+      `}</style>
+
     </div>
   );
 }
-
-import Link from "next/link";
