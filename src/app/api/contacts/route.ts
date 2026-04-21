@@ -169,3 +169,29 @@ export async function POST(req: NextRequest) {
         </div>
       `,
     });
+
+      // ── Log full submission with tracking info ──
+    console.log("New contact submission:", {
+      requestId,
+      receivedAt: receivedAt.toISOString(),
+      name,
+      email,
+      phone:   body.phone   || "—",
+      service: body.service || "—",
+      message,
+    });
+ 
+    return NextResponse.json(
+      { success: true, message: "Message sent!", requestId },
+      { status: 200 }
+    );
+ 
+  } catch (err) {
+    console.error("Contact form error:", err);
+    return NextResponse.json(
+      { error: "Something went wrong. Please try again." },
+      { status: 500 }
+    );
+  }
+}
+
