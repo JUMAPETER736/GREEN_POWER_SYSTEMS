@@ -10,8 +10,8 @@ const charityImages = [
   },
   {
     src: "/images/community_support/image1.jpeg",
-    alt: "Donation items — pampers, soap, and soya pieces laid out",
-    caption: "Pampers, soap & soya pieces ready for distribution",
+    alt: "Donation items laid out ready for distribution",
+    caption: "Donations ready for distribution",
   },
   {
     src: "/images/community_support/image2.jpeg",
@@ -75,12 +75,12 @@ export default function CompanyCommunitySupport() {
       <section style={{
         backgroundColor: "var(--gp-bg-card)",
         borderBottom: "1px solid var(--gp-border)",
-        padding: "72px 0 60px",
+        padding: "clamp(48px, 8vw, 72px) 0 clamp(40px, 6vw, 60px)",
       }}>
         <div className="gp-container">
           <span className="gp-eyebrow">Community Care</span>
           <h1 style={{
-            fontSize: "clamp(1.9rem, 5vw, 3rem)",
+            fontSize: "clamp(1.6rem, 5vw, 3rem)",
             fontWeight: 800,
             color: "var(--gp-text-primary)",
             lineHeight: 1.12,
@@ -92,7 +92,7 @@ export default function CompanyCommunitySupport() {
             <span style={{ color: "var(--gp-green)" }}>community</span>
           </h1>
           <p style={{
-            fontSize: "clamp(15px, 2vw, 17px)",
+            fontSize: "clamp(14px, 2vw, 17px)",
             color: "var(--gp-text-muted)",
             lineHeight: 1.75,
             maxWidth: 620,
@@ -104,35 +104,33 @@ export default function CompanyCommunitySupport() {
         </div>
       </section>
 
-      {/* ── Story section ── */}
-      <section style={{ padding: "72px 0", backgroundColor: "var(--gp-bg-page)" }}>
+      {/* ── Story + Donated items ── */}
+      <section className="cs-story-section">
         <div className="gp-container">
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))",
-            gap: "3rem",
-            alignItems: "start",
-          }}>
+          <div className="cs-two-col">
 
-            {/* Left — story text, sticky so it stays in view while right column scrolls */}
-            <div style={{ position: "sticky", top: 88 }}>
+            {/* Left: story */}
+            <div className="cs-left-panel">
               <span className="gp-eyebrow">Chiwamba Hospital Visit</span>
               <h2 className="gp-section-title">A visit to Chiwamba Hospital, Lilongwe</h2>
-              <p style={{ fontSize: 15.5, color: "var(--gp-text-muted)", lineHeight: 1.8, marginBottom: 16 }}>
+              <p style={{ fontSize: "clamp(14px, 2vw, 15.5px)", color: "var(--gp-text-muted)", lineHeight: 1.8, marginBottom: 16 }}>
                 Our team visited <strong style={{ color: "var(--gp-text-primary)" }}>Chiwamba Hospital</strong> in Lilongwe,
                 Malawi — a facility that serves thousands of families, including a dedicated
                 <strong style={{ color: "var(--gp-text-primary)" }}> Under-5 Department</strong> caring for
                 pregnant women and mothers with young children.
               </p>
-              <p style={{ fontSize: 15.5, color: "var(--gp-text-muted)", lineHeight: 1.8, marginBottom: 16 }}>
+              <p style={{ fontSize: "clamp(14px, 2vw, 15.5px)", color: "var(--gp-text-muted)", lineHeight: 1.8, marginBottom: 16 }}>
                 Recognising the daily challenges these families face, our staff came bearing a range of
                 essential items — pampers, soap, baby oil (gel), pails, sugar, and pegs — donated
                 directly to the mothers and babies receiving care in the ward.
               </p>
-              <p style={{ fontSize: 15.5, color: "var(--gp-text-muted)", lineHeight: 1.8 }}>
+              <p style={{ fontSize: "clamp(14px, 2vw, 15.5px)", color: "var(--gp-text-muted)", lineHeight: 1.8 }}>
                 This is part of our ongoing commitment: as we harness the sun's energy to power homes and
                 businesses, we equally strive to power lives with compassion, dignity, and care.
               </p>
+
+              {/* Spacer pushes badge to bottom on desktop */}
+              <div style={{ flex: 1 }} />
 
               {/* Location badge */}
               <div style={{
@@ -141,6 +139,7 @@ export default function CompanyCommunitySupport() {
                 borderRadius: 12,
                 backgroundColor: "var(--gp-green-light)",
                 border: "1px solid var(--gp-green-border)",
+                alignSelf: "flex-start",
               }}>
                 <svg width={16} height={16} viewBox="0 0 24 24" fill="none"
                   stroke="var(--gp-green)" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
@@ -153,14 +152,14 @@ export default function CompanyCommunitySupport() {
               </div>
             </div>
 
-            {/* Right — donated items list */}
-            <div style={{ display: "flex", flexDirection: "column" }}>
+            {/* Right: donated items */}
+            <div className="cs-right-panel">
               <span className="gp-eyebrow">What we donated</span>
               <h2 className="gp-section-title">Items given to mothers &amp; babies</h2>
-              <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                 {donated.map(({ icon, label, desc, category }) => (
                   <div key={label} className="gp-card" style={{
-                    padding: "18px 20px", display: "flex", gap: 16, alignItems: "flex-start",
+                    padding: "13px 16px", display: "flex", gap: 14, alignItems: "flex-start",
                     ...(category === "support" ? {
                       borderLeft: "4px solid #7c3aed",
                       backgroundColor: "rgba(124,58,237,0.04)",
@@ -169,33 +168,21 @@ export default function CompanyCommunitySupport() {
                     } : {}),
                   }}>
                     <div className="gp-icon-badge" style={{
-                      flexShrink: 0, marginTop: 2,
+                      flexShrink: 0, marginTop: 1, width: 34, height: 34,
                       ...(category === "support" ? { backgroundColor: "rgba(124,58,237,0.1)" } : {}),
                     }}>
-                      <svg width={20} height={20} viewBox="0 0 24 24" fill="none"
+                      <svg width={17} height={17} viewBox="0 0 24 24" fill="none"
                         stroke={category === "support" ? "#7c3aed" : "var(--gp-green)"}
                         strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
                         <path d={icon} />
                       </svg>
                     </div>
                     <div>
-                      <p style={{ fontWeight: 700, fontSize: 14.5, color: "var(--gp-text-primary)", margin: "0 0 5px" }}>{label}</p>
-                      <p style={{ fontSize: 13.5, color: "var(--gp-text-muted)", lineHeight: 1.65, margin: 0 }}>{desc}</p>
+                      <p style={{ fontWeight: 700, fontSize: "clamp(13px, 1.8vw, 14px)", color: "var(--gp-text-primary)", margin: "0 0 3px" }}>{label}</p>
+                      <p style={{ fontSize: "clamp(12px, 1.6vw, 13px)", color: "var(--gp-text-muted)", lineHeight: 1.6, margin: 0 }}>{desc}</p>
                     </div>
                   </div>
                 ))}
-              </div>
-
-              {/* Beneficiary highlight */}
-              <div style={{
-                marginTop: 20, padding: "16px 20px",
-                borderRadius: 12, borderLeft: "4px solid var(--gp-green)",
-                backgroundColor: "var(--gp-green-light)",
-              }}>
-                <p style={{ fontSize: 13.5, color: "var(--gp-text-muted)", lineHeight: 1.7, margin: 0 }}>
-                  <strong style={{ color: "var(--gp-text-primary)" }}>Beneficiaries:</strong> Pregnant women
-                  and mothers with children under 5 years old admitted in the Under-5 Department at Chiwamba Hospital.
-                </p>
               </div>
             </div>
 
@@ -205,7 +192,7 @@ export default function CompanyCommunitySupport() {
 
       {/* ── Photo gallery ── */}
       <section style={{
-        padding: "72px 0",
+        padding: "clamp(48px, 8vw, 72px) 0",
         backgroundColor: "var(--gp-bg-section)",
         borderTop: "1px solid var(--gp-border)",
         borderBottom: "1px solid var(--gp-border)",
@@ -213,59 +200,20 @@ export default function CompanyCommunitySupport() {
         <div className="gp-container">
           <span className="gp-eyebrow">Photos from the visit</span>
           <h2 className="gp-section-title">Moments from Chiwamba Hospital</h2>
-
-          <div style={{
-            display: "grid",
-            gap: 14,
-            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
-          }}>
+          <div className="cs-gallery-grid">
             {charityImages.map((img, i) => (
               <button
                 key={i}
                 onClick={() => setLightbox(i)}
-                style={{
-                  border: "none", padding: 0, cursor: "pointer",
-                  borderRadius: 14, overflow: "hidden",
-                  position: "relative", minHeight: 220,
-                  display: "block", width: "100%",
-                  boxShadow: "0 2px 12px rgba(0,0,0,0.10)",
-                  transition: "transform 0.22s, box-shadow 0.22s",
-                }}
-                onMouseEnter={e => {
-                  (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
-                  (e.currentTarget as HTMLElement).style.boxShadow = "0 16px 36px rgba(0,0,0,0.18)";
-                }}
-                onMouseLeave={e => {
-                  (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-                  (e.currentTarget as HTMLElement).style.boxShadow = "0 2px 12px rgba(0,0,0,0.10)";
-                }}
+                className="cs-gallery-btn"
                 aria-label={`View photo: ${img.caption}`}
               >
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  style={{
-                    position: "absolute", inset: 0,
-                    width: "100%", height: "100%",
-                    objectFit: "cover", display: "block",
-                  }}
-                />
-                <div style={{
-                  position: "absolute", inset: 0,
-                  background: "linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 55%)",
-                }} />
-                <div style={{
-                  position: "absolute", bottom: 0, left: 0, right: 0,
-                  padding: "14px 16px",
-                }}>
+                <img src={img.src} alt={img.alt} className="cs-gallery-img" />
+                <div className="cs-gallery-overlay" />
+                <div className="cs-gallery-caption">
                   <p style={{ fontSize: 13, fontWeight: 600, color: "#fff", margin: 0 }}>{img.caption}</p>
                 </div>
-                <div style={{
-                  position: "absolute", top: 12, right: 12,
-                  backgroundColor: "rgba(0,0,0,0.4)",
-                  borderRadius: 8, padding: "5px 7px",
-                  backdropFilter: "blur(4px)",
-                }}>
+                <div className="cs-gallery-zoom">
                   <svg width={14} height={14} viewBox="0 0 24 24" fill="none"
                     stroke="#fff" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="11" cy="11" r="8" />
@@ -279,21 +227,18 @@ export default function CompanyCommunitySupport() {
       </section>
 
       {/* ── CTA ── */}
-      <section style={{ padding: "72px 0", backgroundColor: "var(--gp-bg-dark)" }}>
-        <div className="gp-container" style={{
-          display: "flex", flexWrap: "wrap",
-          alignItems: "center", justifyContent: "space-between", gap: 28,
-        }}>
+      <section style={{ padding: "clamp(48px, 8vw, 72px) 0", backgroundColor: "var(--gp-bg-dark)" }}>
+        <div className="gp-container cs-cta-inner">
           <div style={{ maxWidth: 520 }}>
             <h2 style={{
-              fontSize: "clamp(1.5rem, 3.5vw, 2.2rem)",
+              fontSize: "clamp(1.3rem, 3.5vw, 2.2rem)",
               fontWeight: 800, color: "#fff",
               margin: "0 0 10px", letterSpacing: "-0.02em",
             }}>
               More than energy — we power communities
             </h2>
             <p style={{
-              fontSize: "clamp(14px, 2vw, 16px)",
+              fontSize: "clamp(13px, 2vw, 16px)",
               color: "rgba(255,255,255,0.62)",
               margin: 0, lineHeight: 1.7,
             }}>
@@ -315,7 +260,7 @@ export default function CompanyCommunitySupport() {
             position: "fixed", inset: 0, zIndex: 200,
             backgroundColor: "rgba(0,0,0,0.88)",
             display: "flex", alignItems: "center", justifyContent: "center",
-            padding: "1.5rem",
+            padding: "1rem",
             backdropFilter: "blur(6px)",
           }}
         >
@@ -362,6 +307,145 @@ export default function CompanyCommunitySupport() {
           </div>
         </div>
       )}
+
+      {/* ── Responsive styles ── */}
+      <style>{`
+
+        /* Story section padding */
+        .cs-story-section {
+          padding: clamp(40px, 8vw, 72px) 0;
+          background-color: var(--gp-bg-page);
+        }
+
+        /* ── Two-col layout ──
+           Mobile  (<768px): single column, stacked
+           Tablet  (768px+): two equal columns, same height
+           Desktop (1024px+): wider gap
+        */
+        .cs-two-col {
+          display: flex;
+          flex-direction: column;
+          gap: 28px;
+        }
+
+        .cs-left-panel,
+        .cs-right-panel {
+          width: 100%;
+        }
+
+        @media (min-width: 768px) {
+          .cs-two-col {
+            flex-direction: row;
+            align-items: stretch; /* forces equal height */
+            gap: 2rem;
+          }
+
+          .cs-left-panel {
+            flex: 1 1 0;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            background: var(--gp-bg-card);
+            border: 1px solid var(--gp-border);
+            border-radius: 16px;
+            padding: clamp(22px, 3vw, 32px);
+          }
+
+          .cs-right-panel {
+            flex: 1 1 0;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .cs-two-col {
+            gap: 2.5rem;
+          }
+        }
+
+        /* ── Gallery ── */
+        .cs-gallery-grid {
+          display: grid;
+          gap: 14px;
+          grid-template-columns: 1fr; /* phone: 1 col */
+        }
+
+        /* Tablet: 2 cols */
+        @media (min-width: 600px) {
+          .cs-gallery-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        /* Desktop: 3 cols */
+        @media (min-width: 1024px) {
+          .cs-gallery-grid {
+            grid-template-columns: repeat(3, 1fr);
+          }
+        }
+
+        .cs-gallery-btn {
+          border: none;
+          padding: 0;
+          cursor: pointer;
+          border-radius: 14px;
+          overflow: hidden;
+          position: relative;
+          min-height: 200px;
+          display: block;
+          width: 100%;
+          box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+          transition: transform 0.22s, box-shadow 0.22s;
+        }
+        @media (min-width: 600px) {
+          .cs-gallery-btn { min-height: 230px; }
+        }
+        @media (min-width: 1024px) {
+          .cs-gallery-btn { min-height: 260px; }
+        }
+        .cs-gallery-btn:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 16px 36px rgba(0,0,0,0.18);
+        }
+        .cs-gallery-img {
+          position: absolute; inset: 0;
+          width: 100%; height: 100%;
+          object-fit: cover; display: block;
+        }
+        .cs-gallery-overlay {
+          position: absolute; inset: 0;
+          background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 55%);
+        }
+        .cs-gallery-caption {
+          position: absolute; bottom: 0; left: 0; right: 0;
+          padding: 14px 16px;
+        }
+        .cs-gallery-zoom {
+          position: absolute; top: 12px; right: 12px;
+          background-color: rgba(0,0,0,0.4);
+          border-radius: 8px; padding: 5px 7px;
+          backdrop-filter: blur(4px);
+        }
+
+        /* ── CTA ── */
+        .cs-cta-inner {
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+          align-items: flex-start;
+        }
+        @media (min-width: 640px) {
+          .cs-cta-inner {
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+          }
+        }
+      `}</style>
+
     </div>
   );
 }
