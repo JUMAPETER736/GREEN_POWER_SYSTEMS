@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    console.log("📩 New contact submission:", {
+    console.log("New contact submission:", {
       name:    body.name,
       email:   body.email,
       phone:   body.phone   || "—",

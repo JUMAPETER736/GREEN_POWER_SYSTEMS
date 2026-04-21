@@ -1,4 +1,3 @@
-
 /**
  * company_contact_details_route.ts
  *
@@ -56,21 +55,11 @@ export const contactHero: ContactHero = {
 
 // ─────────────────────────────────────────────
 // ③ QUICK CONTACT INFO BAR
-// Four icon + label + value items rendered in an
-// auto-fit grid (minmax 180px → 2 cols on mobile,
-// 4 cols on desktop).
 // ─────────────────────────────────────────────
 
 export interface ContactBarItem {
-  /** Short all-caps label, e.g. "Call us" */
   label: string;
-  /** The displayed contact value */
   value: string;
-  /**
-   * SVG path `d` attribute drawn inside the icon circle.
-   * All paths use viewBox="0 0 24 24", strokeWidth 2,
-   * strokeLinecap/strokeLinejoin round.
-   */
   iconPath: string;
 }
 
@@ -104,7 +93,6 @@ export const contactBarItems: ContactBarItem[] = [
 // ④ CONTACT FORM
 // ─────────────────────────────────────────────
 
-/** The shape of the form state object (mirrors EMPTY_FORM) */
 export interface ContactFormFields {
   name:    string;
   email:   string;
@@ -113,7 +101,6 @@ export interface ContactFormFields {
   message: string;
 }
 
-/** Initial / reset state for the form */
 export const emptyContactForm: ContactFormFields = {
   name:    "",
   email:   "",
@@ -122,7 +109,6 @@ export const emptyContactForm: ContactFormFields = {
   message: "",
 };
 
-/** Required fields — submission is blocked if any of these are empty */
 export const requiredContactFields: Array<keyof ContactFormFields> = [
   "name",
   "email",
@@ -130,10 +116,8 @@ export const requiredContactFields: Array<keyof ContactFormFields> = [
 ];
 
 export const contactFormConfig = {
-  /** Card heading above the form */
   heading: "Send us a message",
 
-  /** Label + placeholder for each field */
   fields: {
     name: {
       label:       "Full name *",
@@ -152,7 +136,6 @@ export const contactFormConfig = {
     },
     service: {
       label: "Service interested in",
-      /** First option is the empty default prompt */
       options: [
         "",
         "Solar panel installation",
@@ -171,23 +154,17 @@ export const contactFormConfig = {
     },
   },
 
-  /** Text shown on the submit button in each state */
   submitLabel: {
     idle:    "Send message",
     loading: "Sending...",
   },
 
-  /** Validation error shown when required fields are missing */
   validationError: "Please fill in your name, email, and message.",
+  serverError:     "Something went wrong. Please try again.",
+  networkError:    "Network error. Please check your connection.",
 
-  /** Error shown when the server returns a non-OK response */
-  serverError: "Something went wrong. Please try again.",
-
-  /** Error shown on a network / fetch failure */
-  networkError: "Network error. Please check your connection.",
-
-  /** API endpoint the form POSTs to */
-  apiEndpoint: "/api/contact",
+  /** ✅ fixed — was /api/contact */
+  apiEndpoint: "/api/contacts",
 } as const;
 
 // ─────────────────────────────────────────────
@@ -195,18 +172,12 @@ export const contactFormConfig = {
 // ─────────────────────────────────────────────
 
 export interface MapPanel {
-  /** One-line address shown in the card header */
-  addressLabel: string;
-  /** Full Google Maps search URL (used as the anchor href) */
-  mapsSearchUrl: string;
-  /** Google Maps embed src */
-  embedSrc: string;
-  /** Minimum height of the iframe in px */
-  embedMinHeight: number;
-  /** Label on the overlay "open in Maps" pill button */
+  addressLabel:       string;
+  mapsSearchUrl:      string;
+  embedSrc:           string;
+  embedMinHeight:     number;
   overlayButtonLabel: string;
-  /** iframe title attribute (accessibility) */
-  iframeTitle: string;
+  iframeTitle:        string;
 }
 
 export const mapPanel: MapPanel = {
@@ -223,18 +194,12 @@ export const mapPanel: MapPanel = {
 
 // ─────────────────────────────────────────────
 // BREAKPOINTS
-// Mirrors the @media rules in the <style> block
-// so any non-CSS logic (e.g. SSR class toggling)
-// can reference the same values.
 // ─────────────────────────────────────────────
 
 export const contactBreakpoints = {
-  /** gp-form-row switches from 1-col to 2-col */
-  formRowTwoCol:    600,
-  /** gp-contact-grid switches from 1-col to 2-col (form + map side by side) */
-  gridTwoCol:       900,
-  /** gp-contact-bar forces 2 columns on narrow mobile */
-  barTwoColMaxWidth: 480,
+  formRowTwoCol:      600,
+  gridTwoCol:         900,
+  barTwoColMaxWidth:  480,
 } as const;
 
 // ─────────────────────────────────────────────
@@ -259,7 +224,6 @@ export const contactRouteMetadata: RouteMetadata = {
 
 // ─────────────────────────────────────────────
 // FULL PAGE DATA
-// Single object that assembles every section.
 // ─────────────────────────────────────────────
 
 export interface ContactPageData {
@@ -286,8 +250,6 @@ export const contactPageData: ContactPageData = {
 
 // ─────────────────────────────────────────────
 // DEFAULT EXPORT
-// import contactRoute from "@/routes/company_contact_details_route"
-// contactRoute.data.hero, contactRoute.data.form, etc.
 // ─────────────────────────────────────────────
 
 const contactRoute = {
