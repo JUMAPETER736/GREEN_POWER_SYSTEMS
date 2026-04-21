@@ -192,12 +192,12 @@ export default function Contact() {
               {
                 icon: "M3 5a2 2 0 0 1 2-2h3.28a1 1 0 0 1 .948.684l1.498 4.493a1 1 0 0 1-.502 1.21l-2.257 1.13a11.042 11.042 0 0 0 5.516 5.516l1.13-2.257a1 1 0 0 1 1.21-.502l4.493 1.498a1 1 0 0 1 .684.949V19a2 2 0 0 1-2 2h-1C9.716 21 3 14.284 3 6V5z",
                 label: "Call us",
-                value: "+265 991 234 567",
+                value: "+265 999 534 304",
               },
               {
                 icon: "M3 8l7.89 5.26a2 2 0 0 0 2.22 0L21 8M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z",
                 label: "Email us",
-                value: "info@greenpowermw.com",
+                value: "greenpowersystemsltd@gmail.com",
               },
               {
                 icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0z",
@@ -281,14 +281,14 @@ export default function Contact() {
                   <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
                     Phone number
                     <span style={{ fontSize: 11, fontWeight: 400, color: "var(--gp-text-subtle)", marginLeft: 6 }}>
-                      — include country code e.g. +265994459714
+                      — include country code e.g. +265990000000
                     </span>
                   </label>
                   <input
                     name="phone"
                     value={form.phone}
                     onChange={handle}
-                    placeholder="+265994459714, +265880123456"
+                    placeholder="+265990000000, +265880000000"
                     style={phoneError ? inputErrorStyle : inputStyle}
                   />
                   {phoneError ? (
