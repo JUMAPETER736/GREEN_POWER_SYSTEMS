@@ -124,18 +124,15 @@ export default function CompanyCommunitySupport() {
                 essential items — pampers, soap, baby oil (gel), pails, sugar, and pegs — donated
                 directly to the mothers and babies receiving care in the ward.
               </p>
-              <p style={{ fontSize: "clamp(14px, 2vw, 15.5px)", color: "var(--gp-text-muted)", lineHeight: 1.8 }}>
+              <p style={{ fontSize: "clamp(14px, 2vw, 15.5px)", color: "var(--gp-text-muted)", lineHeight: 1.8, marginBottom: 0 }}>
                 This is part of our ongoing commitment: as we harness the sun's energy to power homes and
                 businesses, we equally strive to power lives with compassion, dignity, and care.
               </p>
 
-              {/* Spacer pushes badge to bottom on desktop */}
-              <div style={{ flex: 1 }} />
-
-              {/* Location badge */}
+              {/* Location badge — sits naturally after text, no spacer */}
               <div style={{
                 display: "inline-flex", alignItems: "center", gap: 8,
-                marginTop: 28, padding: "10px 18px",
+                marginTop: 24, padding: "10px 18px",
                 borderRadius: 12,
                 backgroundColor: "var(--gp-green-light)",
                 border: "1px solid var(--gp-green-border)",
@@ -156,30 +153,29 @@ export default function CompanyCommunitySupport() {
             <div className="cs-right-panel">
               <span className="gp-eyebrow">What we donated</span>
               <h2 className="gp-section-title">Items given to mothers &amp; babies</h2>
-              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                 {donated.map(({ icon, label, desc, category }) => (
                   <div key={label} className="gp-card" style={{
-                    padding: "13px 16px", display: "flex", gap: 14, alignItems: "flex-start",
+                    padding: "11px 14px", display: "flex", gap: 12, alignItems: "flex-start",
+                    /* Only spiritual support gets the purple accent — all others are plain */
                     ...(category === "support" ? {
                       borderLeft: "4px solid #7c3aed",
                       backgroundColor: "rgba(124,58,237,0.04)",
-                    } : category === "nutrition" ? {
-                      borderLeft: "4px solid var(--gp-green)",
                     } : {}),
                   }}>
                     <div className="gp-icon-badge" style={{
-                      flexShrink: 0, marginTop: 1, width: 34, height: 34,
+                      flexShrink: 0, marginTop: 1, width: 32, height: 32,
                       ...(category === "support" ? { backgroundColor: "rgba(124,58,237,0.1)" } : {}),
                     }}>
-                      <svg width={17} height={17} viewBox="0 0 24 24" fill="none"
+                      <svg width={16} height={16} viewBox="0 0 24 24" fill="none"
                         stroke={category === "support" ? "#7c3aed" : "var(--gp-green)"}
                         strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
                         <path d={icon} />
                       </svg>
                     </div>
                     <div>
-                      <p style={{ fontWeight: 700, fontSize: "clamp(13px, 1.8vw, 14px)", color: "var(--gp-text-primary)", margin: "0 0 3px" }}>{label}</p>
-                      <p style={{ fontSize: "clamp(12px, 1.6vw, 13px)", color: "var(--gp-text-muted)", lineHeight: 1.6, margin: 0 }}>{desc}</p>
+                      <p style={{ fontWeight: 700, fontSize: "clamp(12.5px, 1.8vw, 13.5px)", color: "var(--gp-text-primary)", margin: "0 0 2px" }}>{label}</p>
+                      <p style={{ fontSize: "clamp(11.5px, 1.6vw, 12.5px)", color: "var(--gp-text-muted)", lineHeight: 1.55, margin: 0 }}>{desc}</p>
                     </div>
                   </div>
                 ))}
@@ -336,7 +332,7 @@ export default function CompanyCommunitySupport() {
         @media (min-width: 768px) {
           .cs-two-col {
             flex-direction: row;
-            align-items: stretch; /* forces equal height */
+            align-items: start; /* columns size to their own content */
             gap: 2rem;
           }
 
@@ -345,6 +341,7 @@ export default function CompanyCommunitySupport() {
             min-width: 0;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
             background: var(--gp-bg-card);
             border: 1px solid var(--gp-border);
             border-radius: 16px;
