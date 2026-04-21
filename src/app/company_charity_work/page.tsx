@@ -252,4 +252,114 @@ xport default function CompanyCharityWork() {
         </div>
       </section>
 
-      
+         {/* ── Our commitment CTA ── */}
+      <section style={{ padding: "72px 0", backgroundColor: "var(--gp-bg-dark)" }}>
+        <div className="gp-container" style={{
+          display: "flex", flexWrap: "wrap",
+          alignItems: "center", justifyContent: "space-between", gap: 28,
+        }}>
+          <div style={{ maxWidth: 520 }}>
+            <h2 style={{
+              fontSize: "clamp(1.5rem, 3.5vw, 2.2rem)",
+              fontWeight: 800, color: "#fff",
+              margin: "0 0 10px", letterSpacing: "-0.02em",
+            }}>
+              More than energy — we power communities
+            </h2>
+            <p style={{
+              fontSize: "clamp(14px, 2vw, 16px)",
+              color: "rgba(255,255,255,0.62)",
+              margin: 0, lineHeight: 1.7,
+            }}>
+              Interested in partnering with us for future community initiatives? We welcome collaborations
+              with hospitals, schools, and organisations across Malawi.
+            </p>
+          </div>
+          <Link href="/company_contact_details" className="gp-btn-accent">
+            Partner with Us
+          </Link>
+        </div>
+      </section>
+ 
+      {/* ── Lightbox ── */}
+      {lightbox !== null && (
+        <div
+          onClick={() => setLightbox(null)}
+          style={{
+            position: "fixed", inset: 0, zIndex: 200,
+            backgroundColor: "rgba(0,0,0,0.88)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            padding: "1.5rem",
+            backdropFilter: "blur(6px)",
+          }}
+        >
+          <div
+            onClick={e => e.stopPropagation()}
+            style={{
+              position: "relative", maxWidth: 820, width: "100%",
+              borderRadius: 16, overflow: "hidden",
+              boxShadow: "0 32px 80px rgba(0,0,0,0.6)",
+            }}
+          >
+            <img
+              src={charityImages[lightbox].src}
+              alt={charityImages[lightbox].alt}
+              style={{ width: "100%", display: "block", maxHeight: "80vh", objectFit: "contain" }}
+            />
+            <div style={{
+              position: "absolute", bottom: 0, left: 0, right: 0,
+              padding: "16px 20px",
+              background: "linear-gradient(to top, rgba(0,0,0,0.75), transparent)",
+            }}>
+              <p style={{ color: "#fff", margin: 0, fontSize: 14, fontWeight: 600 }}>
+                {charityImages[lightbox].caption}
+              </p>
+            </div>
+            {/* Prev / Next */}
+            {lightbox > 0 && (
+              <button onClick={() => setLightbox(lightbox - 1)} style={navBtnStyle("left")}>‹</button>
+            )}
+            {lightbox < charityImages.length - 1 && (
+              <button onClick={() => setLightbox(lightbox + 1)} style={navBtnStyle("right")}>›</button>
+            )}
+            {/* Close */}
+            <button
+              onClick={() => setLightbox(null)}
+              style={{
+                position: "absolute", top: 12, right: 12,
+                background: "rgba(0,0,0,0.5)", border: "none",
+                color: "#fff", fontSize: 20, cursor: "pointer",
+                borderRadius: 8, width: 36, height: 36,
+                display: "flex", alignItems: "center", justifyContent: "center",
+                backdropFilter: "blur(4px)",
+              }}
+              aria-label="Close"
+            >✕</button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+ 
+function navBtnStyle(side: "left" | "right"): React.CSSProperties {
+  return {
+    position: "absolute",
+    top: "50%",
+    [side]: 12,
+    transform: "translateY(-50%)",
+    background: "rgba(0,0,0,0.5)",
+    border: "none",
+    color: "#fff",
+    fontSize: 28,
+    cursor: "pointer",
+    borderRadius: 8,
+    width: 44,
+    height: 44,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    backdropFilter: "blur(4px)",
+  };
+}
+ 
