@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function About() {
   const team = [
@@ -6,6 +7,7 @@ export default function About() {
       name: "Chikumbutso Bisani",
       role: "CEO",
       initials: "CB",
+      photo: "/images/company_members_profiles/image0.jpeg",
       edu: "MSc Construction Technology (UNZA) · BSc Renewable Energy (Mzuzu University)",
       note: "10+ years in energy, irrigation & construction",
     },
@@ -13,6 +15,7 @@ export default function About() {
       name: "Chisomo Chinkhande",
       role: "Project Manager",
       initials: "CC",
+      photo: "/images/company_members_profiles/image1.jpeg",
       edu: "BSc Renewable Energy Technologies (Mzuzu University)",
       note: "Team & client coordination · Business development",
     },
@@ -20,6 +23,7 @@ export default function About() {
       name: "Andrew Henry",
       role: "Marketing Officer",
       initials: "AH",
+      photo: null,
       edu: "Professional Certificate in Marketing (Lilongwe Technical College)",
       note: "1+ year in renewable energy · Brand & marketing strategy",
     },
@@ -27,6 +31,7 @@ export default function About() {
       name: "Felix Chinkhande",
       role: "Finance & Administration Officer",
       initials: "FC",
+      photo: "/images/company_members_profiles/image2.jpeg",
       edu: "Management Certificate (Lilongwe Technical College)",
       note: "Finance, admin & organisational operations",
     },
@@ -153,23 +158,40 @@ export default function About() {
             gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 200px), 1fr))",
             gap: 16,
           }}>
-            {team.map(({ name, role, initials, edu, note }) => (
+            {team.map(({ name, role, initials, photo, edu, note }) => (
               <div key={name} className="gp-card" style={{
                 padding: "clamp(20px, 4vw, 28px)",
                 textAlign: "center",
               }}>
-                {/* Avatar */}
+                {/* Avatar — photo if available, else initials fallback */}
                 <div style={{
-                  width: "clamp(52px, 8vw, 64px)",
-                  height: "clamp(52px, 8vw, 64px)",
+                  width: "clamp(64px, 10vw, 88px)",
+                  height: "clamp(64px, 10vw, 88px)",
                   borderRadius: "50%",
+                  overflow: "hidden",
                   backgroundColor: "var(--gp-green-light)",
-                  border: "2px solid var(--gp-green-border)",
+                  border: "2.5px solid var(--gp-green-border)",
                   display: "flex", alignItems: "center", justifyContent: "center",
-                  margin: "0 auto 14px",
-                  fontSize: "clamp(15px, 3vw, 18px)",
-                  fontWeight: 700, color: "var(--gp-green)",
-                }}>{initials}</div>
+                  margin: "0 auto 16px",
+                  flexShrink: 0,
+                  position: "relative",
+                }}>
+                  {photo ? (
+                    <Image
+                      src={photo}
+                      alt={`${name} — ${role}`}
+                      fill
+                      sizes="88px"
+                      style={{ objectFit: "cover", objectPosition: "center top" }}
+                    />
+                  ) : (
+                    <span style={{
+                      fontSize: "clamp(15px, 3vw, 20px)",
+                      fontWeight: 700,
+                      color: "var(--gp-green)",
+                    }}>{initials}</span>
+                  )}
+                </div>
 
                 <p style={{ fontSize: "clamp(14px, 2vw, 15px)", fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 4px" }}>{name}</p>
                 <p style={{ fontSize: 13, color: "var(--gp-green)", fontWeight: 600, margin: "0 0 10px" }}>{role}</p>
@@ -204,22 +226,11 @@ export default function About() {
 
       {/* ── Responsive overrides ── */}
       <style>{`
-        /* Mobile: stack team cards to 2 columns minimum */
         @media (max-width: 480px) {
           .gp-container {
             padding-left: 1rem;
             padding-right: 1rem;
           }
-        }
-
-        /* Tablet: team cards 2 per row */
-        @media (min-width: 480px) and (max-width: 767px) {
-          /* auto-fit handles this already via minmax(200px,1fr) */
-        }
-
-        /* Desktop: team cards 4 per row */
-        @media (min-width: 1024px) {
-          /* auto-fit handles this already */
         }
       `}</style>
 

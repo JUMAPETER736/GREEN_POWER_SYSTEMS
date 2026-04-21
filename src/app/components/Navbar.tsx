@@ -11,7 +11,7 @@ const navLinks = [
   { href: "/our_products",            label: "Products" },
   { href: "/customers_feed_back",     label: "Testimonials" },
   { href: "/company_contact_details", label: "Contact" },
-  { href: "/company_charity_work", label: "Charity Work" },
+  { href: "/company_community_support", label: "Community Support" },
 ];
 
 export default function Navbar() {

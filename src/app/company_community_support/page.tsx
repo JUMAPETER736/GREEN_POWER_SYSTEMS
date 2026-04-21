@@ -4,27 +4,27 @@ import { useState } from "react";
 
 const charityImages = [
   {
-    src: "/images/charity_work/image10.jpeg",
+    src: "/images/community_support/image10.jpeg",
     alt: "Green Power Systems team presenting donations at Chiwamba Hospital",
     caption: "Handing over essentials to hospital staff",
   },
   {
-    src: "/images/charity_work/image2 (1).jpeg",
+    src: "/images/community_support/image2 (1).jpeg",
     alt: "Team with mothers and babies at Chiwamba Hospital under-5 ward",
     caption: "With mothers in the Under-5 Department",
   },
   {
-    src: "/images/charity_work/image3 (1).jpeg",
+    src: "/images/community_support/image3 (1).jpeg",
     alt: "Donation items — pampers, soap, and soya pieces laid out",
     caption: "Pampers, soap & soya pieces ready for distribution",
   },
   {
-    src: "/images/charity_work/image5.jpeg",
+    src: "/images/community_support/image5.jpeg",
     alt: "Green Power Systems staff at Chiwamba Hospital maternity ward",
     caption: "Visiting the maternity & antenatal ward",
   },
   {
-    src: "/images/charity_work/image8.jpeg",
+    src: "/images/community_support/image8.jpeg",
     alt: "Company representatives with pregnant mothers at Chiwamba Hospital Lilongwe",
     caption: "Supporting expectant mothers at Chiwamba",
   },
