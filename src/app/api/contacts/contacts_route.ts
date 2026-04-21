@@ -1,22 +1,20 @@
-
+// src/app/api/contacts/contacts_route.ts
 
 import { NextRequest, NextResponse } from "next/server";
 
 interface ContactBody {
-  name:    string;
-  email:   string;
-  phone?:  string;
+  name:     string;
+  email:    string;
+  phone?:   string;
   service?: string;
-  message: string;
+  message:  string;
 }
 
 export async function POST(req: NextRequest) {
   try {
     const body: ContactBody = await req.json();
-
     const { name, email, message } = body;
 
-    // Validate required fields
     if (!name?.trim() || !email?.trim() || !message?.trim()) {
       return NextResponse.json(
         { error: "Please fill in your name, email, and message." },
@@ -24,7 +22,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Basic email format check
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return NextResponse.json(
@@ -33,10 +30,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // ── TODO: plug in your email/notification service here ──
-    // e.g. Resend, Nodemailer, SendGrid, etc.
-    // For now we log and return success so the form works end-to-end.
-    console.log("New contact form submission:", {
+    console.log("📩 New contact submission:", {
       name:    body.name,
       email:   body.email,
       phone:   body.phone   || "—",
