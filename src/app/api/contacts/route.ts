@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
-
+ 
 const resend = new Resend(process.env.RESEND_API_KEY);
-
+ 
 interface ContactBody {
   name:     string;
   email:    string;
@@ -10,19 +10,32 @@ interface ContactBody {
   service?: string;
   message:  string;
 }
-
+ 
+/** Generate a short human-readable request ID, e.g. GP-20250421-A3F7 */
+function generateRequestId(): string {
+  const date = new Date();
+  const datePart = date.toISOString().slice(0, 10).replace(/-/g, ""); // e.g. 20250421
+  const random   = Math.random().toString(36).toUpperCase().slice(2, 6); // e.g. A3F7
+  return `GP-${datePart}-${random}`;
+}
+ 
+/** Format a Date as a readable local string, e.g. "Tuesday, 21 April 2025 at 14:32 UTC" */
+function formatDate(date: Date): string {
+  return date.toUTCString().replace("GMT", "UTC");
+}
+ 
 export async function POST(req: NextRequest) {
   try {
     const body: ContactBody = await req.json();
     const { name, email, message } = body;
-
+ 
     if (!name?.trim() || !email?.trim() || !message?.trim()) {
       return NextResponse.json(
         { error: "Please fill in your name, email, and message." },
         { status: 400 }
       );
     }
-
+ 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return NextResponse.json(
@@ -30,21 +43,39 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
-
+ 
+    // ── Generate tracking info ──
+    const requestId  = generateRequestId();
+    const receivedAt = new Date();
+    const dateLabel  = formatDate(receivedAt);
+ 
     // ── Send email to the company ──
     await resend.emails.send({
       from:    "Green Power Website <onboarding@resend.dev>",
       to:      process.env.COMPANY_EMAIL!,
       replyTo: email,
-      subject: `New enquiry from ${name}${body.service ? ` — ${body.service}` : ""}`,
+      subject: `[${requestId}] New enquiry from ${name}${body.service ? ` — ${body.service}` : ""}`,
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
           <div style="background: #0f6e56; padding: 24px 32px; border-radius: 8px 8px 0 0;">
             <h1 style="color: #fff; margin: 0; font-size: 20px;">New Contact Form Submission</h1>
             <p style="color: rgba(255,255,255,0.75); margin: 6px 0 0; font-size: 14px;">Green Power Systems Website</p>
           </div>
-
+ 
           <div style="background: #ffffff; padding: 32px; border: 1px solid #e5e7eb; border-top: none;">
+ 
+            <!-- Tracking banner -->
+            <div style="margin-bottom: 24px; padding: 14px 18px; background: #f0fdf4; border-radius: 8px; border: 1px solid #bbf7d0; display: flex; flex-wrap: wrap; gap: 20px;">
+              <div>
+                <p style="margin: 0 0 3px; font-size: 11px; font-weight: 700; color: #166534; text-transform: uppercase; letter-spacing: 0.06em;">Request ID</p>
+                <p style="margin: 0; font-size: 15px; font-weight: 700; color: #0f6e56; font-family: monospace; letter-spacing: 0.04em;">${requestId}</p>
+              </div>
+              <div>
+                <p style="margin: 0 0 3px; font-size: 11px; font-weight: 700; color: #166534; text-transform: uppercase; letter-spacing: 0.06em;">Date &amp; Time Received</p>
+                <p style="margin: 0; font-size: 13px; font-weight: 600; color: #166534;">${dateLabel}</p>
+              </div>
+            </div>
+ 
             <table style="width: 100%; border-collapse: collapse;">
               <tr>
                 <td style="padding: 10px 0; border-bottom: 1px solid #f3f4f6; font-size: 13px; color: #6b7280; width: 120px;">Name</td>
@@ -69,75 +100,20 @@ export async function POST(req: NextRequest) {
                 <td style="padding: 10px 0; font-size: 14px; color: #111827; line-height: 1.6;">${message.replace(/\n/g, "<br/>")}</td>
               </tr>
             </table>
-
-            <div style="margin-top: 28px; padding: 16px 20px; background: #f0fdf4; border-radius: 8px; border: 1px solid #bbf7d0;">
-              <p style="margin: 0; font-size: 13px; color: #166534;">
-                💡 Reply directly to this email to respond to <strong>${name}</strong> at <strong>${email}</strong>
+ 
+            <div style="margin-top: 28px; padding: 16px 20px; background: #fffbeb; border-radius: 8px; border: 1px solid #fde68a;">
+              <p style="margin: 0; font-size: 13px; color: #92400e;">
+                💬 Reply directly to this email to respond to <strong>${name}</strong> at <strong>${email}</strong>.
+                Include the Request ID <strong>${requestId}</strong> in your reply subject line so both sides can track this conversation.
               </p>
             </div>
           </div>
-
+ 
           <div style="background: #f9fafb; padding: 16px 32px; border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 8px 8px;">
             <p style="margin: 0; font-size: 12px; color: #9ca3af; text-align: center;">
-              This message was sent from the contact form at greenpowermw.com
+              This message was sent from the contact form at greenpowermw.com · ${dateLabel}
             </p>
           </div>
         </div>
       `,
     });
-
-    // ── Send confirmation email to the user ──
-    await resend.emails.send({
-      from:    "Green Power Systems <onboarding@resend.dev>",
-      to:      email,
-      subject: "We received your message — Green Power Systems",
-      html: `
-        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-          <div style="background: #0f6e56; padding: 24px 32px; border-radius: 8px 8px 0 0;">
-            <h1 style="color: #fff; margin: 0; font-size: 20px;">Thanks for reaching out, ${name}!</h1>
-            <p style="color: rgba(255,255,255,0.75); margin: 6px 0 0; font-size: 14px;">Green Power Systems — Malawi's trusted solar partner</p>
-          </div>
-
-          <div style="background: #ffffff; padding: 32px; border: 1px solid #e5e7eb; border-top: none;">
-            <p style="font-size: 15px; color: #374151; line-height: 1.7; margin: 0 0 20px;">
-              We've received your message and will get back to you within <strong>2 business hours</strong>.
-            </p>
-            <p style="font-size: 14px; color: #6b7280; line-height: 1.7; margin: 0 0 28px;">
-              In the meantime, you can reach us directly at:
-            </p>
-            <div style="display: flex; gap: 12px; flex-direction: column;">
-              <p style="margin: 0; font-size: 14px; color: #374151;">📞 <strong>+265 991 234 567</strong></p>
-              <p style="margin: 0; font-size: 14px; color: #374151;">📧 <strong>info@greenpowermw.com</strong></p>
-              <p style="margin: 0; font-size: 14px; color: #374151;">📍 <strong>QuickTrip Complex, Area 25, Lilongwe</strong></p>
-            </div>
-          </div>
-
-          <div style="background: #f9fafb; padding: 16px 32px; border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 8px 8px;">
-            <p style="margin: 0; font-size: 12px; color: #9ca3af; text-align: center;">
-              Green Power Systems · QuickTrip Complex, Area 25 Sungwi, Lilongwe, Malawi
-            </p>
-          </div>
-        </div>
-      `,
-    });
-
-    console.log("New contact submission:", {
-      name, email,
-      phone:   body.phone   || "—",
-      service: body.service || "—",
-      message,
-    });
-
-    return NextResponse.json(
-      { success: true, message: "Message sent!" },
-      { status: 200 }
-    );
-
-  } catch (err) {
-    console.error("Contact form error:", err);
-    return NextResponse.json(
-      { error: "Something went wrong. Please try again." },
-      { status: 500 }
-    );
-  }
-}
