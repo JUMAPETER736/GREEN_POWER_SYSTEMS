@@ -137,4 +137,119 @@ xport default function CompanyCharityWork() {
               </div>
             </div>
  
+           {/* What we donated */}
+            <div>
+              <span className="gp-eyebrow">What we donated</span>
+              <h2 className="gp-section-title">Items given to mothers &amp; babies</h2>
+              <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+                {donated.map(({ icon, label, desc }) => (
+                  <div key={label} className="gp-card" style={{ padding: "18px 20px", display: "flex", gap: 16, alignItems: "flex-start" }}>
+                    <div className="gp-icon-badge" style={{ flexShrink: 0, marginTop: 2 }}>
+                      <svg width={20} height={20} viewBox="0 0 24 24" fill="none"
+                        stroke="var(--gp-green)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+                        <path d={icon} />
+                      </svg>
+                    </div>
+                    <div>
+                      <p style={{ fontWeight: 700, fontSize: 14.5, color: "var(--gp-text-primary)", margin: "0 0 5px" }}>{label}</p>
+                      <p style={{ fontSize: 13.5, color: "var(--gp-text-muted)", lineHeight: 1.65, margin: 0 }}>{desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
  
+              {/* Beneficiary highlight */}
+              <div style={{
+                marginTop: 20, padding: "16px 20px",
+                borderRadius: 12, borderLeft: "4px solid var(--gp-green)",
+                backgroundColor: "var(--gp-green-light)",
+              }}>
+                <p style={{ fontSize: 13.5, color: "var(--gp-text-muted)", lineHeight: 1.7, margin: 0 }}>
+                  <strong style={{ color: "var(--gp-text-primary)" }}>Beneficiaries:</strong> Pregnant women
+                  and mothers with children under 5 years old admitted in the Under-5 Department at Chiwamba Hospital.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+ 
+      {/* ── Photo gallery ── */}
+      <section style={{
+        padding: "72px 0",
+        backgroundColor: "var(--gp-bg-section)",
+        borderTop: "1px solid var(--gp-border)",
+        borderBottom: "1px solid var(--gp-border)",
+      }}>
+        <div className="gp-container">
+          <span className="gp-eyebrow">Photos from the visit</span>
+          <h2 className="gp-section-title">Moments from Chiwamba Hospital</h2>
+ 
+          <div style={{
+            display: "grid",
+            gap: 14,
+            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
+          }}>
+            {charityImages.map((img, i) => (
+              <button
+                key={i}
+                onClick={() => setLightbox(i)}
+                style={{
+                  border: "none", padding: 0, cursor: "pointer",
+                  borderRadius: 14, overflow: "hidden",
+                  position: "relative", minHeight: 220,
+                  display: "block", width: "100%",
+                  boxShadow: "0 2px 12px rgba(0,0,0,0.10)",
+                  transition: "transform 0.22s, box-shadow 0.22s",
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "0 16px 36px rgba(0,0,0,0.18)";
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "0 2px 12px rgba(0,0,0,0.10)";
+                }}
+                aria-label={`View photo: ${img.caption}`}
+              >
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  style={{
+                    position: "absolute", inset: 0,
+                    width: "100%", height: "100%",
+                    objectFit: "cover", display: "block",
+                  }}
+                />
+                {/* Overlay */}
+                <div style={{
+                  position: "absolute", inset: 0,
+                  background: "linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 55%)",
+                }} />
+                {/* Caption */}
+                <div style={{
+                  position: "absolute", bottom: 0, left: 0, right: 0,
+                  padding: "14px 16px",
+                }}>
+                  <p style={{ fontSize: 13, fontWeight: 600, color: "#fff", margin: 0 }}>{img.caption}</p>
+                </div>
+                {/* Zoom icon */}
+                <div style={{
+                  position: "absolute", top: 12, right: 12,
+                  backgroundColor: "rgba(0,0,0,0.4)",
+                  borderRadius: 8, padding: "5px 7px",
+                  backdropFilter: "blur(4px)",
+                }}>
+                  <svg width={14} height={14} viewBox="0 0 24 24" fill="none"
+                    stroke="#fff" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.35-4.35M11 8v6M8 11h6" />
+                  </svg>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      
