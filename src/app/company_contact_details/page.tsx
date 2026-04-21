@@ -246,3 +246,124 @@ export default function Contact() {
               </h2>
  
               <div style={{ display: "flex", flexDirection: "column", gap: 14 }}></div>
+
+
+                 {/* Name + Email row */}
+                <div className="gp-form-row">
+                  <div>
+                    <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
+                      Full name *
+                    </label>
+                    <input
+                      name="name"
+                      value={form.name}
+                      onChange={handle}
+                      placeholder="Your name"
+                      style={inputStyle}
+                    />
+                  </div>
+                  <div>
+                    <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
+                      Email *
+                    </label>
+                    <input
+                      name="email"
+                      type="email"
+                      value={form.email}
+                      onChange={handle}
+                      placeholder="you@example.com"
+                      style={inputStyle}
+                    />
+                  </div>
+                </div>
+ 
+                {/* Phone field with country code enforcement */}
+                <div>
+                  <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
+                    Phone number
+                    <span style={{ fontSize: 11, fontWeight: 400, color: "var(--gp-text-subtle)", marginLeft: 6 }}>
+                      — include country code e.g. +265994459714
+                    </span>
+                  </label>
+                  <input
+                    name="phone"
+                    value={form.phone}
+                    onChange={handle}
+                    placeholder="+265994459714, +265880123456"
+                    style={phoneError ? inputErrorStyle : inputStyle}
+                  />
+                  {phoneError ? (
+                    <p style={{ fontSize: 12, color: "#c0392b", margin: "5px 0 0", lineHeight: 1.5 }}>
+                      {phoneError}
+                    </p>
+                  ) : (
+                    <p style={{ fontSize: 11, color: "var(--gp-text-subtle)", margin: "5px 0 0" }}>
+                      Multiple numbers? Separate with a comma.
+                    </p>
+                  )}
+                </div>
+ 
+                <div>
+                  <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
+                    Service interested in
+                  </label>
+                  <select
+                    name="service"
+                    value={form.service}
+                    onChange={handle}
+                    style={inputStyle}
+                  >
+                    <option value="">Select a service...</option>
+                    <option>Solar panel installation</option>
+                    <option>System maintenance</option>
+                    <option>Repairs and diagnostics</option>
+                    <option>Battery storage</option>
+                    <option>Commercial / industrial</option>
+                    <option>General enquiry</option>
+                  </select>
+                </div>
+ 
+                <div>
+                  <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
+                    Message *
+                  </label>
+                  <textarea
+                    name="message"
+                    value={form.message}
+                    onChange={handle}
+                    placeholder="Tell us about your project or question..."
+                    rows={5}
+                    style={{ ...inputStyle, resize: "vertical", minHeight: 110 }}
+                  />
+                </div>
+ 
+                {error && (
+                  <p style={{
+                    fontSize: 13, color: "#c0392b",
+                    backgroundColor: "#fdf0ef",
+                    border: "1px solid #f5c6c2",
+                    borderRadius: 8, padding: "10px 14px",
+                    margin: 0,
+                  }}>
+                    {error}
+                  </p>
+                )}
+ 
+                <button
+                  onClick={handleSubmit}
+                  disabled={loading}
+                  className="gp-btn-primary"
+                  style={{
+                    width: "100%",
+                    justifyContent: "center",
+                    opacity: loading ? 0.7 : 1,
+                    cursor: loading ? "not-allowed" : "pointer",
+                  }}
+                >
+                  {loading ? "Sending..." : "Send message"}
+                </button>
+ 
+              </div>
+            </div>
+ 
+ 
