@@ -4,29 +4,19 @@ import { useState } from "react";
 
 const charityImages = [
   {
-    src: "/images/community_support/image10.jpeg",
+    src: "/images/community_support/image0.jpeg",
     alt: "Green Power Systems team presenting donations at Chiwamba Hospital",
     caption: "Handing over essentials to hospital staff",
   },
   {
-    src: "/images/community_support/image2 (1).jpeg",
-    alt: "Team with mothers and babies at Chiwamba Hospital under-5 ward",
-    caption: "With mothers in the Under-5 Department",
-  },
-  {
-    src: "/images/community_support/image3 (1).jpeg",
+    src: "/images/community_support/image1.jpeg",
     alt: "Donation items — pampers, soap, and soya pieces laid out",
     caption: "Pampers, soap & soya pieces ready for distribution",
   },
   {
-    src: "/images/community_support/image5.jpeg",
+    src: "/images/community_support/image2.jpeg",
     alt: "Green Power Systems staff at Chiwamba Hospital maternity ward",
     caption: "Visiting the maternity & antenatal ward",
-  },
-  {
-    src: "/images/community_support/image8.jpeg",
-    alt: "Company representatives with pregnant mothers at Chiwamba Hospital Lilongwe",
-    caption: "Supporting expectant mothers at Chiwamba",
   },
 ];
 
@@ -35,20 +25,47 @@ const donated = [
     icon: "M12 3c-1.2 5.4-5 7.5-5 12a5 5 0 0 0 10 0c0-4.5-3.8-6.6-5-12z",
     label: "Pampers (Nappies)",
     desc: "Packs of nappies for newborns and infants in the under-5 ward.",
+    category: "essential",
   },
   {
     icon: "M7 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-4-4H7zm5 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6z",
     label: "Bathing Soap",
-    desc: "Hygiene soap for mothers and their newborns during hospital stays.",
+    desc: "Hygiene soap to keep mothers and their newborns clean and healthy during their hospital stay.",
+    category: "essential",
   },
   {
-    icon: "M3 6h18M3 12h18M3 18h18",
-    label: "Soya Pieces",
-    desc: "Nutritious soya pieces to support the dietary needs of new and expectant mothers.",
+    icon: "M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18",
+    label: "Baby Oil (Gel)",
+    desc: "Gentle baby oil gel for moisturising and caring for the delicate skin of newborns.",
+    category: "essential",
+  },
+  {
+    icon: "M3 7h18M3 7a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M3 7V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2",
+    label: "Pails (Buckets)",
+    desc: "Sturdy pails provided for washing, bathing, and general hygiene use on the ward.",
+    category: "essential",
+  },
+  {
+    icon: "M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z",
+    label: "Sugar",
+    desc: "Bags of sugar donated to help provide energy and basic nutritional support to mothers in care.",
+    category: "nutrition",
+  },
+  {
+    icon: "M7 16V4m0 0L3 8m4-4 4 4M17 8v12m0 0 4-4m-4 4-4-4",
+    label: "Pegs",
+    desc: "Pegs for drying baby clothing and linens — a small but practical necessity for new mothers.",
+    category: "essential",
+  },
+  {
+    icon: "M4.318 6.318a4.5 4.5 0 0 0 0 6.364L12 20.364l7.682-7.682a4.5 4.5 0 0 0-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 0 0-6.364 0z",
+    label: "Spiritual & Emotional Support",
+    desc: "Beyond physical items, our team spent time with the mothers — offering prayers, encouragement, and a compassionate presence to lift their spirits during a vulnerable time.",
+    category: "support",
   },
 ];
 
-export default function CompanyCharityWork() {
+export default function CompanyCommunitySupport() {
   const [lightbox, setLightbox] = useState<number | null>(null);
 
   return (
@@ -96,20 +113,21 @@ export default function CompanyCharityWork() {
             gap: "3rem",
             alignItems: "start",
           }}>
-            {/* Story text */}
-            <div>
-              <span className="gp-eyebrow">Chiwamba Health Centre Visit</span>
-              <h2 className="gp-section-title">A visit to Chiwamba Health Centre, Lilongwe</h2>
+
+            {/* Left — story text, sticky so it stays in view while right column scrolls */}
+            <div style={{ position: "sticky", top: 88 }}>
+              <span className="gp-eyebrow">Chiwamba Hospital Visit</span>
+              <h2 className="gp-section-title">A visit to Chiwamba Hospital, Lilongwe</h2>
               <p style={{ fontSize: 15.5, color: "var(--gp-text-muted)", lineHeight: 1.8, marginBottom: 16 }}>
-                Our team visited <strong style={{ color: "var(--gp-text-primary)" }}>Chiwamba Health Centre</strong> in Lilongwe,
+                Our team visited <strong style={{ color: "var(--gp-text-primary)" }}>Chiwamba Hospital</strong> in Lilongwe,
                 Malawi — a facility that serves thousands of families, including a dedicated
                 <strong style={{ color: "var(--gp-text-primary)" }}> Under-5 Department</strong> caring for
                 pregnant women and mothers with young children.
               </p>
               <p style={{ fontSize: 15.5, color: "var(--gp-text-muted)", lineHeight: 1.8, marginBottom: 16 }}>
-                Recognising the daily challenges these families face, our staff came bearing essential items
-                — pampers (nappies), bathing soap, and soya pieces — donated directly to the mothers and
-                babies receiving care in the ward.
+                Recognising the daily challenges these families face, our staff came bearing a range of
+                essential items — pampers, soap, baby oil (gel), pails, sugar, and pegs — donated
+                directly to the mothers and babies receiving care in the ward.
               </p>
               <p style={{ fontSize: 15.5, color: "var(--gp-text-muted)", lineHeight: 1.8 }}>
                 This is part of our ongoing commitment: as we harness the sun's energy to power homes and
@@ -130,21 +148,33 @@ export default function CompanyCharityWork() {
                   <path d="M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                 </svg>
                 <span style={{ fontSize: 13.5, fontWeight: 600, color: "var(--gp-green)" }}>
-                  Chiwamba Health Centre · Lilongwe, Malawi
+                  Chiwamba Hospital · Lilongwe, Malawi
                 </span>
               </div>
             </div>
 
-            {/* What we donated */}
-            <div>
+            {/* Right — donated items list */}
+            <div style={{ display: "flex", flexDirection: "column" }}>
               <span className="gp-eyebrow">What we donated</span>
               <h2 className="gp-section-title">Items given to mothers &amp; babies</h2>
               <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-                {donated.map(({ icon, label, desc }) => (
-                  <div key={label} className="gp-card" style={{ padding: "18px 20px", display: "flex", gap: 16, alignItems: "flex-start" }}>
-                    <div className="gp-icon-badge" style={{ flexShrink: 0, marginTop: 2 }}>
+                {donated.map(({ icon, label, desc, category }) => (
+                  <div key={label} className="gp-card" style={{
+                    padding: "18px 20px", display: "flex", gap: 16, alignItems: "flex-start",
+                    ...(category === "support" ? {
+                      borderLeft: "4px solid #7c3aed",
+                      backgroundColor: "rgba(124,58,237,0.04)",
+                    } : category === "nutrition" ? {
+                      borderLeft: "4px solid var(--gp-green)",
+                    } : {}),
+                  }}>
+                    <div className="gp-icon-badge" style={{
+                      flexShrink: 0, marginTop: 2,
+                      ...(category === "support" ? { backgroundColor: "rgba(124,58,237,0.1)" } : {}),
+                    }}>
                       <svg width={20} height={20} viewBox="0 0 24 24" fill="none"
-                        stroke="var(--gp-green)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+                        stroke={category === "support" ? "#7c3aed" : "var(--gp-green)"}
+                        strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
                         <path d={icon} />
                       </svg>
                     </div>
@@ -168,6 +198,7 @@ export default function CompanyCharityWork() {
                 </p>
               </div>
             </div>
+
           </div>
         </div>
       </section>
@@ -181,7 +212,7 @@ export default function CompanyCharityWork() {
       }}>
         <div className="gp-container">
           <span className="gp-eyebrow">Photos from the visit</span>
-          <h2 className="gp-section-title">Moments from Chiwamba Health Centre</h2>
+          <h2 className="gp-section-title">Moments from Chiwamba Hospital</h2>
 
           <div style={{
             display: "grid",
@@ -219,19 +250,16 @@ export default function CompanyCharityWork() {
                     objectFit: "cover", display: "block",
                   }}
                 />
-                {/* Overlay */}
                 <div style={{
                   position: "absolute", inset: 0,
                   background: "linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 55%)",
                 }} />
-                {/* Caption */}
                 <div style={{
                   position: "absolute", bottom: 0, left: 0, right: 0,
                   padding: "14px 16px",
                 }}>
                   <p style={{ fontSize: 13, fontWeight: 600, color: "#fff", margin: 0 }}>{img.caption}</p>
                 </div>
-                {/* Zoom icon */}
                 <div style={{
                   position: "absolute", top: 12, right: 12,
                   backgroundColor: "rgba(0,0,0,0.4)",
@@ -250,7 +278,7 @@ export default function CompanyCharityWork() {
         </div>
       </section>
 
-      {/* ── Our commitment CTA ── */}
+      {/* ── CTA ── */}
       <section style={{ padding: "72px 0", backgroundColor: "var(--gp-bg-dark)" }}>
         <div className="gp-container" style={{
           display: "flex", flexWrap: "wrap",
@@ -313,14 +341,12 @@ export default function CompanyCharityWork() {
                 {charityImages[lightbox].caption}
               </p>
             </div>
-            {/* Prev / Next */}
             {lightbox > 0 && (
               <button onClick={() => setLightbox(lightbox - 1)} style={navBtnStyle("left")}>‹</button>
             )}
             {lightbox < charityImages.length - 1 && (
               <button onClick={() => setLightbox(lightbox + 1)} style={navBtnStyle("right")}>›</button>
             )}
-            {/* Close */}
             <button
               onClick={() => setLightbox(null)}
               style={{
