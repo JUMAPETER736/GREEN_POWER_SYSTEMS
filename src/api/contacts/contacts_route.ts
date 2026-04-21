@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
     // ── TODO: plug in your email/notification service here ──
     // e.g. Resend, Nodemailer, SendGrid, etc.
     // For now we log and return success so the form works end-to-end.
-    console.log("📩 New contact form submission:", {
+    console.log("New contact form submission:", {
       name:    body.name,
       email:   body.email,
       phone:   body.phone   || "—",
