@@ -147,12 +147,12 @@ export async function POST(req: NextRequest) {
     await resend.emails.send({
       from:    "Green Power Systems <onboarding@resend.dev>",
       to:      email,
-      subject: `[#${requestId}] We received your message — Green Power Systems`,
+      subject: `[#${requestId}] Dear ${name}, We received your message at Green Power Systems Limited`,
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
           <div style="background: #0f6e56; padding: 24px 32px; border-radius: 8px 8px 0 0;">
-            <h1 style="color: #fff; margin: 0; font-size: 20px;">Thanks for reaching out, ${name}!</h1>
-            <p style="color: rgba(255,255,255,0.75); margin: 6px 0 0; font-size: 14px;">Green Power Systems — Malawi's trusted solar partner</p>
+            <h1 style="color: #fff; margin: 0; font-size: 20px;">Dear ${name},</h1>
+            <p style="color: rgba(255,255,255,0.75); margin: 6px 0 0; font-size: 14px;">Green Power Systems Limited — Malawi's trusted solar partner</p>
           </div>
 
           <div style="background: #ffffff; padding: 32px; border: 1px solid #e5e7eb; border-top: none;">
@@ -173,11 +173,20 @@ export async function POST(req: NextRequest) {
               Please keep your Request ID <strong style="color: #0f6e56;">#${requestId}</strong> — quote it in any follow-up so our team can locate your enquiry instantly.
             </p>
 
-            <p style="font-size: 15px; color: #374151; line-height: 1.7; margin: 20px 0 20px;">
-              We've received your message and will get back to you within <strong>2 business hours</strong>.
+            <p style="font-size: 15px; color: #374151; line-height: 1.8; margin: 20px 0 16px;">
+              We received your message at <strong>Green Power Systems Limited</strong> and it will be looked into by a member of staff as soon as possible.
             </p>
+
+            <p style="font-size: 15px; color: #374151; line-height: 1.8; margin: 0 0 16px;">
+              We've received your message and will get back to you within <strong>working days</strong>.
+            </p>
+
+            <p style="font-size: 15px; color: #374151; line-height: 1.8; margin: 0 0 28px;">
+              Thank you for contacting us.
+            </p>
+
             <p style="font-size: 14px; color: #6b7280; line-height: 1.7; margin: 0 0 28px;">
-              In the meantime, you can reach us directly at:
+              You can also reach us directly at:
             </p>
             <div style="display: flex; gap: 12px; flex-direction: column;">
               <p style="margin: 0; font-size: 14px; color: #374151;">📞 <strong>+265 991 234 567</strong></p>
