@@ -1,12 +1,12 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
- 
+
 function Toast({ message, onClose }: { message: string; onClose: () => void }) {
   useEffect(() => {
     const t = setTimeout(onClose, 4000);
     return () => clearTimeout(t);
   }, [onClose]);
- 
+
   return (
     <div style={{
       position: "fixed",
@@ -63,9 +63,9 @@ function Toast({ message, onClose }: { message: string; onClose: () => void }) {
     </div>
   );
 }
- 
+
 const EMPTY_FORM = { name: "", email: "", phone: "", service: "", message: "" };
- 
+
 /** Validate phone field:
  *  - Empty is allowed (optional field)
  *  - Each number (comma-separated) must start with a + country code
@@ -80,33 +80,33 @@ function validatePhone(value: string): string {
   }
   return "";
 }
- 
+
 export default function Contact() {
   const [toast, setToast]         = useState(false);
   const [loading, setLoading]     = useState(false);
   const [error, setError]         = useState("");
   const [phoneError, setPhoneError] = useState("");
   const [form, setForm]           = useState(EMPTY_FORM);
- 
+
   const handle = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
     setForm(f => ({ ...f, [name]: value }));
- 
+
     // Live-validate phone as user types
     if (name === "phone") {
       setPhoneError(validatePhone(value));
     }
   };
- 
+
   const closeToast = useCallback(() => setToast(false), []);
- 
+
   const handleSubmit = async () => {
     // Final validation before submit
     const phoneErr = validatePhone(form.phone);
     setPhoneError(phoneErr);
- 
+
     if (!form.name || !form.email || !form.message) {
       setError("Please fill in your name, email, and message.");
       return;
@@ -115,7 +115,7 @@ export default function Contact() {
       setError("Please fix the phone number before submitting.");
       return;
     }
- 
+
     setError("");
     setLoading(true);
     try {
@@ -137,7 +137,7 @@ export default function Contact() {
       setLoading(false);
     }
   };
- 
+
   const inputStyle: React.CSSProperties = {
     width: "100%",
     padding: "11px 14px",
@@ -151,7 +151,7 @@ export default function Contact() {
     fontFamily: "inherit",
     boxSizing: "border-box",
   };
- 
+
   const inputErrorStyle: React.CSSProperties = {
     ...inputStyle,
     border: "1.5px solid #c0392b",
@@ -159,14 +159,14 @@ export default function Contact() {
 
   return (
     <div style={{ backgroundColor: "var(--gp-bg-page)" }}>
- 
+
       {toast && (
         <Toast
           message="We'll get back to you within working days."
           onClose={closeToast}
         />
       )}
- 
+
       {/* ── Hero ── */}
       <div className="gp-page-hero">
         <div className="gp-container">
@@ -179,7 +179,7 @@ export default function Contact() {
           </p>
         </div>
       </div>
- 
+
       {/* ── Quick contact info bar ── */}
       <section style={{
         backgroundColor: "var(--gp-bg-card)",
@@ -233,22 +233,21 @@ export default function Contact() {
           </div>
         </div>
       </section>
- 
+
       {/* ── Form + Map ── */}
       <section style={{ padding: "clamp(40px, 7vw, 72px) 0" }}>
         <div className="gp-container">
           <div className="gp-contact-grid">
- 
+
             {/* Form */}
             <div className="gp-card" style={{ padding: "clamp(20px, 4vw, 32px)" }}>
               <h2 style={{ fontSize: "clamp(16px, 2.5vw, 18px)", fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 22px" }}>
                 Send us a message
               </h2>
- 
-              <div style={{ display: "flex", flexDirection: "column", gap: 14 }}></div>
 
+              <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
 
-                 {/* Name + Email row */}
+                {/* Name + Email row */}
                 <div className="gp-form-row">
                   <div>
                     <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
@@ -276,7 +275,7 @@ export default function Contact() {
                     />
                   </div>
                 </div>
- 
+
                 {/* Phone field with country code enforcement */}
                 <div>
                   <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
@@ -302,7 +301,7 @@ export default function Contact() {
                     </p>
                   )}
                 </div>
- 
+
                 <div>
                   <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
                     Service interested in
@@ -322,7 +321,7 @@ export default function Contact() {
                     <option>General enquiry</option>
                   </select>
                 </div>
- 
+
                 <div>
                   <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
                     Message *
@@ -336,7 +335,7 @@ export default function Contact() {
                     style={{ ...inputStyle, resize: "vertical", minHeight: 110 }}
                   />
                 </div>
- 
+
                 {error && (
                   <p style={{
                     fontSize: 13, color: "#c0392b",
@@ -348,7 +347,7 @@ export default function Contact() {
                     {error}
                   </p>
                 )}
- 
+
                 <button
                   onClick={handleSubmit}
                   disabled={loading}
@@ -362,11 +361,11 @@ export default function Contact() {
                 >
                   {loading ? "Sending..." : "Send message"}
                 </button>
- 
+
               </div>
             </div>
- 
-     {/* Map */}
+
+            {/* Map */}
             <div className="gp-card" style={{ overflow: "hidden", padding: 0, display: "flex", flexDirection: "column" }}>
               <div style={{
                 padding: "16px 20px",
@@ -417,11 +416,11 @@ export default function Contact() {
                 </div>
               </a>
             </div>
- 
+
           </div>
         </div>
       </section>
- 
+
       {/* ── Responsive styles ── */}
       <style>{`
         .gp-contact-bar {
@@ -461,7 +460,7 @@ export default function Contact() {
           }
         }
       `}</style>
- 
+
     </div>
   );
 }
