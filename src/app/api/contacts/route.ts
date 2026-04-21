@@ -1,5 +1,3 @@
-// src/app/api/contacts/contacts_route.ts
-
 import { NextRequest, NextResponse } from "next/server";
 
 interface ContactBody {
