@@ -1,9 +1,7 @@
-
-
 "use client";
 import Link from "next/link";
 import { useState } from "react";
- 
+
 const charityImages = [
   {
     src: "/images/charity_work/image10.jpeg",
@@ -31,7 +29,7 @@ const charityImages = [
     caption: "Supporting expectant mothers at Chiwamba",
   },
 ];
- 
+
 const donated = [
   {
     icon: "M12 3c-1.2 5.4-5 7.5-5 12a5 5 0 0 0 10 0c0-4.5-3.8-6.6-5-12z",
@@ -50,12 +48,12 @@ const donated = [
   },
 ];
 
-xport default function CompanyCharityWork() {
+export default function CompanyCharityWork() {
   const [lightbox, setLightbox] = useState<number | null>(null);
- 
+
   return (
     <div style={{ backgroundColor: "var(--gp-bg-page)" }}>
- 
+
       {/* ── Hero ── */}
       <section style={{
         backgroundColor: "var(--gp-bg-card)",
@@ -88,7 +86,7 @@ xport default function CompanyCharityWork() {
           </p>
         </div>
       </section>
- 
+
       {/* ── Story section ── */}
       <section style={{ padding: "72px 0", backgroundColor: "var(--gp-bg-page)" }}>
         <div className="gp-container">
@@ -100,10 +98,10 @@ xport default function CompanyCharityWork() {
           }}>
             {/* Story text */}
             <div>
-              <span className="gp-eyebrow">Chiwamba Hospital Visit</span>
-              <h2 className="gp-section-title">A visit to Chiwamba Hospital, Lilongwe</h2>
+              <span className="gp-eyebrow">Chiwamba Health Centre Visit</span>
+              <h2 className="gp-section-title">A visit to Chiwamba Health Centre, Lilongwe</h2>
               <p style={{ fontSize: 15.5, color: "var(--gp-text-muted)", lineHeight: 1.8, marginBottom: 16 }}>
-                Our team visited <strong style={{ color: "var(--gp-text-primary)" }}>Chiwamba Hospital</strong> in Lilongwe,
+                Our team visited <strong style={{ color: "var(--gp-text-primary)" }}>Chiwamba Health Centre</strong> in Lilongwe,
                 Malawi — a facility that serves thousands of families, including a dedicated
                 <strong style={{ color: "var(--gp-text-primary)" }}> Under-5 Department</strong> caring for
                 pregnant women and mothers with young children.
@@ -117,7 +115,7 @@ xport default function CompanyCharityWork() {
                 This is part of our ongoing commitment: as we harness the sun's energy to power homes and
                 businesses, we equally strive to power lives with compassion, dignity, and care.
               </p>
- 
+
               {/* Location badge */}
               <div style={{
                 display: "inline-flex", alignItems: "center", gap: 8,
@@ -132,12 +130,12 @@ xport default function CompanyCharityWork() {
                   <path d="M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                 </svg>
                 <span style={{ fontSize: 13.5, fontWeight: 600, color: "var(--gp-green)" }}>
-                  Chiwamba Hospital · Lilongwe, Malawi
+                  Chiwamba Health Centre · Lilongwe, Malawi
                 </span>
               </div>
             </div>
- 
-           {/* What we donated */}
+
+            {/* What we donated */}
             <div>
               <span className="gp-eyebrow">What we donated</span>
               <h2 className="gp-section-title">Items given to mothers &amp; babies</h2>
@@ -157,7 +155,7 @@ xport default function CompanyCharityWork() {
                   </div>
                 ))}
               </div>
- 
+
               {/* Beneficiary highlight */}
               <div style={{
                 marginTop: 20, padding: "16px 20px",
@@ -173,7 +171,7 @@ xport default function CompanyCharityWork() {
           </div>
         </div>
       </section>
- 
+
       {/* ── Photo gallery ── */}
       <section style={{
         padding: "72px 0",
@@ -183,8 +181,8 @@ xport default function CompanyCharityWork() {
       }}>
         <div className="gp-container">
           <span className="gp-eyebrow">Photos from the visit</span>
-          <h2 className="gp-section-title">Moments from Chiwamba Hospital</h2>
- 
+          <h2 className="gp-section-title">Moments from Chiwamba Health Centre</h2>
+
           <div style={{
             display: "grid",
             gap: 14,
@@ -252,7 +250,7 @@ xport default function CompanyCharityWork() {
         </div>
       </section>
 
-         {/* ── Our commitment CTA ── */}
+      {/* ── Our commitment CTA ── */}
       <section style={{ padding: "72px 0", backgroundColor: "var(--gp-bg-dark)" }}>
         <div className="gp-container" style={{
           display: "flex", flexWrap: "wrap",
@@ -280,7 +278,7 @@ xport default function CompanyCharityWork() {
           </Link>
         </div>
       </section>
- 
+
       {/* ── Lightbox ── */}
       {lightbox !== null && (
         <div
@@ -341,7 +339,7 @@ xport default function CompanyCharityWork() {
     </div>
   );
 }
- 
+
 function navBtnStyle(side: "left" | "right"): React.CSSProperties {
   return {
     position: "absolute",
@@ -362,4 +360,3 @@ function navBtnStyle(side: "left" | "right"): React.CSSProperties {
     backdropFilter: "blur(4px)",
   };
 }
- 
