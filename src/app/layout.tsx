@@ -10,6 +10,11 @@ export const metadata: Metadata = {
     "Professional solar panel installation, sales, and maintenance services in Lilongwe, Malawi.",
   keywords: "solar panels, solar energy, installation, maintenance, renewable energy, Lilongwe, Malawi",
   authors: [{ name: "Green Power Systems" }],
+  icons: {
+    icon: "/company_logo.jpeg",
+    apple: "/company_logo.jpeg",
+    shortcut: "/company_logo.jpeg",
+  },
 };
 
 export default function RootLayout({
