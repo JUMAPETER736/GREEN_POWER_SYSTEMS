@@ -1,12 +1,12 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
-
+ 
 function Toast({ message, onClose }: { message: string; onClose: () => void }) {
   useEffect(() => {
     const t = setTimeout(onClose, 4000);
     return () => clearTimeout(t);
   }, [onClose]);
-
+ 
   return (
     <div style={{
       position: "fixed",
@@ -63,26 +63,59 @@ function Toast({ message, onClose }: { message: string; onClose: () => void }) {
     </div>
   );
 }
-
+ 
 const EMPTY_FORM = { name: "", email: "", phone: "", service: "", message: "" };
-
+ 
+/** Validate phone field:
+ *  - Empty is allowed (optional field)
+ *  - Each number (comma-separated) must start with a + country code
+ *  - Returns an error string or "" if valid
+ */
+function validatePhone(value: string): string {
+  if (!value.trim()) return ""; // optional
+  const numbers = value.split(",").map(n => n.trim()).filter(Boolean);
+  const invalid = numbers.filter(n => !/^\+\d/.test(n));
+  if (invalid.length > 0) {
+    return "Each number must start with a country code (e.g. +265994459714). Separate multiple numbers with a comma.";
+  }
+  return "";
+}
+ 
 export default function Contact() {
-  const [toast, setToast]     = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError]     = useState("");
-  const [form, setForm]       = useState(EMPTY_FORM);
-
+  const [toast, setToast]         = useState(false);
+  const [loading, setLoading]     = useState(false);
+  const [error, setError]         = useState("");
+  const [phoneError, setPhoneError] = useState("");
+  const [form, setForm]           = useState(EMPTY_FORM);
+ 
   const handle = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
-
+  ) => {
+    const { name, value } = e.target;
+    setForm(f => ({ ...f, [name]: value }));
+ 
+    // Live-validate phone as user types
+    if (name === "phone") {
+      setPhoneError(validatePhone(value));
+    }
+  };
+ 
   const closeToast = useCallback(() => setToast(false), []);
-
+ 
   const handleSubmit = async () => {
+    // Final validation before submit
+    const phoneErr = validatePhone(form.phone);
+    setPhoneError(phoneErr);
+ 
     if (!form.name || !form.email || !form.message) {
       setError("Please fill in your name, email, and message.");
       return;
     }
+    if (phoneErr) {
+      setError("Please fix the phone number before submitting.");
+      return;
+    }
+ 
     setError("");
     setLoading(true);
     try {
@@ -93,6 +126,7 @@ export default function Contact() {
       });
       if (res.ok) {
         setForm(EMPTY_FORM);
+        setPhoneError("");
         setToast(true);
       } else {
         setError("Something went wrong. Please try again.");
@@ -103,7 +137,7 @@ export default function Contact() {
       setLoading(false);
     }
   };
-
+ 
   const inputStyle: React.CSSProperties = {
     width: "100%",
     padding: "11px 14px",
@@ -117,309 +151,8 @@ export default function Contact() {
     fontFamily: "inherit",
     boxSizing: "border-box",
   };
-
-  return (
-    <div style={{ backgroundColor: "var(--gp-bg-page)" }}>
-
-      {toast && (
-        <Toast
-          message="We'll get back to you within 2 business hours."
-          onClose={closeToast}
-        />
-      )}
-
-      {/* ── Hero ── */}
-      <div className="gp-page-hero">
-        <div className="gp-container">
-          <span className="gp-eyebrow">Get in touch</span>
-          <h1 className="gp-section-title" style={{ maxWidth: 500 }}>
-            We'd love to hear from you
-          </h1>
-          <p className="gp-section-sub" style={{ marginTop: 14 }}>
-            Free consultation, no commitment. Our team usually responds within 2 business hours.
-          </p>
-        </div>
-      </div>
-
-      {/* ── Quick contact info bar ── */}
-      <section style={{
-        backgroundColor: "var(--gp-bg-card)",
-        borderBottom: "1px solid var(--gp-border)",
-        padding: "20px 0",
-      }}>
-        <div className="gp-container">
-          <div className="gp-contact-bar">
-            {[
-              {
-                icon: "M3 5a2 2 0 0 1 2-2h3.28a1 1 0 0 1 .948.684l1.498 4.493a1 1 0 0 1-.502 1.21l-2.257 1.13a11.042 11.042 0 0 0 5.516 5.516l1.13-2.257a1 1 0 0 1 1.21-.502l4.493 1.498a1 1 0 0 1 .684.949V19a2 2 0 0 1-2 2h-1C9.716 21 3 14.284 3 6V5z",
-                label: "Call us",
-                value: "+265 991 234 567",
-              },
-              {
-                icon: "M3 8l7.89 5.26a2 2 0 0 0 2.22 0L21 8M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z",
-                label: "Email us",
-                value: "info@greenpowermw.com",
-              },
-              {
-                icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0z",
-                label: "Visit us",
-                value: "QuickTrip Complex, Area 25, Lilongwe",
-              },
-              {
-                icon: "M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0z",
-                label: "Hours",
-                value: "Mon–Sat · 8am to 5pm",
-              },
-            ].map(({ icon, label, value }) => (
-              <div key={label} className="gp-contact-bar-item">
-                <div style={{
-                  width: 36, height: 36, borderRadius: "50%",
-                  backgroundColor: "var(--gp-green-light)",
-                  border: "1px solid var(--gp-green-border)",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  flexShrink: 0,
-                }}>
-                  <svg width={16} height={16} viewBox="0 0 24 24" fill="none"
-                    stroke="var(--gp-green)" strokeWidth={2}
-                    strokeLinecap="round" strokeLinejoin="round">
-                    <path d={icon} />
-                  </svg>
-                </div>
-                <div>
-                  <p style={{ fontSize: 11, fontWeight: 600, color: "var(--gp-text-subtle)", margin: "0 0 2px", textTransform: "uppercase", letterSpacing: "0.05em" }}>{label}</p>
-                  <p style={{ fontSize: 13, fontWeight: 600, color: "var(--gp-text-primary)", margin: 0 }}>{value}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Form + Map ── */}
-      <section style={{ padding: "clamp(40px, 7vw, 72px) 0" }}>
-        <div className="gp-container">
-          <div className="gp-contact-grid">
-
-            {/* Form */}
-            <div className="gp-card" style={{ padding: "clamp(20px, 4vw, 32px)" }}>
-              <h2 style={{ fontSize: "clamp(16px, 2.5vw, 18px)", fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 22px" }}>
-                Send us a message
-              </h2>
-
-              <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-
-                {/* Name + Email row — stacks on mobile */}
-                <div className="gp-form-row">
-                  <div>
-                    <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
-                      Full name *
-                    </label>
-                    <input
-                      name="name"
-                      value={form.name}
-                      onChange={handle}
-                      placeholder="Your name"
-                      style={inputStyle}
-                    />
-                  </div>
-                  <div>
-                    <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
-                      Email *
-                    </label>
-                    <input
-                      name="email"
-                      type="email"
-                      value={form.email}
-                      onChange={handle}
-                      placeholder="you@example.com"
-                      style={inputStyle}
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
-                    Phone number
-                  </label>
-                  <input
-                    name="phone"
-                    value={form.phone}
-                    onChange={handle}
-                    placeholder="+265 ..."
-                    style={inputStyle}
-                  />
-                </div>
-
-                <div>
-                  <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
-                    Service interested in
-                  </label>
-                  <select
-                    name="service"
-                    value={form.service}
-                    onChange={handle}
-                    style={inputStyle}
-                  >
-                    <option value="">Select a service...</option>
-                    <option>Solar panel installation</option>
-                    <option>System maintenance</option>
-                    <option>Repairs and diagnostics</option>
-                    <option>Battery storage</option>
-                    <option>Commercial / industrial</option>
-                    <option>General enquiry</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
-                    Message *
-                  </label>
-                  <textarea
-                    name="message"
-                    value={form.message}
-                    onChange={handle}
-                    placeholder="Tell us about your project or question..."
-                    rows={5}
-                    style={{ ...inputStyle, resize: "vertical", minHeight: 110 }}
-                  />
-                </div>
-
-                {error && (
-                  <p style={{
-                    fontSize: 13, color: "#c0392b",
-                    backgroundColor: "#fdf0ef",
-                    border: "1px solid #f5c6c2",
-                    borderRadius: 8, padding: "10px 14px",
-                    margin: 0,
-                  }}>
-                    {error}
-                  </p>
-                )}
-
-                <button
-                  onClick={handleSubmit}
-                  disabled={loading}
-                  className="gp-btn-primary"
-                  style={{
-                    width: "100%",
-                    justifyContent: "center",
-                    opacity: loading ? 0.7 : 1,
-                    cursor: loading ? "not-allowed" : "pointer",
-                  }}
-                >
-                  {loading ? "Sending..." : "Send message"}
-                </button>
-
-              </div>
-            </div>
-
-            {/* Map */}
-            <div className="gp-card" style={{ overflow: "hidden", padding: 0, display: "flex", flexDirection: "column" }}>
-              <div style={{
-                padding: "16px 20px",
-                borderBottom: "1px solid var(--gp-border)",
-                display: "flex", alignItems: "center", gap: 10,
-              }}>
-                <svg width={16} height={16} viewBox="0 0 24 24" fill="none"
-                  stroke="var(--gp-green)" strokeWidth={2.2}
-                  strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z" />
-                  <path d="M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                </svg>
-                <p style={{ fontSize: 13, fontWeight: 700, color: "var(--gp-text-primary)", margin: 0 }}>
-                  QuickTrip Shopping Complex, Area 25 Sungwi, Lilongwe
-                </p>
-              </div>
-              <a
-                href="https://www.google.com/maps/search/QuickTrip+Shopping+Complex+Area+25+Sungwi+Lilongwe+Malawi/@-13.9032,33.7595,15z"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ display: "flex", flexDirection: "column", flexGrow: 1, position: "relative", textDecoration: "none" }}
-              >
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7725.4!2d33.7545!3d-13.9032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1921d500431ff5a5%3A0xba44ac1f1f86553!2sArea+25%2C+Lilongwe%2C+Malawi!5e0!3m2!1sen!2smw!4v1"
-                  width="100%"
-                  style={{ border: 0, display: "block", minHeight: 280, flexGrow: 1, pointerEvents: "none" }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Green Power Systems — Area 25 Sungwi, Lilongwe"
-                />
-                <div style={{
-                  position: "absolute", bottom: 16, left: "50%", transform: "translateX(-50%)",
-                  backgroundColor: "var(--gp-green)", color: "#fff",
-                  fontSize: 13, fontWeight: 600,
-                  padding: "10px 22px", borderRadius: 100,
-                  display: "flex", alignItems: "center", gap: 8,
-                  boxShadow: "0 4px 16px rgba(0,0,0,0.22)",
-                  whiteSpace: "nowrap",
-                }}>
-                  <svg width={14} height={14} viewBox="0 0 24 24" fill="none"
-                    stroke="white" strokeWidth={2.5}
-                    strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z" />
-                    <path d="M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                  </svg>
-                  Tap to open in Google Maps
-                </div>
-              </a>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* ── Responsive styles ── */}
-      <style>{`
-        /* Contact info bar */
-        .gp-contact-bar {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-          gap: 16px;
-        }
-        .gp-contact-bar-item {
-          display: flex;
-          align-items: flex-start;
-          gap: 12px;
-        }
-
-        /* Main form + map grid */
-        .gp-contact-grid {
-          display: grid;
-          gap: 24px;
-          grid-template-columns: 1fr;
-        }
-
-        /* Name + email side by side on tablet+ */
-        .gp-form-row {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 14px;
-        }
-
-        /* Tablet */
-        @media (min-width: 600px) {
-          .gp-form-row {
-            grid-template-columns: 1fr 1fr;
-          }
-        }
-
-        /* Desktop: side-by-side form and map */
-        @media (min-width: 900px) {
-          .gp-contact-grid {
-            grid-template-columns: 1fr 1fr;
-            align-items: stretch;
-          }
-        }
-
-        /* Mobile: tighten contact bar to 2 cols */
-        @media (max-width: 480px) {
-          .gp-contact-bar {
-            grid-template-columns: repeat(2, 1fr);
-          }
-        }
-      `}</style>
-
-    </div>
-  );
-}
+ 
+  const inputErrorStyle: React.CSSProperties = {
+    ...inputStyle,
+    border: "1.5px solid #c0392b",
+  };
