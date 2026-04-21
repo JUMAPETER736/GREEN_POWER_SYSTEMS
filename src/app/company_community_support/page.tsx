@@ -129,7 +129,7 @@ export default function CompanyCommunitySupport() {
                 businesses, we equally strive to power lives with compassion, dignity, and care.
               </p>
 
-              {/* Location badge — sits naturally after text, no spacer */}
+              {/* Location badge */}
               <div style={{
                 display: "inline-flex", alignItems: "center", gap: 8,
                 marginTop: 24, padding: "10px 18px",
@@ -153,7 +153,7 @@ export default function CompanyCommunitySupport() {
             <div className="cs-right-panel">
               <span className="gp-eyebrow">What we donated</span>
               <h2 className="gp-section-title">Items given to mothers &amp; babies</h2>
-              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8, flex: 1 }}>
                 {donated.map(({ icon, label, desc, category }) => (
                   <div key={label} className="gp-card" style={{
                     padding: "11px 14px", display: "flex", gap: 12, alignItems: "flex-start",
@@ -313,11 +313,7 @@ export default function CompanyCommunitySupport() {
           background-color: var(--gp-bg-page);
         }
 
-        /* ── Two-col layout ──
-           Mobile  (<768px): single column, stacked
-           Tablet  (768px+): two equal columns, same height
-           Desktop (1024px+): wider gap
-        */
+        /* ── Two-col layout ── */
         .cs-two-col {
           display: flex;
           flex-direction: column;
@@ -332,7 +328,7 @@ export default function CompanyCommunitySupport() {
         @media (min-width: 768px) {
           .cs-two-col {
             flex-direction: row;
-            align-items: start; /* columns size to their own content */
+            align-items: stretch; /* both columns grow to the tallest one */
             gap: 2rem;
           }
 
@@ -341,7 +337,7 @@ export default function CompanyCommunitySupport() {
             min-width: 0;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-start;
             background: var(--gp-bg-card);
             border: 1px solid var(--gp-border);
             border-radius: 16px;
@@ -366,17 +362,15 @@ export default function CompanyCommunitySupport() {
         .cs-gallery-grid {
           display: grid;
           gap: 14px;
-          grid-template-columns: 1fr; /* phone: 1 col */
+          grid-template-columns: 1fr;
         }
 
-        /* Tablet: 2 cols */
         @media (min-width: 600px) {
           .cs-gallery-grid {
             grid-template-columns: repeat(2, 1fr);
           }
         }
 
-        /* Desktop: 3 cols */
         @media (min-width: 1024px) {
           .cs-gallery-grid {
             grid-template-columns: repeat(3, 1fr);
