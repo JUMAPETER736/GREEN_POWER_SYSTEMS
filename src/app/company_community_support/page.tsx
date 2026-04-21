@@ -129,10 +129,11 @@ export default function CompanyCommunitySupport() {
                 businesses, we equally strive to power lives with compassion, dignity, and care.
               </p>
 
-              {/* Location badge */}
+              {/* Location badge — margin-top: auto pushes it flush to bottom with no dead space */}
+              <div style={{ marginTop: "auto", paddingTop: 24 }}>
               <div style={{
                 display: "inline-flex", alignItems: "center", gap: 8,
-                marginTop: 24, padding: "10px 18px",
+                padding: "10px 18px",
                 borderRadius: 12,
                 backgroundColor: "var(--gp-green-light)",
                 border: "1px solid var(--gp-green-border)",
@@ -146,6 +147,7 @@ export default function CompanyCommunitySupport() {
                 <span style={{ fontSize: 13.5, fontWeight: 600, color: "var(--gp-green)" }}>
                   Chiwamba Hospital · Lilongwe, Malawi
                 </span>
+              </div>
               </div>
             </div>
 
