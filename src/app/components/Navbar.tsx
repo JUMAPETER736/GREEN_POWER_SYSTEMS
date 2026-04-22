@@ -5,12 +5,12 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 
 const navLinks = [
-  { href: "/",                        label: "Home" },
-  { href: "/about_our_company",       label: "About" },
-  { href: "/our_services",            label: "Services" },
-  { href: "/our_products",            label: "Products" },
-  { href: "/customers_feed_back",     label: "Testimonials" },
-  { href: "/company_contact_details", label: "Contact" },
+  { href: "/",                          label: "Home" },
+  { href: "/about_our_company",         label: "About" },
+  { href: "/our_services",              label: "Services" },
+  { href: "/our_products",              label: "Products" },
+  { href: "/customers_feed_back",       label: "Testimonials" },
+  { href: "/company_contact_details",   label: "Contact" },
   { href: "/company_community_support", label: "Community Support" },
 ];
 
@@ -37,12 +37,14 @@ export default function Navbar() {
             display: "flex", alignItems: "center",
             gap: 12, textDecoration: "none", flexShrink: 0,
           }}>
+            {/* FIX: explicit width + height so the logo renders on mobile */}
             <div
               className="gp-logo-wrap"
               style={{
                 borderRadius: 10, overflow: "hidden",
                 border: "1.5px solid var(--gp-green-border)",
                 flexShrink: 0, position: "relative",
+                width: 48, height: 48,          /* ← KEY FIX */
               }}
             >
               <Image
@@ -50,6 +52,7 @@ export default function Navbar() {
                 alt="Green Power Systems logo"
                 fill
                 sizes="48px"
+                style={{ objectFit: "cover" }}  /* ← KEY FIX */
                 className="gp-logo-img"
               />
             </div>
