@@ -88,8 +88,10 @@ export default function CompanyCommunitySupport() {
             margin: "10px 0 18px",
             maxWidth: 640,
           }}>
-            Giving back to our{" "}
-            <span style={{ color: "var(--gp-green)" }}>community</span>
+          
+           <span style={{ color: "var(--gp-green)" }}>
+                 Giving back to our community
+          </span>
           </h1>
           <p style={{
             fontSize: "clamp(14px, 2vw, 17px)",

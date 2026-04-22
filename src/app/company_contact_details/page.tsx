@@ -119,7 +119,7 @@ export default function Contact() {
     setError("");
     setLoading(true);
     try {
-      const res = await fetch("/api/contacts", {
+     const res = await fetch("/api/routes/contacts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

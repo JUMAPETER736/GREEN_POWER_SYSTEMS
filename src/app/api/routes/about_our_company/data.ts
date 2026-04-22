@@ -95,15 +95,12 @@ export const stats: StatItem[] = [
 // ─────────────────────────────────────────────
 
 export interface TeamMember {
-  /** Full display name */
   name: string;
-  /** Job title shown in green beneath the name */
   role: string;
-  /** Two-letter initials rendered inside the avatar circle */
   initials: string;
-  /** Education credentials line */
+  /** Path to profile photo in /public, or null if none available */
+  photo: string | null;
   edu: string;
-  /** Short italic note about experience or focus area */
   note: string;
 }
 
@@ -112,6 +109,7 @@ export const team: TeamMember[] = [
     name:     "Chikumbutso Bisani",
     role:     "CEO",
     initials: "CB",
+    photo:    "/images/company_members_profiles/image0.jpeg",
     edu:      "MSc Construction Technology (UNZA) · BSc Renewable Energy (Mzuzu University)",
     note:     "10+ years in energy, irrigation & construction",
   },
@@ -119,6 +117,7 @@ export const team: TeamMember[] = [
     name:     "Chisomo Chinkhande",
     role:     "Project Manager",
     initials: "CC",
+    photo:    "/images/company_members_profiles/image1.jpeg",
     edu:      "BSc Renewable Energy Technologies (Mzuzu University)",
     note:     "Team & client coordination · Business development",
   },
@@ -126,6 +125,7 @@ export const team: TeamMember[] = [
     name:     "Andrew Henry",
     role:     "Marketing Officer",
     initials: "AH",
+    photo:    null,
     edu:      "Professional Certificate in Marketing (Lilongwe Technical College)",
     note:     "1+ year in renewable energy · Brand & marketing strategy",
   },
@@ -133,6 +133,7 @@ export const team: TeamMember[] = [
     name:     "Felix Chinkhande",
     role:     "Finance & Administration Officer",
     initials: "FC",
+    photo:    "/images/company_members_profiles/image2.jpeg",
     edu:      "Management Certificate (Lilongwe Technical College)",
     note:     "Finance, admin & organisational operations",
   },
