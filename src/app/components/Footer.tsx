@@ -53,7 +53,7 @@ export default function Footer() {
                 overflow: "hidden", backgroundColor: "#0f5f3f", flexShrink: 0,
               }}>
                 <Image
-                  src="/logo.jpeg"
+                  src="/company_logo.jpeg"
                   alt="Green Power"
                   width={36}
                   height={36}
@@ -94,6 +94,16 @@ export default function Footer() {
           <div>
             <p style={headingStyle}>Contact</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+
+              <div>
+                <p style={{ fontSize: 11, color: "#9ca3af", marginBottom: 4, marginTop: 0 }}>Phone</p>
+                <Link
+                  href="tel:+265999534304"
+                  style={{ fontSize: 13, color: "#0f5f3f", textDecoration: "none" }}
+                >
+                  +265 999 534 304
+                </Link>
+              </div>
 
               <div>
                 <p style={{ fontSize: 11, color: "#9ca3af", marginBottom: 4, marginTop: 0 }}>Email</p>
