@@ -32,6 +32,11 @@ export default function Footer() {
     marginBottom: 16, marginTop: 0,
   };
 
+  const labelStyle: React.CSSProperties = {
+    fontSize: 11, color: "#9ca3af",
+    marginBottom: 4, marginTop: 0,
+  };
+
   return (
     <footer style={{ backgroundColor: "#fff", borderTop: "1px solid #e5e7eb" }}>
 
@@ -96,7 +101,7 @@ export default function Footer() {
             <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
 
               <div>
-                <p style={{ fontSize: 11, color: "#9ca3af", marginBottom: 4, marginTop: 0 }}>Phone</p>
+                <p style={labelStyle}>Phone</p>
                 <Link
                   href="tel:+265999534304"
                   style={{ fontSize: 13, color: "#0f5f3f", textDecoration: "none" }}
@@ -106,7 +111,7 @@ export default function Footer() {
               </div>
 
               <div>
-                <p style={{ fontSize: 11, color: "#9ca3af", marginBottom: 4, marginTop: 0 }}>Email</p>
+                <p style={labelStyle}>Email</p>
                 <Link
                   href="mailto:greenpowersystemsltd@gmail.com"
                   style={{ fontSize: 13, color: "#0f5f3f", textDecoration: "none", wordBreak: "break-all" }}
@@ -116,7 +121,15 @@ export default function Footer() {
               </div>
 
               <div>
-                <p style={{ fontSize: 11, color: "#9ca3af", marginBottom: 4, marginTop: 0 }}>Address</p>
+                <p style={labelStyle}>Opening Hours</p>
+                <p style={{ fontSize: 13, color: "#6b7280", margin: 0, lineHeight: 1.7 }}>
+                  Mon – Sat: 8:00am – 5:00pm<br />
+                  Sunday: Closed
+                </p>
+              </div>
+
+              <div>
+                <p style={labelStyle}>Address</p>
                 <address style={{ fontSize: 13, color: "#6b7280", fontStyle: "normal", lineHeight: 1.7 }}>
                   QuickTrip Shopping Complex<br />
                   NYUMBA YA SOLAR<br />
