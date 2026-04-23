@@ -14,16 +14,16 @@ export default function Testimonials() {
   const fiveStarCount = reviews.filter(r => r.stars === 5).length;
 
   return (
-    <div style={{ backgroundColor: "var(--gp-bg-page)" }}>
+    <div style={{ backgroundColor: "var(--gp-bg-page)", overflowX: "hidden", width: "100%" }}>
 
       {/* ── Hero ── */}
       <div className="gp-page-hero">
         <div className="gp-container">
           <span className="gp-eyebrow">What clients say</span>
-          <h1 className="gp-section-title" style={{ maxWidth: 560 }}>
+          <h1 className="gp-section-title" style={{ width: "100%", wordBreak: "break-word" }}>
             Trusted by homes and businesses across Malawi
           </h1>
-          <p className="gp-section-sub" style={{ marginTop: 14 }}>
+          <p className="gp-section-sub" style={{ marginTop: 14, wordBreak: "break-word" }}>
             Real experiences from our clients — their words, not ours.
           </p>
         </div>
@@ -68,9 +68,9 @@ export default function Testimonials() {
                 { value: "100%", label: "Would recommend" },
                 { value: "2 hrs", label: "Avg. response time" },
               ].map(s => (
-                <div key={s.label} style={{ textAlign: "center" }}>
-                  <p style={{ fontSize: "clamp(18px, 4vw, 24px)", fontWeight: 800, color: "var(--gp-green)", margin: 0, lineHeight: 1 }}>{s.value}</p>
-                  <p style={{ fontSize: "clamp(11px, 1.5vw, 12px)", color: "var(--gp-text-muted)", margin: "4px 0 0" }}>{s.label}</p>
+                <div key={s.label} style={{ textAlign: "center", minWidth: 0 }}>
+                  <p style={{ fontSize: "clamp(18px, 4vw, 24px)", fontWeight: 800, color: "var(--gp-green)", margin: 0, lineHeight: 1, wordBreak: "break-word" }}>{s.value}</p>
+                  <p style={{ fontSize: "clamp(11px, 1.5vw, 12px)", color: "var(--gp-text-muted)", margin: "4px 0 0", wordBreak: "break-word" }}>{s.label}</p>
                 </div>
               ))}
             </div>
@@ -86,6 +86,7 @@ export default function Testimonials() {
               <div key={name} className="gp-card" style={{
                 padding: "clamp(20px, 4vw, 28px)",
                 display: "flex", flexDirection: "column", gap: 14,
+                minWidth: 0,
               }}>
                 {/* Stars */}
                 <div style={{ display: "flex", gap: 3 }}>
@@ -102,6 +103,7 @@ export default function Testimonials() {
                   fontSize: "clamp(13px, 2vw, 14px)",
                   color: "var(--gp-text-muted)",
                   lineHeight: 1.75, margin: 0, flexGrow: 1,
+                  wordBreak: "break-word",
                 }}>
                   &ldquo;{quote}&rdquo;
                 </p>
@@ -115,9 +117,9 @@ export default function Testimonials() {
                     display: "flex", alignItems: "center", justifyContent: "center",
                     fontSize: 13, fontWeight: 700, color: "var(--gp-green)", flexShrink: 0,
                   }}>{initials}</div>
-                  <div>
-                    <p style={{ fontSize: 13, fontWeight: 700, color: "var(--gp-text-primary)", margin: 0 }}>{name}</p>
-                    <p style={{ fontSize: 12, color: "var(--gp-text-subtle)", margin: 0 }}>📍 {location}</p>
+                  <div style={{ minWidth: 0 }}>
+                    <p style={{ fontSize: 13, fontWeight: 700, color: "var(--gp-text-primary)", margin: 0, wordBreak: "break-word" }}>{name}</p>
+                    <p style={{ fontSize: 12, color: "var(--gp-text-subtle)", margin: 0, wordBreak: "break-word" }}>📍 {location}</p>
                   </div>
                 </div>
               </div>
@@ -132,18 +134,20 @@ export default function Testimonials() {
         backgroundColor: "var(--gp-bg-section)",
         borderTop: "1px solid var(--gp-border)",
       }}>
-        <div className="gp-container" style={{ textAlign: "center", padding: "0 1.5rem" }}>
+        <div className="gp-container" style={{ textAlign: "center" }}>
           <h2 style={{
             fontSize: "clamp(1.4rem, 3.5vw, 2rem)",
             fontWeight: 800, color: "var(--gp-text-primary)",
             margin: "0 0 12px", letterSpacing: "-0.01em",
+            wordBreak: "break-word",
           }}>
             Join hundreds of satisfied clients
           </h2>
           <p style={{
             fontSize: "clamp(14px, 2vw, 15px)",
             color: "var(--gp-text-muted)",
-            margin: "0 auto 28px", lineHeight: 1.7, maxWidth: 460,
+            margin: "0 auto 28px", lineHeight: 1.7, maxWidth: "100%",
+            wordBreak: "break-word",
           }}>
             Ready to experience the Green Power difference?
           </p>
@@ -155,17 +159,29 @@ export default function Testimonials() {
 
       {/* ── Responsive styles ── */}
       <style>{`
+        *, *::before, *::after {
+          box-sizing: border-box;
+        }
+        .gp-container {
+          width: 100%;
+          max-width: 100%;
+          padding-left: clamp(1rem, 4vw, 1.5rem);
+          padding-right: clamp(1rem, 4vw, 1.5rem);
+        }
+
         /* Rating bar */
         .gp-rating-bar {
           display: flex;
           flex-wrap: wrap;
           align-items: center;
           gap: 24px;
+          width: 100%;
         }
         .gp-rating-score {
           display: flex;
           align-items: center;
           gap: 16px;
+          min-width: 0;
         }
         .gp-rating-divider {
           width: 1px;
@@ -175,8 +191,9 @@ export default function Testimonials() {
         }
         .gp-rating-stats {
           display: flex;
-          gap: clamp(20px, 4vw, 40px);
+          gap: clamp(16px, 4vw, 40px);
           flex-wrap: wrap;
+          min-width: 0;
         }
 
         /* Reviews grid */
@@ -184,6 +201,7 @@ export default function Testimonials() {
           display: grid;
           grid-template-columns: 1fr;
           gap: 16px;
+          width: 100%;
         }
 
         /* Tablet: 2 columns */
@@ -200,8 +218,12 @@ export default function Testimonials() {
           }
         }
 
-        /* Mobile: hide divider, stack rating bar */
+        /* Mobile */
         @media (max-width: 480px) {
+          .gp-container {
+            padding-left: 1rem;
+            padding-right: 1rem;
+          }
           .gp-rating-divider {
             display: none;
           }
