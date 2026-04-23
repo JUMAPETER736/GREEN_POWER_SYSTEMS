@@ -66,13 +66,8 @@ function Toast({ message, onClose }: { message: string; onClose: () => void }) {
 
 const EMPTY_FORM = { name: "", email: "", phone: "", service: "", message: "" };
 
-/** Validate phone field:
- *  - Empty is allowed (optional field)
- *  - Each number (comma-separated) must start with a + country code
- *  - Returns an error string or "" if valid
- */
 function validatePhone(value: string): string {
-  if (!value.trim()) return ""; // optional
+  if (!value.trim()) return "";
   const numbers = value.split(",").map(n => n.trim()).filter(Boolean);
   const invalid = numbers.filter(n => !/^\+\d/.test(n));
   if (invalid.length > 0) {
@@ -82,31 +77,25 @@ function validatePhone(value: string): string {
 }
 
 export default function Contact() {
-  const [toast, setToast]         = useState(false);
-  const [loading, setLoading]     = useState(false);
-  const [error, setError]         = useState("");
+  const [toast, setToast]           = useState(false);
+  const [loading, setLoading]       = useState(false);
+  const [error, setError]           = useState("");
   const [phoneError, setPhoneError] = useState("");
-  const [form, setForm]           = useState(EMPTY_FORM);
+  const [form, setForm]             = useState(EMPTY_FORM);
 
   const handle = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
     setForm(f => ({ ...f, [name]: value }));
-
-    // Live-validate phone as user types
-    if (name === "phone") {
-      setPhoneError(validatePhone(value));
-    }
+    if (name === "phone") setPhoneError(validatePhone(value));
   };
 
   const closeToast = useCallback(() => setToast(false), []);
 
   const handleSubmit = async () => {
-    // Final validation before submit
     const phoneErr = validatePhone(form.phone);
     setPhoneError(phoneErr);
-
     if (!form.name || !form.email || !form.message) {
       setError("Please fill in your name, email, and message.");
       return;
@@ -115,11 +104,10 @@ export default function Contact() {
       setError("Please fix the phone number before submitting.");
       return;
     }
-
     setError("");
     setLoading(true);
     try {
-     const res = await fetch("/api/routes/contacts", {
+      const res = await fetch("/api/routes/contacts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -157,6 +145,29 @@ export default function Contact() {
     border: "1.5px solid #c0392b",
   };
 
+  const contactItems = [
+    {
+      icon: "M3 5a2 2 0 0 1 2-2h3.28a1 1 0 0 1 .948.684l1.498 4.493a1 1 0 0 1-.502 1.21l-2.257 1.13a11.042 11.042 0 0 0 5.516 5.516l1.13-2.257a1 1 0 0 1 1.21-.502l4.493 1.498a1 1 0 0 1 .684.949V19a2 2 0 0 1-2 2h-1C9.716 21 3 14.284 3 6V5z",
+      label: "Call us",
+      value: "+265 999 534 304",
+    },
+    {
+      icon: "M3 8l7.89 5.26a2 2 0 0 0 2.22 0L21 8M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z",
+      label: "Email us",
+      value: "greenpowersystemsltd@gmail.com",
+    },
+    {
+      icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0z",
+      label: "Visit us",
+      value: "QuickTrip Complex, Area 25, Lilongwe",
+    },
+    {
+      icon: "M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0z",
+      label: "Hours",
+      value: "Mon–Sat · 8am to 5pm",
+    },
+  ];
+
   return (
     <div style={{ backgroundColor: "var(--gp-bg-page)" }}>
 
@@ -187,29 +198,9 @@ export default function Contact() {
         padding: "20px 0",
       }}>
         <div className="gp-container">
+          {/* Stack all 4 items in a 2×2 grid on mobile, single row on desktop */}
           <div className="gp-contact-bar">
-            {[
-              {
-                icon: "M3 5a2 2 0 0 1 2-2h3.28a1 1 0 0 1 .948.684l1.498 4.493a1 1 0 0 1-.502 1.21l-2.257 1.13a11.042 11.042 0 0 0 5.516 5.516l1.13-2.257a1 1 0 0 1 1.21-.502l4.493 1.498a1 1 0 0 1 .684.949V19a2 2 0 0 1-2 2h-1C9.716 21 3 14.284 3 6V5z",
-                label: "Call us",
-                value: "+265 999 534 304",
-              },
-              {
-                icon: "M3 8l7.89 5.26a2 2 0 0 0 2.22 0L21 8M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z",
-                label: "Email us",
-                value: "greenpowersystemsltd@gmail.com",
-              },
-              {
-                icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0z",
-                label: "Visit us",
-                value: "QuickTrip Complex, Area 25, Lilongwe",
-              },
-              {
-                icon: "M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0z",
-                label: "Hours",
-                value: "Mon–Sat · 8am to 5pm",
-              },
-            ].map(({ icon, label, value }) => (
+            {contactItems.map(({ icon, label, value }) => (
               <div key={label} className="gp-contact-bar-item">
                 <div style={{
                   width: 36, height: 36, borderRadius: "50%",
@@ -224,9 +215,20 @@ export default function Contact() {
                     <path d={icon} />
                   </svg>
                 </div>
-                <div>
-                  <p style={{ fontSize: 11, fontWeight: 600, color: "var(--gp-text-subtle)", margin: "0 0 2px", textTransform: "uppercase", letterSpacing: "0.05em" }}>{label}</p>
-                  <p style={{ fontSize: 13, fontWeight: 600, color: "var(--gp-text-primary)", margin: 0 }}>{value}</p>
+                <div style={{ minWidth: 0 }}>
+                  <p style={{
+                    fontSize: 11, fontWeight: 600, color: "var(--gp-text-subtle)",
+                    margin: "0 0 2px", textTransform: "uppercase", letterSpacing: "0.05em",
+                  }}>
+                    {label}
+                  </p>
+                  {/* word-break so long emails/numbers wrap gracefully instead of overflowing */}
+                  <p style={{
+                    fontSize: 13, fontWeight: 600, color: "var(--gp-text-primary)",
+                    margin: 0, wordBreak: "break-all", lineHeight: 1.4,
+                  }}>
+                    {value}
+                  </p>
                 </div>
               </div>
             ))}
@@ -276,7 +278,7 @@ export default function Contact() {
                   </div>
                 </div>
 
-                {/* Phone field with country code enforcement */}
+                {/* Phone */}
                 <div>
                   <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
                     Phone number
@@ -423,40 +425,56 @@ export default function Contact() {
 
       {/* ── Responsive styles ── */}
       <style>{`
+        /* Contact bar: single column on very small screens */
         .gp-contact-bar {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+          grid-template-columns: 1fr;
           gap: 16px;
         }
+
+        /* 2-column grid from 480px */
+        @media (min-width: 480px) {
+          .gp-contact-bar {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        /* Full 4-column row from 900px */
+        @media (min-width: 900px) {
+          .gp-contact-bar {
+            grid-template-columns: repeat(4, 1fr);
+          }
+        }
+
         .gp-contact-bar-item {
           display: flex;
           align-items: flex-start;
           gap: 12px;
+          min-width: 0;
         }
+
         .gp-contact-grid {
           display: grid;
           gap: 24px;
           grid-template-columns: 1fr;
         }
+
         .gp-form-row {
           display: grid;
           grid-template-columns: 1fr;
           gap: 14px;
         }
+
         @media (min-width: 600px) {
           .gp-form-row {
             grid-template-columns: 1fr 1fr;
           }
         }
+
         @media (min-width: 900px) {
           .gp-contact-grid {
             grid-template-columns: 1fr 1fr;
             align-items: stretch;
-          }
-        }
-        @media (max-width: 480px) {
-          .gp-contact-bar {
-            grid-template-columns: repeat(2, 1fr);
           }
         }
       `}</style>
