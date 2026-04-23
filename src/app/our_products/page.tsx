@@ -74,22 +74,22 @@ export default function Products() {
   };
 
   return (
-    <div style={{ backgroundColor: "var(--gp-bg-page)" }}>
+    <div style={{ backgroundColor: "var(--gp-bg-page)", overflowX: "hidden", width: "100%" }}>
 
       {/* ── Page Hero ── */}
       <div className="gp-page-hero">
         <div className="gp-container">
           <span className="gp-eyebrow">Our products</span>
-          <h1 className="gp-section-title" style={{ maxWidth: 560 }}>
+          <h1 className="gp-section-title" style={{ width: "100%", wordBreak: "break-word" }}>
             Quality solar equipment, competitively priced
           </h1>
-          <p className="gp-section-sub" style={{ marginTop: 14 }}>
+          <p className="gp-section-sub" style={{ marginTop: 14, wordBreak: "break-word" }}>
             We stock and supply leading solar brands. All products come with manufacturer warranties and our full installation support.
           </p>
         </div>
       </div>
 
-      {/* ── Quick-jump nav (tablet/desktop only) ── */}
+      {/* ── Quick-jump nav ── */}
       <nav className="gp-products-jumpnav">
         <div className="gp-container">
           <div className="gp-jumpnav-inner">
@@ -162,7 +162,7 @@ export default function Products() {
       {/* ── Bottom CTA ── */}
       <section style={{ padding: "64px 0", backgroundColor: "var(--gp-bg-dark)" }}>
         <div className="gp-container gp-cta-inner">
-          <div>
+          <div style={{ minWidth: 0 }}>
             <h2 className="gp-cta-heading">Looking for a specific product?</h2>
             <p className="gp-cta-sub">
               We can source and supply products not listed here. Contact us with your specs.
@@ -176,6 +176,15 @@ export default function Products() {
 
       {/* ── Responsive styles ── */}
       <style>{`
+        *, *::before, *::after {
+          box-sizing: border-box;
+        }
+        .gp-container {
+          width: 100%;
+          max-width: 100%;
+          padding-left: clamp(1rem, 4vw, 1.5rem);
+          padding-right: clamp(1rem, 4vw, 1.5rem);
+        }
 
         /* ── Jump nav ── */
         .gp-products-jumpnav {
@@ -220,6 +229,7 @@ export default function Products() {
         /* ── Category block ── */
         .gp-category-block {
           scroll-margin-top: 56px;
+          min-width: 0;
         }
         .gp-cat-heading {
           display: flex;
@@ -245,13 +255,16 @@ export default function Products() {
           font-weight: 700;
           color: var(--gp-text-primary);
           margin: 0;
+          word-break: break-word;
+          min-width: 0;
         }
 
         /* ── Products grid ── */
         .gp-products-grid {
           display: grid;
           gap: 14px;
-          grid-template-columns: 1fr;          /* mobile: 1 col */
+          grid-template-columns: 1fr;
+          width: 100%;
         }
 
         /* tablet: 2 cols */
@@ -274,6 +287,7 @@ export default function Products() {
           display: flex;
           flex-direction: column;
           gap: 10px;
+          min-width: 0;
           transition: box-shadow 0.2s, transform 0.2s;
         }
         .gp-product-card:hover {
@@ -285,6 +299,7 @@ export default function Products() {
           align-items: flex-start;
           justify-content: space-between;
           gap: 10px;
+          min-width: 0;
         }
         .gp-product-name {
           font-size: 14px;
@@ -293,6 +308,8 @@ export default function Products() {
           margin: 0;
           line-height: 1.35;
           flex: 1;
+          min-width: 0;
+          word-break: break-word;
         }
         .gp-product-badge {
           font-size: 10px;
@@ -308,6 +325,7 @@ export default function Products() {
           line-height: 1.65;
           margin: 0;
           flex: 1;
+          word-break: break-word;
         }
         .gp-product-enquire {
           font-size: 12.5px;
@@ -338,12 +356,14 @@ export default function Products() {
           color: #fff;
           margin: 0 0 10px;
           letter-spacing: -0.02em;
+          word-break: break-word;
         }
         .gp-cta-sub {
           font-size: clamp(13px, 2vw, 15px);
           color: rgba(255,255,255,0.62);
           margin: 0;
           line-height: 1.7;
+          word-break: break-word;
         }
         .gp-cta-btn {
           flex-shrink: 0;
@@ -365,6 +385,12 @@ export default function Products() {
           }
         }
 
+        @media (max-width: 480px) {
+          .gp-container {
+            padding-left: 1rem;
+            padding-right: 1rem;
+          }
+        }
       `}</style>
     </div>
   );
