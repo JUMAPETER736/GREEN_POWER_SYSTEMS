@@ -37,22 +37,21 @@ export default function Navbar() {
             display: "flex", alignItems: "center",
             gap: 12, textDecoration: "none", flexShrink: 0,
           }}>
-            {/* FIX: explicit width + height so the logo renders on mobile */}
             <div
               className="gp-logo-wrap"
               style={{
                 borderRadius: 10, overflow: "hidden",
                 border: "1.5px solid var(--gp-green-border)",
                 flexShrink: 0, position: "relative",
-                width: 48, height: 48,          /* ← KEY FIX */
+                width: 48, height: 48,
               }}
             >
               <Image
-                src="/logo.jpeg"
+                src="/company_logo.jpeg"
                 alt="Green Power Systems logo"
                 fill
                 sizes="48px"
-                style={{ objectFit: "cover" }}  /* ← KEY FIX */
+                style={{ objectFit: "cover" }}
                 className="gp-logo-img"
               />
             </div>
