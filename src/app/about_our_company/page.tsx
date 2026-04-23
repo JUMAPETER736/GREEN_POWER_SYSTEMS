@@ -23,7 +23,7 @@ export default function About() {
       name: "Andrew Henry",
       role: "Marketing Officer",
       initials: "AH",
-      photo: null,
+      photo: "/images/company_members_profiles/image3.jpg",
       edu: "Professional Certificate in Marketing (Lilongwe Technical College)",
       note: "1+ year in renewable energy · Brand & marketing strategy",
     },
@@ -31,7 +31,7 @@ export default function About() {
       name: "Felix Chinkhande",
       role: "Finance & Administration Officer",
       initials: "FC",
-      photo: "/images/company_members_profiles/image2.jpeg",
+      photo: "/images/company_members_profiles/image2.jpg",
       edu: "Management Certificate (Lilongwe Technical College)",
       note: "Finance, admin & organisational operations",
     },
@@ -163,7 +163,6 @@ export default function About() {
                 padding: "clamp(20px, 4vw, 28px)",
                 textAlign: "center",
               }}>
-                {/* Avatar — photo if available, else initials fallback */}
                 <div style={{
                   width: "clamp(64px, 10vw, 88px)",
                   height: "clamp(64px, 10vw, 88px)",
@@ -224,7 +223,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* ── Responsive overrides ── */}
       <style>{`
         @media (max-width: 480px) {
           .gp-container {
