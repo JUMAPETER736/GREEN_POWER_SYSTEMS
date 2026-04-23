@@ -100,8 +100,8 @@ export default function Footer() {
             <p style={headingStyle}>Contact</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
 
-              <div>
-                <p style={labelStyle}>Phone</p>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
+                <p style={{ ...labelStyle, marginBottom: 0, flexShrink: 0 }}>Phone</p>
                 <Link
                   href="tel:+265999534304"
                   style={{ fontSize: 13, color: "#0f5f3f", textDecoration: "none" }}
@@ -110,8 +110,8 @@ export default function Footer() {
                 </Link>
               </div>
 
-              <div>
-                <p style={labelStyle}>Email</p>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
+                <p style={{ ...labelStyle, marginBottom: 0, flexShrink: 0 }}>Email</p>
                 <Link
                   href="mailto:greenpowersystemsltd@gmail.com"
                   style={{ fontSize: 13, color: "#0f5f3f", textDecoration: "none", wordBreak: "break-all" }}
@@ -120,17 +120,17 @@ export default function Footer() {
                 </Link>
               </div>
 
-              <div>
-                <p style={labelStyle}>Opening Hours</p>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
+                <p style={{ ...labelStyle, marginBottom: 0, flexShrink: 0 }}>Hours</p>
                 <p style={{ fontSize: 13, color: "#6b7280", margin: 0, lineHeight: 1.7 }}>
                   Mon – Sat: 8:00am – 5:00pm<br />
                   Sunday: Closed
                 </p>
               </div>
 
-              <div>
-                <p style={labelStyle}>Address</p>
-                <address style={{ fontSize: 13, color: "#6b7280", fontStyle: "normal", lineHeight: 1.7 }}>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
+                <p style={{ ...labelStyle, marginBottom: 0, flexShrink: 0 }}>Address</p>
+                <address style={{ fontSize: 13, color: "#6b7280", fontStyle: "normal", lineHeight: 1.7, margin: 0 }}>
                   QuickTrip Shopping Complex<br />
                   NYUMBA YA SOLAR<br />
                   Area 25 Sungwi, Lilongwe<br />
