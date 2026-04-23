@@ -54,12 +54,14 @@ export default function Services() {
   ];
 
   return (
-    <div style={{ backgroundColor: "var(--gp-bg-page)" }}>
+    <div style={{ backgroundColor: "var(--gp-bg-page)", overflowX: "hidden", width: "100%" }}>
       <div className="gp-page-hero">
         <div className="gp-container">
           <span className="gp-eyebrow">What we do</span>
-          <h1 className="gp-section-title" style={{ maxWidth: 560 }}>Complete solar solutions for every need</h1>
-          <p className="gp-section-sub" style={{ marginTop: 14 }}>
+          <h1 className="gp-section-title" style={{ width: "100%", wordBreak: "break-word" }}>
+            Complete solar solutions for every need
+          </h1>
+          <p className="gp-section-sub" style={{ marginTop: 14, wordBreak: "break-word" }}>
             From a single rooftop installation to a full commercial solar farm, we bring the expertise and hardware to get the job done right.
           </p>
         </div>
@@ -67,19 +69,38 @@ export default function Services() {
 
       <section style={{ padding: "72px 0" }}>
         <div className="gp-container">
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 20 }}>
+          <div className="gp-services-grid">
             {services.map(({ id, num, title, desc, features, featured }) => (
-              <div key={id} id={id} className={featured ? "gp-card-featured" : "gp-card"} style={{ padding: 32 }}>
-                <p style={{ fontSize: 11, color: "var(--gp-text-subtle)", fontWeight: 700, letterSpacing: "0.06em", margin: "0 0 14px" }}>{num}</p>
-                <h2 style={{ fontSize: 17, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 10px" }}>{title}</h2>
-                <p style={{ fontSize: 13.5, color: "var(--gp-text-muted)", lineHeight: 1.7, margin: "0 0 20px" }}>{desc}</p>
+              <div
+                key={id}
+                id={id}
+                className={featured ? "gp-card-featured" : "gp-card"}
+                style={{ padding: "clamp(20px, 4vw, 32px)", minWidth: 0 }}
+              >
+                <p style={{ fontSize: 11, color: "var(--gp-text-subtle)", fontWeight: 700, letterSpacing: "0.06em", margin: "0 0 14px" }}>
+                  {num}
+                </p>
+                <h2 style={{ fontSize: 17, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 10px", wordBreak: "break-word" }}>
+                  {title}
+                </h2>
+                <p style={{ fontSize: 13.5, color: "var(--gp-text-muted)", lineHeight: 1.7, margin: "0 0 20px", wordBreak: "break-word" }}>
+                  {desc}
+                </p>
                 <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 8 }}>
                   {features.map(f => (
-                    <li key={f} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 13, color: "var(--gp-text-muted)" }}>
-                      <span style={{ width: 16, height: 16, borderRadius: "50%", backgroundColor: "var(--gp-green-light)", border: "1px solid var(--gp-green-border)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                        <svg width={9} height={9} viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="var(--gp-green)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    <li key={f} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 13, color: "var(--gp-text-muted)", minWidth: 0 }}>
+                      <span style={{
+                        width: 16, height: 16, borderRadius: "50%",
+                        backgroundColor: "var(--gp-green-light)",
+                        border: "1px solid var(--gp-green-border)",
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        flexShrink: 0,
+                      }}>
+                        <svg width={9} height={9} viewBox="0 0 12 12" fill="none">
+                          <path d="M2 6l3 3 5-5" stroke="var(--gp-green)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
                       </span>
-                      {f}
+                      <span style={{ wordBreak: "break-word", minWidth: 0 }}>{f}</span>
                     </li>
                   ))}
                 </ul>
@@ -90,14 +111,77 @@ export default function Services() {
       </section>
 
       <section style={{ padding: "64px 0", backgroundColor: "var(--gp-bg-dark)" }}>
-        <div className="gp-container" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 28 }}>
-          <div>
-            <h2 style={{ fontSize: "clamp(1.4rem,3vw,2rem)", fontWeight: 800, color: "#fff", margin: "0 0 8px" }}>Need a custom solution?</h2>
-            <p style={{ fontSize: 15, color: "rgba(255,255,255,0.62)", margin: 0 }}>Tell us about your project and we'll design the perfect system.</p>
+        <div className="gp-container gp-services-cta">
+          <div style={{ minWidth: 0 }}>
+            <h2 style={{ fontSize: "clamp(1.4rem, 3vw, 2rem)", fontWeight: 800, color: "#fff", margin: "0 0 8px", wordBreak: "break-word" }}>
+              Need a custom solution?
+            </h2>
+            <p style={{ fontSize: 15, color: "rgba(255,255,255,0.62)", margin: 0, wordBreak: "break-word" }}>
+              Tell us about your project and we'll design the perfect system.
+            </p>
           </div>
-          <Link href="/company_contact_details" className="gp-btn-accent">Request a Quote</Link>
+          <Link href="/company_contact_details" className="gp-btn-accent gp-services-cta-btn">
+            Request a Quote
+          </Link>
         </div>
       </section>
+
+      <style>{`
+        *, *::before, *::after {
+          box-sizing: border-box;
+        }
+        .gp-container {
+          width: 100%;
+          max-width: 100%;
+          padding-left: clamp(1rem, 4vw, 1.5rem);
+          padding-right: clamp(1rem, 4vw, 1.5rem);
+        }
+        .gp-services-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 20px;
+          width: 100%;
+        }
+        @media (min-width: 560px) {
+          .gp-services-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+        @media (min-width: 960px) {
+          .gp-services-grid {
+            grid-template-columns: repeat(3, 1fr);
+          }
+        }
+        .gp-services-cta {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 24px;
+        }
+        .gp-services-cta-btn {
+          flex-shrink: 0;
+          width: 100%;
+          justify-content: center;
+          display: flex;
+        }
+        @media (min-width: 640px) {
+          .gp-services-cta {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+          }
+          .gp-services-cta-btn {
+            width: auto;
+          }
+        }
+        @media (max-width: 480px) {
+          .gp-container {
+            padding-left: 1rem;
+            padding-right: 1rem;
+          }
+        }
+      `}</style>
     </div>
   );
 }
