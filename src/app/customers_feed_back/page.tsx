@@ -1,6 +1,9 @@
 import Link from "next/link";
 
 export default function Testimonials() {
+
+  // Review data 
+  // Add or remove review objects here to update the testimonials grid
   const reviews = [
     { name: "Chimwemwe Banda", location: "Lilongwe", initials: "CB", stars: 5, quote: "Green Power installed a 3kW system on our home. The team was professional and the panels have been running flawlessly for over a year. Our electricity bills dropped by 80%." },
     { name: "Dr. Grace Nyirenda", location: "Area 43, Lilongwe", initials: "GN", stars: 5, quote: "Excellent service from start to finish. They explained everything clearly, gave us a fair price, and the installation was completed in one day. Highly recommended." },
@@ -10,13 +13,15 @@ export default function Testimonials() {
     { name: "Mercy Phiri", location: "Zomba", initials: "MP", stars: 5, quote: "The consultation was free and genuinely helpful — no pressure at all. We ended up choosing a system that fits our budget perfectly." },
   ];
 
+  // ── Derived stats (auto-calculated from reviews array above) ─────────────────
   const avgRating = (reviews.reduce((s, r) => s + r.stars, 0) / reviews.length).toFixed(1);
   const fiveStarCount = reviews.filter(r => r.stars === 5).length;
 
   return (
     <div style={{ backgroundColor: "var(--gp-bg-page)", overflowX: "hidden", width: "100%" }}>
 
-      {/* ── Hero ── */}
+      {/*  Page Hero 
+           Top banner with eyebrow label, heading, and subheading               */}
       <div className="gp-page-hero">
         <div className="gp-container">
           <span className="gp-eyebrow">What clients say</span>
@@ -29,7 +34,8 @@ export default function Testimonials() {
         </div>
       </div>
 
-      {/* ── Rating summary bar ── */}
+      {/*  Rating Summary Bar 
+           Shows average score, 5-star count, recommendation rate, response time */}
       <section style={{
         backgroundColor: "var(--gp-bg-card)",
         borderBottom: "1px solid var(--gp-border)",
@@ -37,7 +43,8 @@ export default function Testimonials() {
       }}>
         <div className="gp-container">
           <div className="gp-rating-bar">
-            {/* Average score */}
+
+            {/* Average numeric score + 5 filled stars */}
             <div className="gp-rating-score">
               <p style={{
                 fontSize: "clamp(36px, 8vw, 52px)",
@@ -45,6 +52,7 @@ export default function Testimonials() {
                 margin: 0, lineHeight: 1,
               }}>{avgRating}</p>
               <div>
+                {/* Always render 5 filled stars regardless of score */}
                 <div style={{ display: "flex", gap: 3, marginBottom: 4 }}>
                   {Array.from({ length: 5 }).map((_, i) => (
                     <svg key={i} width={18} height={18} viewBox="0 0 24 24" fill="#f5a623">
@@ -58,10 +66,10 @@ export default function Testimonials() {
               </div>
             </div>
 
-            {/* Divider */}
+            {/* Vertical divider — hidden on mobile via CSS */}
             <div className="gp-rating-divider" />
 
-            {/* Stats */}
+            {/* Quick stats: 5-star count, recommendation %, response time */}
             <div className="gp-rating-stats">
               {[
                 { value: `${fiveStarCount}/${reviews.length}`, label: "5-star reviews" },
@@ -74,11 +82,14 @@ export default function Testimonials() {
                 </div>
               ))}
             </div>
+
           </div>
         </div>
       </section>
 
-      {/* ── Reviews grid ── */}
+      {/*  Reviews Grid 
+           1 col on mobile → 2 col on tablet → 3 col on desktop
+           Each card shows: star rating, quote, reviewer avatar + name + location */}
       <section style={{ padding: "clamp(40px, 7vw, 72px) 0" }}>
         <div className="gp-container">
           <div className="gp-reviews-grid">
@@ -88,7 +99,8 @@ export default function Testimonials() {
                 display: "flex", flexDirection: "column", gap: 14,
                 minWidth: 0,
               }}>
-                {/* Stars */}
+
+                {/* Star rating — filled stars based on review.stars value */}
                 <div style={{ display: "flex", gap: 3 }}>
                   {Array.from({ length: 5 }).map((_, i) => (
                     <svg key={i} width={15} height={15} viewBox="0 0 24 24"
@@ -98,7 +110,7 @@ export default function Testimonials() {
                   ))}
                 </div>
 
-                {/* Quote */}
+                {/* Review quote text — flexGrow pushes reviewer info to bottom */}
                 <p style={{
                   fontSize: "clamp(13px, 2vw, 14px)",
                   color: "var(--gp-text-muted)",
@@ -108,8 +120,9 @@ export default function Testimonials() {
                   &ldquo;{quote}&rdquo;
                 </p>
 
-                {/* Reviewer */}
+                {/* Reviewer info — initials avatar + name + location */}
                 <div style={{ display: "flex", alignItems: "center", gap: 12, paddingTop: 12, borderTop: "1px solid var(--gp-border)" }}>
+                  {/* Avatar circle using reviewer initials */}
                   <div style={{
                     width: 40, height: 40, borderRadius: "50%",
                     backgroundColor: "var(--gp-green-light)",
@@ -122,13 +135,15 @@ export default function Testimonials() {
                     <p style={{ fontSize: 12, color: "var(--gp-text-subtle)", margin: 0, wordBreak: "break-word" }}>📍 {location}</p>
                   </div>
                 </div>
+
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── CTA ── */}
+      {/*  Bottom CTA 
+           Encourages visitors to get a free quote after reading reviews          */}
       <section style={{
         padding: "clamp(48px, 7vw, 72px) 0",
         backgroundColor: "var(--gp-bg-section)",
@@ -157,7 +172,8 @@ export default function Testimonials() {
         </div>
       </section>
 
-      {/* ── Responsive styles ── */}
+      {/*  Scoped Responsive Styles 
+           Grid breakpoints and rating bar layout adjustments for mobile/tablet   */}
       <style>{`
         *, *::before, *::after {
           box-sizing: border-box;
@@ -169,7 +185,7 @@ export default function Testimonials() {
           padding-right: clamp(1rem, 4vw, 1.5rem);
         }
 
-        /* Rating bar */
+        /* Rating bar layout */
         .gp-rating-bar {
           display: flex;
           flex-wrap: wrap;
@@ -196,7 +212,7 @@ export default function Testimonials() {
           min-width: 0;
         }
 
-        /* Reviews grid */
+        /* Reviews grid — mobile first */
         .gp-reviews-grid {
           display: grid;
           grid-template-columns: 1fr;
@@ -218,12 +234,13 @@ export default function Testimonials() {
           }
         }
 
-        /* Mobile */
+        /* Mobile tweaks */
         @media (max-width: 480px) {
           .gp-container {
             padding-left: 1rem;
             padding-right: 1rem;
           }
+          /* Hide divider on small screens to save space */
           .gp-rating-divider {
             display: none;
           }
