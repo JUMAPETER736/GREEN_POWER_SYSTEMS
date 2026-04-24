@@ -42,7 +42,7 @@ export default function Footer() {
 
       {/* ── Floating WhatsApp Button ── */}
       <a
-        href="https://wa.me/265999534304"
+        href="https://wa.me/265999534305"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with us on WhatsApp"
@@ -150,10 +150,10 @@ export default function Footer() {
               <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
                 <p style={{ ...labelStyle, marginBottom: 0, flexShrink: 0 }}>Phone</p>
                 <Link
-                  href="tel:+265999534304"
+                  href="tel:+265999534305"
                   style={{ fontSize: 13, color: "#0f5f3f", textDecoration: "none" }}
                 >
-                  +265 999 534 304
+                  +265 999 534 305
                 </Link>
               </div>
 
