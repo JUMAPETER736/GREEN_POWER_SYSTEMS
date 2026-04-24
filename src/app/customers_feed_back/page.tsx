@@ -21,7 +21,7 @@ export default function Testimonials() {
         <div className="gp-container">
           <span className="gp-eyebrow">What clients say</span>
           <h1 className="gp-section-title" style={{ width: "100%", wordBreak: "break-word" }}>
-            Trusted by homes and businesses across Malawi
+            Trusted by homes, commercial and industrial areas across Malawi
           </h1>
           <p className="gp-section-sub" style={{ marginTop: 14, wordBreak: "break-word" }}>
             Real experiences from our clients — their words, not ours.
