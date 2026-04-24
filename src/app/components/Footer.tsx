@@ -48,7 +48,7 @@ export default function Footer() {
         aria-label="Chat with us on WhatsApp"
         style={{
           position: "fixed",
-          bottom: 96,
+          bottom: 28,
           right: 28,
           zIndex: 9999,
           display: "flex",
