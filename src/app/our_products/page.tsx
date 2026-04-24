@@ -2,9 +2,15 @@
 import Link from "next/link";
 
 export default function Products() {
+
+  // ── Product categories data ───────────────────────────────────────────────────
+  // Each category has a title, icon, and array of product items.
+  // To add a new category, push a new object into this array.
+  // To add a product, push a new object into the relevant category's items array.
   const categories = [
     {
       title: "Solar Panels",
+      // Category icon — inline SVG using currentColor so it inherits gp-cat-icon color
       icon: (
         <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
           <rect x="2" y="7" width="20" height="14" rx="2" />
@@ -64,19 +70,23 @@ export default function Products() {
     },
   ];
 
+  // ── Badge colour map ──────────────────────────────────────────────────────────
+  // Maps each badge label to its background, text, and border colour.
+  // Add a new entry here if you introduce a new badge type in the items above.
   const BADGE_STYLES: Record<string, { bg: string; color: string; border: string }> = {
-    "Best seller": { bg: "var(--gp-green-light)", color: "var(--gp-green)", border: "var(--gp-green-border)" },
-    "Premium":     { bg: "#fef3c7", color: "#92400e", border: "#fde68a" },
-    "Popular":     { bg: "var(--gp-green-light)", color: "var(--gp-green)", border: "var(--gp-green-border)" },
-    "Commercial":  { bg: "#dbeafe", color: "#1d4ed8", border: "#bfdbfe" },
-    "Best value":  { bg: "#f3e8ff", color: "#7c3aed", border: "#e9d5ff" },
-    "New":         { bg: "#fce7f3", color: "#be185d", border: "#fbcfe8" },
+    "Best seller": { bg: "var(--gp-green-light)", color: "var(--gp-green)",  border: "var(--gp-green-border)" },
+    "Premium":     { bg: "#fef3c7",               color: "#92400e",           border: "#fde68a" },
+    "Popular":     { bg: "var(--gp-green-light)", color: "var(--gp-green)",  border: "var(--gp-green-border)" },
+    "Commercial":  { bg: "#dbeafe",               color: "#1d4ed8",           border: "#bfdbfe" },
+    "Best value":  { bg: "#f3e8ff",               color: "#7c3aed",           border: "#e9d5ff" },
+    "New":         { bg: "#fce7f3",               color: "#be185d",           border: "#fbcfe8" },
   };
 
   return (
     <div style={{ backgroundColor: "var(--gp-bg-page)", overflowX: "hidden", width: "100%" }}>
 
-      {/* ── Page Hero ── */}
+      {/* ── Page Hero ──────────────────────────────────────────────────────────────
+           Top banner with eyebrow label, heading, and subheading                 */}
       <div className="gp-page-hero">
         <div className="gp-container">
           <span className="gp-eyebrow">Our products</span>
@@ -89,12 +99,14 @@ export default function Products() {
         </div>
       </div>
 
-      {/* ── Quick-jump nav ── */}
+      {/* ── Quick-jump Nav ─────────────────────────────────────────────────────────
+           Sticky tab bar that smooth-scrolls to each category section.
+           Anchor IDs are auto-generated from category titles below.              */}
       <nav className="gp-products-jumpnav">
         <div className="gp-container">
           <div className="gp-jumpnav-inner">
             {categories.map(({ title }) => (
-              <a
+              
                 key={title}
                 href={`#cat-${title.toLowerCase().replace(/\s+&?\s*/g, "-")}`}
                 className="gp-jumpnav-link"
@@ -106,29 +118,35 @@ export default function Products() {
         </div>
       </nav>
 
-      {/* ── Product categories ── */}
+      {/* ── Product Categories ─────────────────────────────────────────────────────
+           Stacked column of category blocks, each with a heading and product grid */}
       <section style={{ padding: "56px 0 80px" }}>
         <div className="gp-container gp-categories-col">
 
           {categories.map(({ title, icon, items }) => {
+            // Generate anchor ID from category title e.g. "Solar Panels" → "cat-solar-panels"
             const anchorId = `cat-${title.toLowerCase().replace(/\s+&?\s*/g, "-")}`;
             return (
               <div key={title} id={anchorId} className="gp-category-block">
 
-                {/* Category heading */}
+                {/* Category heading row — icon + title */}
                 <div className="gp-cat-heading">
                   <span className="gp-cat-icon">{icon}</span>
                   <h2 className="gp-cat-title">{title}</h2>
                 </div>
 
-                {/* Cards grid */}
+                {/* Product cards grid — 1 col mobile, 2 tablet, 3 desktop */}
                 <div className="gp-products-grid">
                   {items.map(({ name, desc, badge }) => {
+                    // Look up badge styles — null if no badge on this product
                     const bs = badge ? BADGE_STYLES[badge] : null;
                     return (
                       <div key={name} className="gp-card gp-product-card">
+
+                        {/* Card top row — product name + optional badge */}
                         <div className="gp-product-card-top">
                           <h3 className="gp-product-name">{name}</h3>
+                          {/* Only render badge span if this product has one */}
                           {bs && (
                             <span
                               className="gp-product-badge"
@@ -142,24 +160,29 @@ export default function Products() {
                             </span>
                           )}
                         </div>
+
+                        {/* Short product description */}
                         <p className="gp-product-desc">{desc}</p>
-                        <Link
-                          href="/company_contact_details"
-                          className="gp-product-enquire"
-                        >
+
+                        {/* Enquire link — routes to contact page */}
+                        <Link href="/company_contact_details" className="gp-product-enquire">
                           Enquire →
                         </Link>
+
                       </div>
                     );
                   })}
                 </div>
+
               </div>
             );
           })}
+
         </div>
       </section>
 
-      {/* ── Bottom CTA ── */}
+      {/* ── Bottom CTA ─────────────────────────────────────────────────────────────
+           Dark banner for visitors looking for products not listed above          */}
       <section style={{ padding: "64px 0", backgroundColor: "var(--gp-bg-dark)" }}>
         <div className="gp-container gp-cta-inner">
           <div style={{ minWidth: 0 }}>
@@ -168,13 +191,15 @@ export default function Products() {
               We can source and supply products not listed here. Contact us with your specs.
             </p>
           </div>
+          {/* CTA button — links to contact page */}
           <Link href="/company_contact_details" className="gp-btn-accent gp-cta-btn">
             Contact our team
           </Link>
         </div>
       </section>
 
-      {/* ── Responsive styles ── */}
+      {/* ── Scoped Responsive Styles ───────────────────────────────────────────────
+           Jump nav, category grid, product cards, and CTA layout                 */}
       <style>{`
         *, *::before, *::after {
           box-sizing: border-box;
@@ -186,7 +211,7 @@ export default function Products() {
           padding-right: clamp(1rem, 4vw, 1.5rem);
         }
 
-        /* ── Jump nav ── */
+        /* ── Jump nav — sticky below the main navbar ── */
         .gp-products-jumpnav {
           background: var(--gp-bg-card);
           border-bottom: 1px solid var(--gp-border);
@@ -198,11 +223,11 @@ export default function Products() {
         .gp-jumpnav-inner {
           display: flex;
           gap: 0;
-          overflow-x: auto;
+          overflow-x: auto;           /* scrollable on mobile */
           -webkit-overflow-scrolling: touch;
-          scrollbar-width: none;
+          scrollbar-width: none;      /* hide scrollbar Firefox */
         }
-        .gp-jumpnav-inner::-webkit-scrollbar { display: none; }
+        .gp-jumpnav-inner::-webkit-scrollbar { display: none; } /* hide scrollbar Chrome */
         .gp-jumpnav-link {
           flex-shrink: 0;
           padding: 14px 20px;
@@ -219,7 +244,7 @@ export default function Products() {
           border-bottom-color: var(--gp-green);
         }
 
-        /* ── Layout ── */
+        /* ── Categories column layout ── */
         .gp-categories-col {
           display: flex;
           flex-direction: column;
@@ -228,7 +253,7 @@ export default function Products() {
 
         /* ── Category block ── */
         .gp-category-block {
-          scroll-margin-top: 56px;
+          scroll-margin-top: 56px; /* offset for sticky nav when jumping to anchor */
           min-width: 0;
         }
         .gp-cat-heading {
@@ -259,22 +284,20 @@ export default function Products() {
           min-width: 0;
         }
 
-        /* ── Products grid ── */
+        /* ── Products grid — mobile first ── */
         .gp-products-grid {
           display: grid;
           gap: 14px;
           grid-template-columns: 1fr;
           width: 100%;
         }
-
-        /* tablet: 2 cols */
+        /* Tablet: 2 columns */
         @media (min-width: 560px) {
           .gp-products-grid {
             grid-template-columns: repeat(2, 1fr);
           }
         }
-
-        /* desktop: 3 cols */
+        /* Desktop: 3 columns */
         @media (min-width: 960px) {
           .gp-products-grid {
             grid-template-columns: repeat(3, 1fr);
@@ -327,6 +350,7 @@ export default function Products() {
           flex: 1;
           word-break: break-word;
         }
+        /* Enquire link — arrow gap animates on hover */
         .gp-product-enquire {
           font-size: 12.5px;
           font-weight: 700;
@@ -342,7 +366,7 @@ export default function Products() {
           gap: 8px;
         }
 
-        /* ── Bottom CTA ── */
+        /* ── Bottom CTA — stacks on mobile, side-by-side on tablet+ ── */
         .gp-cta-inner {
           display: flex;
           flex-direction: column;
@@ -371,8 +395,6 @@ export default function Products() {
           justify-content: center;
           display: flex;
         }
-
-        /* tablet: side-by-side CTA */
         @media (min-width: 640px) {
           .gp-cta-inner {
             flex-direction: row;
@@ -385,6 +407,7 @@ export default function Products() {
           }
         }
 
+        /* Extra small screens */
         @media (max-width: 480px) {
           .gp-container {
             padding-left: 1rem;
@@ -392,6 +415,7 @@ export default function Products() {
           }
         }
       `}</style>
+
     </div>
   );
 }
