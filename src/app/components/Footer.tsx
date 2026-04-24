@@ -197,10 +197,10 @@ export default function Footer() {
           display: "flex", flexWrap: "wrap",
           justifyContent: "space-between", alignItems: "center", gap: 8,
         }}>
-          <p style={{ fontSize: 12, color: "#9ca3af", margin: 0 }}>
+          <p style={{ fontSize: 12, color: "#14360f", margin: 0 }}>
             © {new Date().getFullYear()} Green Power Systems Ltd. All rights reserved.
           </p>
-          <p style={{ fontSize: 12, color: "#9ca3af", margin: 0 }}>Lilongwe, Malawi</p>
+          <p style={{ fontSize: 12, color: "#14360f", margin: 0 }}>Lilongwe, Malawi</p>
         </div>
       </div>
 

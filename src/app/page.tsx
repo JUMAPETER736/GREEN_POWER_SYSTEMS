@@ -33,8 +33,9 @@ export default function Home() {
                 fontWeight: 800, color: "var(--gp-text-primary)",
                 lineHeight: 1.12, margin: 0, letterSpacing: "-0.02em",
               }}>
-                Power your future with{" "}
-                <span style={{ color: "var(--gp-green)" }}>clean solar energy</span>
+    
+                <span style={{ color: "var(--gp-green)" }}>Power your future with clean solar energy</span>
+            
               </h1>
 
               <p style={{ fontSize: "clamp(15px, 2vw, 17px)", color: "var(--gp-text-muted)", lineHeight: 1.7, margin: 0 }}>
