@@ -3,6 +3,12 @@ import Link from "next/link";
 
 export default function Products() {
 
+  // ── Helper: converts category title to anchor ID ──────────────────────────────
+  // Moved outside JSX to avoid the regex ">" character confusing the JSX parser.
+  // e.g. "Accessories & Mounting" → "cat-accessories--mounting"
+  const toAnchorId = (title: string) =>
+    `cat-${title.toLowerCase().replace(/\s+/g, "-").replace(/&/g, "")}`;
+
   // ── Product categories data ───────────────────────────────────────────────────
   // Each category has a title, icon, and array of product items.
   // To add a new category, push a new object into this array.
@@ -10,7 +16,6 @@ export default function Products() {
   const categories = [
     {
       title: "Solar Panels",
-      // Category icon — inline SVG using currentColor so it inherits gp-cat-icon color
       icon: (
         <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
           <rect x="2" y="7" width="20" height="14" rx="2" />
@@ -101,14 +106,14 @@ export default function Products() {
 
       {/* ── Quick-jump Nav ─────────────────────────────────────────────────────────
            Sticky tab bar that smooth-scrolls to each category section.
-           Anchor IDs are auto-generated from category titles below.              */}
+           Anchor IDs are generated via toAnchorId() helper above.                */}
       <nav className="gp-products-jumpnav">
         <div className="gp-container">
           <div className="gp-jumpnav-inner">
             {categories.map(({ title }) => (
               
                 key={title}
-                href={`#cat-${title.toLowerCase().replace(/\s+&?\s*/g, "-")}`}
+                href={`#${toAnchorId(title)}`}
                 className="gp-jumpnav-link"
               >
                 {title}
@@ -124,8 +129,8 @@ export default function Products() {
         <div className="gp-container gp-categories-col">
 
           {categories.map(({ title, icon, items }) => {
-            // Generate anchor ID from category title e.g. "Solar Panels" → "cat-solar-panels"
-            const anchorId = `cat-${title.toLowerCase().replace(/\s+&?\s*/g, "-")}`;
+            // Generate anchor ID using helper — matches the jump nav hrefs above
+            const anchorId = toAnchorId(title);
             return (
               <div key={title} id={anchorId} className="gp-category-block">
 
@@ -223,11 +228,11 @@ export default function Products() {
         .gp-jumpnav-inner {
           display: flex;
           gap: 0;
-          overflow-x: auto;           /* scrollable on mobile */
+          overflow-x: auto;
           -webkit-overflow-scrolling: touch;
-          scrollbar-width: none;      /* hide scrollbar Firefox */
+          scrollbar-width: none;
         }
-        .gp-jumpnav-inner::-webkit-scrollbar { display: none; } /* hide scrollbar Chrome */
+        .gp-jumpnav-inner::-webkit-scrollbar { display: none; }
         .gp-jumpnav-link {
           flex-shrink: 0;
           padding: 14px 20px;
@@ -253,7 +258,7 @@ export default function Products() {
 
         /* ── Category block ── */
         .gp-category-block {
-          scroll-margin-top: 56px; /* offset for sticky nav when jumping to anchor */
+          scroll-margin-top: 56px;
           min-width: 0;
         }
         .gp-cat-heading {
