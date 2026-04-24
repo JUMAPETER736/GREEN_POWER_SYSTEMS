@@ -191,17 +191,15 @@ export default function Footer() {
         </div>
       </div>
 
-      <div style={{ borderTop: "1px solid #f3f4f6" }}>
-        <div className="gp-container" style={{
-          padding: "16px 1.5rem",
-          display: "flex", flexWrap: "wrap",
-          justifyContent: "space-between", alignItems: "center", gap: 8,
-        }}>
-          <p style={{ fontSize: 12, color: "#14360f", margin: 0 }}>
-            © {new Date().getFullYear()} Green Power Systems Ltd. All rights reserved.
-          </p>
-          <p style={{ fontSize: 12, color: "#14360f", margin: 0 }}>Lilongwe, Malawi</p>
-        </div>
+     <div className="gp-container" style={{
+        padding: "16px 1.5rem",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}>
+        <p style={{ fontSize: 12, color: "#14360f", margin: 0 }}>
+          © {new Date().getFullYear()} Green Power Systems Ltd. All rights reserved.
+        </p>
       </div>
 
     </footer>
