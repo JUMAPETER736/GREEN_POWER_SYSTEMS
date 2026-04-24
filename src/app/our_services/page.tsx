@@ -2,6 +2,11 @@
 import Link from "next/link";
 
 export default function Services() {
+
+  // Services data 
+  // Each object maps to one card in the grid.
+  // Set featured: true on whichever service you want visually highlighted.
+  // The id is also used as an anchor — e.g. /our_services#installation
   const services = [
     {
       id: "installation",
@@ -9,7 +14,7 @@ export default function Services() {
       title: "Solar panel installation",
       desc: "We handle everything from site assessment and system sizing to mounting, wiring, and commissioning. Residential and commercial.",
       features: ["Free site survey", "Custom system design", "Certified installation", "Grid-tie or off-grid", "Warranty included"],
-      featured: true,
+      featured: true, // ← highlighted card
     },
     {
       id: "maintenance",
@@ -55,6 +60,9 @@ export default function Services() {
 
   return (
     <div style={{ backgroundColor: "var(--gp-bg-page)", overflowX: "hidden", width: "100%" }}>
+
+      {/*  Page Hero 
+           Top banner with eyebrow label, heading, and subheading                 */}
       <div className="gp-page-hero">
         <div className="gp-container">
           <span className="gp-eyebrow">What we do</span>
@@ -67,28 +75,40 @@ export default function Services() {
         </div>
       </div>
 
+      {/*  Services Grid 
+           Renders all 6 service cards from the array above.
+           1 col on mobile → 2 col on tablet → 3 col on desktop
+           Each card has: number, title, description, and feature checklist        */}
       <section style={{ padding: "72px 0" }}>
         <div className="gp-container">
           <div className="gp-services-grid">
             {services.map(({ id, num, title, desc, features, featured }) => (
               <div
                 key={id}
-                id={id}
+                id={id} // anchor target e.g. /our_services#installation
                 className={featured ? "gp-card-featured" : "gp-card"}
                 style={{ padding: "clamp(20px, 4vw, 32px)", minWidth: 0 }}
               >
+                {/* Service number label e.g. "01" */}
                 <p style={{ fontSize: 11, color: "var(--gp-text-subtle)", fontWeight: 700, letterSpacing: "0.06em", margin: "0 0 14px" }}>
                   {num}
                 </p>
+
+                {/* Service title */}
                 <h2 style={{ fontSize: 17, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 10px", wordBreak: "break-word" }}>
                   {title}
                 </h2>
+
+                {/* Short description */}
                 <p style={{ fontSize: 13.5, color: "var(--gp-text-muted)", lineHeight: 1.7, margin: "0 0 20px", wordBreak: "break-word" }}>
                   {desc}
                 </p>
+
+                {/* Feature checklist — green tick icon per item */}
                 <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 8 }}>
                   {features.map(f => (
                     <li key={f} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 13, color: "var(--gp-text-muted)", minWidth: 0 }}>
+                      {/* Tick icon badge */}
                       <span style={{
                         width: 16, height: 16, borderRadius: "50%",
                         backgroundColor: "var(--gp-green-light)",
@@ -104,12 +124,15 @@ export default function Services() {
                     </li>
                   ))}
                 </ul>
+
               </div>
             ))}
           </div>
         </div>
       </section>
 
+      {/*  Bottom CTA 
+           Dark banner encouraging visitors to request a custom quote              */}
       <section style={{ padding: "64px 0", backgroundColor: "var(--gp-bg-dark)" }}>
         <div className="gp-container gp-services-cta">
           <div style={{ minWidth: 0 }}>
@@ -120,12 +143,15 @@ export default function Services() {
               Tell us about your project and we'll design the perfect system.
             </p>
           </div>
+          {/* CTA button — links to contact page */}
           <Link href="/company_contact_details" className="gp-btn-accent gp-services-cta-btn">
             Request a Quote
           </Link>
         </div>
       </section>
 
+      {/*  Scoped Responsive Styles 
+           Grid breakpoints and CTA layout adjustments for mobile/tablet           */}
       <style>{`
         *, *::before, *::after {
           box-sizing: border-box;
@@ -136,22 +162,28 @@ export default function Services() {
           padding-left: clamp(1rem, 4vw, 1.5rem);
           padding-right: clamp(1rem, 4vw, 1.5rem);
         }
+
+        /* Services grid — mobile first */
         .gp-services-grid {
           display: grid;
           grid-template-columns: 1fr;
           gap: 20px;
           width: 100%;
         }
+        /* Tablet: 2 columns */
         @media (min-width: 560px) {
           .gp-services-grid {
             grid-template-columns: repeat(2, 1fr);
           }
         }
+        /* Desktop: 3 columns */
         @media (min-width: 960px) {
           .gp-services-grid {
             grid-template-columns: repeat(3, 1fr);
           }
         }
+
+        /* CTA row — stacks vertically on mobile, horizontal on tablet+ */
         .gp-services-cta {
           display: flex;
           flex-direction: column;
@@ -175,6 +207,8 @@ export default function Services() {
             width: auto;
           }
         }
+
+        /* Extra small screens */
         @media (max-width: 480px) {
           .gp-container {
             padding-left: 1rem;
@@ -182,6 +216,7 @@ export default function Services() {
           }
         }
       `}</style>
+
     </div>
   );
 }
