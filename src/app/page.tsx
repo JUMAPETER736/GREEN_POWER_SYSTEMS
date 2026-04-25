@@ -131,7 +131,7 @@ export default function Home() {
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 14, marginBottom: 28 }}>
             {[
-              { n:"01", t:"Installation", d:"Full system design and professional installation for homes and businesses.", featured: true },
+              { n:"01", t:"Installation", d:"Full system design and professional installation for homes, commercial and industrial areas.", featured: true },
               { n:"02", t:"Maintenance", d:"Scheduled servicing to maximise output and protect your investment.", featured: false },
               { n:"03", t:"Repairs & upgrades", d:"Fast fault diagnosis and upgrades to keep energy flowing.", featured: false },
             ].map(({ n, t, d, featured }) => (
