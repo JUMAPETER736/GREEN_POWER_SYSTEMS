@@ -11,7 +11,7 @@ const navLinks = [
   { href: "/our_products",              label: "Products" },
   { href: "/customers_feed_back",       label: "Feedback" },
   { href: "/company_contact_details",   label: "Contact" },
-  { href: "/company_community_support", label: "Community" },
+  { href: "/company_community_support", label: "Community Support" },
 ];
 
 export default function Navbar() {
@@ -29,38 +29,34 @@ export default function Navbar() {
         <div style={{
           display: "flex", alignItems: "center",
           justifyContent: "space-between",
-          height: 64,
-          gap: 8,
+          height: 68,
         }}>
 
           {/* Logo */}
           <Link href="/" style={{
             display: "flex", alignItems: "center",
-            gap: 8, textDecoration: "none", flexShrink: 0,
+            gap: 12, textDecoration: "none", flexShrink: 0,
           }}>
             <div
               className="gp-logo-wrap"
               style={{
-                borderRadius: 8, overflow: "hidden",
+                borderRadius: 10, overflow: "hidden",
                 border: "1.5px solid var(--gp-green-border)",
                 flexShrink: 0, position: "relative",
-                width: 40, height: 40,
+                width: 48, height: 48,
               }}
             >
               <Image
                 src="/company_logo.jpeg"
                 alt="Green Power Systems logo"
                 fill
-                sizes="40px"
+                sizes="48px"
                 style={{ objectFit: "cover" }}
                 className="gp-logo-img"
               />
             </div>
             <span className="gp-logo-name" style={{
               fontWeight: 700,
-              fontSize: 13,
-              lineHeight: 1.2,
-              maxWidth: 130,
               color: "var(--gp-text-primary)",
               letterSpacing: "-0.01em",
             }}>
@@ -69,13 +65,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop nav */}
-          <nav className="gp-nav-links" style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 0,
-            flex: 1,
-            justifyContent: "center",
-          }}>
+          <nav className="gp-nav-links" style={{ alignItems: "center", gap: 2 }}>
             {navLinks.map(({ href, label }) => {
               const active = pathname === href;
               return (
@@ -83,11 +73,6 @@ export default function Navbar() {
                   key={href}
                   href={href}
                   className={`gp-nav-link${active ? " active" : ""}`}
-                  style={{
-                    fontSize: 12.5,
-                    padding: "6px 8px",
-                    whiteSpace: "nowrap",
-                  }}
                 >
                   {label}
                 </Link>
@@ -99,9 +84,9 @@ export default function Navbar() {
           <Link
             href="/company_contact_details"
             className="gp-nav-cta gp-btn-primary"
-            style={{ fontSize: 12, padding: "8px 14px", whiteSpace: "nowrap", flexShrink: 0 }}
+            style={{ fontSize: 13, padding: "9px 20px" }}
           >
-            Get Quote
+            Get Free Quote
           </Link>
 
           {/* Burger */}
@@ -112,7 +97,6 @@ export default function Navbar() {
             style={{
               background: "none", border: "none", cursor: "pointer",
               padding: 8, borderRadius: 8, color: "var(--gp-text-muted)",
-              display: "none",
               alignItems: "center", justifyContent: "center",
             }}
           >
@@ -159,26 +143,12 @@ export default function Navbar() {
                 style={{ width: "100%", justifyContent: "center" }}
                 onClick={() => setOpen(false)}
               >
-                Get Quote
+                Get Free Quote
               </Link>
             </div>
           </div>
         )}
       </div>
-
-      <style>{`
-        @media (max-width: 1024px) {
-          .gp-nav-links {
-            display: none !important;
-          }
-          .gp-nav-cta {
-            display: none !important;
-          }
-          .gp-burger {
-            display: flex !important;
-          }
-        }
-      `}</style>
     </header>
   );
 }
