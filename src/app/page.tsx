@@ -39,7 +39,7 @@ export default function Home() {
               </h1>
 
               <p style={{ fontSize: "clamp(15px, 2vw, 17px)", color: "var(--gp-text-muted)", lineHeight: 1.7, margin: 0 }}>
-                Professional installation, sales, and maintenance for homes and businesses across Malawi. Sustainable energy that pays for itself.
+                Professional installation, sales, and maintenance for homes, commercial and industrial areas across Malawi. Sustainable energy that pays for itself.
               </p>
 
               <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
