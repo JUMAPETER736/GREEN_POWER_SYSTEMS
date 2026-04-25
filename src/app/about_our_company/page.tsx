@@ -51,7 +51,7 @@ export default function About() {
             Bringing reliable solar energy to every corner of Malawi
           </h1>
           <p className="gp-section-sub" style={{ marginTop: 14, wordBreak: "break-word" }}>
-            Founded in Lilongwe, Green Power Systems was built on a single belief: clean energy should be accessible to everyone. Since day one we've installed, maintained, and supported solar systems for homes, schools, and businesses.
+            Founded in Lilongwe, Green Power Systems was built on a single belief: clean energy should be accessible to everyone. Since day one we've installed, maintained, and supported solar systems for homes, commercial and industrial areas.
           </p>
         </div>
       </div>
