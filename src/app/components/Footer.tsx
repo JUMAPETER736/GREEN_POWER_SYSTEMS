@@ -5,11 +5,15 @@ import Image from "next/image";
 
 export default function Footer() {
   const quickLinks = [
-    { href: "/",                        label: "Home" },
-    { href: "/about_our_company",       label: "About" },
-    { href: "/our_services",            label: "Services" },
-    { href: "/our_products",            label: "Products" },
-    { href: "/company_contact_details", label: "Contact" },
+    
+    { href: "/",                          label: "Home" },
+    { href: "/about_our_company",         label: "About" },
+    { href: "/our_services",              label: "Services" },
+    { href: "/our_products",              label: "Products" },
+    { href: "/customers_feed_back",       label: "Feedback" },
+    { href: "/company_contact_details",   label: "Contact" },
+    { href: "/company_community_support", label: "Community Support" },
+
   ];
 
   const serviceLinks = [

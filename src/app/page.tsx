@@ -270,7 +270,7 @@ export default function Home() {
               Ready to go solar?
             </h2>
             <p style={{ fontSize: "clamp(14px,2vw,16px)", color: "rgba(255,255,255,0.62)", margin: 0, lineHeight: 1.7 }}>
-              Talk to our experts — free consultation, no pressure, just honest solar advice for your home or business.
+              Talk to our experts — free consultation, no pressure, just honest solar advice for your homes, commercial and industrial areas.
             </p>
           </div>
           <Link href="/company_contact_details" className="gp-btn-accent">Schedule Free Consultation</Link>
