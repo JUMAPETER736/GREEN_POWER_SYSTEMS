@@ -22,33 +22,46 @@ export default function Footer() {
   ];
 
   const linkStyle: React.CSSProperties = {
-    fontSize: 13, color: "#6b7280",
-    textDecoration: "none", display: "block",
+    fontSize: 13,
+    color: "#6b7280",
+    textDecoration: "none",
+    display: "block",
   };
 
   const headingStyle: React.CSSProperties = {
-    fontSize: 11, fontWeight: 600,
+    fontSize: 11,
+    fontWeight: 600,
     color: "#111827",
     letterSpacing: "0.07em",
     textTransform: "uppercase",
-    marginBottom: 16, marginTop: 0,
+    marginBottom: 16,
+    marginTop: 0,
   };
 
   const labelStyle: React.CSSProperties = {
-    fontSize: 11, color: "#9ca3af",
-    marginBottom: 4, marginTop: 0,
+    fontSize: 11,
+    color: "#9ca3af",
+    marginBottom: 4,
+    marginTop: 0,
   };
 
-  const socialIconStyle: React.CSSProperties = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    width: 34,
-    height: 34,
-    borderRadius: "50%",
-    textDecoration: "none",
-    transition: "transform 0.2s, opacity 0.2s",
-  };
+  // Named hover handlers — avoids the TSX `}}` + `>` on new line parse bug
+  function onFloatEnter(e: React.MouseEvent<HTMLAnchorElement>) {
+    e.currentTarget.style.transform = "scale(1.1)";
+    e.currentTarget.style.boxShadow = "0 6px 28px rgba(37,211,102,0.55), 0 4px 12px rgba(0,0,0,0.22)";
+  }
+  function onFloatLeave(e: React.MouseEvent<HTMLAnchorElement>) {
+    e.currentTarget.style.transform = "scale(1)";
+    e.currentTarget.style.boxShadow = "0 4px 20px rgba(37,211,102,0.45), 0 2px 8px rgba(0,0,0,0.18)";
+  }
+  function onIconEnter(e: React.MouseEvent<HTMLAnchorElement>) {
+    e.currentTarget.style.opacity = "0.82";
+    e.currentTarget.style.transform = "scale(1.1)";
+  }
+  function onIconLeave(e: React.MouseEvent<HTMLAnchorElement>) {
+    e.currentTarget.style.opacity = "1";
+    e.currentTarget.style.transform = "scale(1)";
+  }
 
   return (
     <footer style={{ backgroundColor: "#fff", borderTop: "1px solid #e5e7eb" }}>
@@ -59,6 +72,8 @@ export default function Footer() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with us on WhatsApp"
+        onMouseEnter={onFloatEnter}
+        onMouseLeave={onFloatLeave}
         style={{
           position: "fixed",
           bottom: 28,
@@ -75,15 +90,8 @@ export default function Footer() {
           textDecoration: "none",
           transition: "transform 0.2s, box-shadow 0.2s",
         }}
-        onMouseEnter={(e) => {
-          (e.currentTarget as HTMLElement).style.transform = "scale(1.1)";
-          (e.currentTarget as HTMLElement).style.boxShadow = "0 6px 28px rgba(37,211,102,0.55), 0 4px 12px rgba(0,0,0,0.22)";
-        }}
-        onMouseLeave={(e) => {
-          (e.currentTarget as HTMLElement).style.transform = "scale(1)";
-          (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 20px rgba(37,211,102,0.45), 0 2px 8px rgba(0,0,0,0.18)";
-        }}>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width={30} height={30} style={{ position: "relative", zIndex: 1 }}>
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width={30} height={30}>
           <path fill="#fff" d="M16 2.9C8.8 2.9 3 8.7 3 15.9c0 2.3.6 4.5 1.8 6.5L3 29.1l6.9-1.8c1.9 1 4 1.6 6.1 1.6 7.2 0 13-5.8 13-13S23.2 2.9 16 2.9zm0 23.8c-2 0-3.9-.5-5.6-1.5l-.4-.2-4.1 1.1 1.1-3.9-.3-.4c-1.1-1.7-1.7-3.7-1.7-5.8 0-5.9 4.8-10.7 10.7-10.7s10.7 4.8 10.7 10.7-4.8 10.7-10.4 10.7zm5.9-8c-.3-.2-1.8-.9-2.1-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1c-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1s0-.5.2-.6l.5-.6c.1-.2.2-.4.3-.6s.1-.4 0-.6-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1 2.9 1.2 3.1c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4s.2-1.3.2-1.4-.2-.3-.5-.5z" />
         </svg>
       </a>
@@ -97,15 +105,9 @@ export default function Footer() {
         }}>
 
           {/* Brand */}
-          <div style={{ gridColumn: "span 1" }}>
-            <Link href="/" style={{
-              display: "flex", alignItems: "center",
-              gap: 10, textDecoration: "none", marginBottom: 14,
-            }}>
-              <div style={{
-                width: 36, height: 36, borderRadius: 8,
-                overflow: "hidden", backgroundColor: "#0f5f3f", flexShrink: 0,
-              }}>
+          <div>
+            <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", marginBottom: 14 }}>
+              <div style={{ width: 36, height: 36, borderRadius: 8, overflow: "hidden", backgroundColor: "#0f5f3f", flexShrink: 0 }}>
                 <Image src="/company_logo.jpeg" alt="Green Power" width={36} height={36} style={{ objectFit: "contain" }} />
               </div>
               <div>
@@ -186,49 +188,49 @@ export default function Footer() {
           justifyContent: "space-between",
           alignItems: "center",
           gap: 12,
-        }}>
+        }}
+      >
         <p style={{ fontSize: 12, color: "#14360f", margin: 0 }}>
           © {new Date().getFullYear()} Green Power Systems Ltd. All rights reserved.
         </p>
 
-        {/* Social icons */}
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
 
-          {/* WhatsApp */}
+          {/* WhatsApp icon */}
           
             href="https://wa.me/265999534305"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="WhatsApp"
-            style={{ ...socialIconStyle, backgroundColor: "#25D366" }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.opacity = "0.85";
-              (e.currentTarget as HTMLElement).style.transform = "scale(1.08)";
+            onMouseEnter={onIconEnter}
+            onMouseLeave={onIconLeave}
+            style={{
+              display: "flex", alignItems: "center", justifyContent: "center",
+              width: 34, height: 34, borderRadius: "50%",
+              backgroundColor: "#25D366", textDecoration: "none",
+              transition: "transform 0.2s, opacity 0.2s",
             }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.opacity = "1";
-              (e.currentTarget as HTMLElement).style.transform = "scale(1)";
-            }}>
+          >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width={18} height={18}>
               <path fill="#fff" d="M16 2.9C8.8 2.9 3 8.7 3 15.9c0 2.3.6 4.5 1.8 6.5L3 29.1l6.9-1.8c1.9 1 4 1.6 6.1 1.6 7.2 0 13-5.8 13-13S23.2 2.9 16 2.9zm0 23.8c-2 0-3.9-.5-5.6-1.5l-.4-.2-4.1 1.1 1.1-3.9-.3-.4c-1.1-1.7-1.7-3.7-1.7-5.8 0-5.9 4.8-10.7 10.7-10.7s10.7 4.8 10.7 10.7-4.8 10.7-10.4 10.7zm5.9-8c-.3-.2-1.8-.9-2.1-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1c-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1s0-.5.2-.6l.5-.6c.1-.2.2-.4.3-.6s.1-.4 0-.6-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1 2.9 1.2 3.1c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4s.2-1.3.2-1.4-.2-.3-.5-.5z" />
             </svg>
           </a>
 
-          {/* Facebook */}
+          {/* Facebook icon */}
           
             href="https://facebook.com/greenpowersystemsmalawi"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Facebook"
-            style={{ ...socialIconStyle, backgroundColor: "#1877F2" }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.opacity = "0.85";
-              (e.currentTarget as HTMLElement).style.transform = "scale(1.08)";
+            onMouseEnter={onIconEnter}
+            onMouseLeave={onIconLeave}
+            style={{
+              display: "flex", alignItems: "center", justifyContent: "center",
+              width: 34, height: 34, borderRadius: "50%",
+              backgroundColor: "#1877F2", textDecoration: "none",
+              transition: "transform 0.2s, opacity 0.2s",
             }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.opacity = "1";
-              (e.currentTarget as HTMLElement).style.transform = "scale(1)";
-            }}>
+          >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={18} height={18} fill="#fff">
               <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
             </svg>
