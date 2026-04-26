@@ -5,7 +5,6 @@ import Image from "next/image";
 
 export default function Footer() {
   const quickLinks = [
-    
     { href: "/",                          label: "Home" },
     { href: "/about_our_company",         label: "About" },
     { href: "/our_services",              label: "Services" },
@@ -13,7 +12,6 @@ export default function Footer() {
     { href: "/company_contact_details",   label: "Contact" },
     { href: "/company_community_support", label: "Community Support" },
     { href: "/customers_feed_back",       label: "Feedback" },
-
   ];
 
   const serviceLinks = [
@@ -41,11 +39,22 @@ export default function Footer() {
     marginBottom: 4, marginTop: 0,
   };
 
+  const socialIconStyle: React.CSSProperties = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 34,
+    height: 34,
+    borderRadius: "50%",
+    textDecoration: "none",
+    transition: "transform 0.2s, opacity 0.2s",
+  };
+
   return (
     <footer style={{ backgroundColor: "#fff", borderTop: "1px solid #e5e7eb" }}>
 
       {/* ── Floating WhatsApp Button ── */}
-      <a
+      
         href="https://wa.me/265999534305"
         target="_blank"
         rel="noopener noreferrer"
@@ -75,22 +84,12 @@ export default function Footer() {
           (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 20px rgba(37,211,102,0.45), 0 2px 8px rgba(0,0,0,0.18)";
         }}
       >
-        {/* WhatsApp SVG icon */}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 32 32"
-          width={30}
-          height={30}
-          style={{ position: "relative", zIndex: 1 }}
-        >
-          <path
-            fill="#fff"
-            d="M16 2.9C8.8 2.9 3 8.7 3 15.9c0 2.3.6 4.5 1.8 6.5L3 29.1l6.9-1.8c1.9 1 4 1.6 6.1 1.6 7.2 0 13-5.8 13-13S23.2 2.9 16 2.9zm0 23.8c-2 0-3.9-.5-5.6-1.5l-.4-.2-4.1 1.1 1.1-3.9-.3-.4c-1.1-1.7-1.7-3.7-1.7-5.8 0-5.9 4.8-10.7 10.7-10.7s10.7 4.8 10.7 10.7-4.8 10.7-10.4 10.7zm5.9-8c-.3-.2-1.8-.9-2.1-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1c-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1s0-.5.2-.6l.5-.6c.1-.2.2-.4.3-.6s.1-.4 0-.6-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1 2.9 1.2 3.1c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4s.2-1.3.2-1.4-.2-.3-.5-.5z"
-          />
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width={30} height={30}>
+          <path fill="#fff" d="M16 2.9C8.8 2.9 3 8.7 3 15.9c0 2.3.6 4.5 1.8 6.5L3 29.1l6.9-1.8c1.9 1 4 1.6 6.1 1.6 7.2 0 13-5.8 13-13S23.2 2.9 16 2.9zm0 23.8c-2 0-3.9-.5-5.6-1.5l-.4-.2-4.1 1.1 1.1-3.9-.3-.4c-1.1-1.7-1.7-3.7-1.7-5.8 0-5.9 4.8-10.7 10.7-10.7s10.7 4.8 10.7 10.7-4.8 10.7-10.4 10.7zm5.9-8c-.3-.2-1.8-.9-2.1-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1c-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1s0-.5.2-.6l.5-.6c.1-.2.2-.4.3-.6s.1-.4 0-.6-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1 2.9 1.2 3.1c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4s.2-1.3.2-1.4-.2-.3-.5-.5z"/>
         </svg>
-
       </a>
 
+      {/* ── Main footer content ── */}
       <div className="gp-container" style={{ padding: "56px 1.5rem 40px" }}>
         <div style={{
           display: "grid",
@@ -150,35 +149,24 @@ export default function Footer() {
           <div>
             <p style={headingStyle}>Contact</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-
               <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
                 <p style={{ ...labelStyle, marginBottom: 0, flexShrink: 0 }}>Phone</p>
-                <Link
-                  href="tel:+265999534305"
-                  style={{ fontSize: 13, color: "#0f5f3f", textDecoration: "none" }}
-                >
+                <Link href="tel:+265999534305" style={{ fontSize: 13, color: "#0f5f3f", textDecoration: "none" }}>
                   +265 999 534 305
                 </Link>
               </div>
-
               <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
                 <p style={{ ...labelStyle, marginBottom: 0, flexShrink: 0 }}>Email</p>
-                <Link
-                  href="mailto:greenpowersystemsltd@gmail.com"
-                  style={{ fontSize: 13, color: "#0f5f3f", textDecoration: "none", wordBreak: "break-all" }}
-                >
+                <Link href="mailto:greenpowersystemsltd@gmail.com" style={{ fontSize: 13, color: "#0f5f3f", textDecoration: "none", wordBreak: "break-all" }}>
                   greenpowersystemsltd@gmail.com
                 </Link>
               </div>
-
               <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
                 <p style={{ ...labelStyle, marginBottom: 0, flexShrink: 0 }}>Hours</p>
                 <p style={{ fontSize: 13, color: "#6b7280", margin: 0, lineHeight: 1.7 }}>
-                  Mon – Sat: 8:00am – 5:00pm<br />
-                  Sunday: Closed
+                  Mon – Sat: 8:00am – 5:00pm<br />Sunday: Closed
                 </p>
               </div>
-
               <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
                 <p style={{ ...labelStyle, marginBottom: 0, flexShrink: 0 }}>Address</p>
                 <address style={{ fontSize: 13, color: "#6b7280", fontStyle: "normal", lineHeight: 1.7, margin: 0 }}>
@@ -188,22 +176,61 @@ export default function Footer() {
                   P.O Box 40135, Malawi
                 </address>
               </div>
-
             </div>
           </div>
 
         </div>
       </div>
 
-     <div className="gp-container" style={{
-        padding: "16px 1.5rem",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}>
+      {/* ── Bottom bar: copyright + social icons ── */}
+      <div
+        className="gp-container"
+        style={{
+          padding: "14px 1.5rem",
+          borderTop: "1px solid #e5e7eb",
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: 12,
+        }}
+      >
         <p style={{ fontSize: 12, color: "#14360f", margin: 0 }}>
           © {new Date().getFullYear()} Green Power Systems Ltd. All rights reserved.
         </p>
+
+        {/* Social icons */}
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          {/* WhatsApp */}
+          
+            href="https://wa.me/265999534305"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp"
+            style={{ ...socialIconStyle, backgroundColor: "#25D366" }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.opacity = "0.85"; (e.currentTarget as HTMLElement).style.transform = "scale(1.08)"; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.opacity = "1"; (e.currentTarget as HTMLElement).style.transform = "scale(1)"; }}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width={18} height={18}>
+              <path fill="#fff" d="M16 2.9C8.8 2.9 3 8.7 3 15.9c0 2.3.6 4.5 1.8 6.5L3 29.1l6.9-1.8c1.9 1 4 1.6 6.1 1.6 7.2 0 13-5.8 13-13S23.2 2.9 16 2.9zm0 23.8c-2 0-3.9-.5-5.6-1.5l-.4-.2-4.1 1.1 1.1-3.9-.3-.4c-1.1-1.7-1.7-3.7-1.7-5.8 0-5.9 4.8-10.7 10.7-10.7s10.7 4.8 10.7 10.7-4.8 10.7-10.4 10.7zm5.9-8c-.3-.2-1.8-.9-2.1-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1c-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1s0-.5.2-.6l.5-.6c.1-.2.2-.4.3-.6s.1-.4 0-.6-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1 2.9 1.2 3.1c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4s.2-1.3.2-1.4-.2-.3-.5-.5z"/>
+            </svg>
+          </a>
+
+          {/* Facebook */}
+          
+            href="https://facebook.com/greenpowersystemsmalawi"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+            style={{ ...socialIconStyle, backgroundColor: "#1877F2" }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.opacity = "0.85"; (e.currentTarget as HTMLElement).style.transform = "scale(1.08)"; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.opacity = "1"; (e.currentTarget as HTMLElement).style.transform = "scale(1)"; }}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={18} height={18} fill="#fff">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </a>
+        </div>
       </div>
 
     </footer>
