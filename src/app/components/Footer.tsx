@@ -95,9 +95,10 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* ── Bottom bar — fully centered ── */}
-      <div style={{ padding: "18px 1.5rem", borderTop: "1px solid #e5e7eb", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 10 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+      {/* ── Bottom bar — copyright + social icons on one centered row ── */}
+      <div style={{ padding: "18px 1.5rem", borderTop: "1px solid #e5e7eb", display: "flex", alignItems: "center", justifyContent: "center", gap: 14, flexWrap: "wrap" }}>
+        <p style={{ fontSize: 12, color: "#14360f", margin: 0 }}>© {new Date().getFullYear()} Green Power Systems Ltd. All rights reserved.</p>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
           <a href="https://wa.me/265999534305" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" style={waIconStyle} onMouseEnter={onIconEnter} onMouseLeave={onIconLeave}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width={18} height={18}><WaPath /></svg>
           </a>
@@ -105,7 +106,6 @@ export default function Footer() {
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={18} height={18} fill="#fff"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
           </a>
         </div>
-        <p style={{ fontSize: 12, color: "#14360f", margin: 0 }}>© {new Date().getFullYear()} Green Power Systems Ltd. All rights reserved.</p>
       </div>
 
     </footer>
