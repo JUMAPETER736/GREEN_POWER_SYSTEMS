@@ -1,6 +1,6 @@
 ﻿import Link from "next/link";
 
-export default function Testimonials() {
+export default function Customer_Feedback() {
 
   const reviews = [
     { name: "Chimwemwe Banda", location: "Lilongwe", initials: "CB", stars: 5, quote: "Green Power installed a 3kW system on our home. The team was professional and the panels have been running flawlessly for over a year. Our electricity bills dropped by 80%." },

@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function Customer_Feedback() {
+export default function Testimonials() {
 
   const reviews = [
     { name: "Chimwemwe Banda", location: "Lilongwe", initials: "CB", stars: 5, quote: "Green Power installed a 3kW system on our home. The team was professional and the panels have been running flawlessly for over a year. Our electricity bills dropped by 80%." },
@@ -10,6 +10,11 @@ export default function Customer_Feedback() {
     { name: "Emmanuel Chirwa", location: "Mzuzu", initials: "EC", stars: 5, quote: "We had a faulty inverter from another supplier. Green Power diagnosed and fixed it the same day. Their technical knowledge is unmatched." },
     { name: "Mercy Phiri", location: "Zomba", initials: "MP", stars: 5, quote: "The consultation was free and genuinely helpful — no pressure at all. We ended up choosing a system that fits our budget perfectly." },
   ];
+
+  const switchImages = Array.from({ length: 11 }, (_, i) => ({
+    src: `/images/solar_switches_wall_mounting/Image${i + 1}.jpeg`,
+    alt: `Solar switch wall mounting installation ${i + 1}`,
+  }));
 
   const avgRating = (reviews.reduce((s, r) => s + r.stars, 0) / reviews.length).toFixed(1);
   const fiveStarCount = reviews.filter(r => r.stars === 5).length;
@@ -63,6 +68,28 @@ export default function Customer_Feedback() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Solar Switch Installations Gallery */}
+      <section style={{ padding: "clamp(40px, 7vw, 64px) 0", borderBottom: "1px solid var(--gp-border)" }}>
+        <div className="gp-container">
+          <span className="gp-eyebrow" style={{ display: "block", marginBottom: 8 }}>Our installations</span>
+          <h2 style={{ fontSize: "clamp(1.2rem, 3vw, 1.6rem)", fontWeight: 800, color: "var(--gp-text-primary)", margin: "0 0 24px", letterSpacing: "-0.01em" }}>
+            Solar switch &amp; wall mounting work
+          </h2>
+          <div className="gp-switch-grid">
+            {switchImages.map((img, idx) => (
+              <div key={idx} className="gp-switch-img-wrap">
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  loading="lazy"
+                  className="gp-switch-img"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -125,7 +152,38 @@ export default function Customer_Feedback() {
         .gp-reviews-grid { display: grid; grid-template-columns: 1fr; gap: 16px; width: 100%; }
         @media (min-width: 600px) { .gp-reviews-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (min-width: 960px) { .gp-reviews-grid { grid-template-columns: repeat(3, 1fr); } }
-        @media (max-width: 480px) { .gp-container { padding-left: 1rem; padding-right: 1rem; } .gp-rating-divider { display: none; } .gp-rating-bar { gap: 16px; } }
+        .gp-switch-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 12px;
+          width: 100%;
+        }
+        @media (min-width: 480px) { .gp-switch-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (min-width: 768px) { .gp-switch-grid { grid-template-columns: repeat(4, 1fr); } }
+        @media (min-width: 1024px) { .gp-switch-grid { grid-template-columns: repeat(5, 1fr); } }
+        .gp-switch-img-wrap {
+          aspect-ratio: 1 / 1;
+          overflow: hidden;
+          border-radius: 10px;
+          border: 1px solid var(--gp-border);
+          background: var(--gp-bg-card);
+        }
+        .gp-switch-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          border-radius: var(--gp-radius, 10px);
+          transition: transform 0.3s ease;
+        }
+        .gp-switch-img:hover {
+          transform: scale(1.04);
+        }
+        @media (max-width: 480px) {
+          .gp-container { padding-left: 1rem; padding-right: 1rem; }
+          .gp-rating-divider { display: none; }
+          .gp-rating-bar { gap: 16px; }
+        }
       `}</style>
 
     </div>
