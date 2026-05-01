@@ -11,7 +11,8 @@ export default function CustomerFeedback() {
       initials: "CB",
       stars: 5,
       image: "/images/solar_switches_wall_mounting/Image1.jpeg",
-      quote: "Green Power installed a 3kW system on our home. The team was professional and the panels have been running flawlessly for over a year."
+      quote:
+        "Green Power installed a 3kW system on our home. The team was professional and the panels have been running flawlessly for over a year."
     },
     {
       name: "Dr. Grace Nyirenda",
@@ -19,7 +20,8 @@ export default function CustomerFeedback() {
       initials: "GN",
       stars: 5,
       image: "/images/solar_switches_wall_mounting/Image2.jpeg",
-      quote: "Excellent service from start to finish. Everything was explained clearly and installation was fast."
+      quote:
+        "Excellent service from start to finish. Everything was explained clearly and installation was fast."
     },
     {
       name: "James Mwale",
@@ -27,7 +29,8 @@ export default function CustomerFeedback() {
       initials: "JM",
       stars: 5,
       image: "/images/solar_switches_wall_mounting/Image3.jpeg",
-      quote: "Their commercial system works perfectly with zero issues for over a year."
+      quote:
+        "Their commercial system works perfectly with zero issues for over a year."
     },
     {
       name: "Faith Tembo",
@@ -66,35 +69,27 @@ export default function CustomerFeedback() {
   return (
     <div style={{ background: "var(--gp-bg-page)" }}>
 
-      {/* HERO (tight like About page) */}
-      <div className="gp-container" style={{ padding: "32px 0 18px" }}>
+      {/* HERO — FIXED ALIGNMENT */}
+      <div className="gp-container gp-hero">
         <span className="gp-eyebrow">Customer feedback</span>
-        <h1 style={{
-          fontSize: "clamp(1.4rem, 3vw, 2rem)",
-          fontWeight: 800,
-          color: "var(--gp-text-primary)",
-          margin: "6px 0 4px"
-        }}>
+
+        <h1 className="gp-title">
           What our clients say
         </h1>
 
-        <p style={{
-          fontSize: 13,
-          color: "var(--gp-text-muted)",
-          margin: 0
-        }}>
+        <p className="gp-sub">
           Real experiences from across Malawi
         </p>
       </div>
 
-      {/* REVIEWS GRID (NO BORDERS, NO SPACING BOX LOOK) */}
-      <div className="gp-container" style={{ paddingBottom: 40 }}>
+      {/* REVIEWS GRID */}
+      <div className="gp-container">
         <div className="grid">
 
           {reviews.map((r) => (
             <div key={r.name} className="card">
 
-              {/* FULL IMAGE (NO CROPPING FEEL) */}
+              {/* FULL IMAGE WITH ROUNDED CORNERS */}
               <div className="imgWrap">
                 <Image
                   src={r.image}
@@ -110,9 +105,9 @@ export default function CustomerFeedback() {
                 {Array.from({ length: 5 }).map((_, i) => (
                   <span
                     key={i}
-                    className="star"
                     style={{
-                      color: i < r.stars ? "var(--gp-green)" : "#d1d5db"
+                      color: i < r.stars ? "var(--gp-green)" : "#d1d5db",
+                      fontSize: 14
                     }}
                   >
                     ★
@@ -141,17 +136,42 @@ export default function CustomerFeedback() {
         </div>
       </div>
 
-      {/* STYLE (tight like your About page) */}
+      {/* STYLES (MATCHING YOUR SERVICES PAGE SYSTEM) */}
       <style>{`
-        .gp-container {
-          padding-left: 1rem;
-          padding-right: 1rem;
-          max-width: 100%;
+        *, *::before, *::after {
+          box-sizing: border-box;
         }
 
+        .gp-container {
+          width: 100%;
+          max-width: 100%;
+          padding-left: clamp(1rem, 4vw, 1.5rem);
+          padding-right: clamp(1rem, 4vw, 1.5rem);
+        }
+
+        /* HERO (aligned with grid start) */
+        .gp-hero {
+          padding: 32px 0 14px;
+        }
+
+        .gp-title {
+          font-size: clamp(1.4rem, 3vw, 2rem);
+          font-weight: 800;
+          color: var(--gp-text-primary);
+          margin: 6px 0 4px;
+          line-height: 1.2;
+        }
+
+        .gp-sub {
+          font-size: 13px;
+          color: var(--gp-text-muted);
+          margin: 0;
+        }
+
+        /* GRID */
         .grid {
           display: grid;
-          gap: 10px; /* reduced spacing */
+          gap: 16px;
         }
 
         @media (min-width: 768px) {
@@ -160,38 +180,38 @@ export default function CustomerFeedback() {
           }
         }
 
+        /* CARD (clean, no box feel) */
         .card {
           display: flex;
           flex-direction: column;
           gap: 6px;
-          background: transparent;
         }
 
-        /* FULL WIDTH IMAGE (NO CROPPING BOX FEEL) */
+        /* IMAGE FULL WIDTH + ROUNDED */
         .imgWrap {
           position: relative;
           width: 100%;
-          height: 220px;
+          height: 240px;
           overflow: hidden;
+          border-radius: 14px;
         }
 
+        /* STARS */
         .stars {
           display: flex;
           gap: 2px;
-          margin-top: 2px;
+          margin-top: 4px;
         }
 
-        .star {
-          font-size: 14px;
-        }
-
+        /* TEXT */
         .quote {
           font-size: 13px;
           color: var(--gp-text-muted);
-          margin: 0;
           line-height: 1.6;
+          margin: 0;
         }
 
+        /* USER */
         .user {
           display: flex;
           gap: 10px;
