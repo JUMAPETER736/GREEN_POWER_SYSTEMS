@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Image from "next/image";
 
 export default function CustomerFeedback() {
 
@@ -11,7 +11,7 @@ export default function CustomerFeedback() {
       initials: "CB",
       stars: 5,
       image: "/images/solar_switches_wall_mounting/Image1.jpeg",
-      quote: "Green Power installed a 3kW system on our home. The team was professional and the panels have been running flawlessly for over a year. Our electricity bills dropped by 80%."
+      quote: "Green Power installed a 3kW system on our home. The team was professional and the panels have been running flawlessly for over a year."
     },
     {
       name: "Dr. Grace Nyirenda",
@@ -19,7 +19,7 @@ export default function CustomerFeedback() {
       initials: "GN",
       stars: 5,
       image: "/images/solar_switches_wall_mounting/Image2.jpeg",
-      quote: "Excellent service from start to finish. They explained everything clearly and installation was fast."
+      quote: "Excellent service from start to finish. Everything was explained clearly and installation was fast."
     },
     {
       name: "James Mwale",
@@ -27,7 +27,7 @@ export default function CustomerFeedback() {
       initials: "JM",
       stars: 5,
       image: "/images/solar_switches_wall_mounting/Image3.jpeg",
-      quote: "Commercial system works perfectly with zero issues."
+      quote: "Their commercial system works perfectly with zero issues for over a year."
     },
     {
       name: "Faith Tembo",
@@ -35,7 +35,7 @@ export default function CustomerFeedback() {
       initials: "FT",
       stars: 4,
       image: "/images/solar_switches_wall_mounting/Image4.jpeg",
-      quote: "Very happy with the system and installation team."
+      quote: "Very happy with the system and installation was smooth."
     },
     {
       name: "Emmanuel Chirwa",
@@ -43,7 +43,7 @@ export default function CustomerFeedback() {
       initials: "EC",
       stars: 5,
       image: "/images/solar_switches_wall_mounting/Image5.jpeg",
-      quote: "Faulty inverter fixed the same day. Very professional."
+      quote: "They fixed our inverter the same day. Very professional."
     },
     {
       name: "Mercy Phiri",
@@ -51,77 +51,86 @@ export default function CustomerFeedback() {
       initials: "MP",
       stars: 5,
       image: "/images/solar_switches_wall_mounting/Image6.jpeg",
-      quote: "Great consultation with no pressure at all."
+      quote: "Great consultation and perfect system selection."
     },
   ];
 
-  const avgRating =
-    (reviews.reduce((s, r) => s + r.stars, 0) / reviews.length).toFixed(1);
-
   const LocationIcon = () => (
-    <svg
-      width={12}
-      height={12}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="var(--gp-green)"
-      strokeWidth={2}
-    >
+    <svg width={12} height={12} viewBox="0 0 24 24" fill="none"
+      stroke="var(--gp-green)" strokeWidth={2}>
       <path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z" />
       <circle cx="12" cy="9" r="2" fill="var(--gp-green)" />
     </svg>
   );
 
   return (
-    <div style={{ background: "var(--gp-bg-page)", minHeight: "100vh" }}>
+    <div style={{ background: "var(--gp-bg-page)" }}>
 
-      {/* HERO */}
-      <div className="gp-container hero">
-        <h1 style={{ color: "var(--gp-text-primary)" }}>Customer Feedback</h1>
-        <p style={{ color: "var(--gp-text-muted)" }}>
-          Real experiences from our clients across Malawi
+      {/* HERO (tight like About page) */}
+      <div className="gp-container" style={{ padding: "32px 0 18px" }}>
+        <span className="gp-eyebrow">Customer feedback</span>
+        <h1 style={{
+          fontSize: "clamp(1.4rem, 3vw, 2rem)",
+          fontWeight: 800,
+          color: "var(--gp-text-primary)",
+          margin: "6px 0 4px"
+        }}>
+          What our clients say
+        </h1>
+
+        <p style={{
+          fontSize: 13,
+          color: "var(--gp-text-muted)",
+          margin: 0
+        }}>
+          Real experiences from across Malawi
         </p>
       </div>
 
-      {/* RATING */}
-      <div className="gp-container">
-        <h2 style={{ color: "var(--gp-green)" }}>{avgRating} / 5</h2>
-      </div>
-
-      {/* GRID */}
-      <div className="gp-container">
+      {/* REVIEWS GRID (NO BORDERS, NO SPACING BOX LOOK) */}
+      <div className="gp-container" style={{ paddingBottom: 40 }}>
         <div className="grid">
 
-          {reviews.map(({ name, location, initials, stars, quote, image }) => (
-            <div key={name} className="card">
+          {reviews.map((r) => (
+            <div key={r.name} className="card">
 
-              {/* IMAGE (FULL, NO CROPPING) */}
-              <div className="imgBox">
-                <img src={image} alt={name} className="img" />
+              {/* FULL IMAGE (NO CROPPING FEEL) */}
+              <div className="imgWrap">
+                <Image
+                  src={r.image}
+                  alt={r.name}
+                  fill
+                  sizes="100vw"
+                  style={{ objectFit: "cover" }}
+                />
               </div>
 
               {/* STARS */}
               <div className="stars">
                 {Array.from({ length: 5 }).map((_, i) => (
-                  <span key={i} className={i < stars ? "star filled" : "star"}>
+                  <span
+                    key={i}
+                    className="star"
+                    style={{
+                      color: i < r.stars ? "var(--gp-green)" : "#d1d5db"
+                    }}
+                  >
                     ★
                   </span>
                 ))}
               </div>
 
               {/* QUOTE */}
-              <p className="quote">“{quote}”</p>
+              <p className="quote">“{r.quote}”</p>
 
               {/* USER */}
               <div className="user">
-                <div className="avatar">{initials}</div>
+                <div className="avatar">{r.initials}</div>
                 <div>
-                  <strong style={{ color: "var(--gp-text-primary)" }}>
-                    {name}
-                  </strong>
+                  <p className="name">{r.name}</p>
                   <div className="location">
                     <LocationIcon />
-                    <span>{location}</span>
+                    {r.location}
                   </div>
                 </div>
               </div>
@@ -132,19 +141,17 @@ export default function CustomerFeedback() {
         </div>
       </div>
 
-      {/* STYLES */}
+      {/* STYLE (tight like your About page) */}
       <style>{`
         .gp-container {
-          padding: 0 1.5rem;
-        }
-
-        .hero {
-          padding: 40px 0;
+          padding-left: 1rem;
+          padding-right: 1rem;
+          max-width: 100%;
         }
 
         .grid {
           display: grid;
-          gap: 20px;
+          gap: 10px; /* reduced spacing */
         }
 
         @media (min-width: 768px) {
@@ -154,74 +161,70 @@ export default function CustomerFeedback() {
         }
 
         .card {
-          background: #fff;
-          border: 1px solid var(--gp-green-border);
-          border-radius: 12px;
-          padding: 16px;
           display: flex;
           flex-direction: column;
-          gap: 10px;
+          gap: 6px;
+          background: transparent;
         }
 
-        /* IMAGE FIXED (NO CROP) */
-        .imgBox {
+        /* FULL WIDTH IMAGE (NO CROPPING BOX FEEL) */
+        .imgWrap {
+          position: relative;
           width: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background: #f5f5f5;
-          border-radius: 10px;
-          padding: 8px;
-        }
-
-        .img {
-          width: 100%;
-          height: auto;
-          object-fit: contain;
-          border-radius: 8px;
+          height: 220px;
+          overflow: hidden;
         }
 
         .stars {
           display: flex;
-          gap: 3px;
+          gap: 2px;
+          margin-top: 2px;
         }
 
         .star {
-          color: #ccc;
-        }
-
-        .star.filled {
-          color: #f5a623;
+          font-size: 14px;
         }
 
         .quote {
-          font-size: 14px;
+          font-size: 13px;
           color: var(--gp-text-muted);
+          margin: 0;
+          line-height: 1.6;
         }
 
         .user {
           display: flex;
           gap: 10px;
           align-items: center;
+          margin-top: 4px;
         }
 
         .avatar {
-          width: 35px;
-          height: 35px;
+          width: 32px;
+          height: 32px;
           border-radius: 50%;
           background: var(--gp-green-light);
           display: flex;
           align-items: center;
           justify-content: center;
-          font-weight: bold;
+          font-weight: 700;
           color: var(--gp-green);
+          font-size: 12px;
+        }
+
+        .name {
+          margin: 0;
+          font-size: 13px;
+          font-weight: 700;
+          color: var(--gp-text-primary);
         }
 
         .location {
           display: flex;
           gap: 4px;
-          font-size: 12px;
-          color: var(--gp-text-subtle);
+          font-size: 11px;
+          color: var(--gp-text-muted);
+          align-items: center;
         }
       `}</style>
 
