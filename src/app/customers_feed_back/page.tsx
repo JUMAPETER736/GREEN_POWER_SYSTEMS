@@ -1,188 +1,212 @@
+"use client";
+
 import Link from "next/link";
 
-export default function Customer_Feedback() {
+export default function CustomerFeedback() {
 
   const reviews = [
-    { name: "Chimwemwe Banda", location: "Lilongwe", initials: "CB", stars: 5, quote: "Green Power installed a 3kW system on our home. The team was professional and the panels have been running flawlessly for over a year. Our electricity bills dropped by 80%." },
-    { name: "Dr. Grace Nyirenda", location: "Area 43, Lilongwe", initials: "GN", stars: 5, quote: "Excellent service from start to finish. They explained everything clearly, gave us a fair price, and the installation was completed in one day. Highly recommended." },
-    { name: "James Mwale", location: "Blantyre", initials: "JM", stars: 5, quote: "We use their commercial system at our warehouse. 12 months in and zero issues. Their maintenance team is responsive and professional." },
-    { name: "Faith Tembo", location: "Kasungu", initials: "FT", stars: 4, quote: "Very happy with the system. Installation took two days and the team cleaned up everything. The app monitoring is a great bonus — I can see output live." },
-    { name: "Emmanuel Chirwa", location: "Mzuzu", initials: "EC", stars: 5, quote: "We had a faulty inverter from another supplier. Green Power diagnosed and fixed it the same day. Their technical knowledge is unmatched." },
-    { name: "Mercy Phiri", location: "Zomba", initials: "MP", stars: 5, quote: "The consultation was free and genuinely helpful — no pressure at all. We ended up choosing a system that fits our budget perfectly." },
+    {
+      name: "Chimwemwe Banda",
+      location: "Lilongwe",
+      initials: "CB",
+      stars: 5,
+      image: "/images/gallery/image1.jpeg",
+      quote: "Green Power installed a 3kW system on our home. The team was professional and the panels have been running flawlessly for over a year. Our electricity bills dropped by 80%."
+    },
+    {
+      name: "Dr. Grace Nyirenda",
+      location: "Area 43, Lilongwe",
+      initials: "GN",
+      stars: 5,
+      image: "/images/gallery/image3.jpeg",
+      quote: "Excellent service from start to finish. They explained everything clearly, gave us a fair price, and the installation was completed in one day. Highly recommended."
+    },
+    {
+      name: "James Mwale",
+      location: "Blantyre",
+      initials: "JM",
+      stars: 5,
+      image: "/images/gallery/image7.jpeg",
+      quote: "We use their commercial system at our warehouse. 12 months in and zero issues. Their maintenance team is responsive and professional."
+    },
+    {
+      name: "Faith Tembo",
+      location: "Kasungu",
+      initials: "FT",
+      stars: 4,
+      image: "/images/gallery/image9.jpeg",
+      quote: "Very happy with the system. Installation took two days and the team cleaned up everything. The app monitoring is a great bonus — I can see output live."
+    },
+    {
+      name: "Emmanuel Chirwa",
+      location: "Mzuzu",
+      initials: "EC",
+      stars: 5,
+      image: "/images/gallery/image12.jpeg",
+      quote: "We had a faulty inverter from another supplier. Green Power diagnosed and fixed it the same day. Their technical knowledge is unmatched."
+    },
+    {
+      name: "Mercy Phiri",
+      location: "Zomba",
+      initials: "MP",
+      stars: 5,
+      image: "/images/gallery/image14.jpeg",
+      quote: "The consultation was free and genuinely helpful — no pressure at all. We ended up choosing a system that fits our budget perfectly."
+    },
   ];
-
-  const switchImages = Array.from({ length: 11 }, (_, i) => ({
-    src: `/images/solar_switches_wall_mounting/Image${i + 1}.jpeg`,
-    alt: `Solar switch wall mounting installation ${i + 1}`,
-  }));
 
   const avgRating = (reviews.reduce((s, r) => s + r.stars, 0) / reviews.length).toFixed(1);
   const fiveStarCount = reviews.filter(r => r.stars === 5).length;
 
   const LocationIcon = () => (
-    <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="var(--gp-green)" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: 1 }}>
+    <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="var(--gp-green)" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
       <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
       <circle cx="12" cy="9" r="2.5" fill="var(--gp-green)" stroke="none" />
     </svg>
   );
 
   return (
-    <div style={{ backgroundColor: "var(--gp-bg-page)", overflowX: "hidden", width: "100%" }}>
+    <div style={{ backgroundColor: "var(--gp-bg-page)", width: "100%" }}>
 
-      {/* Page Hero */}
+      {/* HERO */}
       <div className="gp-page-hero">
         <div className="gp-container">
           <span className="gp-eyebrow">What clients say</span>
-          <h1 className="gp-section-title" style={{ width: "100%", wordBreak: "break-word" }}>Trusted by homes, commercial and industrial areas across Malawi</h1>
-          <p className="gp-section-sub" style={{ marginTop: 14, wordBreak: "break-word" }}>Real experiences from our clients — their words, not ours.</p>
+          <h1 className="gp-section-title">
+            Trusted across Malawi
+          </h1>
+          <p className="gp-section-sub">
+            Real experiences from our clients — their words, not ours.
+          </p>
         </div>
       </div>
 
-      {/* Rating Summary Bar */}
-      <section style={{ backgroundColor: "var(--gp-bg-card)", borderBottom: "1px solid var(--gp-border)", padding: "clamp(20px, 4vw, 28px) 0" }}>
+      {/* RATING */}
+      <section style={{ padding: "28px 0", borderBottom: "1px solid var(--gp-border)" }}>
         <div className="gp-container">
           <div className="gp-rating-bar">
-            <div className="gp-rating-score">
-              <p style={{ fontSize: "clamp(36px, 8vw, 52px)", fontWeight: 800, color: "var(--gp-green)", margin: 0, lineHeight: 1 }}>{avgRating}</p>
-              <div>
-                <div style={{ display: "flex", gap: 3, marginBottom: 4 }}>
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <svg key={i} width={18} height={18} viewBox="0 0 24 24" fill="#f5a623">
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                    </svg>
-                  ))}
-                </div>
-                <p style={{ fontSize: 13, color: "var(--gp-text-muted)", margin: 0 }}>Based on {reviews.length} reviews</p>
-              </div>
-            </div>
-            <div className="gp-rating-divider" />
-            <div className="gp-rating-stats">
-              {[
-                { value: `${fiveStarCount}/${reviews.length}`, label: "5-star reviews" },
-                { value: "100%", label: "Would recommend" },
-                { value: "2 hrs", label: "Avg. response time" },
-              ].map(s => (
-                <div key={s.label} style={{ textAlign: "center", minWidth: 0 }}>
-                  <p style={{ fontSize: "clamp(18px, 4vw, 24px)", fontWeight: 800, color: "var(--gp-green)", margin: 0, lineHeight: 1, wordBreak: "break-word" }}>{s.value}</p>
-                  <p style={{ fontSize: "clamp(11px, 1.5vw, 12px)", color: "var(--gp-text-muted)", margin: "4px 0 0", wordBreak: "break-word" }}>{s.label}</p>
-                </div>
-              ))}
-            </div>
+            <h2 style={{ fontSize: 48, color: "var(--gp-green)" }}>{avgRating}</h2>
+            <p>Based on {reviews.length} reviews ({fiveStarCount} are 5★)</p>
           </div>
         </div>
       </section>
 
-      {/* Solar Switch Installations Gallery */}
-      <section style={{ padding: "clamp(40px, 7vw, 64px) 0", borderBottom: "1px solid var(--gp-border)" }}>
-        <div className="gp-container">
-          <span className="gp-eyebrow" style={{ display: "block", marginBottom: 8 }}>Our installations</span>
-          <h2 style={{ fontSize: "clamp(1.2rem, 3vw, 1.6rem)", fontWeight: 800, color: "var(--gp-text-primary)", margin: "0 0 24px", letterSpacing: "-0.01em" }}>
-            Solar switch &amp; wall mounting work
-          </h2>
-          <div className="gp-switch-grid">
-            {switchImages.map((img, idx) => (
-              <div key={idx} className="gp-switch-img-wrap">
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  loading="lazy"
-                  className="gp-switch-img"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Reviews Grid */}
-      <section style={{ padding: "clamp(40px, 7vw, 72px) 0" }}>
+      {/* REVIEWS */}
+      <section style={{ padding: "60px 0" }}>
         <div className="gp-container">
           <div className="gp-reviews-grid">
-            {reviews.map(({ name, location, initials, stars, quote }) => (
-              <div key={name} className="gp-card" style={{ padding: "clamp(20px, 4vw, 28px)", display: "flex", flexDirection: "column", gap: 14, minWidth: 0 }}>
 
-                {/* Stars */}
+            {reviews.map(({ name, location, initials, stars, quote, image }) => (
+              <div key={name} className="gp-card">
+
+                {/* IMAGE */}
+                <img
+                  src={image}
+                  alt={name}
+                  className="gp-review-img"
+                />
+
+                {/* STARS */}
                 <div style={{ display: "flex", gap: 3 }}>
                   {Array.from({ length: 5 }).map((_, i) => (
-                    <svg key={i} width={15} height={15} viewBox="0 0 24 24" fill={i < stars ? "#f5a623" : "#e0e0e0"}>
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                    </svg>
+                    <span key={i}>{i < stars ? "★" : "☆"}</span>
                   ))}
                 </div>
 
-                {/* Quote */}
-                <p style={{ fontSize: "clamp(13px, 2vw, 14px)", color: "var(--gp-text-muted)", lineHeight: 1.75, margin: 0, flexGrow: 1, wordBreak: "break-word" }}>
-                  &ldquo;{quote}&rdquo;
-                </p>
+                {/* QUOTE */}
+                <p className="gp-quote">“{quote}”</p>
 
-                {/* Reviewer */}
-                <div style={{ display: "flex", alignItems: "center", gap: 12, paddingTop: 12, borderTop: "1px solid var(--gp-border)" }}>
-                  <div style={{ width: 40, height: 40, borderRadius: "50%", backgroundColor: "var(--gp-green-light)", border: "1.5px solid var(--gp-green-border)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 700, color: "var(--gp-green)", flexShrink: 0 }}>{initials}</div>
-                  <div style={{ minWidth: 0 }}>
-                    <p style={{ fontSize: 13, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 3px", wordBreak: "break-word" }}>{name}</p>
-                    <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                {/* USER */}
+                <div className="gp-user">
+                  <div className="gp-avatar">{initials}</div>
+                  <div>
+                    <strong>{name}</strong>
+                    <div className="gp-location">
                       <LocationIcon />
-                      <p style={{ fontSize: 12, color: "var(--gp-text-subtle)", margin: 0, wordBreak: "break-word" }}>{location}</p>
+                      <span>{location}</span>
                     </div>
                   </div>
                 </div>
 
               </div>
             ))}
+
           </div>
         </div>
       </section>
 
-      {/* Bottom CTA */}
-      <section style={{ padding: "clamp(48px, 7vw, 72px) 0", backgroundColor: "var(--gp-bg-section)", borderTop: "1px solid var(--gp-border)" }}>
-        <div className="gp-container" style={{ textAlign: "center" }}>
-          <h2 style={{ fontSize: "clamp(1.4rem, 3.5vw, 2rem)", fontWeight: 800, color: "var(--gp-text-primary)", margin: "0 0 12px", letterSpacing: "-0.01em", wordBreak: "break-word" }}>Join hundreds of satisfied clients</h2>
-          <p style={{ fontSize: "clamp(14px, 2vw, 15px)", color: "var(--gp-text-muted)", margin: "0 auto 28px", lineHeight: 1.7, maxWidth: "100%", wordBreak: "break-word" }}>Ready to experience the Green Power difference?</p>
-          <Link href="/company_contact_details" className="gp-btn-primary">Get your free quote</Link>
-        </div>
+      {/* CTA */}
+      <section style={{ textAlign: "center", padding: "60px 0" }}>
+        <h2>Join hundreds of satisfied clients</h2>
+        <p>Ready to experience the Green Power difference?</p>
+        <Link href="/company_contact_details" className="gp-btn-primary">
+          Get your free quote
+        </Link>
       </section>
 
+      {/* STYLES */}
       <style>{`
-        *, *::before, *::after { box-sizing: border-box; }
-        .gp-container { width: 100%; max-width: 100%; padding-left: clamp(1rem, 4vw, 1.5rem); padding-right: clamp(1rem, 4vw, 1.5rem); }
-        .gp-rating-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; width: 100%; }
-        .gp-rating-score { display: flex; align-items: center; gap: 16px; min-width: 0; }
-        .gp-rating-divider { width: 1px; height: 48px; background: var(--gp-border); flex-shrink: 0; }
-        .gp-rating-stats { display: flex; gap: clamp(16px, 4vw, 40px); flex-wrap: wrap; min-width: 0; }
-        .gp-reviews-grid { display: grid; grid-template-columns: 1fr; gap: 16px; width: 100%; }
-        @media (min-width: 600px) { .gp-reviews-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (min-width: 960px) { .gp-reviews-grid { grid-template-columns: repeat(3, 1fr); } }
-        .gp-switch-grid {
+        .gp-container {
+          padding: 0 1.5rem;
+        }
+
+        .gp-reviews-grid {
           display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 12px;
-          width: 100%;
+          grid-template-columns: 1fr;
+          gap: 20px;
         }
-        @media (min-width: 480px) { .gp-switch-grid { grid-template-columns: repeat(3, 1fr); } }
-        @media (min-width: 768px) { .gp-switch-grid { grid-template-columns: repeat(4, 1fr); } }
-        @media (min-width: 1024px) { .gp-switch-grid { grid-template-columns: repeat(5, 1fr); } }
-        .gp-switch-img-wrap {
-          aspect-ratio: 1 / 1;
-          overflow: hidden;
-          border-radius: 10px;
+
+        @media (min-width: 768px) {
+          .gp-reviews-grid {
+            grid-template-columns: repeat(3, 1fr);
+          }
+        }
+
+        .gp-card {
+          padding: 20px;
           border: 1px solid var(--gp-border);
-          background: var(--gp-bg-card);
+          border-radius: 10px;
+          background: #fff;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
         }
-        .gp-switch-img {
+
+        .gp-review-img {
           width: 100%;
-          height: 100%;
+          height: 160px;
           object-fit: cover;
-          display: block;
-          border-radius: var(--gp-radius, 10px);
-          transition: transform 0.3s ease;
+          border-radius: 8px;
         }
-        .gp-switch-img:hover {
-          transform: scale(1.04);
+
+        .gp-quote {
+          font-size: 14px;
+          color: #555;
         }
-        @media (max-width: 480px) {
-          .gp-container { padding-left: 1rem; padding-right: 1rem; }
-          .gp-rating-divider { display: none; }
-          .gp-rating-bar { gap: 16px; }
+
+        .gp-user {
+          display: flex;
+          gap: 10px;
+          align-items: center;
+        }
+
+        .gp-avatar {
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          background: #eaf5ef;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: bold;
+          color: green;
+        }
+
+        .gp-location {
+          display: flex;
+          gap: 4px;
+          font-size: 12px;
+          color: #777;
         }
       `}</style>
 
