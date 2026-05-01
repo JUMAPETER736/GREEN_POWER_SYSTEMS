@@ -10,7 +10,7 @@ export default function CustomerFeedback() {
       location: "Lilongwe",
       initials: "CB",
       stars: 5,
-      image: "/images/gallery/image1.jpeg",
+      image: "/images/solar_switches_wall_mounting/Image1.jpeg",
       quote: "Green Power installed a 3kW system on our home. The team was professional and the panels have been running flawlessly for over a year. Our electricity bills dropped by 80%."
     },
     {
@@ -18,7 +18,7 @@ export default function CustomerFeedback() {
       location: "Area 43, Lilongwe",
       initials: "GN",
       stars: 5,
-      image: "/images/gallery/image3.jpeg",
+      image: "/images/solar_switches_wall_mounting/Image2.jpeg",
       quote: "Excellent service from start to finish. They explained everything clearly, gave us a fair price, and the installation was completed in one day. Highly recommended."
     },
     {
@@ -26,7 +26,7 @@ export default function CustomerFeedback() {
       location: "Blantyre",
       initials: "JM",
       stars: 5,
-      image: "/images/gallery/image7.jpeg",
+      image: "/images/solar_switches_wall_mounting/Image3.jpeg",
       quote: "We use their commercial system at our warehouse. 12 months in and zero issues. Their maintenance team is responsive and professional."
     },
     {
@@ -34,115 +34,96 @@ export default function CustomerFeedback() {
       location: "Kasungu",
       initials: "FT",
       stars: 4,
-      image: "/images/gallery/image9.jpeg",
-      quote: "Very happy with the system. Installation took two days and the team cleaned up everything. The app monitoring is a great bonus — I can see output live."
+      image: "/images/solar_switches_wall_mounting/Image4.jpeg",
+      quote: "Very happy with the system. Installation took two days and the team cleaned up everything."
     },
     {
       name: "Emmanuel Chirwa",
       location: "Mzuzu",
       initials: "EC",
       stars: 5,
-      image: "/images/gallery/image12.jpeg",
-      quote: "We had a faulty inverter from another supplier. Green Power diagnosed and fixed it the same day. Their technical knowledge is unmatched."
+      image: "/images/solar_switches_wall_mounting/Image5.jpeg",
+      quote: "We had a faulty inverter from another supplier. Green Power diagnosed and fixed it the same day."
     },
     {
       name: "Mercy Phiri",
       location: "Zomba",
       initials: "MP",
       stars: 5,
-      image: "/images/gallery/image14.jpeg",
-      quote: "The consultation was free and genuinely helpful — no pressure at all. We ended up choosing a system that fits our budget perfectly."
+      image: "/images/solar_switches_wall_mounting/Image6.jpeg",
+      quote: "The consultation was free and genuinely helpful — no pressure at all."
     },
   ];
 
   const avgRating = (reviews.reduce((s, r) => s + r.stars, 0) / reviews.length).toFixed(1);
-  const fiveStarCount = reviews.filter(r => r.stars === 5).length;
 
   const LocationIcon = () => (
-    <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="var(--gp-green)" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
-      <circle cx="12" cy="9" r="2.5" fill="var(--gp-green)" stroke="none" />
+    <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="var(--gp-green)" strokeWidth={2}>
+      <path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/>
+      <circle cx="12" cy="9" r="2" fill="var(--gp-green)" />
     </svg>
   );
 
   return (
-    <div style={{ backgroundColor: "var(--gp-bg-page)", width: "100%" }}>
+    <div style={{ background: "var(--gp-bg-page)" }}>
 
       {/* HERO */}
-      <div className="gp-page-hero">
-        <div className="gp-container">
-          <span className="gp-eyebrow">What clients say</span>
-          <h1 className="gp-section-title">
-            Trusted across Malawi
-          </h1>
-          <p className="gp-section-sub">
-            Real experiences from our clients — their words, not ours.
-          </p>
-        </div>
+      <div className="gp-container" style={{ padding: "40px 0" }}>
+        <h1>Customer Feedback</h1>
+        <p>Real experiences from our clients across Malawi</p>
       </div>
 
       {/* RATING */}
-      <section style={{ padding: "28px 0", borderBottom: "1px solid var(--gp-border)" }}>
-        <div className="gp-container">
-          <div className="gp-rating-bar">
-            <h2 style={{ fontSize: 48, color: "var(--gp-green)" }}>{avgRating}</h2>
-            <p>Based on {reviews.length} reviews ({fiveStarCount} are 5★)</p>
-          </div>
-        </div>
-      </section>
+      <div className="gp-container" style={{ marginBottom: 30 }}>
+        <h2 style={{ color: "green" }}>{avgRating} / 5</h2>
+      </div>
 
       {/* REVIEWS */}
-      <section style={{ padding: "60px 0" }}>
-        <div className="gp-container">
-          <div className="gp-reviews-grid">
+      <div className="gp-container">
+        <div className="grid">
 
-            {reviews.map(({ name, location, initials, stars, quote, image }) => (
-              <div key={name} className="gp-card">
+          {reviews.map(({ name, location, initials, stars, quote, image }) => (
+            <div key={name} className="card">
 
-                {/* IMAGE */}
-                <img
-                  src={image}
-                  alt={name}
-                  className="gp-review-img"
-                />
+              {/* IMAGE */}
+              <img src={image} alt={name} className="img" />
 
-                {/* STARS */}
-                <div style={{ display: "flex", gap: 3 }}>
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <span key={i}>{i < stars ? "★" : "☆"}</span>
-                  ))}
-                </div>
+              {/* STARS (styled to match theme) */}
+              <div className="stars">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <span key={i} className={i < stars ? "star filled" : "star"}>
+                    ★
+                  </span>
+                ))}
+              </div>
 
-                {/* QUOTE */}
-                <p className="gp-quote">“{quote}”</p>
+              {/* TEXT */}
+              <p className="quote">“{quote}”</p>
 
-                {/* USER */}
-                <div className="gp-user">
-                  <div className="gp-avatar">{initials}</div>
-                  <div>
-                    <strong>{name}</strong>
-                    <div className="gp-location">
-                      <LocationIcon />
-                      <span>{location}</span>
-                    </div>
+              {/* USER */}
+              <div className="user">
+                <div className="avatar">{initials}</div>
+                <div>
+                  <strong>{name}</strong>
+                  <div className="location">
+                    <LocationIcon />
+                    <span>{location}</span>
                   </div>
                 </div>
-
               </div>
-            ))}
 
-          </div>
+            </div>
+          ))}
+
         </div>
-      </section>
+      </div>
 
       {/* CTA */}
-      <section style={{ textAlign: "center", padding: "60px 0" }}>
-        <h2>Join hundreds of satisfied clients</h2>
-        <p>Ready to experience the Green Power difference?</p>
-        <Link href="/company_contact_details" className="gp-btn-primary">
+      <div style={{ textAlign: "center", padding: "50px 0" }}>
+        <Link href="/company_contact_details" className="btn">
           Get your free quote
         </Link>
-      </section>
+      </div>
 
       {/* STYLES */}
       <style>{`
@@ -150,49 +131,62 @@ export default function CustomerFeedback() {
           padding: 0 1.5rem;
         }
 
-        .gp-reviews-grid {
+        .grid {
           display: grid;
-          grid-template-columns: 1fr;
           gap: 20px;
         }
 
         @media (min-width: 768px) {
-          .gp-reviews-grid {
+          .grid {
             grid-template-columns: repeat(3, 1fr);
           }
         }
 
-        .gp-card {
-          padding: 20px;
-          border: 1px solid var(--gp-border);
+        .card {
+          background: white;
+          border: 1px solid #ddd;
           border-radius: 10px;
-          background: #fff;
+          padding: 16px;
           display: flex;
           flex-direction: column;
-          gap: 12px;
+          gap: 10px;
         }
 
-        .gp-review-img {
+        .img {
           width: 100%;
-          height: 160px;
+          height: 150px;
           object-fit: cover;
           border-radius: 8px;
         }
 
-        .gp-quote {
+        .stars {
+          display: flex;
+          gap: 3px;
+        }
+
+        .star {
+          color: #ccc;
+          font-size: 16px;
+        }
+
+        .star.filled {
+          color: #f5a623;
+        }
+
+        .quote {
           font-size: 14px;
           color: #555;
         }
 
-        .gp-user {
+        .user {
           display: flex;
           gap: 10px;
           align-items: center;
         }
 
-        .gp-avatar {
-          width: 36px;
-          height: 36px;
+        .avatar {
+          width: 35px;
+          height: 35px;
           border-radius: 50%;
           background: #eaf5ef;
           display: flex;
@@ -202,11 +196,19 @@ export default function CustomerFeedback() {
           color: green;
         }
 
-        .gp-location {
+        .location {
           display: flex;
           gap: 4px;
           font-size: 12px;
           color: #777;
+        }
+
+        .btn {
+          background: green;
+          color: white;
+          padding: 10px 20px;
+          border-radius: 6px;
+          text-decoration: none;
         }
       `}</style>
 
