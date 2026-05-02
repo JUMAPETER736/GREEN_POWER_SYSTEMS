@@ -67,184 +67,145 @@ export default function CustomerFeedback() {
   );
 
   return (
-    <div style={{ background: "var(--gp-bg-page)" }}>
+    <div style={{ backgroundColor: "var(--gp-bg-page)", overflowX: "hidden", width: "100%" }}>
 
-      {/* HERO — FIXED ALIGNMENT */}
-      <div className="gp-container gp-hero">
-        <span className="gp-eyebrow">Customer feedback</span>
-
-        <h1 className="gp-title">
-          What our clients say
-        </h1>
-
-        <p className="gp-sub">
-          Real experiences from across Malawi
-        </p>
-      </div>
-
-      {/* REVIEWS GRID */}
-      <div className="gp-container">
-        <div className="grid">
-
-          {reviews.map((r) => (
-            <div key={r.name} className="card">
-
-              {/* FULL IMAGE WITH ROUNDED CORNERS */}
-              <div className="imgWrap">
-                <Image
-                  src={r.image}
-                  alt={r.name}
-                  fill
-                  sizes="100vw"
-                  style={{ objectFit: "cover" }}
-                />
-              </div>
-
-              {/* STARS */}
-              <div className="stars">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <span
-                    key={i}
-                    style={{
-                      color: i < r.stars ? "var(--gp-green)" : "#d1d5db",
-                      fontSize: 14
-                    }}
-                  >
-                    ★
-                  </span>
-                ))}
-              </div>
-
-              {/* QUOTE */}
-              <p className="quote">“{r.quote}”</p>
-
-              {/* USER */}
-              <div className="user">
-                <div className="avatar">{r.initials}</div>
-                <div>
-                  <p className="name">{r.name}</p>
-                  <div className="location">
-                    <LocationIcon />
-                    {r.location}
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          ))}
-
+      {/* ── Hero ── */}
+      <div className="gp-page-hero">
+        <div className="gp-container">
+          <span className="gp-eyebrow">Customer feedback</span>
+          <h1
+            className="gp-section-title"
+            style={{ width: "100%", wordBreak: "break-word" }}
+          >
+            What our clients say
+          </h1>
+          <p className="gp-section-sub" style={{ marginTop: 14, wordBreak: "break-word" }}>
+            Real experiences from across Malawi
+          </p>
         </div>
       </div>
 
-      {/* STYLES (MATCHING YOUR SERVICES PAGE SYSTEM) */}
+      {/* ── Reviews grid ── */}
+      <section style={{ padding: "clamp(48px, 8vw, 80px) 0", backgroundColor: "var(--gp-bg-page)" }}>
+        <div className="gp-container">
+          <div className="cf-grid">
+            {reviews.map((r) => (
+              <div key={r.name} className="cf-card">
+
+                {/* Image */}
+                <div className="cf-img-wrap">
+                  <Image
+                    src={r.image}
+                    alt={r.name}
+                    fill
+                    sizes="(min-width: 768px) 33vw, 100vw"
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+
+                {/* Stars */}
+                <div style={{ display: "flex", gap: 2, marginTop: 4 }}>
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <span
+                      key={i}
+                      style={{
+                        color: i < r.stars ? "var(--gp-green)" : "#d1d5db",
+                        fontSize: 14,
+                      }}
+                    >
+                      ★
+                    </span>
+                  ))}
+                </div>
+
+                {/* Quote */}
+                <p style={{
+                  fontSize: "clamp(12px, 1.6vw, 13px)",
+                  color: "var(--gp-text-muted)",
+                  lineHeight: 1.6,
+                  margin: 0,
+                  wordBreak: "break-word",
+                }}>
+                  "{r.quote}"
+                </p>
+
+                {/* User */}
+                <div style={{ display: "flex", gap: 10, alignItems: "center", marginTop: 4 }}>
+                  <div style={{
+                    width: 32, height: 32, borderRadius: "50%",
+                    backgroundColor: "var(--gp-green-light)",
+                    border: "1.5px solid var(--gp-green-border)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    fontWeight: 700, color: "var(--gp-green)", fontSize: 12,
+                    flexShrink: 0,
+                  }}>
+                    {r.initials}
+                  </div>
+                  <div style={{ minWidth: 0 }}>
+                    <p style={{ margin: 0, fontSize: 13, fontWeight: 700, color: "var(--gp-text-primary)", wordBreak: "break-word" }}>{r.name}</p>
+                    <div style={{ display: "flex", gap: 4, fontSize: 11, color: "var(--gp-text-muted)", alignItems: "center" }}>
+                      <LocationIcon />
+                      {r.location}
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Styles ── */}
       <style>{`
         *, *::before, *::after {
           box-sizing: border-box;
         }
-
         .gp-container {
           width: 100%;
           max-width: 100%;
           padding-left: clamp(1rem, 4vw, 1.5rem);
           padding-right: clamp(1rem, 4vw, 1.5rem);
         }
-
-        /* HERO (aligned with grid start) */
-        .gp-hero {
-          padding: 32px 0 14px;
+        @media (max-width: 480px) {
+          .gp-container {
+            padding-left: 1rem;
+            padding-right: 1rem;
+          }
         }
 
-        .gp-title {
-          font-size: clamp(1.4rem, 3vw, 2rem);
-          font-weight: 800;
-          color: var(--gp-text-primary);
-          margin: 6px 0 4px;
-          line-height: 1.2;
-        }
-
-        .gp-sub {
-          font-size: 13px;
-          color: var(--gp-text-muted);
-          margin: 0;
-        }
-
-        /* GRID */
-        .grid {
+        /* Grid */
+        .cf-grid {
           display: grid;
           gap: 16px;
+          grid-template-columns: 1fr;
         }
-
+        @media (min-width: 600px) {
+          .cf-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
         @media (min-width: 768px) {
-          .grid {
+          .cf-grid {
             grid-template-columns: repeat(3, 1fr);
           }
         }
 
-        /* CARD (clean, no box feel) */
-        .card {
+        /* Card */
+        .cf-card {
           display: flex;
           flex-direction: column;
           gap: 6px;
+          min-width: 0;
         }
 
-        /* IMAGE FULL WIDTH + ROUNDED */
-        .imgWrap {
+        /* Image */
+        .cf-img-wrap {
           position: relative;
           width: 100%;
           height: 240px;
           overflow: hidden;
           border-radius: 14px;
-        }
-
-        /* STARS */
-        .stars {
-          display: flex;
-          gap: 2px;
-          margin-top: 4px;
-        }
-
-        /* TEXT */
-        .quote {
-          font-size: 13px;
-          color: var(--gp-text-muted);
-          line-height: 1.6;
-          margin: 0;
-        }
-
-        /* USER */
-        .user {
-          display: flex;
-          gap: 10px;
-          align-items: center;
-          margin-top: 4px;
-        }
-
-        .avatar {
-          width: 32px;
-          height: 32px;
-          border-radius: 50%;
-          background: var(--gp-green-light);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-weight: 700;
-          color: var(--gp-green);
-          font-size: 12px;
-        }
-
-        .name {
-          margin: 0;
-          font-size: 13px;
-          font-weight: 700;
-          color: var(--gp-text-primary);
-        }
-
-        .location {
-          display: flex;
-          gap: 4px;
-          font-size: 11px;
-          color: var(--gp-text-muted);
-          align-items: center;
         }
       `}</style>
 
