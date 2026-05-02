@@ -3,19 +3,19 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div style={{ backgroundColor: "var(--gp-bg-page)" }}>
+    <div style={{ backgroundColor: "var(--gp-bg-page)", overflowX: "hidden", width: "100%" }}>
 
       {/* ── Hero ── */}
       <section style={{ backgroundColor: "var(--gp-bg-card)", borderBottom: "1px solid var(--gp-border)" }}>
-        <div className="gp-container" style={{ padding: "72px 1.5rem 64px" }}>
+        <div className="gp-container" style={{ paddingTop: "clamp(48px, 8vw, 72px)", paddingBottom: "clamp(40px, 7vw, 64px)" }}>
           <div style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))",
-            gap: "3rem",
+            gap: "clamp(24px, 5vw, 48px)",
             alignItems: "center",
           }}>
             {/* Left */}
-            <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 22, minWidth: 0 }}>
               <span style={{
                 display: "inline-flex", alignItems: "center", gap: 8,
                 padding: "5px 14px", borderRadius: 100,
@@ -32,13 +32,12 @@ export default function Home() {
                 fontSize: "clamp(1.9rem, 5vw, 3.2rem)",
                 fontWeight: 800, color: "var(--gp-text-primary)",
                 lineHeight: 1.12, margin: 0, letterSpacing: "-0.02em",
+                wordBreak: "break-word",
               }}>
-    
                 <span style={{ color: "var(--gp-green)" }}>Power your future with clean solar energy</span>
-            
               </h1>
 
-              <p style={{ fontSize: "clamp(15px, 2vw, 17px)", color: "var(--gp-text-muted)", lineHeight: 1.7, margin: 0 }}>
+              <p style={{ fontSize: "clamp(15px, 2vw, 17px)", color: "var(--gp-text-muted)", lineHeight: 1.7, margin: 0, wordBreak: "break-word" }}>
                 Professional installation, sales, and maintenance for homes, commercial and industrial areas across Malawi. Sustainable energy that pays for itself.
               </p>
 
@@ -66,7 +65,7 @@ export default function Home() {
               border: "1px solid var(--gp-green-border)",
               borderRadius: 20, padding: "2rem",
               display: "flex", alignItems: "center", justifyContent: "center",
-              minHeight: 260,
+              minHeight: 260, minWidth: 0,
             }}>
               <svg viewBox="0 0 300 260" style={{ width: "100%", maxWidth: 320 }} xmlns="http://www.w3.org/2000/svg">
                 <circle cx="75" cy="60" r="36" fill="#fbb81c" opacity="0.18" />
@@ -94,28 +93,28 @@ export default function Home() {
       </section>
 
       {/* ── Why choose us ── */}
-      <section style={{ padding: "72px 0", backgroundColor: "var(--gp-bg-page)" }}>
+      <section style={{ padding: "clamp(48px, 8vw, 80px) 0", backgroundColor: "var(--gp-bg-page)" }}>
         <div className="gp-container">
           <div style={{ marginBottom: 40 }}>
             <span className="gp-eyebrow">Why choose us</span>
             <h2 className="gp-section-title">Expertise you can trust</h2>
             <p className="gp-section-sub">From first consultation to years of support, we're with you every step.</p>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 14 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 220px), 1fr))", gap: 14 }}>
             {[
               { title: "Certified technicians", desc: "Every installer is trained, vetted, and covered by our quality guarantee.", icon: "M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 0 0 1.946-.806 3.42 3.42 0 0 1 4.438 0 3.42 3.42 0 0 0 1.946.806 3.42 3.42 0 0 1 3.138 3.138 3.42 3.42 0 0 0 .806 1.946 3.42 3.42 0 0 1 0 4.438 3.42 3.42 0 0 0-.806 1.946 3.42 3.42 0 0 1-3.138 3.138 3.42 3.42 0 0 0-1.946.806 3.42 3.42 0 0 1-4.438 0 3.42 3.42 0 0 0-1.946-.806 3.42 3.42 0 0 1-3.138-3.138 3.42 3.42 0 0 0-.806-1.946 3.42 3.42 0 0 1 0-4.438 3.42 3.42 0 0 0 .806-1.946 3.42 3.42 0 0 1 3.138-3.138z" },
               { title: "24/7 support", desc: "Our team is always reachable for emergencies, queries, and routine checks.", icon: "M3 5a2 2 0 0 1 2-2h3.28a1 1 0 0 1 .948.684l1.498 4.493a1 1 0 0 1-.502 1.21l-2.257 1.13a11.042 11.042 0 0 0 5.516 5.516l1.13-2.257a1 1 0 0 1 1.21-.502l4.493 1.498a1 1 0 0 1 .684.949V19a2 2 0 0 1-2 2h-1C9.716 21 3 14.284 3 6V5z" },
               { title: "Transparent pricing", desc: "No hidden fees. Detailed quotes and flexible payment plans for every budget.", icon: "M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 11h.01M12 11h.01M15 11h.01M4 19V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z" },
               { title: "Locally rooted", desc: "Based in Lilongwe — we understand Malawi's energy landscape inside and out.", icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" },
             ].map(({ title, desc, icon }) => (
-              <div key={title} className="gp-card" style={{ padding: "24px 20px" }}>
+              <div key={title} className="gp-card" style={{ padding: "24px 20px", minWidth: 0 }}>
                 <div className="gp-icon-badge" style={{ marginBottom: 16 }}>
                   <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="var(--gp-green)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
                     <path d={icon} />
                   </svg>
                 </div>
-                <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 8px" }}>{title}</h3>
-                <p style={{ fontSize: 13.5, color: "var(--gp-text-muted)", lineHeight: 1.65, margin: 0 }}>{desc}</p>
+                <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 8px", wordBreak: "break-word" }}>{title}</h3>
+                <p style={{ fontSize: 13.5, color: "var(--gp-text-muted)", lineHeight: 1.65, margin: 0, wordBreak: "break-word" }}>{desc}</p>
               </div>
             ))}
           </div>
@@ -123,22 +122,22 @@ export default function Home() {
       </section>
 
       {/* ── Services preview ── */}
-      <section style={{ padding: "72px 0", backgroundColor: "var(--gp-bg-section)", borderTop: "1px solid var(--gp-border)", borderBottom: "1px solid var(--gp-border)" }}>
+      <section style={{ padding: "clamp(48px, 8vw, 80px) 0", backgroundColor: "var(--gp-bg-section)", borderTop: "1px solid var(--gp-border)", borderBottom: "1px solid var(--gp-border)" }}>
         <div className="gp-container">
           <div style={{ marginBottom: 40 }}>
             <span className="gp-eyebrow">Core services</span>
             <h2 className="gp-section-title">Everything solar, end to end</h2>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 14, marginBottom: 28 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 240px), 1fr))", gap: 14, marginBottom: 28 }}>
             {[
               { n:"01", t:"Installation", d:"Full system design and professional installation for homes, commercial and industrial areas.", featured: true },
               { n:"02", t:"Maintenance", d:"Scheduled servicing to maximise output and protect your investment.", featured: false },
               { n:"03", t:"Repairs & upgrades", d:"Fast fault diagnosis and upgrades to keep energy flowing.", featured: false },
             ].map(({ n, t, d, featured }) => (
-              <div key={n} className={featured ? "gp-card-featured" : "gp-card"} style={{ padding: "24px 22px" }}>
+              <div key={n} className={featured ? "gp-card-featured" : "gp-card"} style={{ padding: "24px 22px", minWidth: 0 }}>
                 <p style={{ fontSize: 11, color: "var(--gp-text-subtle)", fontWeight: 600, margin: "0 0 10px", letterSpacing: "0.05em" }}>{n}</p>
-                <h3 style={{ fontSize: 16, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 10px" }}>{t}</h3>
-                <p style={{ fontSize: 13.5, color: "var(--gp-text-muted)", lineHeight: 1.65, margin: "0 0 16px" }}>{d}</p>
+                <h3 style={{ fontSize: 16, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 10px", wordBreak: "break-word" }}>{t}</h3>
+                <p style={{ fontSize: 13.5, color: "var(--gp-text-muted)", lineHeight: 1.65, margin: "0 0 16px", wordBreak: "break-word" }}>{d}</p>
                 <Link href="/our_services" style={{ fontSize: 13, fontWeight: 700, color: "var(--gp-green)", textDecoration: "none" }}>Learn more →</Link>
               </div>
             ))}
@@ -147,17 +146,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Gallery teaser — responsive real photos ── */}
-      <section style={{ padding: "72px 0", backgroundColor: "var(--gp-bg-page)", borderBottom: "1px solid var(--gp-border)" }}>
+      {/* ── Gallery teaser ── */}
+      <section style={{ padding: "clamp(48px, 8vw, 80px) 0", backgroundColor: "var(--gp-bg-page)", borderBottom: "1px solid var(--gp-border)" }}>
         <div className="gp-container">
           <div style={{
             display: "flex", alignItems: "flex-end",
             justifyContent: "space-between", flexWrap: "wrap",
             gap: 16, marginBottom: 32,
           }}>
-            <div>
+            <div style={{ minWidth: 0 }}>
               <span className="gp-eyebrow">Our work</span>
-              <h2 className="gp-section-title" style={{ marginBottom: 0 }}>Real installations, real results</h2>
+              <h2 className="gp-section-title" style={{ marginBottom: 0, wordBreak: "break-word" }}>Real installations, real results</h2>
             </div>
             <Link href="/gallery" className="gp-btn-secondary" style={{ flexShrink: 0 }}>View full gallery →</Link>
           </div>
@@ -263,13 +262,13 @@ export default function Home() {
       </section>
 
       {/* ── Bottom CTA ── */}
-      <section style={{ padding: "72px 0", backgroundColor: "var(--gp-bg-dark)" }}>
+      <section style={{ padding: "clamp(48px, 8vw, 72px) 0", backgroundColor: "var(--gp-bg-dark)" }}>
         <div className="gp-container" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 28 }}>
-          <div style={{ maxWidth: 500 }}>
-            <h2 style={{ fontSize: "clamp(1.5rem,3.5vw,2.2rem)", fontWeight: 800, color: "#fff", margin: "0 0 10px", letterSpacing: "-0.02em" }}>
+          <div style={{ maxWidth: 500, minWidth: 0 }}>
+            <h2 style={{ fontSize: "clamp(1.5rem,3.5vw,2.2rem)", fontWeight: 800, color: "#fff", margin: "0 0 10px", letterSpacing: "-0.02em", wordBreak: "break-word" }}>
               Ready to go solar?
             </h2>
-            <p style={{ fontSize: "clamp(14px,2vw,16px)", color: "rgba(255,255,255,0.62)", margin: 0, lineHeight: 1.7 }}>
+            <p style={{ fontSize: "clamp(14px,2vw,16px)", color: "rgba(255,255,255,0.62)", margin: 0, lineHeight: 1.7, wordBreak: "break-word" }}>
               Talk to our experts — free consultation, no pressure, just honest solar advice for your homes, commercial and industrial areas.
             </p>
           </div>
@@ -277,9 +276,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Responsive gallery styles ── */}
+      {/* ── Styles ── */}
       <style>{`
-        /* Shared card styles */
+        *, *::before, *::after {
+          box-sizing: border-box;
+        }
+        .gp-container {
+          width: 100%;
+          max-width: 100%;
+          padding-left: clamp(1rem, 4vw, 1.5rem);
+          padding-right: clamp(1rem, 4vw, 1.5rem);
+        }
+        @media (max-width: 480px) {
+          .gp-container {
+            padding-left: 1rem;
+            padding-right: 1rem;
+          }
+        }
+
+        /* Gallery */
         .gp-gallery-teaser {
           display: grid;
           gap: 14px;
@@ -320,8 +335,6 @@ export default function Home() {
           bottom: 0; left: 0; right: 0;
           padding: 14px 16px;
         }
-
-        /* Tablet: 2 columns */
         @media (min-width: 600px) {
           .gp-gallery-teaser {
             grid-template-columns: repeat(2, 1fr);
@@ -330,8 +343,6 @@ export default function Home() {
             min-height: 230px;
           }
         }
-
-        /* Desktop: 3-col × 2-row, first card spans full height */
         @media (min-width: 1024px) {
           .gp-gallery-teaser {
             grid-template-columns: repeat(3, 1fr);
