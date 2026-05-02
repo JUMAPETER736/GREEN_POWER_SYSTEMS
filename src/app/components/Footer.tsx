@@ -97,14 +97,15 @@ export default function Footer() {
                 width: "clamp(30px, 5vw, 36px)",
                 height: "clamp(30px, 5vw, 36px)",
                 borderRadius: 8, overflow: "hidden",
-                backgroundColor: "#0f5f3f", flexShrink: 0,
+                border: "1.5px solid var(--gp-green-border)",
+                flexShrink: 0, position: "relative",
               }}>
                 <Image
                   src="/company_logo.jpeg"
                   alt="Green Power"
-                  width={36}
-                  height={36}
-                  style={{ objectFit: "contain", width: "100%", height: "100%" }}
+                  fill
+                  sizes="clamp(30px, 5vw, 36px)"
+                  style={{ objectFit: "cover", objectPosition: "center" }}
                 />
               </div>
               <div style={{ minWidth: 0 }}>
