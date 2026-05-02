@@ -161,20 +161,15 @@ export default function CompanyCommunitySupport() {
                 Items given to mothers &amp; babies
               </h2>
               <div style={{ display: "flex", flexDirection: "column", gap: 8, flex: 1, marginTop: 14 }}>
-                {donated.map(({ icon, label, desc, category }) => (
+                {donated.map(({ icon, label, desc }) => (
                   <div key={label} className="gp-card" style={{
                     padding: "11px 14px", display: "flex", gap: 12, alignItems: "flex-start",
-                    ...(category === "support" ? {
-                      borderLeft: "4px solid #7c3aed",
-                      backgroundColor: "rgba(124,58,237,0.04)",
-                    } : {}),
                   }}>
                     <div className="gp-icon-badge" style={{
                       flexShrink: 0, marginTop: 1, width: 32, height: 32,
-                      ...(category === "support" ? { backgroundColor: "rgba(124,58,237,0.1)" } : {}),
                     }}>
                       <svg width={16} height={16} viewBox="0 0 24 24" fill="none"
-                        stroke={category === "support" ? "#7c3aed" : "var(--gp-green)"}
+                        stroke="var(--gp-green)"
                         strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
                         <path d={icon} />
                       </svg>
