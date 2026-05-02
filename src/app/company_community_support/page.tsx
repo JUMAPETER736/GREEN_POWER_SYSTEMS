@@ -69,99 +69,101 @@ export default function CompanyCommunitySupport() {
   const [lightbox, setLightbox] = useState<number | null>(null);
 
   return (
-    <div style={{ backgroundColor: "var(--gp-bg-page)" }}>
+    <div style={{ backgroundColor: "var(--gp-bg-page)", overflowX: "hidden", width: "100%" }}>
 
       {/* ── Hero ── */}
-      <section style={{
-        backgroundColor: "var(--gp-bg-card)",
-        borderBottom: "1px solid var(--gp-border)",
-        padding: "clamp(48px, 8vw, 72px) 0 clamp(40px, 6vw, 60px)",
-      }}>
+      <div className="gp-page-hero">
         <div className="gp-container">
           <span className="gp-eyebrow">Community Care</span>
-          <h1 style={{
-            fontSize: "clamp(1.6rem, 5vw, 3rem)",
-            fontWeight: 800,
-            color: "var(--gp-text-primary)",
-            lineHeight: 1.12,
-            letterSpacing: "-0.02em",
-            margin: "10px 0 18px",
-            maxWidth: 640,
-          }}>
-          
-           <span style={{ color: "var(--gp-green)" }}>
-                 Giving back to our community
-          </span>
+          <h1
+            className="gp-section-title"
+            style={{ width: "100%", wordBreak: "break-word" }}
+          >
+            <span style={{ color: "var(--gp-green)" }}>Giving back to our community</span>
           </h1>
-          <p style={{
-            fontSize: "clamp(14px, 2vw, 17px)",
-            color: "var(--gp-text-muted)",
-            lineHeight: 1.75,
-            maxWidth: 620,
-            margin: 0,
-          }}>
+          <p className="gp-section-sub" style={{ marginTop: 14, wordBreak: "break-word" }}>
             At Green Power Systems Limited, we believe that powering communities goes beyond solar panels.
             We are committed to the wellbeing of the most vulnerable in society — especially mothers and young children.
           </p>
         </div>
-      </section>
+      </div>
 
       {/* ── Story + Donated items ── */}
-      <section className="cs-story-section">
+      <section style={{ padding: "clamp(48px, 8vw, 80px) 0", backgroundColor: "var(--gp-bg-page)" }}>
         <div className="gp-container">
           <div className="cs-two-col">
 
             {/* Left: story */}
             <div className="cs-left-panel">
               <span className="gp-eyebrow">Chiwamba Hospital Visit</span>
-              <h2 className="gp-section-title">A visit to Chiwamba Hospital, Lilongwe</h2>
-              <p style={{ fontSize: "clamp(14px, 2vw, 15.5px)", color: "var(--gp-text-muted)", lineHeight: 1.8, marginBottom: 16 }}>
+              <h2
+                style={{
+                  fontSize: "clamp(1.3rem, 3vw, 1.9rem)",
+                  fontWeight: 800,
+                  color: "var(--gp-text-primary)",
+                  margin: "8px 0 0",
+                  letterSpacing: "-0.01em",
+                  wordBreak: "break-word",
+                }}
+              >
+                A visit to Chiwamba Hospital, Lilongwe
+              </h2>
+              <p style={{ fontSize: "clamp(14px, 2vw, 15.5px)", color: "var(--gp-text-muted)", lineHeight: 1.8, marginBottom: 16, marginTop: 14, wordBreak: "break-word" }}>
                 Our team visited <strong style={{ color: "var(--gp-text-primary)" }}>Chiwamba Hospital</strong> in Lilongwe,
                 Malawi — a facility that serves thousands of families, including a dedicated
                 <strong style={{ color: "var(--gp-text-primary)" }}> Under-5 Department</strong> caring for
                 pregnant women and mothers with young children.
               </p>
-              <p style={{ fontSize: "clamp(14px, 2vw, 15.5px)", color: "var(--gp-text-muted)", lineHeight: 1.8, marginBottom: 16 }}>
+              <p style={{ fontSize: "clamp(14px, 2vw, 15.5px)", color: "var(--gp-text-muted)", lineHeight: 1.8, marginBottom: 16, wordBreak: "break-word" }}>
                 Recognising the daily challenges these families face, our staff came bearing a range of
                 essential items — pampers, soap, baby oil (gel), pails, sugar, and pegs — donated
                 directly to the mothers and babies receiving care in the ward.
               </p>
-              <p style={{ fontSize: "clamp(14px, 2vw, 15.5px)", color: "var(--gp-text-muted)", lineHeight: 1.8, marginBottom: 0 }}>
+              <p style={{ fontSize: "clamp(14px, 2vw, 15.5px)", color: "var(--gp-text-muted)", lineHeight: 1.8, marginBottom: 0, wordBreak: "break-word" }}>
                 This is part of our ongoing commitment: as we harness the sun's energy to power homes and
                 businesses, we equally strive to power lives with compassion, dignity, and care.
               </p>
 
-              {/* Location badge — margin-top: auto pushes it flush to bottom with no dead space */}
               <div style={{ marginTop: "auto", paddingTop: 24 }}>
-              <div style={{
-                display: "inline-flex", alignItems: "center", gap: 8,
-                padding: "10px 18px",
-                borderRadius: 12,
-                backgroundColor: "var(--gp-green-light)",
-                border: "1px solid var(--gp-green-border)",
-                alignSelf: "flex-start",
-              }}>
-                <svg width={16} height={16} viewBox="0 0 24 24" fill="none"
-                  stroke="var(--gp-green)" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z" />
-                  <path d="M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                </svg>
-                <span style={{ fontSize: 13.5, fontWeight: 600, color: "var(--gp-green)" }}>
-                  Chiwamba Hospital · Lilongwe, Malawi
-                </span>
-              </div>
+                <div style={{
+                  display: "inline-flex", alignItems: "center", gap: 8,
+                  padding: "10px 18px",
+                  borderRadius: 12,
+                  backgroundColor: "var(--gp-green-light)",
+                  border: "1px solid var(--gp-green-border)",
+                  alignSelf: "flex-start",
+                }}>
+                  <svg width={16} height={16} viewBox="0 0 24 24" fill="none"
+                    stroke="var(--gp-green)" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z" />
+                    <path d="M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                  </svg>
+                  <span style={{ fontSize: 13.5, fontWeight: 600, color: "var(--gp-green)" }}>
+                    Chiwamba Hospital · Lilongwe, Malawi
+                  </span>
+                </div>
               </div>
             </div>
 
             {/* Right: donated items */}
             <div className="cs-right-panel">
               <span className="gp-eyebrow">What we donated</span>
-              <h2 className="gp-section-title">Items given to mothers &amp; babies</h2>
-              <div style={{ display: "flex", flexDirection: "column", gap: 8, flex: 1 }}>
+              <h2
+                style={{
+                  fontSize: "clamp(1.3rem, 3vw, 1.9rem)",
+                  fontWeight: 800,
+                  color: "var(--gp-text-primary)",
+                  margin: "8px 0 0",
+                  letterSpacing: "-0.01em",
+                  wordBreak: "break-word",
+                }}
+              >
+                Items given to mothers &amp; babies
+              </h2>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8, flex: 1, marginTop: 14 }}>
                 {donated.map(({ icon, label, desc, category }) => (
                   <div key={label} className="gp-card" style={{
                     padding: "11px 14px", display: "flex", gap: 12, alignItems: "flex-start",
-                    /* Only spiritual support gets the purple accent — all others are plain */
                     ...(category === "support" ? {
                       borderLeft: "4px solid #7c3aed",
                       backgroundColor: "rgba(124,58,237,0.04)",
@@ -177,9 +179,9 @@ export default function CompanyCommunitySupport() {
                         <path d={icon} />
                       </svg>
                     </div>
-                    <div>
-                      <p style={{ fontWeight: 700, fontSize: "clamp(12.5px, 1.8vw, 13.5px)", color: "var(--gp-text-primary)", margin: "0 0 2px" }}>{label}</p>
-                      <p style={{ fontSize: "clamp(11.5px, 1.6vw, 12.5px)", color: "var(--gp-text-muted)", lineHeight: 1.55, margin: 0 }}>{desc}</p>
+                    <div style={{ minWidth: 0 }}>
+                      <p style={{ fontWeight: 700, fontSize: "clamp(12.5px, 1.8vw, 13.5px)", color: "var(--gp-text-primary)", margin: "0 0 2px", wordBreak: "break-word" }}>{label}</p>
+                      <p style={{ fontSize: "clamp(11.5px, 1.6vw, 12.5px)", color: "var(--gp-text-muted)", lineHeight: 1.55, margin: 0, wordBreak: "break-word" }}>{desc}</p>
                     </div>
                   </div>
                 ))}
@@ -192,15 +194,26 @@ export default function CompanyCommunitySupport() {
 
       {/* ── Photo gallery ── */}
       <section style={{
-        padding: "clamp(48px, 8vw, 72px) 0",
+        padding: "clamp(48px, 8vw, 80px) 0",
         backgroundColor: "var(--gp-bg-section)",
         borderTop: "1px solid var(--gp-border)",
         borderBottom: "1px solid var(--gp-border)",
       }}>
         <div className="gp-container">
           <span className="gp-eyebrow">Photos from the visit</span>
-          <h2 className="gp-section-title">Moments from Chiwamba Hospital</h2>
-          <div className="cs-gallery-grid">
+          <h2
+            style={{
+              fontSize: "clamp(1.3rem, 3vw, 1.9rem)",
+              fontWeight: 800,
+              color: "var(--gp-text-primary)",
+              margin: "8px 0 0",
+              letterSpacing: "-0.01em",
+              wordBreak: "break-word",
+            }}
+          >
+            Moments from Chiwamba Hospital
+          </h2>
+          <div className="cs-gallery-grid" style={{ marginTop: 28 }}>
             {charityImages.map((img, i) => (
               <button
                 key={i}
@@ -229,18 +242,20 @@ export default function CompanyCommunitySupport() {
       {/* ── CTA ── */}
       <section style={{ padding: "clamp(48px, 8vw, 72px) 0", backgroundColor: "var(--gp-bg-dark)" }}>
         <div className="gp-container cs-cta-inner">
-          <div style={{ maxWidth: 520 }}>
+          <div style={{ maxWidth: 520, minWidth: 0 }}>
             <h2 style={{
-              fontSize: "clamp(1.3rem, 3.5vw, 2.2rem)",
+              fontSize: "clamp(1.4rem, 3vw, 2rem)",
               fontWeight: 800, color: "#fff",
-              margin: "0 0 10px", letterSpacing: "-0.02em",
+              margin: "0 0 12px", letterSpacing: "-0.01em",
+              wordBreak: "break-word",
             }}>
               More than energy — we power communities
             </h2>
             <p style={{
-              fontSize: "clamp(13px, 2vw, 16px)",
+              fontSize: "clamp(13px, 2vw, 15px)",
               color: "rgba(255,255,255,0.62)",
               margin: 0, lineHeight: 1.7,
+              wordBreak: "break-word",
             }}>
               Interested in partnering with us for future community initiatives? We welcome collaborations
               with hospitals, schools, and organisations across Malawi.
@@ -308,13 +323,22 @@ export default function CompanyCommunitySupport() {
         </div>
       )}
 
-      {/* ── Responsive styles ── */}
+      {/* ── Styles ── */}
       <style>{`
-
-        /* Story section padding */
-        .cs-story-section {
-          padding: clamp(40px, 8vw, 72px) 0;
-          background-color: var(--gp-bg-page);
+        *, *::before, *::after {
+          box-sizing: border-box;
+        }
+        .gp-container {
+          width: 100%;
+          max-width: 100%;
+          padding-left: clamp(1rem, 4vw, 1.5rem);
+          padding-right: clamp(1rem, 4vw, 1.5rem);
+        }
+        @media (max-width: 480px) {
+          .gp-container {
+            padding-left: 1rem;
+            padding-right: 1rem;
+          }
         }
 
         /* ── Two-col layout ── */
@@ -323,22 +347,19 @@ export default function CompanyCommunitySupport() {
           flex-direction: column;
           gap: 28px;
         }
-
         .cs-left-panel,
         .cs-right-panel {
           width: 100%;
+          min-width: 0;
         }
-
         @media (min-width: 768px) {
           .cs-two-col {
             flex-direction: row;
-            align-items: stretch; /* both columns grow to the tallest one */
+            align-items: stretch;
             gap: 2rem;
           }
-
           .cs-left-panel {
             flex: 1 1 0;
-            min-width: 0;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -347,15 +368,12 @@ export default function CompanyCommunitySupport() {
             border-radius: 16px;
             padding: clamp(22px, 3vw, 32px);
           }
-
           .cs-right-panel {
             flex: 1 1 0;
-            min-width: 0;
             display: flex;
             flex-direction: column;
           }
         }
-
         @media (min-width: 1024px) {
           .cs-two-col {
             gap: 2.5rem;
@@ -368,19 +386,16 @@ export default function CompanyCommunitySupport() {
           gap: 14px;
           grid-template-columns: 1fr;
         }
-
         @media (min-width: 600px) {
           .cs-gallery-grid {
             grid-template-columns: repeat(2, 1fr);
           }
         }
-
         @media (min-width: 1024px) {
           .cs-gallery-grid {
             grid-template-columns: repeat(3, 1fr);
           }
         }
-
         .cs-gallery-btn {
           border: none;
           padding: 0;
