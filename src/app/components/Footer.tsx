@@ -21,73 +21,152 @@ export default function Footer() {
     { href: "/our_services#repairs",      label: "Repairs" },
   ];
 
-  const linkStyle: React.CSSProperties = { fontSize: 13, color: "#6b7280", textDecoration: "none", display: "block" };
-  const headingStyle: React.CSSProperties = { fontSize: 11, fontWeight: 600, color: "#111827", letterSpacing: "0.07em", textTransform: "uppercase", marginBottom: 16, marginTop: 0 };
-  const labelStyle: React.CSSProperties = { fontSize: 11, color: "#9ca3af", marginBottom: 4, marginTop: 0 };
-  const waIconStyle: React.CSSProperties = { display: "flex", alignItems: "center", justifyContent: "center", width: 34, height: 34, borderRadius: "50%", backgroundColor: "#25D366", textDecoration: "none", transition: "transform 0.2s, opacity 0.2s" };
-  const fbIconStyle: React.CSSProperties = { display: "flex", alignItems: "center", justifyContent: "center", width: 34, height: 34, borderRadius: "50%", backgroundColor: "#1877F2", textDecoration: "none", transition: "transform 0.2s, opacity 0.2s" };
+  const linkStyle: React.CSSProperties = {
+    fontSize: "clamp(12px, 1.5vw, 13px)",
+    color: "#6b7280",
+    textDecoration: "none",
+    display: "block",
+    wordBreak: "break-word",
+  };
 
-  function onIconEnter(e: React.MouseEvent<HTMLAnchorElement>) { e.currentTarget.style.opacity = "0.82"; e.currentTarget.style.transform = "scale(1.1)"; }
-  function onIconLeave(e: React.MouseEvent<HTMLAnchorElement>) { e.currentTarget.style.opacity = "1"; e.currentTarget.style.transform = "scale(1)"; }
+  const headingStyle: React.CSSProperties = {
+    fontSize: "clamp(10px, 1.2vw, 11px)",
+    fontWeight: 600,
+    color: "#111827",
+    letterSpacing: "0.07em",
+    textTransform: "uppercase",
+    marginBottom: "clamp(10px, 2vw, 16px)",
+    marginTop: 0,
+  };
 
-  const WaPath = () => <path fill="#fff" d="M16 2.9C8.8 2.9 3 8.7 3 15.9c0 2.3.6 4.5 1.8 6.5L3 29.1l6.9-1.8c1.9 1 4 1.6 6.1 1.6 7.2 0 13-5.8 13-13S23.2 2.9 16 2.9zm0 23.8c-2 0-3.9-.5-5.6-1.5l-.4-.2-4.1 1.1 1.1-3.9-.3-.4c-1.1-1.7-1.7-3.7-1.7-5.8 0-5.9 4.8-10.7 10.7-10.7s10.7 4.8 10.7 10.7-4.8 10.7-10.4 10.7zm5.9-8c-.3-.2-1.8-.9-2.1-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1c-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1s0-.5.2-.6l.5-.6c.1-.2.2-.4.3-.6s.1-.4 0-.6-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1 2.9 1.2 3.1c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4s.2-1.3.2-1.4-.2-.3-.5-.5z" />;
+  const labelStyle: React.CSSProperties = {
+    fontSize: "clamp(10px, 1.2vw, 11px)",
+    color: "#9ca3af",
+    marginBottom: 4,
+    marginTop: 0,
+    flexShrink: 0,
+  };
+
+  const socialIconStyle: React.CSSProperties = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "clamp(28px, 5vw, 34px)",
+    height: "clamp(28px, 5vw, 34px)",
+    borderRadius: "50%",
+    textDecoration: "none",
+    transition: "transform 0.2s, opacity 0.2s",
+  };
+
+  function onIconEnter(e: React.MouseEvent<HTMLAnchorElement>) {
+    e.currentTarget.style.opacity = "0.82";
+    e.currentTarget.style.transform = "scale(1.1)";
+  }
+  function onIconLeave(e: React.MouseEvent<HTMLAnchorElement>) {
+    e.currentTarget.style.opacity = "1";
+    e.currentTarget.style.transform = "scale(1)";
+  }
+
+  const WaPath = () => (
+    <path fill="#fff" d="M16 2.9C8.8 2.9 3 8.7 3 15.9c0 2.3.6 4.5 1.8 6.5L3 29.1l6.9-1.8c1.9 1 4 1.6 6.1 1.6 7.2 0 13-5.8 13-13S23.2 2.9 16 2.9zm0 23.8c-2 0-3.9-.5-5.6-1.5l-.4-.2-4.1 1.1 1.1-3.9-.3-.4c-1.1-1.7-1.7-3.7-1.7-5.8 0-5.9 4.8-10.7 10.7-10.7s10.7 4.8 10.7 10.7-4.8 10.7-10.4 10.7zm5.9-8c-.3-.2-1.8-.9-2.1-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1c-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1s0-.5.2-.6l.5-.6c.1-.2.2-.4.3-.6s.1-.4 0-.6-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1 2.9 1.2 3.1c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4s.2-1.3.2-1.4-.2-.3-.5-.5z" />
+  );
 
   return (
-    <footer style={{ backgroundColor: "#fff", borderTop: "1px solid #e5e7eb" }}>
+    <footer style={{ backgroundColor: "#fff", borderTop: "1px solid var(--gp-border)", width: "100%" }}>
 
       {/* ── Main footer content ── */}
-      <div className="gp-container" style={{ padding: "56px 1.5rem 40px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 40 }}>
+      <div className="gp-container" style={{
+        paddingTop: "clamp(36px, 6vw, 56px)",
+        paddingBottom: "clamp(28px, 5vw, 40px)",
+      }}>
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 160px), 1fr))",
+          gap: "clamp(24px, 5vw, 40px)",
+        }}>
 
           {/* Brand */}
-          <div>
-            <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", marginBottom: 14 }}>
-              <div style={{ width: 36, height: 36, borderRadius: 8, overflow: "hidden", backgroundColor: "#0f5f3f", flexShrink: 0 }}>
-                <Image src="/company_logo.jpeg" alt="Green Power" width={36} height={36} style={{ objectFit: "contain" }} />
+          <div style={{ minWidth: 0 }}>
+            <Link href="/" style={{
+              display: "flex", alignItems: "center",
+              gap: "clamp(8px, 1.5vw, 10px)",
+              textDecoration: "none",
+              marginBottom: "clamp(10px, 2vw, 14px)",
+            }}>
+              <div style={{
+                width: "clamp(30px, 5vw, 36px)",
+                height: "clamp(30px, 5vw, 36px)",
+                borderRadius: 8, overflow: "hidden",
+                backgroundColor: "#0f5f3f", flexShrink: 0,
+              }}>
+                <Image
+                  src="/company_logo.jpeg"
+                  alt="Green Power"
+                  width={36}
+                  height={36}
+                  style={{ objectFit: "contain", width: "100%", height: "100%" }}
+                />
               </div>
-              <div>
-                <p style={{ fontSize: 14, fontWeight: 600, color: "#111827", margin: 0 }}>Green Power</p>
-                <p style={{ fontSize: 11, color: "#9ca3af", marginTop: 2 }}>Solar Solutions</p>
+              <div style={{ minWidth: 0 }}>
+                <p style={{ fontSize: "clamp(12px, 1.5vw, 14px)", fontWeight: 600, color: "#111827", margin: 0, wordBreak: "break-word" }}>Green Power</p>
+                <p style={{ fontSize: "clamp(10px, 1.2vw, 11px)", color: "#9ca3af", marginTop: 2, margin: 0 }}>Solar Solutions</p>
               </div>
             </Link>
-            <p style={{ fontSize: 13, color: "#6b7280", lineHeight: 1.65, margin: 0 }}>Professional solar energy solutions for a sustainable future in Malawi.</p>
+            <p style={{ fontSize: "clamp(12px, 1.5vw, 13px)", color: "#6b7280", lineHeight: 1.65, margin: 0, wordBreak: "break-word" }}>
+              Professional solar energy solutions for a sustainable future in Malawi.
+            </p>
           </div>
 
           {/* Navigation */}
-          <div>
+          <div style={{ minWidth: 0 }}>
             <p style={headingStyle}>Navigation</p>
-            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              {quickLinks.map(({ href, label }) => <Link key={href} href={href} style={linkStyle}>{label}</Link>)}
+            <div style={{ display: "flex", flexDirection: "column", gap: "clamp(7px, 1.5vw, 10px)" }}>
+              {quickLinks.map(({ href, label }) => (
+                <Link key={href} href={href} style={linkStyle}>{label}</Link>
+              ))}
             </div>
           </div>
 
           {/* Services */}
-          <div>
+          <div style={{ minWidth: 0 }}>
             <p style={headingStyle}>Services</p>
-            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              {serviceLinks.map(({ href, label }) => <Link key={href} href={href} style={linkStyle}>{label}</Link>)}
+            <div style={{ display: "flex", flexDirection: "column", gap: "clamp(7px, 1.5vw, 10px)" }}>
+              {serviceLinks.map(({ href, label }) => (
+                <Link key={href} href={href} style={linkStyle}>{label}</Link>
+              ))}
             </div>
           </div>
 
           {/* Contact */}
-          <div>
+          <div style={{ minWidth: 0 }}>
             <p style={headingStyle}>Contact</p>
-            <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "clamp(10px, 2vw, 14px)" }}>
               <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
-                <p style={{ ...labelStyle, marginBottom: 0, flexShrink: 0 }}>Phone</p>
-                <Link href="tel:+265999534305" style={{ fontSize: 13, color: "#0f5f3f", textDecoration: "none" }}>+265 999 534 305</Link>
+                <p style={{ ...labelStyle, marginBottom: 0 }}>Phone</p>
+                <Link href="tel:+265999534305" style={{ fontSize: "clamp(12px, 1.5vw, 13px)", color: "#0f5f3f", textDecoration: "none" }}>
+                  +265 999 534 305
+                </Link>
               </div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
-                <p style={{ ...labelStyle, marginBottom: 0, flexShrink: 0 }}>Email</p>
-                <Link href="mailto:greenpowersystemsltd@gmail.com" style={{ fontSize: 13, color: "#0f5f3f", textDecoration: "none", wordBreak: "break-all" }}>greenpowersystemsltd@gmail.com</Link>
+                <p style={{ ...labelStyle, marginBottom: 0 }}>Email</p>
+                <Link href="mailto:greenpowersystemsltd@gmail.com" style={{ fontSize: "clamp(12px, 1.5vw, 13px)", color: "#0f5f3f", textDecoration: "none", wordBreak: "break-all" }}>
+                  greenpowersystemsltd@gmail.com
+                </Link>
               </div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
-                <p style={{ ...labelStyle, marginBottom: 0, flexShrink: 0 }}>Hours</p>
-                <p style={{ fontSize: 13, color: "#6b7280", margin: 0, lineHeight: 1.7 }}>Mon – Sat: 8:00am – 5:00pm<br />Sunday: Closed</p>
+                <p style={{ ...labelStyle, marginBottom: 0 }}>Hours</p>
+                <p style={{ fontSize: "clamp(12px, 1.5vw, 13px)", color: "#6b7280", margin: 0, lineHeight: 1.7 }}>
+                  Mon – Sat: 8:00am – 5:00pm<br />Sunday: Closed
+                </p>
               </div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
-                <p style={{ ...labelStyle, marginBottom: 0, flexShrink: 0 }}>Address</p>
-                <address style={{ fontSize: 13, color: "#6b7280", fontStyle: "normal", lineHeight: 1.7, margin: 0 }}>QuickTrip Shopping Complex<br />NYUMBA YA SOLAR<br />Area 25 Sungwi, Lilongwe<br />P.O Box 40135, Malawi</address>
+                <p style={{ ...labelStyle, marginBottom: 0 }}>Address</p>
+                <address style={{ fontSize: "clamp(12px, 1.5vw, 13px)", color: "#6b7280", fontStyle: "normal", lineHeight: 1.7, margin: 0, wordBreak: "break-word" }}>
+                  QuickTrip Shopping Complex<br />
+                  NYUMBA YA SOLAR<br />
+                  Area 25 Sungwi, Lilongwe<br />
+                  P.O Box 40135, Malawi
+                </address>
               </div>
             </div>
           </div>
@@ -95,18 +174,67 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* ── Bottom bar — copyright + social icons on one centered row ── */}
-      <div style={{ padding: "18px 1.5rem", borderTop: "1px solid #e5e7eb", display: "flex", alignItems: "center", justifyContent: "center", gap: 14, flexWrap: "wrap" }}>
-        <p style={{ fontSize: 12, color: "#14360f", margin: 0 }}>© {new Date().getFullYear()} Green Power Systems Ltd. All rights reserved.</p>
+      {/* ── Bottom bar ── */}
+      <div style={{
+        borderTop: "1px solid var(--gp-border)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: "clamp(10px, 2vw, 14px)",
+        flexWrap: "wrap",
+        paddingTop: "clamp(12px, 2.5vw, 18px)",
+        paddingBottom: "clamp(12px, 2.5vw, 18px)",
+        paddingLeft: "clamp(1rem, 4vw, 1.5rem)",
+        paddingRight: "clamp(1rem, 4vw, 1.5rem)",
+      }}>
+        <p style={{ fontSize: "clamp(11px, 1.3vw, 12px)", color: "#14360f", margin: 0, wordBreak: "break-word" }}>
+          © {new Date().getFullYear()} Green Power Systems Ltd. All rights reserved.
+        </p>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <a href="https://wa.me/265999534305" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" style={waIconStyle} onMouseEnter={onIconEnter} onMouseLeave={onIconLeave}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width={18} height={18}><WaPath /></svg>
+          <a
+            href="https://wa.me/265999534305"
+            target="_blank" rel="noopener noreferrer"
+            aria-label="WhatsApp"
+            style={{ ...socialIconStyle, backgroundColor: "#25D366" }}
+            onMouseEnter={onIconEnter}
+            onMouseLeave={onIconLeave}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width={18} height={18}>
+              <WaPath />
+            </svg>
           </a>
-          <a href="https://facebook.com/greenpowersystemsmalawi" target="_blank" rel="noopener noreferrer" aria-label="Facebook" style={fbIconStyle} onMouseEnter={onIconEnter} onMouseLeave={onIconLeave}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={18} height={18} fill="#fff"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
+          <a
+            href="https://facebook.com/greenpowersystemsmalawi"
+            target="_blank" rel="noopener noreferrer"
+            aria-label="Facebook"
+            style={{ ...socialIconStyle, backgroundColor: "#1877F2" }}
+            onMouseEnter={onIconEnter}
+            onMouseLeave={onIconLeave}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={18} height={18} fill="#fff">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+            </svg>
           </a>
         </div>
       </div>
+
+      <style>{`
+        *, *::before, *::after {
+          box-sizing: border-box;
+        }
+        .gp-container {
+          width: 100%;
+          max-width: 100%;
+          padding-left: clamp(1rem, 4vw, 1.5rem);
+          padding-right: clamp(1rem, 4vw, 1.5rem);
+        }
+        @media (max-width: 480px) {
+          .gp-container {
+            padding-left: 1rem;
+            padding-right: 1rem;
+          }
+        }
+      `}</style>
 
     </footer>
   );
