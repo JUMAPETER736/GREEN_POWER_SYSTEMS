@@ -192,6 +192,7 @@ export default function Footer() {
           © {new Date().getFullYear()} Green Power Systems Ltd. All rights reserved.
         </p>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          {/* WhatsApp */}
           <a
             href="https://wa.me/265999534305"
             target="_blank" rel="noopener noreferrer"
@@ -204,8 +205,9 @@ export default function Footer() {
               <WaPath />
             </svg>
           </a>
+          {/* Facebook — correct profile link */}
           <a
-            href="https://facebook.com/greenpowersystems.com"
+            href="https://www.facebook.com/profile.php?id=61580679656377&mibextid=rS40aB7S9Ucbxw6v"
             target="_blank" rel="noopener noreferrer"
             aria-label="Facebook"
             style={{ ...socialIconStyle, backgroundColor: "#1877F2" }}
