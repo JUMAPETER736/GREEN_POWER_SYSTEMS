@@ -205,7 +205,7 @@ export default function Footer() {
             </svg>
           </a>
           <a
-            href="https://facebook.com/greenpowersystemsmalawi"
+            href="https://facebook.com/greenpowersystems.com"
             target="_blank" rel="noopener noreferrer"
             aria-label="Facebook"
             style={{ ...socialIconStyle, backgroundColor: "#1877F2" }}

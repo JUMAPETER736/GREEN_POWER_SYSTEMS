@@ -182,6 +182,15 @@ const IMG: React.CSSProperties = {
   display: "block",
 };
 
+/* ── Shared location icon — teardrop pin with filled dot inside ── */
+const LocationIcon = ({ color = "var(--gp-green)" }: { color?: string }) => (
+  <svg width={12} height={12} viewBox="0 0 24 24" fill="none"
+    stroke={color} strokeWidth={2} style={{ flexShrink: 0 }}>
+    <path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z" />
+    <circle cx="12" cy="9" r="2" fill={color} />
+  </svg>
+);
+
 export default function GalleryGrid() {
   const [filter, setFilter] = useState<Filter>("all");
   const [activeId, setActiveId] = useState<number | null>(null);
@@ -278,11 +287,9 @@ export default function GalleryGrid() {
                 <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 4px" }}>
                   {project.title}
                 </h3>
+                {/* Location with shared icon */}
                 <p style={{ fontSize: 13, color: "var(--gp-text-subtle)", margin: "0 0 16px", display: "flex", alignItems: "center", gap: 4 }}>
-                  <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                    <circle cx={12} cy={10} r={3} />
-                  </svg>
+                  <LocationIcon />
                   {project.location}
                 </p>
                 {project.kw > 0 && (
@@ -433,9 +440,13 @@ export default function GalleryGrid() {
                   <h2 style={{ fontSize: "1.1rem", fontWeight: 800, color: "var(--gp-text-primary)", margin: 0 }}>
                     {active.title}
                   </h2>
-                  <p style={{ fontSize: 13, color: "var(--gp-text-subtle)", marginTop: 3 }}>
-                    📍 {active.location} · {active.year}
-                  </p>
+                  {/* Location in lightbox with shared icon */}
+                  <div style={{ display: "flex", alignItems: "center", gap: 4, marginTop: 3 }}>
+                    <LocationIcon />
+                    <p style={{ fontSize: 13, color: "var(--gp-text-subtle)", margin: 0 }}>
+                      {active.location} · {active.year}
+                    </p>
+                  </div>
                 </div>
               </div>
 
