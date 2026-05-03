@@ -92,14 +92,19 @@ export default function CustomerFeedback() {
             {reviews.map((r) => (
               <div key={r.name} className="cf-card">
 
-                {/* Image */}
+                {/* Image — natural aspect ratio, no cropping */}
                 <div className="cf-img-wrap">
                   <Image
                     src={r.image}
                     alt={r.name}
-                    fill
-                    sizes="(min-width: 768px) 33vw, 100vw"
-                    style={{ objectFit: "cover" }}
+                    width={600}
+                    height={450}
+                    style={{
+                      width: "100%",
+                      height: "auto",
+                      display: "block",
+                      borderRadius: 14,
+                    }}
                   />
                 </div>
 
@@ -204,13 +209,11 @@ export default function CustomerFeedback() {
           min-width: 0;
         }
 
-        /* Image */
+        /* Image wrapper — no fixed height, lets image breathe */
         .cf-img-wrap {
-          position: relative;
           width: 100%;
-          height: 180px;
-          overflow: hidden;
           border-radius: 14px;
+          overflow: hidden;
         }
       `}</style>
 
