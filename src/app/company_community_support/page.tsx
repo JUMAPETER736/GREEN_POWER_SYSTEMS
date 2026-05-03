@@ -96,16 +96,11 @@ export default function CompanyCommunitySupport() {
             {/* Left: story */}
             <div className="cs-left-panel">
               <span className="gp-eyebrow">Chiwamba Hospital Visit</span>
-              <h2
-                style={{
-                  fontSize: "clamp(1.3rem, 3vw, 1.9rem)",
-                  fontWeight: 800,
-                  color: "var(--gp-text-primary)",
-                  margin: "6px 0 0",
-                  letterSpacing: "-0.01em",
-                  wordBreak: "break-word",
-                }}
-              >
+              <h2 style={{
+                fontSize: "clamp(1.3rem, 3vw, 1.9rem)",
+                fontWeight: 800, color: "var(--gp-text-primary)",
+                margin: "6px 0 0", letterSpacing: "-0.01em", wordBreak: "break-word",
+              }}>
                 A visit to Chiwamba Hospital, Lilongwe
               </h2>
               <p style={{ fontSize: "clamp(14px, 2vw, 15.5px)", color: "var(--gp-text-muted)", lineHeight: 1.8, marginBottom: 12, marginTop: 10, wordBreak: "break-word" }}>
@@ -127,8 +122,7 @@ export default function CompanyCommunitySupport() {
               <div style={{ marginTop: "auto", paddingTop: 16 }}>
                 <div style={{
                   display: "inline-flex", alignItems: "center", gap: 8,
-                  padding: "10px 18px",
-                  borderRadius: 12,
+                  padding: "10px 18px", borderRadius: 12,
                   backgroundColor: "var(--gp-green-light)",
                   border: "1px solid var(--gp-green-border)",
                   alignSelf: "flex-start",
@@ -148,16 +142,11 @@ export default function CompanyCommunitySupport() {
             {/* Right: donated items */}
             <div className="cs-right-panel">
               <span className="gp-eyebrow">What we donated</span>
-              <h2
-                style={{
-                  fontSize: "clamp(1.3rem, 3vw, 1.9rem)",
-                  fontWeight: 800,
-                  color: "var(--gp-text-primary)",
-                  margin: "6px 0 0",
-                  letterSpacing: "-0.01em",
-                  wordBreak: "break-word",
-                }}
-              >
+              <h2 style={{
+                fontSize: "clamp(1.3rem, 3vw, 1.9rem)",
+                fontWeight: 800, color: "var(--gp-text-primary)",
+                margin: "6px 0 0", letterSpacing: "-0.01em", wordBreak: "break-word",
+              }}>
                 Items given to mothers &amp; babies
               </h2>
               <div style={{ display: "flex", flexDirection: "column", gap: 6, flex: 1, marginTop: 10 }}>
@@ -165,12 +154,9 @@ export default function CompanyCommunitySupport() {
                   <div key={label} className="gp-card" style={{
                     padding: "9px 12px", display: "flex", gap: 12, alignItems: "flex-start",
                   }}>
-                    <div className="gp-icon-badge" style={{
-                      flexShrink: 0, marginTop: 1, width: 30, height: 30,
-                    }}>
+                    <div className="gp-icon-badge" style={{ flexShrink: 0, marginTop: 1, width: 30, height: 30 }}>
                       <svg width={15} height={15} viewBox="0 0 24 24" fill="none"
-                        stroke="var(--gp-green)"
-                        strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+                        stroke="var(--gp-green)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
                         <path d={icon} />
                       </svg>
                     </div>
@@ -196,16 +182,11 @@ export default function CompanyCommunitySupport() {
       }}>
         <div className="gp-container">
           <span className="gp-eyebrow">Photos from the visit</span>
-          <h2
-            style={{
-              fontSize: "clamp(1.3rem, 3vw, 1.9rem)",
-              fontWeight: 800,
-              color: "var(--gp-text-primary)",
-              margin: "6px 0 0",
-              letterSpacing: "-0.01em",
-              wordBreak: "break-word",
-            }}
-          >
+          <h2 style={{
+            fontSize: "clamp(1.3rem, 3vw, 1.9rem)",
+            fontWeight: 800, color: "var(--gp-text-primary)",
+            margin: "6px 0 0", letterSpacing: "-0.01em", wordBreak: "break-word",
+          }}>
             Moments from Chiwamba Hospital
           </h2>
           <div className="cs-gallery-grid" style={{ marginTop: 16 }}>
@@ -241,16 +222,14 @@ export default function CompanyCommunitySupport() {
             <h2 style={{
               fontSize: "clamp(1.4rem, 3vw, 2rem)",
               fontWeight: 800, color: "#fff",
-              margin: "0 0 10px", letterSpacing: "-0.01em",
-              wordBreak: "break-word",
+              margin: "0 0 10px", letterSpacing: "-0.01em", wordBreak: "break-word",
             }}>
               More than energy — we power communities
             </h2>
             <p style={{
               fontSize: "clamp(13px, 2vw, 15px)",
               color: "rgba(255,255,255,0.62)",
-              margin: 0, lineHeight: 1.7,
-              wordBreak: "break-word",
+              margin: 0, lineHeight: 1.7, wordBreak: "break-word",
             }}>
               Interested in partnering with us for future community initiatives? We welcome collaborations
               with hospitals, schools, and organisations across Malawi.
@@ -270,8 +249,7 @@ export default function CompanyCommunitySupport() {
             position: "fixed", inset: 0, zIndex: 200,
             backgroundColor: "rgba(0,0,0,0.88)",
             display: "flex", alignItems: "center", justifyContent: "center",
-            padding: "1rem",
-            backdropFilter: "blur(6px)",
+            padding: "1rem", backdropFilter: "blur(6px)",
           }}
         >
           <div
@@ -330,13 +308,9 @@ export default function CompanyCommunitySupport() {
           padding-right: clamp(1rem, 4vw, 1.5rem);
         }
         @media (max-width: 480px) {
-          .gp-container {
-            padding-left: 1rem;
-            padding-right: 1rem;
-          }
+          .gp-container { padding-left: 1rem; padding-right: 1rem; }
         }
 
-        /* Tighten hero bottom padding */
         .gp-page-hero {
           padding-bottom: clamp(16px, 2.5vw, 24px) !important;
         }
@@ -375,27 +349,28 @@ export default function CompanyCommunitySupport() {
           }
         }
         @media (min-width: 1024px) {
-          .cs-two-col {
-            gap: 2rem;
-          }
+          .cs-two-col { gap: 2rem; }
         }
 
-        /* ── Gallery ── */
+        /* ── Gallery grid ── */
         .cs-gallery-grid {
           display: grid;
           gap: 12px;
           grid-template-columns: 1fr;
         }
         @media (min-width: 600px) {
-          .cs-gallery-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
+          .cs-gallery-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (min-width: 1024px) {
-          .cs-gallery-grid {
-            grid-template-columns: repeat(3, 1fr);
-          }
+          .cs-gallery-grid { grid-template-columns: repeat(3, 1fr); }
         }
+
+        /*
+          Gallery button uses aspect-ratio so images show fully
+          on every screen without top/bottom cropping.
+          object-fit: cover fills the box; object-position: center
+          keeps the subject in frame.
+        */
         .cs-gallery-btn {
           border: none;
           padding: 0;
@@ -403,18 +378,24 @@ export default function CompanyCommunitySupport() {
           border-radius: 14px;
           overflow: hidden;
           position: relative;
-          min-height: 180px;
           display: block;
           width: 100%;
+          /* aspect-ratio drives height — no fixed min-height */
+          aspect-ratio: 4 / 3;
           box-shadow: 0 2px 12px rgba(0,0,0,0.10);
           transition: transform 0.22s, box-shadow 0.22s;
         }
-        @media (min-width: 600px) {
-          .cs-gallery-btn { min-height: 200px; }
+
+        /* Small phones — slightly taller */
+        @media (max-width: 399px) {
+          .cs-gallery-btn { aspect-ratio: 3 / 2; }
         }
+
+        /* Desktop 3-col — a touch wider to avoid too-tall cards */
         @media (min-width: 1024px) {
-          .cs-gallery-btn { min-height: 220px; }
+          .cs-gallery-btn { aspect-ratio: 16 / 10; }
         }
+
         .cs-gallery-btn:hover {
           transform: translateY(-4px);
           box-shadow: 0 16px 36px rgba(0,0,0,0.18);
@@ -422,7 +403,9 @@ export default function CompanyCommunitySupport() {
         .cs-gallery-img {
           position: absolute; inset: 0;
           width: 100%; height: 100%;
-          object-fit: cover; display: block;
+          object-fit: cover;
+          object-position: center;
+          display: block;
         }
         .cs-gallery-overlay {
           position: absolute; inset: 0;
