@@ -83,7 +83,7 @@ export default function Products() {
           <h1 className="gp-section-title" style={{ width: "100%", wordBreak: "break-word" }}>
             Quality solar equipment, competitively priced
           </h1>
-          <p className="gp-section-sub" style={{ marginTop: 14, wordBreak: "break-word" }}>
+          <p className="gp-section-sub" style={{ marginTop: 8, wordBreak: "break-word" }}>
             We stock and supply leading solar brands. All products come with manufacturer warranties and our full installation support.
           </p>
         </div>
@@ -107,7 +107,7 @@ export default function Products() {
       </nav>
 
       {/* ── Product categories ── */}
-      <section style={{ padding: "56px 0 80px" }}>
+      <section style={{ padding: "clamp(20px, 3vw, 36px) 0" }}>
         <div className="gp-container gp-categories-col">
 
           {categories.map(({ title, icon, items }) => {
@@ -160,7 +160,7 @@ export default function Products() {
       </section>
 
       {/* ── Bottom CTA ── */}
-      <section style={{ padding: "64px 0", backgroundColor: "var(--gp-bg-dark)" }}>
+      <section style={{ padding: "clamp(28px, 4vw, 44px) 0", backgroundColor: "var(--gp-bg-dark)" }}>
         <div className="gp-container gp-cta-inner">
           <div style={{ minWidth: 0 }}>
             <h2 className="gp-cta-heading">Looking for a specific product?</h2>
@@ -186,6 +186,11 @@ export default function Products() {
           padding-right: clamp(1rem, 4vw, 1.5rem);
         }
 
+        /* Tighten hero bottom padding */
+        .gp-page-hero {
+          padding-bottom: clamp(16px, 2.5vw, 24px) !important;
+        }
+
         /* ── Jump nav ── */
         .gp-products-jumpnav {
           background: var(--gp-bg-card);
@@ -205,7 +210,7 @@ export default function Products() {
         .gp-jumpnav-inner::-webkit-scrollbar { display: none; }
         .gp-jumpnav-link {
           flex-shrink: 0;
-          padding: 14px 20px;
+          padding: 12px 18px;
           font-size: 13px;
           font-weight: 600;
           color: var(--gp-text-muted);
@@ -223,28 +228,28 @@ export default function Products() {
         .gp-categories-col {
           display: flex;
           flex-direction: column;
-          gap: 52px;
+          gap: 32px;
         }
 
         /* ── Category block ── */
         .gp-category-block {
-          scroll-margin-top: 56px;
+          scroll-margin-top: 48px;
           min-width: 0;
         }
         .gp-cat-heading {
           display: flex;
           align-items: center;
           gap: 12px;
-          padding-bottom: 16px;
+          padding-bottom: 12px;
           border-bottom: 1px solid var(--gp-border);
-          margin-bottom: 20px;
+          margin-bottom: 14px;
         }
         .gp-cat-icon {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 40px;
-          height: 40px;
+          width: 36px;
+          height: 36px;
           border-radius: 10px;
           background: var(--gp-green-light);
           color: var(--gp-green);
@@ -262,7 +267,7 @@ export default function Products() {
         /* ── Products grid ── */
         .gp-products-grid {
           display: grid;
-          gap: 14px;
+          gap: 12px;
           grid-template-columns: 1fr;
           width: 100%;
         }
@@ -283,10 +288,10 @@ export default function Products() {
 
         /* ── Product card ── */
         .gp-product-card {
-          padding: 20px 20px 22px;
+          padding: 16px 18px 18px;
           display: flex;
           flex-direction: column;
-          gap: 10px;
+          gap: 8px;
           min-width: 0;
           transition: box-shadow 0.2s, transform 0.2s;
         }
@@ -322,7 +327,7 @@ export default function Products() {
         .gp-product-desc {
           font-size: 13px;
           color: var(--gp-text-muted);
-          line-height: 1.65;
+          line-height: 1.6;
           margin: 0;
           flex: 1;
           word-break: break-word;
@@ -332,7 +337,7 @@ export default function Products() {
           font-weight: 700;
           color: var(--gp-green);
           text-decoration: none;
-          margin-top: 6px;
+          margin-top: 4px;
           display: inline-flex;
           align-items: center;
           gap: 4px;
@@ -347,14 +352,14 @@ export default function Products() {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          gap: 24px;
+          gap: 20px;
           text-align: left;
         }
         .gp-cta-heading {
           font-size: clamp(1.3rem, 3.5vw, 2rem);
           font-weight: 800;
           color: #fff;
-          margin: 0 0 10px;
+          margin: 0 0 8px;
           letter-spacing: -0.02em;
           word-break: break-word;
         }
