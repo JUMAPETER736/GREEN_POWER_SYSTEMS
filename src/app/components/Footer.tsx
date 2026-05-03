@@ -35,7 +35,7 @@ export default function Footer() {
     color: "#111827",
     letterSpacing: "0.07em",
     textTransform: "uppercase",
-    marginBottom: "clamp(10px, 2vw, 16px)",
+    marginBottom: "clamp(8px, 1.5vw, 12px)",
     marginTop: 0,
   };
 
@@ -76,13 +76,13 @@ export default function Footer() {
 
       {/* ── Main footer content ── */}
       <div className="gp-container" style={{
-        paddingTop: "clamp(36px, 6vw, 56px)",
-        paddingBottom: "clamp(28px, 5vw, 40px)",
+        paddingTop: "clamp(20px, 3.5vw, 32px)",
+        paddingBottom: "clamp(16px, 3vw, 24px)",
       }}>
         <div style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 160px), 1fr))",
-          gap: "clamp(24px, 5vw, 40px)",
+          gap: "clamp(16px, 3.5vw, 28px)",
         }}>
 
           {/* Brand */}
@@ -91,7 +91,7 @@ export default function Footer() {
               display: "flex", alignItems: "center",
               gap: "clamp(8px, 1.5vw, 10px)",
               textDecoration: "none",
-              marginBottom: "clamp(10px, 2vw, 14px)",
+              marginBottom: "clamp(8px, 1.5vw, 10px)",
             }}>
               <div style={{
                 width: "clamp(30px, 5vw, 36px)",
@@ -121,7 +121,7 @@ export default function Footer() {
           {/* Navigation */}
           <div style={{ minWidth: 0 }}>
             <p style={headingStyle}>Navigation</p>
-            <div style={{ display: "flex", flexDirection: "column", gap: "clamp(7px, 1.5vw, 10px)" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "clamp(5px, 1.2vw, 8px)" }}>
               {quickLinks.map(({ href, label }) => (
                 <Link key={href} href={href} style={linkStyle}>{label}</Link>
               ))}
@@ -131,7 +131,7 @@ export default function Footer() {
           {/* Services */}
           <div style={{ minWidth: 0 }}>
             <p style={headingStyle}>Services</p>
-            <div style={{ display: "flex", flexDirection: "column", gap: "clamp(7px, 1.5vw, 10px)" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "clamp(5px, 1.2vw, 8px)" }}>
               {serviceLinks.map(({ href, label }) => (
                 <Link key={href} href={href} style={linkStyle}>{label}</Link>
               ))}
@@ -141,7 +141,7 @@ export default function Footer() {
           {/* Contact */}
           <div style={{ minWidth: 0 }}>
             <p style={headingStyle}>Contact</p>
-            <div style={{ display: "flex", flexDirection: "column", gap: "clamp(10px, 2vw, 14px)" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "clamp(7px, 1.5vw, 10px)" }}>
               <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
                 <p style={{ ...labelStyle, marginBottom: 0 }}>Phone</p>
                 <Link href="tel:+265999534305" style={{ fontSize: "clamp(12px, 1.5vw, 13px)", color: "#0f5f3f", textDecoration: "none" }}>
@@ -156,13 +156,13 @@ export default function Footer() {
               </div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
                 <p style={{ ...labelStyle, marginBottom: 0 }}>Hours</p>
-                <p style={{ fontSize: "clamp(12px, 1.5vw, 13px)", color: "#6b7280", margin: 0, lineHeight: 1.7 }}>
+                <p style={{ fontSize: "clamp(12px, 1.5vw, 13px)", color: "#6b7280", margin: 0, lineHeight: 1.6 }}>
                   Mon – Sat: 8:00am – 5:00pm<br />Sunday: Closed
                 </p>
               </div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
                 <p style={{ ...labelStyle, marginBottom: 0 }}>Address</p>
-                <address style={{ fontSize: "clamp(12px, 1.5vw, 13px)", color: "#6b7280", fontStyle: "normal", lineHeight: 1.7, margin: 0, wordBreak: "break-word" }}>
+                <address style={{ fontSize: "clamp(12px, 1.5vw, 13px)", color: "#6b7280", fontStyle: "normal", lineHeight: 1.6, margin: 0, wordBreak: "break-word" }}>
                   QuickTrip Shopping Complex<br />
                   NYUMBA YA SOLAR<br />
                   Area 25 Sungwi, Lilongwe<br />
@@ -183,8 +183,8 @@ export default function Footer() {
         justifyContent: "center",
         gap: "clamp(10px, 2vw, 14px)",
         flexWrap: "wrap",
-        paddingTop: "clamp(12px, 2.5vw, 18px)",
-        paddingBottom: "clamp(12px, 2.5vw, 18px)",
+        paddingTop: "clamp(8px, 1.5vw, 12px)",
+        paddingBottom: "clamp(8px, 1.5vw, 12px)",
         paddingLeft: "clamp(1rem, 4vw, 1.5rem)",
         paddingRight: "clamp(1rem, 4vw, 1.5rem)",
       }}>
