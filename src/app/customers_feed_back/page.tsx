@@ -79,14 +79,14 @@ export default function CustomerFeedback() {
           >
             What our clients say
           </h1>
-          <p className="gp-section-sub" style={{ marginTop: 14, wordBreak: "break-word" }}>
+          <p className="gp-section-sub" style={{ marginTop: 8, wordBreak: "break-word" }}>
             Real experiences from across Malawi
           </p>
         </div>
       </div>
 
       {/* ── Reviews grid ── */}
-      <section style={{ padding: "clamp(48px, 8vw, 80px) 0", backgroundColor: "var(--gp-bg-page)" }}>
+      <section style={{ padding: "clamp(20px, 3vw, 32px) 0", backgroundColor: "var(--gp-bg-page)" }}>
         <div className="gp-container">
           <div className="cf-grid">
             {reviews.map((r) => (
@@ -174,6 +174,11 @@ export default function CustomerFeedback() {
           }
         }
 
+        /* Tighten hero bottom padding */
+        .gp-page-hero {
+          padding-bottom: clamp(16px, 2.5vw, 24px) !important;
+        }
+
         /* Grid */
         .cf-grid {
           display: grid;
@@ -203,7 +208,7 @@ export default function CustomerFeedback() {
         .cf-img-wrap {
           position: relative;
           width: 100%;
-          height: 240px;
+          height: 180px;
           overflow: hidden;
           border-radius: 14px;
         }
