@@ -50,20 +50,20 @@ export default function About() {
           >
             Bringing reliable solar energy to every corner of Malawi
           </h1>
-          <p className="gp-section-sub" style={{ marginTop: 14, wordBreak: "break-word" }}>
+          <p className="gp-section-sub" style={{ marginTop: 8, wordBreak: "break-word" }}>
             Founded in Lilongwe, Green Power Systems was built on a single belief: clean energy should be accessible to everyone. Since day one we've installed, maintained, and supported solar systems for homes, commercial and industrial areas.
           </p>
         </div>
       </div>
 
       {/* ── Mission & Values ── */}
-      <section style={{ padding: "clamp(48px, 8vw, 80px) 0", backgroundColor: "var(--gp-bg-page)" }}>
+      <section style={{ padding: "clamp(20px, 3vw, 36px) 0", backgroundColor: "var(--gp-bg-page)" }}>
         <div className="gp-container">
           <div
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
-              gap: "clamp(24px, 5vw, 48px)",
+              gap: "clamp(16px, 3.5vw, 32px)",
               alignItems: "start",
             }}
           >
@@ -76,7 +76,7 @@ export default function About() {
                   fontWeight: 800,
                   color: "var(--gp-text-primary)",
                   lineHeight: 1.2,
-                  margin: "8px 0 0",
+                  margin: "6px 0 0",
                   letterSpacing: "-0.01em",
                   wordBreak: "break-word",
                 }}
@@ -88,7 +88,7 @@ export default function About() {
                   fontSize: "clamp(14px, 2vw, 15px)",
                   color: "var(--gp-text-muted)",
                   lineHeight: 1.75,
-                  marginTop: 14,
+                  marginTop: 10,
                   wordBreak: "break-word",
                 }}
               >
@@ -99,7 +99,7 @@ export default function About() {
             </div>
 
             {/* Value cards */}
-            <div style={{ display: "flex", flexDirection: "column", gap: 14, minWidth: 0 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10, minWidth: 0 }}>
               {[
                 { label: "Quality first", desc: "We never cut corners on components or workmanship." },
                 { label: "Local expertise", desc: "We know Malawi's grid, climate, and regulations deeply." },
@@ -108,7 +108,7 @@ export default function About() {
                 <div
                   key={label}
                   className="gp-card"
-                  style={{ padding: "18px 20px", display: "flex", gap: 14, alignItems: "flex-start" }}
+                  style={{ padding: "14px 18px", display: "flex", gap: 12, alignItems: "flex-start" }}
                 >
                   <div
                     style={{
@@ -121,7 +121,7 @@ export default function About() {
                     }}
                   />
                   <div style={{ minWidth: 0 }}>
-                    <p style={{ fontSize: 14, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 4px", wordBreak: "break-word" }}>
+                    <p style={{ fontSize: 14, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 3px", wordBreak: "break-word" }}>
                       {label}
                     </p>
                     <p style={{ fontSize: 13, color: "var(--gp-text-muted)", lineHeight: 1.6, margin: 0, wordBreak: "break-word" }}>
@@ -138,7 +138,7 @@ export default function About() {
       {/* ── Stats ── */}
       <section
         style={{
-          padding: "clamp(40px, 6vw, 64px) 0",
+          padding: "clamp(16px, 3vw, 28px) 0",
           backgroundColor: "var(--gp-bg-section)",
           borderTop: "1px solid var(--gp-border)",
           borderBottom: "1px solid var(--gp-border)",
@@ -149,7 +149,7 @@ export default function About() {
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))",
-              gap: 16,
+              gap: 12,
             }}
           >
             {[
@@ -158,13 +158,13 @@ export default function About() {
               ["3", "Districts served"],
               ["100%", "Client satisfaction"],
             ].map(([n, l]) => (
-              <div key={l} style={{ textAlign: "center", padding: "clamp(16px, 3vw, 24px) 8px", minWidth: 0 }}>
+              <div key={l} style={{ textAlign: "center", padding: "clamp(12px, 2vw, 18px) 8px", minWidth: 0 }}>
                 <p
                   style={{
                     fontSize: "clamp(24px, 5vw, 36px)",
                     fontWeight: 800,
                     color: "var(--gp-green)",
-                    margin: "0 0 6px",
+                    margin: "0 0 4px",
                     lineHeight: 1,
                   }}
                 >
@@ -180,16 +180,16 @@ export default function About() {
       </section>
 
       {/* ── Team ── */}
-      <section style={{ padding: "clamp(48px, 8vw, 80px) 0" }}>
+      <section style={{ padding: "clamp(20px, 3vw, 36px) 0" }}>
         <div className="gp-container">
-          <div style={{ marginBottom: 36 }}>
+          <div style={{ marginBottom: 20 }}>
             <span className="gp-eyebrow">Our team</span>
             <h2
               style={{
                 fontSize: "clamp(1.3rem, 3vw, 1.9rem)",
                 fontWeight: 800,
                 color: "var(--gp-text-primary)",
-                margin: "8px 0 0",
+                margin: "6px 0 0",
                 letterSpacing: "-0.01em",
                 wordBreak: "break-word",
               }}
@@ -202,19 +202,19 @@ export default function About() {
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 200px), 1fr))",
-              gap: 16,
+              gap: 14,
             }}
           >
             {team.map(({ name, role, initials, photo, edu, note }) => (
               <div
                 key={name}
                 className="gp-card"
-                style={{ padding: "clamp(20px, 4vw, 28px)", textAlign: "center", minWidth: 0 }}
+                style={{ padding: "clamp(16px, 3vw, 22px)", textAlign: "center", minWidth: 0 }}
               >
                 <div
                   style={{
-                    width: "clamp(64px, 10vw, 88px)",
-                    height: "clamp(64px, 10vw, 88px)",
+                    width: "clamp(60px, 10vw, 80px)",
+                    height: "clamp(60px, 10vw, 80px)",
                     borderRadius: "50%",
                     overflow: "hidden",
                     backgroundColor: "var(--gp-green-light)",
@@ -222,7 +222,7 @@ export default function About() {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    margin: "0 auto 16px",
+                    margin: "0 auto 12px",
                     flexShrink: 0,
                     position: "relative",
                   }}
@@ -232,7 +232,7 @@ export default function About() {
                       src={photo}
                       alt={`${name} — ${role}`}
                       fill
-                      sizes="88px"
+                      sizes="80px"
                       style={{ objectFit: "cover", objectPosition: "center top" }}
                     />
                   ) : (
@@ -248,11 +248,11 @@ export default function About() {
                   )}
                 </div>
 
-                <p style={{ fontSize: "clamp(14px, 2vw, 15px)", fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 4px", wordBreak: "break-word" }}>
+                <p style={{ fontSize: "clamp(14px, 2vw, 15px)", fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 3px", wordBreak: "break-word" }}>
                   {name}
                 </p>
-                <p style={{ fontSize: 13, color: "var(--gp-green)", fontWeight: 600, margin: "0 0 10px" }}>{role}</p>
-                <p style={{ fontSize: "clamp(11px, 1.5vw, 12px)", color: "var(--gp-text-muted)", lineHeight: 1.6, margin: "0 0 6px", wordBreak: "break-word" }}>
+                <p style={{ fontSize: 13, color: "var(--gp-green)", fontWeight: 600, margin: "0 0 8px" }}>{role}</p>
+                <p style={{ fontSize: "clamp(11px, 1.5vw, 12px)", color: "var(--gp-text-muted)", lineHeight: 1.6, margin: "0 0 4px", wordBreak: "break-word" }}>
                   {edu}
                 </p>
                 <p style={{ fontSize: "clamp(11px, 1.5vw, 12px)", color: "var(--gp-text-subtle)", lineHeight: 1.5, margin: 0, fontStyle: "italic", wordBreak: "break-word" }}>
@@ -265,14 +265,14 @@ export default function About() {
       </section>
 
       {/* ── CTA ── */}
-      <section style={{ padding: "clamp(48px, 8vw, 72px) 0", backgroundColor: "var(--gp-bg-dark)" }}>
+      <section style={{ padding: "clamp(28px, 4vw, 44px) 0", backgroundColor: "var(--gp-bg-dark)" }}>
         <div className="gp-container" style={{ textAlign: "center" }}>
           <h2
             style={{
               fontSize: "clamp(1.4rem, 3vw, 2rem)",
               fontWeight: 800,
               color: "#fff",
-              margin: "0 0 12px",
+              margin: "0 0 8px",
               letterSpacing: "-0.01em",
               wordBreak: "break-word",
             }}
@@ -283,7 +283,7 @@ export default function About() {
             style={{
               fontSize: "clamp(13px, 2vw, 15px)",
               color: "rgba(255,255,255,0.62)",
-              margin: "0 0 28px",
+              margin: "0 0 20px",
               lineHeight: 1.7,
               wordBreak: "break-word",
             }}
@@ -306,6 +306,12 @@ export default function About() {
           padding-left: clamp(1rem, 4vw, 1.5rem);
           padding-right: clamp(1rem, 4vw, 1.5rem);
         }
+
+        /* Tighten hero bottom padding */
+        .gp-page-hero {
+          padding-bottom: clamp(16px, 2.5vw, 24px) !important;
+        }
+
         @media (max-width: 480px) {
           .gp-container {
             padding-left: 1rem;
