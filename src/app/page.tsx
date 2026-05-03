@@ -168,36 +168,41 @@ export default function Home() {
                 alt: "Green Power Systems team fitting solar panels on a commercial rooftop",
                 tag: "Commercial", tagColor: "#0066cc",
                 kw: "22 kW", title: "Large Commercial Rooftop", location: "Lilongwe",
+                featured: true,
               },
               {
                 src: "/images/gallery/image3.jpeg",
                 alt: "Completed solar array on a rural residential rooftop",
                 tag: "Residential", tagColor: "var(--gp-green)",
                 kw: "8 kW", title: "Rural Rooftop Array", location: "Dedza District",
+                featured: false,
               },
               {
                 src: "/images/gallery/image22.jpeg",
                 alt: "Massive industrial solar panel array on a warehouse rooftop",
                 tag: "Industrial", tagColor: "#b45309",
                 kw: "48 kW", title: "Industrial Warehouse Array", location: "Kanengo",
+                featured: false,
               },
               {
                 src: "/images/gallery/image4.jpeg",
                 alt: "SRNE inverter and Dyness battery storage system installed indoors",
                 tag: "Energy Storage", tagColor: "#6d4c41",
                 kw: "5 kW", title: "Inverter & Battery System", location: "Lilongwe",
+                featured: false,
               },
               {
                 src: "/images/gallery/image8.jpeg",
                 alt: "Technician crouching on rooftop aligning solar panels at golden hour",
                 tag: "Residential", tagColor: "var(--gp-green)",
                 kw: "5 kW", title: "Precision Panel Alignment", location: "Lilongwe",
+                featured: false,
               },
             ].map((p) => (
               <Link
                 key={p.title}
                 href="/gallery"
-                className="gp-gallery-card"
+                className={`gp-gallery-card${p.featured ? " gp-gallery-card--featured" : ""}`}
                 onMouseEnter={e => {
                   (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
                   (e.currentTarget as HTMLElement).style.boxShadow = "0 16px 36px rgba(0,0,0,0.2)";
@@ -294,28 +299,38 @@ export default function Home() {
           }
         }
 
-        /* Gallery */
+        /* ── Gallery grid ── */
         .gp-gallery-teaser {
           display: grid;
           gap: 12px;
           grid-template-columns: 1fr;
         }
+
+        /*
+          Every card uses aspect-ratio so images always show fully
+          without being cropped top/bottom on any screen size.
+          object-fit: cover fills the card; object-position: center
+          keeps the subject centred.
+        */
         .gp-gallery-card {
           text-decoration: none;
           border-radius: 12px;
           overflow: hidden;
           display: block;
           position: relative;
-          min-height: 190px;
+          /* aspect-ratio drives the height — no fixed px heights */
+          aspect-ratio: 4 / 3;
           box-shadow: 0 2px 12px rgba(0,0,0,0.10);
           transition: transform 0.22s, box-shadow 0.22s;
         }
+
         .gp-gallery-img {
           position: absolute;
           inset: 0;
           width: 100%;
           height: 100%;
           object-fit: cover;
+          object-position: center;
           display: block;
         }
         .gp-gallery-overlay {
@@ -335,24 +350,32 @@ export default function Home() {
           bottom: 0; left: 0; right: 0;
           padding: 12px 14px;
         }
+
+        /* Tablet: 2 columns */
         @media (min-width: 600px) {
           .gp-gallery-teaser {
             grid-template-columns: repeat(2, 1fr);
           }
-          .gp-gallery-card {
-            min-height: 200px;
-          }
         }
+
+        /* Desktop: 3-column bento grid
+           Featured card spans 2 rows so it's taller than the others.
+           All cards keep their aspect-ratio — the featured one just
+           gets double the height naturally via grid-row span. */
         @media (min-width: 1024px) {
           .gp-gallery-teaser {
             grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: 220px 220px;
+            /* rows size themselves from card content (aspect-ratio) */
+            grid-auto-rows: auto;
           }
-          .gp-gallery-card {
-            min-height: unset;
+          .gp-gallery-card--featured {
+            grid-row: span 2;
+            /* taller card → use a portrait-ish ratio so it fills well */
+            aspect-ratio: 3 / 4;
           }
-          .gp-gallery-card:first-child {
-            grid-row: 1 / 3;
+          /* remaining cards stay landscape */
+          .gp-gallery-card:not(.gp-gallery-card--featured) {
+            aspect-ratio: 4 / 3;
           }
         }
       `}</style>
