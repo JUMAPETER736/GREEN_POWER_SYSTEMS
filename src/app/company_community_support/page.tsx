@@ -81,7 +81,7 @@ export default function CompanyCommunitySupport() {
           >
             <span style={{ color: "var(--gp-green)" }}>Giving back to our community</span>
           </h1>
-          <p className="gp-section-sub" style={{ marginTop: 14, wordBreak: "break-word" }}>
+          <p className="gp-section-sub" style={{ marginTop: 8, wordBreak: "break-word" }}>
             At Green Power Systems Limited, we believe that powering communities goes beyond solar panels.
             We are committed to the wellbeing of the most vulnerable in society — especially mothers and young children.
           </p>
@@ -89,7 +89,7 @@ export default function CompanyCommunitySupport() {
       </div>
 
       {/* ── Story + Donated items ── */}
-      <section style={{ padding: "clamp(48px, 8vw, 80px) 0", backgroundColor: "var(--gp-bg-page)" }}>
+      <section style={{ padding: "clamp(20px, 3vw, 32px) 0", backgroundColor: "var(--gp-bg-page)" }}>
         <div className="gp-container">
           <div className="cs-two-col">
 
@@ -101,20 +101,20 @@ export default function CompanyCommunitySupport() {
                   fontSize: "clamp(1.3rem, 3vw, 1.9rem)",
                   fontWeight: 800,
                   color: "var(--gp-text-primary)",
-                  margin: "8px 0 0",
+                  margin: "6px 0 0",
                   letterSpacing: "-0.01em",
                   wordBreak: "break-word",
                 }}
               >
                 A visit to Chiwamba Hospital, Lilongwe
               </h2>
-              <p style={{ fontSize: "clamp(14px, 2vw, 15.5px)", color: "var(--gp-text-muted)", lineHeight: 1.8, marginBottom: 16, marginTop: 14, wordBreak: "break-word" }}>
+              <p style={{ fontSize: "clamp(14px, 2vw, 15.5px)", color: "var(--gp-text-muted)", lineHeight: 1.8, marginBottom: 12, marginTop: 10, wordBreak: "break-word" }}>
                 Our team visited <strong style={{ color: "var(--gp-text-primary)" }}>Chiwamba Hospital</strong> in Lilongwe,
                 Malawi — a facility that serves thousands of families, including a dedicated
                 <strong style={{ color: "var(--gp-text-primary)" }}> Under-5 Department</strong> caring for
                 pregnant women and mothers with young children.
               </p>
-              <p style={{ fontSize: "clamp(14px, 2vw, 15.5px)", color: "var(--gp-text-muted)", lineHeight: 1.8, marginBottom: 16, wordBreak: "break-word" }}>
+              <p style={{ fontSize: "clamp(14px, 2vw, 15.5px)", color: "var(--gp-text-muted)", lineHeight: 1.8, marginBottom: 12, wordBreak: "break-word" }}>
                 Recognising the daily challenges these families face, our staff came bearing a range of
                 essential items — pampers, soap, baby oil (gel), pails, sugar, and pegs — donated
                 directly to the mothers and babies receiving care in the ward.
@@ -124,7 +124,7 @@ export default function CompanyCommunitySupport() {
                 businesses, we equally strive to power lives with compassion, dignity, and care.
               </p>
 
-              <div style={{ marginTop: "auto", paddingTop: 24 }}>
+              <div style={{ marginTop: "auto", paddingTop: 16 }}>
                 <div style={{
                   display: "inline-flex", alignItems: "center", gap: 8,
                   padding: "10px 18px",
@@ -153,22 +153,22 @@ export default function CompanyCommunitySupport() {
                   fontSize: "clamp(1.3rem, 3vw, 1.9rem)",
                   fontWeight: 800,
                   color: "var(--gp-text-primary)",
-                  margin: "8px 0 0",
+                  margin: "6px 0 0",
                   letterSpacing: "-0.01em",
                   wordBreak: "break-word",
                 }}
               >
                 Items given to mothers &amp; babies
               </h2>
-              <div style={{ display: "flex", flexDirection: "column", gap: 8, flex: 1, marginTop: 14 }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: 6, flex: 1, marginTop: 10 }}>
                 {donated.map(({ icon, label, desc }) => (
                   <div key={label} className="gp-card" style={{
-                    padding: "11px 14px", display: "flex", gap: 12, alignItems: "flex-start",
+                    padding: "9px 12px", display: "flex", gap: 12, alignItems: "flex-start",
                   }}>
                     <div className="gp-icon-badge" style={{
-                      flexShrink: 0, marginTop: 1, width: 32, height: 32,
+                      flexShrink: 0, marginTop: 1, width: 30, height: 30,
                     }}>
-                      <svg width={16} height={16} viewBox="0 0 24 24" fill="none"
+                      <svg width={15} height={15} viewBox="0 0 24 24" fill="none"
                         stroke="var(--gp-green)"
                         strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
                         <path d={icon} />
@@ -176,7 +176,7 @@ export default function CompanyCommunitySupport() {
                     </div>
                     <div style={{ minWidth: 0 }}>
                       <p style={{ fontWeight: 700, fontSize: "clamp(12.5px, 1.8vw, 13.5px)", color: "var(--gp-text-primary)", margin: "0 0 2px", wordBreak: "break-word" }}>{label}</p>
-                      <p style={{ fontSize: "clamp(11.5px, 1.6vw, 12.5px)", color: "var(--gp-text-muted)", lineHeight: 1.55, margin: 0, wordBreak: "break-word" }}>{desc}</p>
+                      <p style={{ fontSize: "clamp(11.5px, 1.6vw, 12.5px)", color: "var(--gp-text-muted)", lineHeight: 1.5, margin: 0, wordBreak: "break-word" }}>{desc}</p>
                     </div>
                   </div>
                 ))}
@@ -189,7 +189,7 @@ export default function CompanyCommunitySupport() {
 
       {/* ── Photo gallery ── */}
       <section style={{
-        padding: "clamp(48px, 8vw, 80px) 0",
+        padding: "clamp(20px, 3vw, 32px) 0",
         backgroundColor: "var(--gp-bg-section)",
         borderTop: "1px solid var(--gp-border)",
         borderBottom: "1px solid var(--gp-border)",
@@ -201,14 +201,14 @@ export default function CompanyCommunitySupport() {
               fontSize: "clamp(1.3rem, 3vw, 1.9rem)",
               fontWeight: 800,
               color: "var(--gp-text-primary)",
-              margin: "8px 0 0",
+              margin: "6px 0 0",
               letterSpacing: "-0.01em",
               wordBreak: "break-word",
             }}
           >
             Moments from Chiwamba Hospital
           </h2>
-          <div className="cs-gallery-grid" style={{ marginTop: 28 }}>
+          <div className="cs-gallery-grid" style={{ marginTop: 16 }}>
             {charityImages.map((img, i) => (
               <button
                 key={i}
@@ -235,13 +235,13 @@ export default function CompanyCommunitySupport() {
       </section>
 
       {/* ── CTA ── */}
-      <section style={{ padding: "clamp(48px, 8vw, 72px) 0", backgroundColor: "var(--gp-bg-dark)" }}>
+      <section style={{ padding: "clamp(28px, 4vw, 48px) 0", backgroundColor: "var(--gp-bg-dark)" }}>
         <div className="gp-container cs-cta-inner">
           <div style={{ maxWidth: 520, minWidth: 0 }}>
             <h2 style={{
               fontSize: "clamp(1.4rem, 3vw, 2rem)",
               fontWeight: 800, color: "#fff",
-              margin: "0 0 12px", letterSpacing: "-0.01em",
+              margin: "0 0 10px", letterSpacing: "-0.01em",
               wordBreak: "break-word",
             }}>
               More than energy — we power communities
@@ -336,11 +336,16 @@ export default function CompanyCommunitySupport() {
           }
         }
 
+        /* Tighten hero bottom padding */
+        .gp-page-hero {
+          padding-bottom: clamp(16px, 2.5vw, 24px) !important;
+        }
+
         /* ── Two-col layout ── */
         .cs-two-col {
           display: flex;
           flex-direction: column;
-          gap: 28px;
+          gap: 20px;
         }
         .cs-left-panel,
         .cs-right-panel {
@@ -351,7 +356,7 @@ export default function CompanyCommunitySupport() {
           .cs-two-col {
             flex-direction: row;
             align-items: stretch;
-            gap: 2rem;
+            gap: 1.5rem;
           }
           .cs-left-panel {
             flex: 1 1 0;
@@ -361,7 +366,7 @@ export default function CompanyCommunitySupport() {
             background: var(--gp-bg-card);
             border: 1px solid var(--gp-border);
             border-radius: 16px;
-            padding: clamp(22px, 3vw, 32px);
+            padding: clamp(18px, 2.5vw, 26px);
           }
           .cs-right-panel {
             flex: 1 1 0;
@@ -371,14 +376,14 @@ export default function CompanyCommunitySupport() {
         }
         @media (min-width: 1024px) {
           .cs-two-col {
-            gap: 2.5rem;
+            gap: 2rem;
           }
         }
 
         /* ── Gallery ── */
         .cs-gallery-grid {
           display: grid;
-          gap: 14px;
+          gap: 12px;
           grid-template-columns: 1fr;
         }
         @media (min-width: 600px) {
@@ -398,17 +403,17 @@ export default function CompanyCommunitySupport() {
           border-radius: 14px;
           overflow: hidden;
           position: relative;
-          min-height: 200px;
+          min-height: 180px;
           display: block;
           width: 100%;
           box-shadow: 0 2px 12px rgba(0,0,0,0.10);
           transition: transform 0.22s, box-shadow 0.22s;
         }
         @media (min-width: 600px) {
-          .cs-gallery-btn { min-height: 230px; }
+          .cs-gallery-btn { min-height: 200px; }
         }
         @media (min-width: 1024px) {
-          .cs-gallery-btn { min-height: 260px; }
+          .cs-gallery-btn { min-height: 220px; }
         }
         .cs-gallery-btn:hover {
           transform: translateY(-4px);
@@ -425,10 +430,10 @@ export default function CompanyCommunitySupport() {
         }
         .cs-gallery-caption {
           position: absolute; bottom: 0; left: 0; right: 0;
-          padding: 14px 16px;
+          padding: 12px 14px;
         }
         .cs-gallery-zoom {
-          position: absolute; top: 12px; right: 12px;
+          position: absolute; top: 10px; right: 10px;
           background-color: rgba(0,0,0,0.4);
           border-radius: 8px; padding: 5px 7px;
           backdrop-filter: blur(4px);
@@ -438,7 +443,7 @@ export default function CompanyCommunitySupport() {
         .cs-cta-inner {
           display: flex;
           flex-direction: column;
-          gap: 24px;
+          gap: 20px;
           align-items: flex-start;
         }
         @media (min-width: 640px) {
