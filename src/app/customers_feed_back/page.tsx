@@ -92,34 +92,21 @@ export default function CustomerFeedback() {
             {reviews.map((r) => (
               <div key={r.name} className="cf-card">
 
-                {/* Image — natural aspect ratio, no cropping */}
+                {/* Image */}
                 <div className="cf-img-wrap">
                   <Image
                     src={r.image}
                     alt={r.name}
-                    width={600}
-                    height={450}
-                    style={{
-                      width: "100%",
-                      height: "auto",
-                      display: "block",
-                      borderRadius: 14,
-                    }}
+                    fill
+                    sizes="(max-width: 599px) 100vw, (max-width: 767px) 50vw, 33vw"
+                    style={{ objectFit: "cover", objectPosition: "center" }}
                   />
                 </div>
 
                 {/* Stars */}
                 <div style={{ display: "flex", gap: 2, marginTop: 4 }}>
                   {Array.from({ length: 5 }).map((_, i) => (
-                    <span
-                      key={i}
-                      style={{
-                        color: i < r.stars ? "var(--gp-green)" : "#d1d5db",
-                        fontSize: 14,
-                      }}
-                    >
-                      ★
-                    </span>
+                    <span key={i} style={{ color: i < r.stars ? "var(--gp-green)" : "#d1d5db", fontSize: 14 }}>★</span>
                   ))}
                 </div>
 
@@ -179,41 +166,61 @@ export default function CustomerFeedback() {
           }
         }
 
-        /* Tighten hero bottom padding */
         .gp-page-hero {
           padding-bottom: clamp(16px, 2.5vw, 24px) !important;
         }
 
-        /* Grid */
+        /* Grid — 1 col → 2 col → 3 col */
         .cf-grid {
           display: grid;
           gap: 16px;
           grid-template-columns: 1fr;
         }
         @media (min-width: 600px) {
-          .cf-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
+          .cf-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (min-width: 768px) {
-          .cf-grid {
-            grid-template-columns: repeat(3, 1fr);
-          }
+          .cf-grid { grid-template-columns: repeat(3, 1fr); }
         }
 
         /* Card */
         .cf-card {
           display: flex;
           flex-direction: column;
-          gap: 6px;
+          gap: 8px;
           min-width: 0;
         }
 
-        /* Image wrapper — no fixed height, lets image breathe */
+        /*
+          Image wrapper:
+          - position: relative is required for Next.js fill
+          - aspect-ratio keeps a consistent shape on every screen size
+            so images are never cropped top/bottom unexpectedly
+          - objectFit: cover fills the box; objectPosition: center
+            keeps the subject in frame
+        */
         .cf-img-wrap {
+          position: relative;
           width: 100%;
-          border-radius: 14px;
+          aspect-ratio: 4 / 3;
           overflow: hidden;
+          border-radius: 14px;
+          background-color: var(--gp-green-light);
+        }
+
+        /* Phones in portrait — slightly taller ratio */
+        @media (max-width: 399px) {
+          .cf-img-wrap { aspect-ratio: 3 / 2; }
+        }
+
+        /* Tablets in landscape / small desktop — standard 4/3 */
+        @media (min-width: 600px) and (max-width: 1023px) {
+          .cf-img-wrap { aspect-ratio: 4 / 3; }
+        }
+
+        /* Large desktop — slightly wider so 3-column cards don't feel too tall */
+        @media (min-width: 1024px) {
+          .cf-img-wrap { aspect-ratio: 16 / 10; }
         }
       `}</style>
 
