@@ -163,32 +163,32 @@ export default function Contact() {
           <h1 className="gp-section-title" style={{ width: "100%", wordBreak: "break-word" }}>
             We'd love to hear from you
           </h1>
-          <p className="gp-section-sub" style={{ marginTop: 14, wordBreak: "break-word" }}>
+          <p className="gp-section-sub" style={{ marginTop: 8, wordBreak: "break-word" }}>
             Free consultation, no commitment. Our team usually responds within working days.
           </p>
         </div>
       </div>
 
       {/* ── Form + Map ── */}
-      <section style={{ padding: "clamp(40px, 7vw, 72px) 0" }}>
+      <section style={{ padding: "clamp(20px, 3vw, 36px) 0" }}>
         <div className="gp-container">
           <div className="gp-contact-grid">
 
             {/* Form */}
-            <div className="gp-card" style={{ padding: "clamp(20px, 4vw, 32px)", minWidth: 0 }}>
+            <div className="gp-card" style={{ padding: "clamp(16px, 3vw, 24px)", minWidth: 0 }}>
               <h2 style={{
                 fontSize: "clamp(16px, 2.5vw, 18px)", fontWeight: 700,
-                color: "var(--gp-text-primary)", margin: "0 0 22px",
+                color: "var(--gp-text-primary)", margin: "0 0 16px",
                 wordBreak: "break-word",
               }}>
                 Send us a message
               </h2>
 
-              <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
 
                 <div className="gp-form-row">
                   <div style={{ minWidth: 0 }}>
-                    <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
+                    <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 5 }}>
                       Full name *
                     </label>
                     <input
@@ -200,7 +200,7 @@ export default function Contact() {
                     />
                   </div>
                   <div style={{ minWidth: 0 }}>
-                    <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
+                    <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 5 }}>
                       Email *
                     </label>
                     <input
@@ -215,7 +215,7 @@ export default function Contact() {
                 </div>
 
                 <div style={{ minWidth: 0 }}>
-                  <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
+                  <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 5 }}>
                     Phone number
                     <span style={{ fontSize: 11, fontWeight: 400, color: "var(--gp-text-subtle)", marginLeft: 6 }}>
                       — include country code e.g. +265990000000
@@ -229,18 +229,18 @@ export default function Contact() {
                     style={phoneError ? inputErrorStyle : inputStyle}
                   />
                   {phoneError ? (
-                    <p style={{ fontSize: 12, color: "#c0392b", margin: "5px 0 0", lineHeight: 1.5, wordBreak: "break-word" }}>
+                    <p style={{ fontSize: 12, color: "#c0392b", margin: "4px 0 0", lineHeight: 1.5, wordBreak: "break-word" }}>
                       {phoneError}
                     </p>
                   ) : (
-                    <p style={{ fontSize: 11, color: "var(--gp-text-subtle)", margin: "5px 0 0" }}>
+                    <p style={{ fontSize: 11, color: "var(--gp-text-subtle)", margin: "4px 0 0" }}>
                       Multiple numbers? Separate with a comma.
                     </p>
                   )}
                 </div>
 
                 <div style={{ minWidth: 0 }}>
-                  <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
+                  <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 5 }}>
                     Service interested in
                   </label>
                   <select
@@ -260,7 +260,7 @@ export default function Contact() {
                 </div>
 
                 <div style={{ minWidth: 0 }}>
-                  <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 6 }}>
+                  <label style={{ fontSize: 12, fontWeight: 600, color: "var(--gp-text-muted)", display: "block", marginBottom: 5 }}>
                     Message *
                   </label>
                   <textarea
@@ -269,7 +269,7 @@ export default function Contact() {
                     onChange={handle}
                     placeholder="Tell us about your project or question..."
                     rows={5}
-                    style={{ ...inputStyle, resize: "vertical", minHeight: 110 }}
+                    style={{ ...inputStyle, resize: "vertical", minHeight: 100 }}
                   />
                 </div>
 
@@ -307,7 +307,7 @@ export default function Contact() {
             {/* Map */}
             <div className="gp-card" style={{ overflow: "hidden", padding: 0, display: "flex", flexDirection: "column", minWidth: 0 }}>
               <div style={{
-                padding: "16px 20px",
+                padding: "14px 18px",
                 borderBottom: "1px solid var(--gp-border)",
                 display: "flex", alignItems: "flex-start", gap: 10,
                 boxSizing: "border-box",
@@ -338,7 +338,7 @@ export default function Contact() {
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7725.4!2d33.7545!3d-13.9032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1921d500431ff5a5%3A0xba44ac1f1f86553!2sArea+25%2C+Lilongwe%2C+Malawi!5e0!3m2!1sen!2smw!4v1"
                   width="100%"
-                  style={{ border: 0, display: "block", minHeight: 280, flexGrow: 1, pointerEvents: "none" }}
+                  style={{ border: 0, display: "block", minHeight: 260, flexGrow: 1, pointerEvents: "none" }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
@@ -378,16 +378,22 @@ export default function Contact() {
           padding-left: clamp(1rem, 4vw, 1.5rem);
           padding-right: clamp(1rem, 4vw, 1.5rem);
         }
+
+        /* Tighten hero bottom padding */
+        .gp-page-hero {
+          padding-bottom: clamp(16px, 2.5vw, 24px) !important;
+        }
+
         .gp-contact-grid {
           display: grid;
-          gap: 24px;
+          gap: 20px;
           grid-template-columns: 1fr;
           width: 100%;
         }
         .gp-form-row {
           display: grid;
           grid-template-columns: 1fr;
-          gap: 14px;
+          gap: 12px;
         }
         @media (min-width: 600px) {
           .gp-form-row {
