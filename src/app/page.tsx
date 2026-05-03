@@ -1,6 +1,15 @@
 "use client";
 import Link from "next/link";
 
+/* ── Shared location icon — teardrop pin with filled dot inside ── */
+const LocationIcon = ({ color = "rgba(255,255,255,0.82)" }: { color?: string }) => (
+  <svg width={12} height={12} viewBox="0 0 24 24" fill="none"
+    stroke={color} strokeWidth={2} style={{ flexShrink: 0 }}>
+    <path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z" />
+    <circle cx="12" cy="9" r="2" fill={color} />
+  </svg>
+);
+
 export default function Home() {
   return (
     <div style={{ backgroundColor: "var(--gp-bg-page)", overflowX: "hidden", width: "100%" }}>
@@ -226,9 +235,13 @@ export default function Home() {
                     padding: "3px 10px", borderRadius: 100, backdropFilter: "blur(4px)",
                   }}>{p.kw}</span>
                 </div>
+                {/* Location row — SVG icon, no emoji */}
                 <div className="gp-gallery-info">
-                  <p style={{ fontSize: 14, fontWeight: 700, color: "#fff", margin: "0 0 3px" }}>{p.title}</p>
-                  <p style={{ fontSize: 12, color: "rgba(255,255,255,0.72)", margin: 0 }}>📍 {p.location}</p>
+                  <p style={{ fontSize: 14, fontWeight: 700, color: "#fff", margin: "0 0 4px" }}>{p.title}</p>
+                  <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                    <LocationIcon />
+                    <span style={{ fontSize: 12, color: "rgba(255,255,255,0.82)" }}>{p.location}</span>
+                  </div>
                 </div>
               </Link>
             ))}
@@ -293,10 +306,7 @@ export default function Home() {
           padding-right: clamp(1rem, 4vw, 1.5rem);
         }
         @media (max-width: 480px) {
-          .gp-container {
-            padding-left: 1rem;
-            padding-right: 1rem;
-          }
+          .gp-container { padding-left: 1rem; padding-right: 1rem; }
         }
 
         /* ── Gallery grid ── */
@@ -305,25 +315,16 @@ export default function Home() {
           gap: 12px;
           grid-template-columns: 1fr;
         }
-
-        /*
-          Every card uses aspect-ratio so images always show fully
-          without being cropped top/bottom on any screen size.
-          object-fit: cover fills the card; object-position: center
-          keeps the subject centred.
-        */
         .gp-gallery-card {
           text-decoration: none;
           border-radius: 12px;
           overflow: hidden;
           display: block;
           position: relative;
-          /* aspect-ratio drives the height — no fixed px heights */
           aspect-ratio: 4 / 3;
           box-shadow: 0 2px 12px rgba(0,0,0,0.10);
           transition: transform 0.22s, box-shadow 0.22s;
         }
-
         .gp-gallery-img {
           position: absolute;
           inset: 0;
@@ -351,29 +352,18 @@ export default function Home() {
           padding: 12px 14px;
         }
 
-        /* Tablet: 2 columns */
         @media (min-width: 600px) {
-          .gp-gallery-teaser {
-            grid-template-columns: repeat(2, 1fr);
-          }
+          .gp-gallery-teaser { grid-template-columns: repeat(2, 1fr); }
         }
-
-        /* Desktop: 3-column bento grid
-           Featured card spans 2 rows so it's taller than the others.
-           All cards keep their aspect-ratio — the featured one just
-           gets double the height naturally via grid-row span. */
         @media (min-width: 1024px) {
           .gp-gallery-teaser {
             grid-template-columns: repeat(3, 1fr);
-            /* rows size themselves from card content (aspect-ratio) */
             grid-auto-rows: auto;
           }
           .gp-gallery-card--featured {
             grid-row: span 2;
-            /* taller card → use a portrait-ish ratio so it fills well */
             aspect-ratio: 3 / 4;
           }
-          /* remaining cards stay landscape */
           .gp-gallery-card:not(.gp-gallery-card--featured) {
             aspect-ratio: 4 / 3;
           }
