@@ -7,18 +7,18 @@ export default function Home() {
 
       {/* ── Hero ── */}
       <section style={{ backgroundColor: "var(--gp-bg-card)", borderBottom: "1px solid var(--gp-border)" }}>
-        <div className="gp-container" style={{ paddingTop: "clamp(48px, 8vw, 72px)", paddingBottom: "clamp(40px, 7vw, 64px)" }}>
+        <div className="gp-container" style={{ paddingTop: "clamp(24px, 4vw, 40px)", paddingBottom: "clamp(20px, 3.5vw, 36px)" }}>
           <div style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))",
-            gap: "clamp(24px, 5vw, 48px)",
+            gap: "clamp(16px, 3vw, 28px)",
             alignItems: "center",
           }}>
             {/* Left */}
-            <div style={{ display: "flex", flexDirection: "column", gap: 22, minWidth: 0 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 14, minWidth: 0 }}>
               <span style={{
                 display: "inline-flex", alignItems: "center", gap: 8,
-                padding: "5px 14px", borderRadius: 100,
+                padding: "4px 12px", borderRadius: 100,
                 backgroundColor: "var(--gp-green-light)",
                 border: "1px solid var(--gp-green-border)",
                 color: "var(--gp-green)", fontSize: 12, fontWeight: 600,
@@ -29,7 +29,7 @@ export default function Home() {
               </span>
 
               <h1 style={{
-                fontSize: "clamp(1.9rem, 5vw, 3.2rem)",
+                fontSize: "clamp(1.7rem, 5vw, 3rem)",
                 fontWeight: 800, color: "var(--gp-text-primary)",
                 lineHeight: 1.12, margin: 0, letterSpacing: "-0.02em",
                 wordBreak: "break-word",
@@ -37,23 +37,23 @@ export default function Home() {
                 <span style={{ color: "var(--gp-green)" }}>Power your future with clean solar energy</span>
               </h1>
 
-              <p style={{ fontSize: "clamp(15px, 2vw, 17px)", color: "var(--gp-text-muted)", lineHeight: 1.7, margin: 0, wordBreak: "break-word" }}>
+              <p style={{ fontSize: "clamp(14px, 2vw, 16px)", color: "var(--gp-text-muted)", lineHeight: 1.6, margin: 0, wordBreak: "break-word" }}>
                 Professional installation, sales, and maintenance for homes, commercial and industrial areas across Malawi. Sustainable energy that pays for itself.
               </p>
 
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
                 <Link href="/company_contact_details" className="gp-btn-primary">Get Free Consultation</Link>
                 <Link href="/our_services" className="gp-btn-secondary">View Our Services</Link>
               </div>
 
               <div style={{
-                display: "flex", flexWrap: "wrap", gap: "16px 36px", paddingTop: 24,
-                borderTop: "1px solid var(--gp-border)", marginTop: 4,
+                display: "flex", flexWrap: "wrap", gap: "12px 28px", paddingTop: 14,
+                borderTop: "1px solid var(--gp-border)", marginTop: 2,
               }}>
                 {[["50+","Installations"],["100%","Satisfaction"],["24/7","Support"]].map(([n,l]) => (
                   <div key={l}>
-                    <p style={{ fontSize: "clamp(20px,4vw,26px)", fontWeight: 800, color: "var(--gp-green)", margin: 0, lineHeight: 1 }}>{n}</p>
-                    <p style={{ fontSize: 12, color: "var(--gp-text-subtle)", marginTop: 5, fontWeight: 500 }}>{l}</p>
+                    <p style={{ fontSize: "clamp(18px,4vw,24px)", fontWeight: 800, color: "var(--gp-green)", margin: 0, lineHeight: 1 }}>{n}</p>
+                    <p style={{ fontSize: 12, color: "var(--gp-text-subtle)", marginTop: 4, fontWeight: 500 }}>{l}</p>
                   </div>
                 ))}
               </div>
@@ -63,11 +63,11 @@ export default function Home() {
             <div style={{
               backgroundColor: "var(--gp-green-light)",
               border: "1px solid var(--gp-green-border)",
-              borderRadius: 20, padding: "2rem",
+              borderRadius: 16, padding: "1.25rem",
               display: "flex", alignItems: "center", justifyContent: "center",
-              minHeight: 260, minWidth: 0,
+              minHeight: 200, minWidth: 0,
             }}>
-              <svg viewBox="0 0 300 260" style={{ width: "100%", maxWidth: 320 }} xmlns="http://www.w3.org/2000/svg">
+              <svg viewBox="0 0 300 260" style={{ width: "100%", maxWidth: 280 }} xmlns="http://www.w3.org/2000/svg">
                 <circle cx="75" cy="60" r="36" fill="#fbb81c" opacity="0.18" />
                 <circle cx="75" cy="60" r="22" fill="#fbb81c" />
                 {[0,45,90,135,180,225,270,315].map(a => {
@@ -93,28 +93,28 @@ export default function Home() {
       </section>
 
       {/* ── Why choose us ── */}
-      <section style={{ padding: "clamp(48px, 8vw, 80px) 0", backgroundColor: "var(--gp-bg-page)" }}>
+      <section style={{ padding: "clamp(24px, 4vw, 44px) 0", backgroundColor: "var(--gp-bg-page)" }}>
         <div className="gp-container">
-          <div style={{ marginBottom: 40 }}>
+          <div style={{ marginBottom: 20 }}>
             <span className="gp-eyebrow">Why choose us</span>
             <h2 className="gp-section-title">Expertise you can trust</h2>
             <p className="gp-section-sub">From first consultation to years of support, we're with you every step.</p>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 220px), 1fr))", gap: 14 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 220px), 1fr))", gap: 12 }}>
             {[
               { title: "Certified technicians", desc: "Every installer is trained, vetted, and covered by our quality guarantee.", icon: "M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 0 0 1.946-.806 3.42 3.42 0 0 1 4.438 0 3.42 3.42 0 0 0 1.946.806 3.42 3.42 0 0 1 3.138 3.138 3.42 3.42 0 0 0 .806 1.946 3.42 3.42 0 0 1 0 4.438 3.42 3.42 0 0 0-.806 1.946 3.42 3.42 0 0 1-3.138 3.138 3.42 3.42 0 0 0-1.946.806 3.42 3.42 0 0 1-4.438 0 3.42 3.42 0 0 0-1.946-.806 3.42 3.42 0 0 1-3.138-3.138 3.42 3.42 0 0 0-.806-1.946 3.42 3.42 0 0 1 0-4.438 3.42 3.42 0 0 0 .806-1.946 3.42 3.42 0 0 1 3.138-3.138z" },
               { title: "24/7 support", desc: "Our team is always reachable for emergencies, queries, and routine checks.", icon: "M3 5a2 2 0 0 1 2-2h3.28a1 1 0 0 1 .948.684l1.498 4.493a1 1 0 0 1-.502 1.21l-2.257 1.13a11.042 11.042 0 0 0 5.516 5.516l1.13-2.257a1 1 0 0 1 1.21-.502l4.493 1.498a1 1 0 0 1 .684.949V19a2 2 0 0 1-2 2h-1C9.716 21 3 14.284 3 6V5z" },
               { title: "Transparent pricing", desc: "No hidden fees. Detailed quotes and flexible payment plans for every budget.", icon: "M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 11h.01M12 11h.01M15 11h.01M4 19V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z" },
               { title: "Locally rooted", desc: "Based in Lilongwe — we understand Malawi's energy landscape inside and out.", icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" },
             ].map(({ title, desc, icon }) => (
-              <div key={title} className="gp-card" style={{ padding: "24px 20px", minWidth: 0 }}>
-                <div className="gp-icon-badge" style={{ marginBottom: 16 }}>
+              <div key={title} className="gp-card" style={{ padding: "18px 16px", minWidth: 0 }}>
+                <div className="gp-icon-badge" style={{ marginBottom: 12 }}>
                   <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="var(--gp-green)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
                     <path d={icon} />
                   </svg>
                 </div>
-                <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 8px", wordBreak: "break-word" }}>{title}</h3>
-                <p style={{ fontSize: 13.5, color: "var(--gp-text-muted)", lineHeight: 1.65, margin: 0, wordBreak: "break-word" }}>{desc}</p>
+                <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 6px", wordBreak: "break-word" }}>{title}</h3>
+                <p style={{ fontSize: 13.5, color: "var(--gp-text-muted)", lineHeight: 1.6, margin: 0, wordBreak: "break-word" }}>{desc}</p>
               </div>
             ))}
           </div>
@@ -122,22 +122,22 @@ export default function Home() {
       </section>
 
       {/* ── Services preview ── */}
-      <section style={{ padding: "clamp(48px, 8vw, 80px) 0", backgroundColor: "var(--gp-bg-section)", borderTop: "1px solid var(--gp-border)", borderBottom: "1px solid var(--gp-border)" }}>
+      <section style={{ padding: "clamp(24px, 4vw, 44px) 0", backgroundColor: "var(--gp-bg-section)", borderTop: "1px solid var(--gp-border)", borderBottom: "1px solid var(--gp-border)" }}>
         <div className="gp-container">
-          <div style={{ marginBottom: 40 }}>
+          <div style={{ marginBottom: 20 }}>
             <span className="gp-eyebrow">Core services</span>
             <h2 className="gp-section-title">Everything solar, end to end</h2>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 240px), 1fr))", gap: 14, marginBottom: 28 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 240px), 1fr))", gap: 12, marginBottom: 20 }}>
             {[
               { n:"01", t:"Installation", d:"Full system design and professional installation for homes, commercial and industrial areas.", featured: true },
               { n:"02", t:"Maintenance", d:"Scheduled servicing to maximise output and protect your investment.", featured: false },
               { n:"03", t:"Repairs & upgrades", d:"Fast fault diagnosis and upgrades to keep energy flowing.", featured: false },
             ].map(({ n, t, d, featured }) => (
-              <div key={n} className={featured ? "gp-card-featured" : "gp-card"} style={{ padding: "24px 22px", minWidth: 0 }}>
-                <p style={{ fontSize: 11, color: "var(--gp-text-subtle)", fontWeight: 600, margin: "0 0 10px", letterSpacing: "0.05em" }}>{n}</p>
-                <h3 style={{ fontSize: 16, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 10px", wordBreak: "break-word" }}>{t}</h3>
-                <p style={{ fontSize: 13.5, color: "var(--gp-text-muted)", lineHeight: 1.65, margin: "0 0 16px", wordBreak: "break-word" }}>{d}</p>
+              <div key={n} className={featured ? "gp-card-featured" : "gp-card"} style={{ padding: "18px 16px", minWidth: 0 }}>
+                <p style={{ fontSize: 11, color: "var(--gp-text-subtle)", fontWeight: 600, margin: "0 0 8px", letterSpacing: "0.05em" }}>{n}</p>
+                <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--gp-text-primary)", margin: "0 0 8px", wordBreak: "break-word" }}>{t}</h3>
+                <p style={{ fontSize: 13.5, color: "var(--gp-text-muted)", lineHeight: 1.6, margin: "0 0 12px", wordBreak: "break-word" }}>{d}</p>
                 <Link href="/our_services" style={{ fontSize: 13, fontWeight: 700, color: "var(--gp-green)", textDecoration: "none" }}>Learn more →</Link>
               </div>
             ))}
@@ -147,12 +147,12 @@ export default function Home() {
       </section>
 
       {/* ── Gallery teaser ── */}
-      <section style={{ padding: "clamp(48px, 8vw, 80px) 0", backgroundColor: "var(--gp-bg-page)", borderBottom: "1px solid var(--gp-border)" }}>
+      <section style={{ padding: "clamp(24px, 4vw, 44px) 0", backgroundColor: "var(--gp-bg-page)", borderBottom: "1px solid var(--gp-border)" }}>
         <div className="gp-container">
           <div style={{
             display: "flex", alignItems: "flex-end",
             justifyContent: "space-between", flexWrap: "wrap",
-            gap: 16, marginBottom: 32,
+            gap: 12, marginBottom: 20,
           }}>
             <div style={{ minWidth: 0 }}>
               <span className="gp-eyebrow">Our work</span>
@@ -231,19 +231,19 @@ export default function Home() {
 
           {/* Stats strip */}
           <div style={{
-            marginTop: 28, padding: "18px 24px", borderRadius: 14,
+            marginTop: 18, padding: "14px 20px", borderRadius: 12,
             background: "var(--gp-green-light)", border: "1px solid var(--gp-green-border)",
             display: "flex", flexWrap: "wrap",
-            alignItems: "center", justifyContent: "space-between", gap: 16,
+            alignItems: "center", justifyContent: "space-between", gap: 12,
           }}>
-            <div style={{ display: "flex", gap: "16px 28px", flexWrap: "wrap" }}>
+            <div style={{ display: "flex", gap: "12px 24px", flexWrap: "wrap" }}>
               {[
                 { value: "50+", label: "Projects completed" },
                 { value: "800+ kW", label: "Total capacity installed" },
                 { value: "6", label: "Regions covered" },
               ].map(s => (
                 <div key={s.label}>
-                  <p style={{ fontSize: 20, fontWeight: 800, color: "var(--gp-green)", margin: 0 }}>{s.value}</p>
+                  <p style={{ fontSize: 18, fontWeight: 800, color: "var(--gp-green)", margin: 0 }}>{s.value}</p>
                   <p style={{ fontSize: 12, color: "var(--gp-text-muted)", margin: "2px 0 0" }}>{s.label}</p>
                 </div>
               ))}
@@ -262,13 +262,13 @@ export default function Home() {
       </section>
 
       {/* ── Bottom CTA ── */}
-      <section style={{ padding: "clamp(48px, 8vw, 72px) 0", backgroundColor: "var(--gp-bg-dark)" }}>
-        <div className="gp-container" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 28 }}>
+      <section style={{ padding: "clamp(24px, 4vw, 44px) 0", backgroundColor: "var(--gp-bg-dark)" }}>
+        <div className="gp-container" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 20 }}>
           <div style={{ maxWidth: 500, minWidth: 0 }}>
-            <h2 style={{ fontSize: "clamp(1.5rem,3.5vw,2.2rem)", fontWeight: 800, color: "#fff", margin: "0 0 10px", letterSpacing: "-0.02em", wordBreak: "break-word" }}>
+            <h2 style={{ fontSize: "clamp(1.3rem,3.5vw,2rem)", fontWeight: 800, color: "#fff", margin: "0 0 8px", letterSpacing: "-0.02em", wordBreak: "break-word" }}>
               Ready to go solar?
             </h2>
-            <p style={{ fontSize: "clamp(14px,2vw,16px)", color: "rgba(255,255,255,0.62)", margin: 0, lineHeight: 1.7, wordBreak: "break-word" }}>
+            <p style={{ fontSize: "clamp(13px,2vw,15px)", color: "rgba(255,255,255,0.62)", margin: 0, lineHeight: 1.6, wordBreak: "break-word" }}>
               Talk to our experts — free consultation, no pressure, just honest solar advice for your homes, commercial and industrial areas.
             </p>
           </div>
@@ -297,16 +297,16 @@ export default function Home() {
         /* Gallery */
         .gp-gallery-teaser {
           display: grid;
-          gap: 14px;
+          gap: 12px;
           grid-template-columns: 1fr;
         }
         .gp-gallery-card {
           text-decoration: none;
-          border-radius: 14px;
+          border-radius: 12px;
           overflow: hidden;
           display: block;
           position: relative;
-          min-height: 210px;
+          min-height: 190px;
           box-shadow: 0 2px 12px rgba(0,0,0,0.10);
           transition: transform 0.22s, box-shadow 0.22s;
         }
@@ -325,7 +325,7 @@ export default function Home() {
         }
         .gp-gallery-badges {
           position: absolute;
-          top: 12px; left: 12px; right: 12px;
+          top: 10px; left: 10px; right: 10px;
           display: flex;
           justify-content: space-between;
           align-items: center;
@@ -333,20 +333,20 @@ export default function Home() {
         .gp-gallery-info {
           position: absolute;
           bottom: 0; left: 0; right: 0;
-          padding: 14px 16px;
+          padding: 12px 14px;
         }
         @media (min-width: 600px) {
           .gp-gallery-teaser {
             grid-template-columns: repeat(2, 1fr);
           }
           .gp-gallery-card {
-            min-height: 230px;
+            min-height: 200px;
           }
         }
         @media (min-width: 1024px) {
           .gp-gallery-teaser {
             grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: 250px 250px;
+            grid-template-rows: 220px 220px;
           }
           .gp-gallery-card {
             min-height: unset;
